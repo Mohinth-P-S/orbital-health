@@ -68,9 +68,26 @@ Open `http://localhost:8080` in your browser.
 
 ---
 
-## Deployment
+## App Installation and Deployment
 
-The project is built with standard web technologies (HTML5, CSS3, JavaScript ES6+) and can be deployed directly to static hosting providers including Vercel, Netlify, or GitHub Pages.
+Orbital Health is implemented as an installable application across mobile, desktop, and web:
+
+### 1. Progressive Web App (PWA) — Mobile & Desktop
+- **Live Production URL:** [https://orbital-health-antigravity.vercel.app](https://orbital-health-antigravity.vercel.app)
+- **Offline Spaceflight Mode:** Powered by `sw.js` (Service Worker) which pre-caches all telemetry datasets, waveforms, and clinical guidelines for 0ms latency offline operation during deep-space Earth blackout windows.
+- **Mobile Installation (iOS / Android):** Open the live URL on any mobile device and tap "Add to Home Screen" or "Install App" to run in standalone full-screen mode with custom app icons.
+- **Desktop Installation (Windows / macOS / Chrome / Edge):** Click the "Install App" button in the topbar or address bar to install as a standalone desktop app.
+
+### 2. Standalone Desktop Application (Electron)
+A native desktop runtime is configured via `electron-main.js` and `package.json`:
+
+```bash
+# Install dependencies
+npm install
+
+# Launch native desktop application
+npm start
+```
 
 ---
 
