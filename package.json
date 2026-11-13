@@ -1,0 +1,24 @@
+{
+  "name": "orbital-health",
+  "version": "1.0.0",
+  "description": "Smart Health Monitoring & Autonomous Clinical Decision Support for Astronauts in Deep Space Missions",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "desktop": "electron .",
+    "dev": "python -m http.server 8080"
+  },
+  "keywords": [
+    "nasa",
+    "space-apps",
+    "astronaut",
+    "biometrics",
+    "telemetry",
+    "ecg"
+  ],
+  "author": "Mohinth P S",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^35.0.0"
+  }
+}

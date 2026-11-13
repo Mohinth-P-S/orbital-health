@@ -1,0 +1,43 @@
+{
+  "name": "Orbital Health — Astronaut Telemetry & Autonomous Medical System",
+  "short_name": "Orbital Health",
+  "description": "Smart Health Monitoring & Autonomous Clinical Decision Support for Astronauts in Deep Space Missions.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070a10",
+  "theme_color": "#070a10",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["medical", "health", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Health Dashboard",
+      "url": "./index.html#dashboard",
+      "description": "Real-time Lead-II ECG and vital telemetry"
+    },
+    {
+      "name": "AURA Medical AI",
+      "url": "./index.html#assistant",
+      "description": "Consult the onboard autonomous flight surgeon"
+    },
+    {
+      "name": "Crew Manifest",
+      "url": "./index.html#crew",
+      "description": "Astronaut physiological baseline & roster"
+    }
+  ]
+}

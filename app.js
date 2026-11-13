@@ -831,3 +831,45 @@ Correlated with active CSV telemetry stream (${activeCsvRows.length} rows loaded
     chatStream.scrollTop = chatStream.scrollHeight;
   }, 650);
 }
+
+
+/* ==========================================================================
+   8. PWA INSTALLATION & SERVICE WORKER ENGINE
+   ========================================================================== */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').then((reg) => {
+      console.log('[PWA] Service Worker registered successfully with scope:', reg.scope);
+    }).catch((err) => {
+      console.warn('[PWA] Service worker registration failed:', err);
+    });
+  });
+}
+
+let deferredPrompt = null;
+const pwaInstallBtn = document.querySelector('#pwa-install-btn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (pwaInstallBtn) {
+    pwaInstallBtn.style.display = 'inline-flex';
+  }
+});
+
+if (pwaInstallBtn) {
+  pwaInstallBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log('[PWA] User response to install prompt:', outcome);
+      deferredPrompt = null;
+      pwaInstallBtn.style.display = 'none';
+    }
+  });
+}
+
+window.addEventListener('appinstalled', () => {
+  console.log('[PWA] Orbital Health app installed successfully.');
+  if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
+});

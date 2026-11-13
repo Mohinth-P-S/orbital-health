@@ -7,6 +7,12 @@
     <meta name="description" content="Orbital Health — Smart Health Monitoring System for Astronauts in Space Missions." />
     <title>Orbital Health — Astronaut Biometric Telemetry & Autonomous Medical System</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Orbital Health" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png" />
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -34,6 +40,10 @@
       </nav>
 
       <div class="topbar-end">
+        <button class="install-app-btn" id="pwa-install-btn" type="button" aria-label="Install App" style="display: none;">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Install App</span>
+        </button>
         <span class="demo-state"><i class="status-live"></i> NASA LSDA LIVE STREAM</span>
         <button class="alert-button" type="button" data-view="alerts" aria-label="Open alerts">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>

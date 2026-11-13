@@ -1599,3 +1599,33 @@ button:not(:disabled):active { scale: .97; }
 .preview-action-btn:hover {
   background: #e2cca0;
 }
+
+
+/* ==========================================================================
+   PWA & NATIVE APP CONTROLS
+   ========================================================================== */
+.install-app-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(208, 183, 135, 0.15);
+  border: 1px solid rgba(208, 183, 135, 0.45);
+  color: #d0b787;
+  font: 8px var(--mono);
+  font-weight: 650;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.install-app-btn:hover {
+  background: #d0b787;
+  color: #080c12;
+  box-shadow: 0 0 16px rgba(208, 183, 135, 0.4);
+  transform: translateY(-1px);
+}
+.install-app-btn svg {
+  stroke: currentColor;
+}
