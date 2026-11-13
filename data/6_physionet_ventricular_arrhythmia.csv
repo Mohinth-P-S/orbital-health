@@ -1,0 +1,121 @@
+timestamp,heart_rate,spo2,respiration,core_temp,cabin_co2,radiation,anomaly_type,notes
+00:01,72.5,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:02,71.7,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:03,71.8,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:04,72.0,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:05,71.2,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:06,72.8,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:07,72.4,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:08,72.5,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:09,71.4,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:10,71.6,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:11,71.2,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:12,71.9,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:13,72.5,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:14,72.4,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:15,71.4,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:16,72.8,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:17,71.6,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:18,72.3,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:19,72.6,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:20,72.2,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:21,71.4,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:22,71.6,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:23,71.5,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:24,71.3,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:25,71.2,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:26,71.4,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:27,72.0,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:28,72.5,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:29,72.4,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:30,72.3,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:31,71.5,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:32,72.1,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:33,71.5,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:34,72.2,99.0,14,36.8,0.31,0.42,NONE,Normal sinus rhythm
+00:35,152.4,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:36,153.9,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:37,152.1,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:38,151.1,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:39,155.0,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:40,157.4,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:41,152.5,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:42,155.0,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:43,152.0,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:44,154.2,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:45,157.8,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:46,154.2,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:47,151.9,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:48,151.4,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:49,154.6,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:50,156.8,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:51,152.9,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:52,152.6,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:53,154.2,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:54,155.3,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:55,152.9,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:56,153.0,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:57,153.3,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:58,155.0,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+00:59,152.0,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:00,157.0,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:01,152.4,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:02,155.6,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:03,152.3,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:04,156.0,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:05,156.8,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:06,157.2,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:07,154.3,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:08,155.3,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:09,157.2,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:10,152.9,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:11,154.8,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:12,153.8,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:13,154.3,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:14,156.8,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:15,151.2,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:16,156.8,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:17,151.2,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:18,157.2,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:19,153.4,97.8,24,37.1,0.31,0.42,VENTRICULAR_TACHYCARDIA_RUN,PhysioNet Record #208: Paroxysmal Ventricular Tachycardia
+01:20,82.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:21,81.6,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:22,81.2,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:23,80.8,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:24,80.4,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:25,80.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:26,79.6,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:27,79.2,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:28,78.8,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:29,78.4,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:30,78.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:31,77.6,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:32,77.2,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:33,76.8,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:34,76.4,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:35,76.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:36,75.6,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:37,75.2,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:38,74.8,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:39,74.4,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:40,74.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:41,73.6,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:42,73.2,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:43,72.8,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:44,72.4,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:45,72.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:46,71.6,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:47,71.2,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:48,70.8,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:49,70.4,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:50,70.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:51,69.6,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:52,69.2,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:53,68.8,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:54,68.4,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:55,68.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:56,67.6,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:57,67.2,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:58,66.8,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+01:59,66.4,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm
+02:00,66.0,99.0,14,36.8,0.31,0.42,POST_CONVERSION,Spontaneous reversion to sinus rhythm

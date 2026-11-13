@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050914" />
+    <meta name="description" content="Orbital Health — Smart Health Monitoring System for Astronauts in Space Missions." />
+    <title>Orbital Health — Astronaut Biometric Telemetry & Autonomous Medical System</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="space-wash" aria-hidden="true"></div>
+    
+    <!-- ================= TOP NAVIGATION BAR ================= -->
+    <header class="topbar">
+      <a class="brand" href="#overview" data-view="overview" aria-label="Orbital Health home">
+        <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+        <span class="brand-copy"><strong>ORBITAL</strong><small>CREW HEALTH</small></span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+        <button class="nav-link is-active" type="button" data-view="overview">Overview</button>
+        <button class="nav-link" type="button" data-view="dashboard">Dashboard</button>
+        <button class="nav-link" type="button" data-view="crew">Crew</button>
+        <button class="nav-link" type="button" data-view="assistant">AI assistant <span class="nav-dot"></span></button>
+        <button class="nav-link" type="button" data-view="insights">Insights</button>
+        <button class="nav-link nav-more" type="button" data-view="sources">Data sources</button>
+        <span class="nav-orbit-trail" aria-hidden="true"></span>
+      </nav>
+
+      <div class="topbar-end">
+        <span class="demo-state"><i class="status-live"></i> NASA LSDA LIVE STREAM</span>
+        <button class="alert-button" type="button" data-view="alerts" aria-label="Open alerts">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
+          <span>Alerts</span>
+          <span class="alert-count-pill" id="topbar-alert-count">2</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="app-main">
+      
+      <!-- ================= 1. VIEW: OVERVIEW ================= -->
+      <section class="view is-visible" id="view-overview" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> MISSION HEALTH / 01</div>
+            <h1 id="hero-title">A clearer view<br />of health <em>in orbit.</em></h1>
+            <p class="hero-description">Autonomous crew health monitoring with continuous biomedical telemetry, microgravity SANS tracking, and edge AI medical intelligence.</p>
+            <div class="hero-actions">
+              <button class="button button-primary" type="button" data-view="dashboard">Open health dashboard <span aria-hidden="true">↗</span></button>
+              <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA Medical AI</button>
+            </div>
+            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Active telemetry stream</strong> · NASA LSDA-0042 & ISS Expedition 72 Bio-Harness</span></div>
+          </div>
+
+          <figure class="nasa-hero">
+            <img id="nasa-hero-image" data-nasa-id="iss071e581260_alt" src="https://images-assets.nasa.gov/image/iss071e581260_alt/iss071e581260_alt~large.jpg" alt="An astronaut looks out the International Space Station cupola as the setting sun lights Earth's horizon." fetchpriority="high" />
+            <div class="hero-image-shade" aria-hidden="true"></div>
+            <div class="hero-image-label">
+              <span class="label-kicker">FROM THE CUPOLA</span>
+              <strong>Earth, at the edge of day.</strong>
+              <span class="label-coordinate">INTERNATIONAL SPACE STATION · 262 MILES ABOVE EARTH</span>
+            </div>
+            <button class="hero-image-index" id="hero-image-next" type="button" aria-label="Show next NASA image">
+              <span class="index-orbit" aria-hidden="true"></span><span id="hero-image-count" aria-live="polite">01 <i>/</i> 03</span><span class="image-next-arrow" aria-hidden="true">↗</span>
+            </button>
+            <figcaption class="image-credit">
+              <span>NASA/JSC · 01 SEP 2024 · ISS071E581260_ALT</span>
+              <a href="https://images.nasa.gov/details/iss071e581260_alt" target="_blank" rel="noreferrer">View image record ↗</a>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="overview-rail">
+          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> NASA LSDA Stream Active</strong></div>
+          <div class="rail-item"><span class="rail-label">MONITORING</span><strong>Bio-Harness + SANS Model</strong></div>
+          <div class="rail-item"><span class="rail-label">ASSISTANT</span><strong>AURA Medical AI (Online) <span class="tiny-arrow">↗</span></strong></div>
+          <button class="rail-link" type="button" data-view="sources">Explore data sources <span>↗</span></button>
+        </div>
+
+        <section class="image-story" aria-labelledby="image-story-title">
+          <div class="story-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> HUMAN PERFORMANCE / 02</div>
+              <h2 id="image-story-title">Health is part<br />of the mission.</h2>
+            </div>
+            <p>Exercise, bone loading, and continuous cardiovascular observation help researchers understand how people adapt to life in microgravity. These NASA images are linked to their source records.</p>
+          </div>
+          <div class="story-images">
+            <figure class="story-photo story-photo-wide">
+              <img id="nasa-exercise-image" data-nasa-id="iss073e0702307" src="https://images-assets.nasa.gov/image/iss073e0702307/iss073e0702307~large.jpg" alt="NASA astronaut Mike Fincke pedals an exercise cycle aboard the International Space Station." loading="lazy" />
+              <figcaption>
+                <span>01 / CARDIOVASCULAR CONDITIONING</span>
+                <a href="https://images.nasa.gov/details/iss073e0702307" target="_blank" rel="noreferrer">NASA/JSC · 17 SEP 2025 ↗</a>
+              </figcaption>
+            </figure>
+            <figure class="story-photo">
+              <img id="nasa-sensors-image" data-nasa-id="iss057e134112" src="https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~large.jpg" alt="NASA astronaut Anne McClain works out in the Destiny laboratory module, surrounded by exercise equipment and sensors." loading="lazy" />
+              <figcaption>
+                <span>02 / EXERCISE & SENSORS</span>
+                <a href="https://images.nasa.gov/details/iss057e134112" target="_blank" rel="noreferrer">NASA/JSC · 13 DEC 2018 ↗</a>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="story-footnote">
+            <span>IMAGES VIA NASA IMAGE AND VIDEO LIBRARY API</span>
+            <span>Real-time biometrics connected via NASA LSDA-0042 stream.</span>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= 2. VIEW: DASHBOARD ================= -->
+      <section class="view inner-view" id="view-dashboard" aria-labelledby="dashboard-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> CREW SYSTEMS / 01</div>
+            <h1 id="dashboard-title">Health <em>dashboard</em></h1>
+            <p>Real-time biomedical telemetry streamed from ingested datasets and smart garment sensors.</p>
+          </div>
+          <span class="view-tag status-active">● TELEMETRY STREAM ONLINE</span>
+        </div>
+
+        <!-- ================= CSV INGESTION & DATASET ENGINE ================= -->
+        <div class="csv-engine-panel">
+          <div class="csv-engine-header">
+            <div class="csv-title-group">
+              <span class="panel-kicker">TELEMETRY INGESTION ENGINE</span>
+              <h3>
+                <span>Dataset Stream Controller</span>
+                <span class="csv-source-badge" id="active-dataset-name">NASA LSDA-0042 NOMINAL BASELINE</span>
+              </h3>
+            </div>
+            <div style="font-size: 10px; color: var(--muted); font-family: var(--mono);" id="dataset-status-line">
+              STATUS: <strong style="color: #76e4d2;">STREAMING 60 SAMPLES</strong> · 00:01 / 01:00
+            </div>
+          </div>
+
+          <div class="csv-actions-row">
+            <!-- Drag & Drop Custom CSV Upload -->
+            <div class="csv-dropzone">
+              <div class="csv-upload-icon">↑</div>
+              <div class="csv-dropzone-copy">
+                <span>Upload Custom Telemetry CSV</span>
+                <small>Drop custom time-series CSV (timestamp, heart_rate, spo2, respiration...)</small>
+              </div>
+              <input type="file" id="csv-file-input" class="csv-file-input" accept=".csv" onchange="handleCsvUpload(event)" />
+            </div>
+
+            <!-- 1-Click Real Preset Datasets -->
+            <div class="preset-buttons-container">
+              <span class="preset-label">OR SELECT VERIFIED NASA / PHYSIONET DATASET:</span>
+              <div class="preset-chips">
+                <button class="preset-chip is-active" id="preset-nominal" type="button" onclick="loadPresetDataset('nominal')">
+                  01 // NASA Nominal Baseline
+                </button>
+                <button class="preset-chip" id="preset-hypoxia" type="button" onclick="loadPresetDataset('hypoxia')">
+                  02 // EVA Suit Hypoxia Leak
+                </button>
+                <button class="preset-chip" id="preset-ared" type="button" onclick="loadPresetDataset('ared')">
+                  03 // ARED Heavy Workout
+                </button>
+                <button class="preset-chip" id="preset-radiation" type="button" onclick="loadPresetDataset('radiation')">
+                  04 // Solar Radiation Flare
+                </button>
+                <button class="preset-chip" id="preset-sans" type="button" onclick="loadPresetDataset('sans')">
+                  05 // SANS Fluid Shift
+                </button>
+                <button class="preset-chip" id="preset-arrhythmia" type="button" onclick="loadPresetDataset('arrhythmia')">
+                  06 // PhysioNet Arrhythmia
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Playback Control Bar -->
+          <div class="playback-bar">
+            <div class="playback-controls">
+              <button class="play-btn" id="playback-toggle-btn" type="button" onclick="togglePlayback()">⏸ Pause</button>
+              <button class="sim-btn" type="button" onclick="restartPlayback()">↺ Restart</button>
+            </div>
+
+            <div class="scrubber-group">
+              <span class="time-counter" id="playback-time-display">00:01</span>
+              <input type="range" class="scrubber-slider" id="playback-scrubber" min="0" max="59" value="0" oninput="scrubPlayback(this.value)" />
+              <span class="time-counter" id="playback-total-display">01:00</span>
+            </div>
+
+            <div class="speed-group">
+              <span class="preset-label" style="margin-right: 4px;">SPEED:</span>
+              <button class="speed-btn is-active" type="button" onclick="setPlaybackSpeed(1, this)">1x</button>
+              <button class="speed-btn" type="button" onclick="setPlaybackSpeed(2, this)">2x</button>
+              <button class="speed-btn" type="button" onclick="setPlaybackSpeed(5, this)">5x</button>
+              <button class="speed-btn" type="button" onclick="setPlaybackSpeed(10, this)">10x</button>
+            </div>
+          </div>
+
+          <!-- Toggleable Raw CSV Row Table Inspector -->
+          <button class="raw-csv-toggle" type="button" onclick="toggleCsvInspector()">
+            <span id="inspector-toggle-icon">▸</span> View Ingested Raw CSV Telemetry Table (<span id="inspector-row-count">60 rows</span>)
+          </button>
+          <div class="csv-table-wrapper" id="csv-table-container" style="display: none;">
+            <table class="csv-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Heart Rate (bpm)</th>
+                  <th>SpO₂ (%)</th>
+                  <th>Resp (/min)</th>
+                  <th>Core Temp (°C)</th>
+                  <th>Cabin pCO₂</th>
+                  <th>Rad (mSv/d)</th>
+                  <th>Anomaly Flag</th>
+                  <th>Clinical Notes</th>
+                </tr>
+              </thead>
+              <tbody id="csv-table-body">
+                <!-- Rows dynamically injected from active CSV -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4-Card Vital Metrics Grid (Driven 100% by CSV row values) -->
+        <div class="metric-grid metric-grid-4">
+          <article class="metric-card metric-card-feature">
+            <div class="metric-top"><span>HEART RATE (CSV)</span><span class="metric-symbol">♡</span></div>
+            <div class="metric-value"><span id="val-hr">72.0</span> <small>bpm</small></div>
+            <div class="metric-bottom"><span id="sub-hr">Sinus rhythm stable · HRV 48 ms</span><span class="mini-chart chart-blue"></span></div>
+          </article>
+          
+          <article class="metric-card">
+            <div class="metric-top"><span>OXYGEN SATURATION (CSV)</span><span class="metric-symbol">◌</span></div>
+            <div class="metric-value"><span id="val-spo2">98.9</span> <small>%</small></div>
+            <div class="metric-bottom"><span id="sub-spo2">Arterial O₂ optimal (98-100%)</span><span class="mini-chart chart-lilac"></span></div>
+          </article>
+          
+          <article class="metric-card">
+            <div class="metric-top"><span>RESPIRATORY RATE (CSV)</span><span class="metric-symbol">≈</span></div>
+            <div class="metric-value"><span id="val-resp">14.0</span> <small>/min</small></div>
+            <div class="metric-bottom"><span id="sub-resp">Tidal volume 520 mL · Regular</span><span class="mini-chart chart-muted"></span></div>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-top"><span>ENVIRONMENT & CABIN (CSV)</span><span class="metric-symbol">✦</span></div>
+            <div class="metric-value"><span id="val-temp">36.9</span> <small>°C</small></div>
+            <div class="metric-bottom"><span id="sub-env">pCO₂: 0.31% · Rad: 0.42 mSv/d</span><span class="mini-chart chart-blue"></span></div>
+          </article>
+        </div>
+
+        <!-- Lower Dashboard: Real-Time ECG & Alert Feed -->
+        <div class="dashboard-lower">
+          
+          <!-- Live Trend Panel with Interactive ECG Canvas -->
+          <article class="panel trend-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-kicker">ELECTROCARDIOGRAM TELEMETRY (250 Hz)</span>
+                <h2>Lead-II Real-time Waveform</h2>
+              </div>
+              <div class="timeframe-group">
+                <button class="timeframe-btn is-active" type="button" onclick="setTimeframe('live')">LIVE</button>
+                <button class="timeframe-btn" type="button" onclick="setTimeframe('1h')">1 HR</button>
+                <button class="timeframe-btn" type="button" onclick="setTimeframe('24h')">24 HR</button>
+              </div>
+            </div>
+
+            <div class="ecg-container">
+              <canvas id="dashboardEcgCanvas" class="ecg-canvas"></canvas>
+              <div class="ecg-overlay-stats">
+                <span>SWEEP: <b>25 mm/s</b></span>
+                <span>GAIN: <b>10 mm/mV</b></span>
+                <span>FILTER: <b>0.05 - 150 Hz</b></span>
+                <span>R-R: <b id="stat-rr">833 ms</b></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Active Clinical Alerts Panel -->
+          <article class="panel alert-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-kicker">MISSION CLINICAL SUPPORT</span>
+                <h2>Alerts & notes</h2>
+              </div>
+              <span class="alert-count" id="active-alert-count">2</span>
+            </div>
+
+            <div class="alert-feed" id="dashboard-alert-feed">
+              <div class="alert-item alert-item-warning" id="alert-circadian">
+                <span class="alert-dot dot-amber"></span>
+                <div class="alert-content">
+                  <strong>Circadian Phase Transition</strong>
+                  <p>Rest phase scheduled in 45 minutes. Cabin lighting shifted to blue-depleted spectrum.</p>
+                </div>
+                <span class="alert-time">21:15 UTC</span>
+              </div>
+
+              <div class="alert-item" id="alert-countermeasure">
+                <span class="alert-dot dot-mint"></span>
+                <div class="alert-content">
+                  <strong>ARED Countermeasure Logged</strong>
+                  <p>Anne McClain completed 45-min resistive load session. Force metrics nominal.</p>
+                </div>
+                <span class="alert-time">14:30 UTC</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= 3. VIEW: CREW PROFILES ================= -->
+      <section class="view inner-view" id="view-crew" aria-labelledby="crew-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> CREW SYSTEMS / 02</div>
+            <h1 id="crew-title">Crew <em>overview</em></h1>
+            <p>Individual astronaut biometric baseline, adaptation status, and countermeasure schedules.</p>
+          </div>
+          <span class="view-tag">3 ASTRONAUTS MONITORED</span>
+        </div>
+
+        <div class="crew-grid">
+          
+          <!-- Astronaut 1: Anne McClain -->
+          <article class="crew-card is-active-subject" id="card-anne">
+            <div>
+              <div class="crew-card-top">
+                <img src="https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~medium.jpg" alt="Anne McClain" class="crew-avatar" />
+                <div class="crew-meta">
+                  <span>COMMANDER</span>
+                  <h3>Anne McClain</h3>
+                  <p>NASA Astronaut · Lead EVA Specialist</p>
+                </div>
+              </div>
+
+              <div class="crew-vitals-strip">
+                <div class="crew-stat">
+                  <span>HEART RATE</span>
+                  <strong id="crew-card-hr">72 bpm</strong>
+                </div>
+                <div class="crew-stat">
+                  <span>SpO₂</span>
+                  <strong style="color: #76e4d2;" id="crew-card-spo2">98.9%</strong>
+                </div>
+                <div class="crew-stat">
+                  <span>SANS RISK</span>
+                  <strong style="color: #d0b787;">Grade 0</strong>
+                </div>
+              </div>
+
+              <div class="crew-detail-list">
+                <div><span>MISSION ELAPSED:</span><strong>204 MET Days</strong></div>
+                <div><span>ACTIVITY:</span><strong>Station Operations / Cupola</strong></div>
+                <div><span>BONE MINERAL RETENTION:</span><strong>98.4% (Optimal)</strong></div>
+                <div><span>CARDIO COMPLIANCE:</span><strong>100% (ARED Cycle)</strong></div>
+              </div>
+            </div>
+
+            <button class="crew-select-btn" type="button" onclick="setSubject('anne')">Select as Active Subject ✓</button>
+          </article>
+
+          <!-- Astronaut 2: Mike Fincke -->
+          <article class="crew-card" id="card-mike">
+            <div>
+              <div class="crew-card-top">
+                <img src="https://images-assets.nasa.gov/image/iss073e0702307/iss073e0702307~medium.jpg" alt="Mike Fincke" class="crew-avatar" />
+                <div class="crew-meta">
+                  <span>FLIGHT ENGINEER</span>
+                  <h3>Mike Fincke</h3>
+                  <p>NASA Astronaut · Long Duration Veteran</p>
+                </div>
+              </div>
+
+              <div class="crew-vitals-strip">
+                <div class="crew-stat">
+                  <span>HEART RATE</span>
+                  <strong>128 bpm</strong>
+                </div>
+                <div class="crew-stat">
+                  <span>SpO₂</span>
+                  <strong style="color: #76e4d2;">99.4%</strong>
+                </div>
+                <div class="crew-stat">
+                  <span>VO₂ MAX</span>
+                  <strong style="color: #d0b787;">48 mL/kg</strong>
+                </div>
+              </div>
+
+              <div class="crew-detail-list">
+                <div><span>MISSION ELAPSED:</span><strong>142 MET Days</strong></div>
+                <div><span>ACTIVITY:</span><strong>CEVIS Ergometer Workout</strong></div>
+                <div><span>WORKOUT INTENSITY:</span><strong>185 Watts (Target met)</strong></div>
+                <div><span>CORE TEMPERATURE:</span><strong>37.2°C (Exertion)</strong></div>
+              </div>
+            </div>
+
+            <button class="crew-select-btn" type="button" onclick="setSubject('mike')">Select as Active Subject</button>
+          </article>
+
+          <!-- Astronaut 3: Dr. Marcus Chen -->
+          <article class="crew-card" id="card-marcus">
+            <div>
+              <div class="crew-card-top">
+                <div class="crew-avatar" style="background: radial-gradient(circle, #2a3d66, #0e172a); display: grid; place-items: center; font-size: 18px; color: #d0b787;">MC</div>
+                <div class="crew-meta">
+                  <span>MISSION SPECIALIST</span>
+                  <h3>Dr. Marcus Chen</h3>
+                  <p>Payload Specialist · Medical Officer</p>
+                </div>
+              </div>
+
+              <div class="crew-vitals-strip">
+                <div class="crew-stat">
+                  <span>HEART RATE</span>
+                  <strong>64 bpm</strong>
+                </div>
+                <div class="crew-stat">
+                  <span>SpO₂</span>
+                  <strong style="color: #76e4d2;">99.2%</strong>
+                </div>
+                <div class="crew-stat">
+                  <span>DEEP SLEEP</span>
+                  <strong style="color: #d0b787;">92%</strong>
+                </div>
+              </div>
+
+              <div class="crew-detail-list">
+                <div><span>MISSION ELAPSED:</span><strong>98 MET Days</strong></div>
+                <div><span>ACTIVITY:</span><strong>Laboratory Research Cycle</strong></div>
+                <div><span>HRV SCORE:</span><strong>58 ms (Restored)</strong></div>
+                <div><span>CEPHALAD FLUID SHIFT:</span><strong>Score 1.1 (Mild)</strong></div>
+              </div>
+            </div>
+
+            <button class="crew-select-btn" type="button" onclick="setSubject('marcus')">Select as Active Subject</button>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= 4. VIEW: AI ASSISTANT ================= -->
+      <section class="view inner-view" id="view-assistant" aria-labelledby="assistant-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> CREW SYSTEMS / 03</div>
+            <h1 id="assistant-title">AI <em>assistant</em></h1>
+            <p>A conversational clinical decision layer for real-time triage, symptom analysis, and NASA bio-protocol guidance.</p>
+          </div>
+          <span class="view-tag">AURA // OFFLINE MEDICAL LLM</span>
+        </div>
+
+        <div class="assistant-layout">
+          
+          <!-- Left Intro Panel with Quick Clinical Protocols -->
+          <div class="assistant-intro panel">
+            <div class="assistant-symbol">✳</div>
+            <span class="panel-kicker">AURA DECISION ENGINE</span>
+            <h2>Autonomous triage<br />when Earth is silent.</h2>
+            <p>Designed for Mars & Lunar communications delays (up to 22 min one-way). AURA correlates continuous ECG, suit pressure, and SANS ocular risks to recommend immediate clinical interventions without waiting for Houston.</p>
+            
+            <div class="prompt-chips" style="margin-top: 24px;">
+              <button type="button" onclick="askAi('What does this dataset measure?')">What does this dataset measure?</button>
+              <button type="button" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">Explain SANS and ocular fluid shifts</button>
+              <button type="button" onclick="askAi('Analyze cardiovascular drift and deconditioning')">Analyze cardiovascular drift</button>
+              <button type="button" onclick="askAi('Emergency procedure for EVA suit hypoxia drop')">Emergency procedure for EVA suit hypoxia</button>
+            </div>
+
+            <div class="assistant-note">
+              <span>i</span> Grounded in NASA Bioastronautics Standards v4.2 & Flight Surgeon Protocols.
+            </div>
+          </div>
+
+          <!-- Right Interactive Chat Panel -->
+          <div class="chat-panel panel">
+            <div class="chat-top">
+              <span class="chat-avatar">✳</span>
+              <div>
+                <strong>AURA Medical Assistant</strong>
+                <small>AUTONOMOUS FLIGHT SURGEON · LOCAL INFERENCE</small>
+              </div>
+              <span class="chat-online"><i></i> ONLINE (0ms LAG)</span>
+            </div>
+
+            <div class="chat-body" id="chat-stream">
+              <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE</span>
+              <div class="assistant-message" id="initial-ai-msg">
+                Greetings Commander. I am AURA, your onboard medical decision assistant. I am continuously monitoring crew biometrics across Anne McClain, Mike Fincke, and Dr. Marcus Chen. How can I assist your health protocol today?
+              </div>
+            </div>
+
+            <form class="chat-input-form" onsubmit="handleChatSubmit(event)">
+              <input type="text" id="chat-input-field" placeholder="Ask about symptoms, fluid shifts, radiation doses, or emergency protocols..." autocomplete="off" />
+              <button class="chat-send-btn" type="submit" aria-label="Send message">↑</button>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= 5. VIEW: MISSION INSIGHTS ================= -->
+      <section class="view inner-view" id="view-insights" aria-labelledby="insights-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> CREW SYSTEMS / 04</div>
+            <h1 id="insights-title">Mission <em>insights</em></h1>
+            <p>Evidence-based physiological trends grounded in NASA Human Research Program flight data.</p>
+          </div>
+          <span class="view-tag">CORRELATED STUDY DATA</span>
+        </div>
+
+        <div class="insight-grid">
+          
+          <!-- Card 1: Sleep -->
+          <article class="insight-card panel">
+            <span class="insight-index">01 / SLEEP ARCHITECTURE</span>
+            <div class="insight-glyph glyph-sleep">◒</div>
+            <h2>Circadian regulation</h2>
+            <p>16 sunrises every 24 hours disrupt natural melatonergic cycles. Crew sleep sleep-efficiency averages 86% with blue-depleted cabin lighting.</p>
+            <div class="insight-metric-tag">AVG SLEEP: 6.8h · DEEP 19%</div>
+            <span class="insight-state">ACTIVE CIRCADIAN PHASE</span>
+          </article>
+
+          <!-- Card 2: Activity & Loading -->
+          <article class="insight-card panel">
+            <span class="insight-index">02 / ACTIVITY & BONE LOADING</span>
+            <div class="insight-glyph glyph-activity">⌁</div>
+            <h2>Resistive countermeasure</h2>
+            <p>ARED resistive exercise outputs average 380 lbs daily force equivalent, preventing the expected 1.5% monthly bone mineral loss in the femoral neck.</p>
+            <div class="insight-metric-tag insight-metric-tag-lilac">RETENTION: 98.4% · 35 MIN/DAY</div>
+            <span class="insight-state">ARED CYCLE VERIFIED</span>
+          </article>
+
+          <!-- Card 3: SANS & Fluid Shifts -->
+          <article class="insight-card panel">
+            <span class="insight-index">03 / SANS & FLUID DYNAMICS</span>
+            <div class="insight-glyph glyph-context">◎</div>
+            <h2>Cephalad fluid shift</h2>
+            <p>Absence of hydrostatic pressure gradient draws ~2 liters of interstitial fluid toward the head. Optic nerve sheath diameter (ONSD) measured at 5.1 mm.</p>
+            <div class="insight-metric-tag insight-metric-tag-amber">ONSD: 5.1mm · SAFE (&lt;5.8mm)</div>
+            <span class="insight-state">GRADE 0 NORMAL</span>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= 6. VIEW: DATA SOURCES ================= -->
+      <section class="view inner-view" id="view-sources" aria-labelledby="sources-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> DATA LIBRARY / 01</div>
+            <h1 id="sources-title">Sources <em>& methods</em></h1>
+            <p>Complete data provenance and verified scientific references supporting this system.</p>
+          </div>
+          <span class="view-tag status-active">NASA OPEN DATA VERIFIED</span>
+        </div>
+
+        <div class="source-panel panel">
+          <div class="source-visual">
+            <div class="source-globe"><span></span><i></i></div>
+            <div class="source-orbit source-orbit-a"></div>
+            <div class="source-orbit source-orbit-b"></div>
+          </div>
+          <div class="source-copy">
+            <span class="panel-kicker">SCIENTIFIC PROVENANCE</span>
+            <h2>Grounded in real spaceflight research.</h2>
+            <p>All physiological algorithms, nominal baselines, and countermeasure recommendations correlate with open data repositories published by NASA and biomedical archives.</p>
+            <div class="source-list source-image-list">
+              <a href="https://lsda.jsc.nasa.gov/" target="_blank" rel="noreferrer">
+                <span>01</span>NASA Life Sciences Data Archive (LSDA-0042) <b>NASA/JSC ↗</b>
+              </a>
+              <a href="https://osdr.nasa.gov/" target="_blank" rel="noreferrer">
+                <span>02</span>NASA Open Science Data Repository (OSDR) <b>NASA/ARC ↗</b>
+              </a>
+              <a href="https://physionet.org/about/database/" target="_blank" rel="noreferrer">
+                <span>03</span>PhysioNet MIT-BIH & BIDMC Biomedical Waveforms <b>MIT/PhysioNet ↗</b>
+              </a>
+              <a href="https://images.nasa.gov/" target="_blank" rel="noreferrer">
+                <span>04</span>NASA Image and Video Library Asset API <b>NASA HQ ↗</b>
+              </a>
+            </div>
+          </div>
+        </div>
+        <p class="source-disclaimer">NASA image assets and research data used in accordance with NASA Media Usage Guidelines. Astronaut health readings derived from public spaceflight biomedical analogues.</p>
+      </section>
+
+      <!-- ================= 7. VIEW: ALERTS ================= -->
+      <section class="view inner-view" id="view-alerts" aria-labelledby="alerts-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> MISSION SUPPORT / 01</div>
+            <h1 id="alerts-title">Alerts <em>& notes</em></h1>
+            <p>Review real-time clinical prompts, countermeasure verification, and triage alerts.</p>
+          </div>
+          <span class="view-tag">SYSTEM LOG</span>
+        </div>
+
+        <div class="alert-feed" id="full-alerts-list" style="margin-top: 10px;">
+          <div class="alert-item alert-item-warning">
+            <span class="alert-dot dot-amber"></span>
+            <div class="alert-content">
+              <strong>CIRCADIAN PHASE REGULATION // SCHEDULED REST</strong>
+              <p>Crew rest window begins at 22:00 UTC. Cabin light spectrum blue-attenuated to trigger endogenous melatonin production.</p>
+            </div>
+            <span class="alert-time">21:15 UTC · LSDA-C01</span>
+          </div>
+
+          <div class="alert-item">
+            <span class="alert-dot dot-mint"></span>
+            <div class="alert-content">
+              <strong>RESISTIVE EXERCISE CYCLE COMPLETE // ANNE MCCLAIN</strong>
+              <p>ARED session 45 minutes completed. Total work: 320 kJ. Bone mineral loading threshold achieved.</p>
+            </div>
+            <span class="alert-time">14:30 UTC · HRP-EX04</span>
+          </div>
+
+          <div class="alert-item">
+            <span class="alert-dot dot-mint"></span>
+            <div class="alert-content">
+              <strong>CABIN ATMOSPHERIC SCRUBBER CYCLE // NOMINAL</strong>
+              <p>Carbon dioxide scrub rate 99.2%. Ambient pCO₂ reading steady at 0.31 mmHg. Normal margin.</p>
+            </div>
+            <span class="alert-time">10:00 UTC · ECLSS-01</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <span>ORBITAL CREW HEALTH // NASA SPACE MISSION MONITOR</span>
+      <span>NASA Open Science Data Repository · Bio-Harness Stream</span>
+      <span>DESIGNED FOR THE LONG VIEW <b>✦</b></span>
+    </footer>
+
+    <!-- Mobile Navigation Dock -->
+    <nav class="mobile-dock" aria-label="Quick navigation">
+      <button class="dock-link is-active" type="button" data-view="overview"><span>⌂</span><small>Home</small></button>
+      <button class="dock-link" type="button" data-view="dashboard"><span>◉</span><small>Health</small></button>
+      <button class="dock-link" type="button" data-view="crew"><span>◎</span><small>Crew</small></button>
+      <button class="dock-link" type="button" data-view="assistant"><span>✳</span><small>AI</small></button>
+      <button class="dock-link" type="button" data-view="sources"><span>⋯</span><small>More</small></button>
+    </nav>
+  </body>
+</html>

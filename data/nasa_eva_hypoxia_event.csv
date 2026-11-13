@@ -1,0 +1,61 @@
+timestamp,heart_rate,spo2,respiration,core_temp,cabin_co2,radiation,anomaly_type,notes
+00:01,74.8,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:02,74.2,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:03,73.0,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:04,73.8,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:05,73.9,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:06,73.3,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:07,74.3,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:08,74.0,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:09,73.8,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:10,73.4,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:11,73.8,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:12,73.6,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:13,74.1,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:14,73.3,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:15,74.7,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:16,73.6,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:17,73.6,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:18,74.0,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:19,73.4,99.0,14,37.0,0.32,0.44,NONE,EVA Spacewalk nominal
+00:20,75.5,98.3,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:21,77.6,97.6,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:22,79.7,96.9,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:23,81.8,96.2,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:24,83.9,95.5,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:25,86.0,94.8,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:26,88.1,94.1,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:27,90.2,93.4,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:28,92.3,92.8,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:29,94.4,92.1,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:30,96.5,91.4,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:31,98.6,90.8,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:32,100.7,90.1,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:33,102.8,89.4,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:34,104.9,88.8,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:35,107.0,88.1,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:36,109.1,87.4,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:37,111.2,86.8,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:38,113.3,86.5,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:39,115.4,86.5,18,37.0,0.32,0.44,HYPOXIA_WARNING,PLSS secondary O2 regulator drop detected
+00:40,113.6,87.3,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:41,111.8,88.1,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:42,110.0,88.9,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:43,108.2,89.7,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:44,106.4,90.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:45,104.6,91.3,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:46,102.8,92.1,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:47,101.0,92.9,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:48,99.2,93.7,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:49,97.4,94.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:50,95.6,95.3,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:51,93.8,96.1,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:52,92.0,96.9,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:53,90.2,97.7,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:54,88.4,98.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:55,86.6,98.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:56,84.8,98.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:57,83.0,98.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:58,81.2,98.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:59,79.4,98.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated
+00:60,77.6,98.5,18,37.0,0.32,0.44,PURGE_RECOVERY,Emergency high-flow purge valve activated

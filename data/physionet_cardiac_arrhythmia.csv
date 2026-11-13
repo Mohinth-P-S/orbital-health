@@ -1,0 +1,61 @@
+timestamp,heart_rate,spo2,respiration,core_temp,cabin_co2,radiation,anomaly_type,notes
+00:01,72.8,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:02,72.7,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:03,72.9,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:04,71.2,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:05,71.5,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:06,71.1,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:07,71.4,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:08,71.1,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:09,71.5,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:10,71.1,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:11,72.4,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:12,71.6,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:13,71.9,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:14,71.7,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:15,71.5,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:16,72.3,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:17,71.4,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:18,72.6,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:19,71.1,98.6,14,36.8,0.31,0.42,NONE,Baseline rest
+00:20,135.8,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:21,140.2,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:22,140.0,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:23,135.8,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:24,139.9,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:25,139.1,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:26,139.2,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:27,140.9,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:28,140.2,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:29,135.2,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:30,137.2,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:31,140.2,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:32,141.6,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:33,136.5,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:34,136.0,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:35,139.7,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:36,138.5,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:37,139.2,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:38,141.4,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:39,135.9,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:40,140.7,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:41,139.9,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:42,138.7,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:43,140.8,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:44,140.7,98.6,22,37.2,0.31,0.42,VENTRICULAR_TACHYCARDIA,Sudden tachyarrhythmia during microgravity resistive exercise
+00:45,84.0,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:46,83.2,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:47,82.4,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:48,81.6,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:49,80.8,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:50,80.0,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:51,79.2,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:52,78.4,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:53,77.6,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:54,76.8,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:55,76.0,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:56,75.2,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:57,74.4,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:58,73.6,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:59,72.8,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
+00:60,72.0,98.6,14,37.2,0.31,0.42,RECOVERY,Sinus rhythm restabilizing post-countermeasure
