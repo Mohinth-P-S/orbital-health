@@ -1075,3 +1075,527 @@ button:not(:disabled):active { scale: .97; }
   color: #fff;
   font-weight: 600;
 }
+
+
+/* ORBITAL HEALTH — EDITORIAL OVERVIEW THEME EXPANSION */
+/* ==========================================================================
+   ORBITAL HEALTH — EDITORIAL OVERVIEW THEME EXPANSION (PREVIEW CSS)
+   Applies the Overview Tab's warm champagne gold accents, Georgia serif
+   typography, photographic framing, and NASA aesthetic across all views.
+   ========================================================================== */
+
+/* 1. Global Editorial Typography & Headings */
+.inner-heading {
+  margin-bottom: 28px;
+}
+.inner-heading h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(44px, 5.2vw, 68px);
+  font-weight: 400;
+  letter-spacing: -.055em;
+  line-height: 1.02;
+  margin: 18px 0 10px;
+  color: var(--text);
+}
+.inner-heading h1 em {
+  color: #d0b787;
+  font-style: italic;
+  font-weight: 400;
+}
+.hero-description {
+  color: #aeb7c2;
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 580px;
+}
+
+/* 2. Unified Overview Rails across Inner Views */
+.dashboard-rail, .crew-rail, .insights-rail, .assistant-rail {
+  margin-bottom: 28px;
+  border-top: 1px solid rgba(220, 229, 242, 0.14);
+  border-bottom: 1px solid rgba(220, 229, 242, 0.14);
+  background: rgba(12, 17, 26, 0.45);
+  padding: 16px 20px;
+  border-radius: 3px;
+}
+.rail-label {
+  font: 8px var(--mono);
+  letter-spacing: .14em;
+  color: #8b97a4;
+  text-transform: uppercase;
+}
+.rail-item strong {
+  color: #d7dce0;
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rail-link {
+  color: #d0b787;
+  font: 8px var(--mono);
+  letter-spacing: .1em;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.rail-link:hover {
+  color: #dfc79c;
+  transform: translateX(2px);
+}
+
+/* 3. Editorial Telemetry Ingestion Engine */
+.csv-engine-panel {
+  border: 1px solid rgba(220, 229, 242, 0.16);
+  border-radius: 4px;
+  background: linear-gradient(145deg, rgba(16, 23, 34, 0.92), rgba(9, 13, 20, 0.85));
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  padding: 20px 24px;
+  margin-bottom: 22px;
+  position: relative;
+  overflow: hidden;
+}
+.csv-engine-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d0b787 50%, transparent);
+  opacity: 0.6;
+}
+.csv-title-group h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  color: #f1f1ec;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+.csv-source-badge {
+  font: 8px var(--mono);
+  color: #d0b787;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid rgba(208, 183, 135, 0.35);
+  background: rgba(208, 183, 135, 0.08);
+  letter-spacing: 0.08em;
+}
+.csv-dropzone {
+  border: 1px dashed rgba(208, 183, 135, 0.45);
+  background: rgba(8, 12, 19, 0.65);
+  border-radius: 4px;
+  padding: 16px 20px;
+  transition: all 0.25s ease;
+}
+.csv-dropzone:hover {
+  border-color: #d0b787;
+  background: rgba(208, 183, 135, 0.08);
+  transform: translateY(-1px);
+}
+.csv-upload-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(208, 183, 135, 0.5);
+  color: #d0b787;
+  background: rgba(208, 183, 135, 0.1);
+}
+.csv-dropzone-copy span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #f1f1ec;
+}
+.preset-chip {
+  font: 8px var(--mono);
+  letter-spacing: 0.05em;
+  padding: 8px 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(220, 229, 242, 0.14);
+  background: rgba(12, 18, 27, 0.7);
+  color: #b5c2d3;
+}
+.preset-chip:hover {
+  border-color: rgba(208, 183, 135, 0.5);
+  color: #fff;
+  background: rgba(208, 183, 135, 0.1);
+}
+.preset-chip.is-active {
+  border-color: #d0b787;
+  color: #0b1118;
+  background: #d0b787;
+  font-weight: 600;
+  box-shadow: 0 0 16px rgba(208, 183, 135, 0.35);
+}
+.playback-bar {
+  background: rgba(7, 10, 16, 0.8);
+  border: 1px solid rgba(220, 229, 242, 0.12);
+  border-radius: 3px;
+  padding: 10px 16px;
+}
+.play-btn {
+  background: #d0b787;
+  color: #080c12;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+.play-btn:hover {
+  background: #dfc79c;
+}
+
+/* 4. Editorial Metric Cards */
+.metric-card {
+  border: 1px solid rgba(220, 229, 242, 0.15);
+  background: linear-gradient(145deg, rgba(16, 23, 34, 0.88), rgba(9, 13, 20, 0.8));
+  border-radius: 3px;
+  padding: 22px 24px;
+  min-height: 165px;
+}
+.metric-card:hover {
+  border-color: rgba(208, 183, 135, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
+}
+.metric-top {
+  font: 8px var(--mono);
+  letter-spacing: .14em;
+  color: #8b97a4;
+}
+.metric-symbol {
+  color: #d0b787;
+  font-size: 16px;
+}
+.metric-value {
+  margin: 18px 0 14px;
+}
+.metric-num {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 3.8vw, 46px);
+  font-weight: 400;
+  letter-spacing: -.05em;
+  color: #f5f3ed;
+  line-height: 1;
+}
+.metric-value small {
+  font: 9px var(--mono);
+  color: #d0b787;
+  letter-spacing: .08em;
+  margin-left: 4px;
+}
+.metric-bottom {
+  font-size: 10px;
+  color: #8f9ba9;
+  border-top: 1px solid rgba(220, 229, 242, 0.08);
+  padding-top: 10px;
+}
+
+/* 5. ECG Waveform & Lower Dashboard */
+.panel {
+  border: 1px solid rgba(220, 229, 242, 0.15);
+  background: linear-gradient(145deg, rgba(16, 23, 34, 0.88), rgba(9, 13, 20, 0.8));
+  border-radius: 3px;
+  padding: 22px 24px;
+}
+.panel-kicker {
+  font: 8px var(--mono);
+  letter-spacing: .15em;
+  color: #8b97a4;
+}
+.panel-heading h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  color: #f1f1ec;
+  margin: 6px 0 0;
+}
+.panel-heading h2 em {
+  color: #d0b787;
+  font-style: italic;
+}
+.ecg-container {
+  border: 1px solid rgba(220, 229, 242, 0.12);
+  border-radius: 3px;
+  background: #04070d;
+  height: 200px;
+}
+.ecg-overlay-stats {
+  font: 8px var(--mono);
+  letter-spacing: .1em;
+  color: rgba(240, 244, 247, 0.65);
+}
+.ecg-overlay-stats b {
+  color: #d0b787;
+}
+
+/* 6. Editorial Crew Cards (Matching .story-photo) */
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 960px) {
+  .crew-grid { grid-template-columns: 1fr; }
+}
+.crew-card-editorial {
+  border: 1px solid rgba(220, 229, 242, 0.16);
+  border-radius: 3px;
+  background: #0f1622;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .35s cubic-bezier(.2,.7,.25,1), border-color .35s ease, box-shadow .35s ease;
+  position: relative;
+}
+.crew-card-editorial:hover {
+  transform: translateY(-4px);
+  border-color: rgba(208, 183, 135, 0.45);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+.crew-card-editorial.is-active-subject {
+  border-color: #d0b787;
+  box-shadow: 0 0 35px rgba(208, 183, 135, 0.2), inset 0 1px 0 rgba(208, 183, 135, 0.3);
+}
+.crew-photo-frame {
+  height: 210px;
+  position: relative;
+  overflow: hidden;
+  background: #090e16;
+}
+.crew-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transition: transform .6s cubic-bezier(.2,.6,.2,1);
+}
+.crew-card-editorial:hover .crew-photo-frame img {
+  transform: scale(1.04);
+}
+.crew-photo-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5,9,15,0.1) 0%, rgba(5,9,15,0.85) 100%);
+}
+.crew-photo-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font: 7px var(--mono);
+  letter-spacing: .12em;
+  color: #d0b787;
+  background: rgba(7, 12, 19, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(208, 183, 135, 0.35);
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.crew-photo-caption {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  right: 16px;
+}
+.crew-role-kicker {
+  font: 7px var(--mono);
+  letter-spacing: .14em;
+  color: #d0b787;
+  display: block;
+}
+.crew-name-serif {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #f5f3ed;
+  margin: 3px 0 0;
+  letter-spacing: -.03em;
+}
+.crew-name-serif em {
+  font-style: italic;
+  color: #d0b787;
+}
+.crew-card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+.crew-vitals-strip-editorial {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(220, 229, 242, 0.1);
+  background: rgba(7, 11, 18, 0.6);
+  margin-bottom: 16px;
+}
+.crew-stat-num {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  color: #f1f1ec;
+  font-weight: 400;
+  margin-top: 3px;
+}
+.crew-select-btn {
+  font: 8px var(--mono);
+  letter-spacing: .12em;
+  padding: 11px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(220, 229, 242, 0.18);
+  background: rgba(14, 21, 33, 0.6);
+  color: #c7d2e0;
+}
+.crew-select-btn:hover {
+  background: #d0b787;
+  color: #0b1118;
+  border-color: #d0b787;
+}
+.crew-card-editorial.is-active-subject .crew-select-btn {
+  background: #d0b787;
+  color: #080c12;
+  font-weight: 650;
+  border-color: #d0b787;
+}
+
+/* 7. Editorial AI Assistant (AURA) */
+.assistant-intro h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  color: #f1f1ec;
+}
+.assistant-intro h2 em {
+  font-style: italic;
+  color: #d0b787;
+}
+.chat-panel {
+  border: 1px solid rgba(220, 229, 242, 0.16);
+  background: linear-gradient(145deg, rgba(16, 23, 34, 0.92), rgba(9, 13, 20, 0.85));
+}
+.chat-top {
+  border-bottom: 1px solid rgba(220, 229, 242, 0.12);
+  background: rgba(7, 10, 16, 0.7);
+}
+.chat-top strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #f5f3ed;
+}
+
+/* 8. Editorial Insights Cards */
+.insight-card-editorial {
+  border: 1px solid rgba(220, 229, 242, 0.16);
+  border-radius: 3px;
+  background: #0f1622;
+  overflow: hidden;
+  position: relative;
+  transition: transform .35s ease, border-color .35s ease;
+}
+.insight-card-editorial:hover {
+  transform: translateY(-3px);
+  border-color: rgba(208, 183, 135, 0.45);
+}
+.insight-card-photo {
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+.insight-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.insight-card-editorial:hover .insight-card-photo img {
+  transform: scale(1.05);
+}
+.insight-card-photo-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4,7,12,0.1), rgba(4,7,12,0.85));
+}
+.insight-card-body {
+  padding: 18px 20px 22px;
+}
+.insight-card-body h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  color: #f1f1ec;
+  margin: 6px 0 10px;
+}
+.insight-card-body h2 em {
+  color: #d0b787;
+  font-style: italic;
+}
+.insight-card-body p {
+  color: #aeb7c2;
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+/* 9. Preview Navigation Banner */
+.preview-banner {
+  background: linear-gradient(90deg, #182315, #0c1815 40%, #151f28);
+  border-bottom: 1px solid rgba(118, 228, 210, 0.3);
+  padding: 8px clamp(20px, 5vw, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 8px var(--mono);
+  letter-spacing: .12em;
+  color: #9cd5c5;
+  z-index: 50;
+  position: relative;
+}
+.preview-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+.preview-banner-badge i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #76e4d2;
+  box-shadow: 0 0 8px #76e4d2;
+}
+.preview-action-btn {
+  font: 8px var(--mono);
+  letter-spacing: .1em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  background: #d0b787;
+  color: #090e15;
+  border: 0;
+  font-weight: 650;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.preview-action-btn:hover {
+  background: #e2cca0;
+}

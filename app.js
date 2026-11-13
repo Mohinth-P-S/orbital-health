@@ -1,3 +1,4 @@
+// Create a copy of app.js with preview enhancements
 const nav = document.querySelector("#primary-nav");
 const menuToggle = document.querySelector(".menu-toggle");
 const views = [...document.querySelectorAll(".view")];
@@ -8,8 +9,8 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
    1. NAVIGATION & VIEW ROUTING
    ========================================================================== */
 function syncNavOrbit() {
-  const activeButton = nav.querySelector(".nav-link.is-active");
-  const indicator = nav.querySelector(".nav-orbit-trail");
+  const activeButton = nav?.querySelector(".nav-link.is-active");
+  const indicator = nav?.querySelector(".nav-orbit-trail");
   if (!activeButton || !indicator || window.innerWidth <= 820) return;
 
   const navRect = nav.getBoundingClientRect();
@@ -36,9 +37,11 @@ function showView(name) {
   });
 
   document.documentElement.dataset.activeView = name;
-  nav.classList.remove("is-open");
-  menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.setAttribute("aria-label", "Open navigation");
+  if (nav) nav.classList.remove("is-open");
+  if (menuToggle) {
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+  }
   syncNavOrbit();
   window.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
 
@@ -54,19 +57,21 @@ navButtons.forEach((button) => {
   });
 });
 
-menuToggle.addEventListener("click", () => {
-  const open = !nav.classList.contains("is-open");
-  nav.classList.toggle("is-open", open);
-  menuToggle.setAttribute("aria-expanded", String(open));
-  menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-});
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    const open = !nav.classList.contains("is-open");
+    nav.classList.toggle("is-open", open);
+    menuToggle.setAttribute("aria-expanded", String(open));
+    menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+  });
+}
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && nav.classList.contains("is-open")) {
+  if (event.key === "Escape" && nav?.classList.contains("is-open")) {
     nav.classList.remove("is-open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation");
-    menuToggle.focus();
+    menuToggle?.setAttribute("aria-expanded", "false");
+    menuToggle?.setAttribute("aria-label", "Open navigation");
+    menuToggle?.focus();
   }
 });
 
@@ -151,51 +156,46 @@ const heroSlides = [
   {
     id: "iss073e0702307",
     src: "https://images-assets.nasa.gov/image/iss073e0702307/iss073e0702307~large.jpg",
-    alt: "NASA astronaut Mike Fincke pedals an exercise cycle aboard the International Space Station.",
-    kicker: "CREW IN MOTION",
-    title: "Movement, measured in orbit.",
-    coordinate: "INTERNATIONAL SPACE STATION · 17 SEP 2025",
+    alt: "NASA astronaut Mike Fincke exercises on the cycle ergometer aboard the International Space Station.",
+    kicker: "CREW HEALTH AND PERFORMANCE",
+    title: "Cardiovascular conditioning in orbit.",
+    coordinate: "DESTINY LABORATORY MODULE · 51.6° ORBITAL INCLINATION",
     credit: "NASA/JSC · 17 SEP 2025 · ISS073E0702307",
   },
   {
     id: "iss057e134112",
     src: "https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~large.jpg",
-    alt: "NASA astronaut Anne McClain exercises in the Destiny laboratory module with exercise equipment and sensors nearby.",
-    kicker: "TRAINING & SENSORS",
-    title: "Care, built into the mission.",
-    coordinate: "DESTINY LABORATORY · 13 DEC 2018",
+    alt: "NASA astronaut Anne McClain completes countermeasure exercises in the space station laboratory.",
+    kicker: "COUNTERMEASURE LOG",
+    title: "Preserving muscle and bone density.",
+    coordinate: "NODE 2 HARMONY · CONTINUOUS MONITORING ACTIVE",
     credit: "NASA/JSC · 13 DEC 2018 · ISS057E134112",
   },
 ];
+
 let currentHeroSlide = 0;
 let heroChangeToken = 0;
 
 function updateHeroSlide(index) {
+  if (!hero || !heroImage) return;
   currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
   const slide = heroSlides[currentHeroSlide];
   const token = ++heroChangeToken;
 
   hero.classList.add("is-image-changing");
-  heroCount.innerHTML = `${String(currentHeroSlide + 1).padStart(2, "0")} <i>/</i> ${String(heroSlides.length).padStart(2, "0")}`;
-  heroNext.setAttribute("aria-label", `Show next NASA image, ${currentHeroSlide + 1} of ${heroSlides.length}`);
-
   window.setTimeout(() => {
     if (token !== heroChangeToken) return;
-    const revealImage = () => {
-      if (token === heroChangeToken) hero.classList.remove("is-image-changing");
-    };
-    heroImage.addEventListener("load", revealImage, { once: true });
-    heroImage.addEventListener("error", revealImage, { once: true });
     heroImage.src = slide.src;
     heroImage.alt = slide.alt;
     heroImage.dataset.nasaId = slide.id;
-    heroKicker.textContent = slide.kicker;
-    heroTitle.textContent = slide.title;
-    heroCoordinate.textContent = slide.coordinate;
-    heroCredit.textContent = slide.credit;
-    heroRecord.href = `https://images.nasa.gov/details/${slide.id}`;
-    if (heroImage.complete) revealImage();
-  }, reducedMotion.matches ? 0 : 190);
+    if (heroKicker) heroKicker.textContent = slide.kicker;
+    if (heroTitle) heroTitle.textContent = slide.title;
+    if (heroCoordinate) heroCoordinate.textContent = slide.coordinate;
+    if (heroCredit) heroCredit.textContent = slide.credit;
+    if (heroRecord) heroRecord.href = `https://images.nasa.gov/details/${encodeURIComponent(slide.id)}`;
+    if (heroCount) heroCount.innerHTML = `0${currentHeroSlide + 1} <i>/</i> 0${heroSlides.length}`;
+    hero.classList.remove("is-image-changing");
+  }, 140);
 
   getNasaAsset(slide.id).then((asset) => {
     if (token !== heroChangeToken) return;
@@ -205,10 +205,12 @@ function updateHeroSlide(index) {
   }).catch(() => {});
 }
 
-heroNext.addEventListener("click", () => updateHeroSlide(currentHeroSlide + 1));
+if (heroNext) {
+  heroNext.addEventListener("click", () => updateHeroSlide(currentHeroSlide + 1));
+}
 
 window.setInterval(() => {
-  const overviewIsActive = document.querySelector("#view-overview").classList.contains("is-visible");
+  const overviewIsActive = document.querySelector("#view-overview")?.classList.contains("is-visible");
   if (!reducedMotion.matches && overviewIsActive && document.visibilityState === "visible") {
     updateHeroSlide(currentHeroSlide + 1);
   }
@@ -218,7 +220,7 @@ window.setInterval(() => {
    3. CURSOR & PARALLAX MOTION EFFECTS
    ========================================================================== */
 const motionLayers = [
-  ...document.querySelectorAll(".metric-card, .insight-card, .assistant-intro, .story-photo, .crew-card, .csv-engine-panel"),
+  ...document.querySelectorAll(".metric-card, .insight-card, .insight-card-editorial, .assistant-intro, .story-photo, .crew-card, .crew-card-editorial, .csv-engine-panel"),
 ];
 
 motionLayers.forEach((layer) => {
@@ -256,11 +258,13 @@ function updateScrollMotion() {
   scrollFrame = 0;
   if (reducedMotion.matches) return;
 
-  const heroRect = hero.getBoundingClientRect();
-  const heroProgress = Math.max(0, Math.min(1, (window.innerHeight - heroRect.top) / (window.innerHeight + heroRect.height)));
-  const scrollScale = (1.025 + heroProgress * 0.13).toFixed(3);
-  hero.style.setProperty("--hero-scroll-scale", scrollScale);
-  heroImage.style.setProperty("--hero-scale", scrollScale);
+  if (hero && heroImage) {
+    const heroRect = hero.getBoundingClientRect();
+    const heroProgress = Math.max(0, Math.min(1, (window.innerHeight - heroRect.top) / (window.innerHeight + heroRect.height)));
+    const scrollScale = (1.025 + heroProgress * 0.13).toFixed(3);
+    hero.style.setProperty("--hero-scroll-scale", scrollScale);
+    heroImage.style.setProperty("--hero-scale", scrollScale);
+  }
   document.documentElement.style.setProperty("--space-parallax", `${Math.round(window.scrollY * -0.045)}px`);
 
   document.querySelectorAll(".story-photo").forEach((photo) => {
@@ -274,27 +278,29 @@ window.addEventListener("scroll", () => {
   if (!scrollFrame) scrollFrame = window.requestAnimationFrame(updateScrollMotion);
 }, { passive: true });
 
-hero.addEventListener("pointermove", (event) => {
-  if (reducedMotion.matches || event.pointerType === "touch") return;
-  const rect = hero.getBoundingClientRect();
-  const x = (event.clientX - rect.left) / rect.width;
-  const y = (event.clientY - rect.top) / rect.height;
-  hero.style.setProperty("--hero-pointer-x", `${Math.round(x * 100)}%`);
-  hero.style.setProperty("--hero-pointer-y", `${Math.round(y * 100)}%`);
-  heroImage.style.setProperty("--hero-shift-x", `${((0.5 - x) * 20).toFixed(1)}px`);
-  heroImage.style.setProperty("--hero-shift-y", `${((0.5 - y) * 14).toFixed(1)}px`);
-  const scrollScale = Number(hero.style.getPropertyValue("--hero-scroll-scale")) || 1.025;
-  const pointerScale = Math.min(0.025, (Math.abs(x - 0.5) + Math.abs(y - 0.5)) * 0.018);
-  heroImage.style.setProperty("--hero-scale", (scrollScale + pointerScale).toFixed(3));
-}, { passive: true });
+if (hero && heroImage) {
+  hero.addEventListener("pointermove", (event) => {
+    if (reducedMotion.matches || event.pointerType === "touch") return;
+    const rect = hero.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    hero.style.setProperty("--hero-pointer-x", `${Math.round(x * 100)}%`);
+    hero.style.setProperty("--hero-pointer-y", `${Math.round(y * 100)}%`);
+    heroImage.style.setProperty("--hero-shift-x", `${((0.5 - x) * 20).toFixed(1)}px`);
+    heroImage.style.setProperty("--hero-shift-y", `${((0.5 - y) * 14).toFixed(1)}px`);
+    const scrollScale = Number(hero.style.getPropertyValue("--hero-scroll-scale")) || 1.025;
+    const pointerScale = Math.min(0.025, (Math.abs(x - 0.5) + Math.abs(y - 0.5)) * 0.018);
+    heroImage.style.setProperty("--hero-scale", (scrollScale + pointerScale).toFixed(3));
+  }, { passive: true });
 
-hero.addEventListener("pointerleave", () => {
-  heroImage.style.setProperty("--hero-shift-x", "0px");
-  heroImage.style.setProperty("--hero-shift-y", "0px");
-  heroImage.style.setProperty("--hero-scale", hero.style.getPropertyValue("--hero-scroll-scale") || "1.025");
-  hero.style.setProperty("--hero-pointer-x", "50%");
-  hero.style.setProperty("--hero-pointer-y", "50%");
-}, { passive: true });
+  hero.addEventListener("pointerleave", () => {
+    heroImage.style.setProperty("--hero-shift-x", "0px");
+    heroImage.style.setProperty("--hero-shift-y", "0px");
+    heroImage.style.setProperty("--hero-scale", hero.style.getPropertyValue("--hero-scroll-scale") || "1.025");
+    hero.style.setProperty("--hero-pointer-x", "50%");
+    hero.style.setProperty("--hero-pointer-y", "50%");
+  }, { passive: true });
+}
 
 window.addEventListener("resize", () => {
   syncNavOrbit();
@@ -318,7 +324,7 @@ let playbackSpeed = 1;
 let playbackIntervalId = null;
 let currentEcgRate = 72;
 
-// Robust in-browser CSV parser
+// In-browser CSV parser
 function parseCsvString(csvText) {
   const lines = csvText.trim().split(/\r?\n/);
   if (lines.length < 2) return [];
@@ -350,132 +356,143 @@ function parseCsvString(csvText) {
   return rows;
 }
 
-// 1. Handle Drag & Drop / Custom CSV File Upload
-function handleCsvUpload(event) {
-  const file = event.target.files?.[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const text = e.target.result;
-    const parsed = parseCsvString(text);
-    if (parsed.length === 0) {
-      alert("Invalid CSV format. Please ensure your file has headers like timestamp, heart_rate, spo2, respiration...");
-      return;
-    }
-
-    document.querySelectorAll(".preset-chip").forEach((c) => c.classList.remove("is-active"));
-    document.querySelector("#active-dataset-name").textContent = `CUSTOM: ${file.name.toUpperCase()}`;
-    loadIngestedData(parsed, file.name);
-  };
-  reader.readAsText(file);
-}
-
-// 2. Load Preset Datasets (from d:/AntiGravity/data/*.csv)
-const PRESET_URLS = {
-  nominal: "data/1_nasa_iss_cupola_nominal.csv",
-  hypoxia: "data/2_nasa_eva_spacewalk_hypoxia.csv",
-  ared: "data/3_nasa_ared_heavy_exercise.csv",
-  radiation: "data/4_mars_solar_radiation_flare.csv",
-  sans: "data/5_microgravity_sans_fluid_shift.csv",
-  arrhythmia: "data/6_physionet_ventricular_arrhythmia.csv"
-};
-
-const PRESET_NAMES = {
-  nominal: "NASA LSDA-0042 // ISS CUPOLA NOMINAL BASELINE",
-  hypoxia: "NASA EVA SUIT // HYPOXIA DROP & EMERGENCY PURGE",
-  ared: "NASA HRP-EX04 // ARED RESISTIVE BONE-LOADING WORKOUT",
-  radiation: "DEEP SPACE MARS // SOLAR PARTICLE EVENT (SPE) FLARE",
-  sans: "NASA SANS PROTOCOL // CEPHALAD FLUID SHIFT & LBNP",
-  arrhythmia: "PHYSIONET MIT-BIH #208 // VENTRICULAR TACHYCARDIA"
+// Preset verified CSV datasets map
+const PRESET_DATASETS = {
+  nominal: {
+    file: "data/1_nasa_iss_cupola_nominal.csv",
+    name: "NASA LSDA-0042 NOMINAL BASELINE",
+    description: "Expedition 72 nominal biometrics during Cupola Earth observation."
+  },
+  hypoxia: {
+    file: "data/2_nasa_eva_spacewalk_hypoxia.csv",
+    name: "EVA SUIT HYPOXIA O₂ LEAK",
+    description: "Simulated micro-puncture during Extravehicular Activity."
+  },
+  ared: {
+    file: "data/3_nasa_ared_heavy_exercise.csv",
+    name: "NASA ARED HEAVY RESISTIVE EXERCISE",
+    description: "High-load biomechanical resistance countermeasure session."
+  },
+  radiation: {
+    file: "data/4_mars_solar_radiation_flare.csv",
+    name: "MARS TRANSIT SOLAR FLARE (SPE)",
+    description: "Deep space coronal mass ejection solar particle event."
+  },
+  sans: {
+    file: "data/5_microgravity_sans_fluid_shift.csv",
+    name: "SANS CEPHALAD FLUID SHIFT",
+    description: "Long-duration microgravity intracranial fluid migration."
+  },
+  arrhythmia: {
+    file: "data/6_physionet_ventricular_arrhythmia.csv",
+    name: "PHYSIONET VENTRICULAR ARRHYTHMIA",
+    description: "Verified clinical ECG dataset with premature ventricular contractions."
+  }
 };
 
 async function loadPresetDataset(presetKey) {
-  const url = PRESET_URLS[presetKey];
-  if (!url) return;
+  const preset = PRESET_DATASETS[presetKey];
+  if (!preset) return;
 
-  document.querySelectorAll(".preset-chip").forEach((c) => c.classList.remove("is-active"));
-  const btn = document.querySelector(`#preset-${presetKey}`);
-  if (btn) btn.classList.add("is-active");
+  // Update UI preset chip state
+  document.querySelectorAll(".preset-chip").forEach((btn) => btn.classList.remove("is-active"));
+  const activeBtn = document.querySelector(`#preset-${presetKey}`);
+  if (activeBtn) activeBtn.classList.add("is-active");
 
-  document.querySelector("#active-dataset-name").textContent = PRESET_NAMES[presetKey];
+  const badge = document.querySelector("#active-dataset-name");
+  if (badge) badge.textContent = preset.name;
+  const railBadge = document.querySelector("#dash-active-dataset-label");
+  if (railBadge) railBadge.textContent = preset.name;
 
   try {
-    const res = await fetch(url);
+    const res = await fetch(preset.file);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const text = await res.text();
-    const rows = parseCsvString(text);
-    loadIngestedData(rows, PRESET_NAMES[presetKey]);
+    const csvText = await res.text();
+    ingestTelemetryCsv(csvText, preset.name);
   } catch (err) {
     console.error("Failed to load preset CSV:", err);
   }
 }
 
-// 3. Initialize Ingested Data Stream
-function loadIngestedData(rows, datasetLabel) {
-  activeCsvRows = rows;
+function handleCsvUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const text = e.target.result;
+    document.querySelectorAll(".preset-chip").forEach((btn) => btn.classList.remove("is-active"));
+    const badge = document.querySelector("#active-dataset-name");
+    if (badge) badge.textContent = `CUSTOM: ${file.name.toUpperCase()}`;
+    const railBadge = document.querySelector("#dash-active-dataset-label");
+    if (railBadge) railBadge.textContent = `CUSTOM: ${file.name.toUpperCase()}`;
+    ingestTelemetryCsv(text, file.name);
+  };
+  reader.readAsText(file);
+}
+
+function ingestTelemetryCsv(csvText, sourceName) {
+  activeCsvRows = parseCsvString(csvText);
+  if (!activeCsvRows.length) return;
+
   playbackIndex = 0;
 
-  // Update Scrubber
+  // Update status lines & scrubber limits
+  const statusLine = document.querySelector("#dataset-status-line");
+  if (statusLine) {
+    statusLine.innerHTML = `STATUS: <strong style="color: #76e4d2;">STREAMING ${activeCsvRows.length} SAMPLES</strong> · 00:01 / 01:00`;
+  }
+
   const scrubber = document.querySelector("#playback-scrubber");
   if (scrubber) {
-    scrubber.max = String(rows.length - 1);
+    scrubber.min = "0";
+    scrubber.max = String(activeCsvRows.length - 1);
     scrubber.value = "0";
   }
 
-  const totalDisplay = document.querySelector("#playback-total-display");
-  if (totalDisplay && rows.length > 0) {
-    totalDisplay.textContent = rows[rows.length - 1].timestamp || `Row ${rows.length}`;
+  const totalDisp = document.querySelector("#playback-total-display");
+  if (totalDisp) {
+    const lastRow = activeCsvRows[activeCsvRows.length - 1];
+    totalDisp.textContent = lastRow?.timestamp || `00:${String(activeCsvRows.length).padStart(2, '0')}`;
   }
 
-  const inspectorCount = document.querySelector("#inspector-row-count");
-  if (inspectorCount) inspectorCount.textContent = `${rows.length} rows loaded`;
+  const rowCountBadge = document.querySelector("#inspector-row-count");
+  if (rowCountBadge) rowCountBadge.textContent = `${activeCsvRows.length} rows`;
 
-  // Populate Table Inspector
-  renderCsvTableRows(rows);
-
-  // Apply row 0
-  applyCsvRow(rows[0]);
-
-  // Restart playback timer
+  renderCsvTableRows();
+  applyCsvRow(activeCsvRows[0]);
   startPlaybackLoop();
 }
 
-function renderCsvTableRows(rows) {
+function renderCsvTableRows() {
   const tbody = document.querySelector("#csv-table-body");
   if (!tbody) return;
 
   let html = "";
-  rows.forEach((r, idx) => {
-    const isAnomaly = r.anomaly_type && r.anomaly_type !== "NONE";
-    const badgeColor = isAnomaly ? "color:#f87171; font-weight:700;" : "color:#76e4d2;";
-
+  activeCsvRows.forEach((row, idx) => {
     html += `
       <tr id="csv-row-${idx}" onclick="jumpToRow(${idx})" style="cursor: pointer;">
-        <td>${r.timestamp}</td>
-        <td>${r.heart_rate}</td>
-        <td>${r.spo2}%</td>
-        <td>${r.respiration}</td>
-        <td>${r.core_temp}°C</td>
-        <td>${r.cabin_co2}%</td>
-        <td>${r.radiation}</td>
-        <td style="${badgeColor}">${r.anomaly_type}</td>
-        <td>${r.notes}</td>
+        <td>${row.timestamp || idx}</td>
+        <td><strong>${row.heart_rate.toFixed(1)}</strong></td>
+        <td>${row.spo2.toFixed(1)}%</td>
+        <td>${row.respiration.toFixed(1)}</td>
+        <td>${row.core_temp.toFixed(1)}°C</td>
+        <td>${row.cabin_co2}%</td>
+        <td>${row.radiation}</td>
+        <td><span style="color: ${row.anomaly_type !== 'NONE' ? '#f87171' : '#76e4d2'};">${row.anomaly_type}</span></td>
+        <td><small>${row.notes}</small></td>
       </tr>
     `;
   });
   tbody.innerHTML = html;
 }
 
-// 4. Live Playback Loop
 function startPlaybackLoop() {
   if (playbackIntervalId) clearInterval(playbackIntervalId);
-  if (!isPlaybackPlaying) return;
 
-  const intervalMs = Math.max(100, Math.floor(1000 / playbackSpeed));
-
+  const intervalMs = Math.max(100, Math.round(1000 / playbackSpeed));
   playbackIntervalId = setInterval(() => {
-    if (activeCsvRows.length === 0) return;
+    if (!isPlaybackPlaying || !activeCsvRows.length) return;
 
     playbackIndex = (playbackIndex + 1) % activeCsvRows.length;
     applyCsvRow(activeCsvRows[playbackIndex]);
@@ -484,14 +501,10 @@ function startPlaybackLoop() {
     if (scrubber) scrubber.value = String(playbackIndex);
 
     const timeDisp = document.querySelector("#playback-time-display");
-    if (timeDisp) timeDisp.textContent = activeCsvRows[playbackIndex].timestamp || `Row ${playbackIndex + 1}`;
-
-    const statusLine = document.querySelector("#dataset-status-line");
-    if (statusLine) {
-      statusLine.innerHTML = `STATUS: <strong style="color: #76e4d2;">PLAYING ROW ${playbackIndex + 1} / ${activeCsvRows.length}</strong> · ${activeCsvRows[playbackIndex].timestamp}`;
+    if (timeDisp && activeCsvRows[playbackIndex]) {
+      timeDisp.textContent = activeCsvRows[playbackIndex].timestamp || `00:${String(playbackIndex + 1).padStart(2, '0')}`;
     }
 
-    // Highlight row in table
     highlightTableRow(playbackIndex);
   }, intervalMs);
 }
@@ -515,11 +528,11 @@ function applyCsvRow(row) {
   if (elResp) elResp.textContent = row.respiration.toFixed(1);
   if (elTemp) elTemp.textContent = row.core_temp.toFixed(1);
 
-  if (elSubHr) elSubHr.textContent = row.notes || "CSV Telemetry Stream Active";
+  if (elSubHr) elSubHr.textContent = row.notes || "Sinus rhythm stable · Telemetry Active";
   if (elSubEnv) elSubEnv.textContent = `pCO₂: ${row.cabin_co2}% · Rad: ${row.radiation} mSv/d`;
 
   if (elSubSpo2) {
-    if (row.spo2 < 90) elSubSpo2.innerHTML = "<b style='color:#f87171;'>Warning: SpO₂ Below Safe Threshold</b>";
+    if (row.spo2 < 90) elSubSpo2.innerHTML = "<b style='color:#f87171;'>Warning: SpO₂ Below Safe Margin</b>";
     else elSubSpo2.textContent = "Arterial O₂ optimal (98-100%)";
   }
 
@@ -537,7 +550,7 @@ function applyCsvRow(row) {
   // Trigger alert if CSV row has an anomaly
   if (row.anomaly_type && row.anomaly_type !== "NONE" && !row._alertFired) {
     row._alertFired = true;
-    addDynamicAlert(`CSV ANOMALY: ${row.anomaly_type}`, `${row.notes} (Recorded at ${row.timestamp})`, row.anomaly_type.includes("HYPOXIA") ? "critical" : "warning");
+    addDynamicAlert(`CSV TELEMETRY ANOMALY: ${row.anomaly_type}`, `${row.notes} (Timestamp: ${row.timestamp})`, row.anomaly_type.includes("HYPOXIA") ? "critical" : "warning");
   }
 }
 
@@ -546,11 +559,9 @@ function highlightTableRow(idx) {
   const rowEl = document.querySelector(`#csv-row-${idx}`);
   if (rowEl) {
     rowEl.classList.add("is-active-row");
-    rowEl.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }
 }
 
-// 5. Playback Controls
 function togglePlayback() {
   isPlaybackPlaying = !isPlaybackPlaying;
   const btn = document.querySelector("#playback-toggle-btn");
@@ -599,7 +610,6 @@ function toggleCsvInspector() {
   if (icon) icon.textContent = isHidden ? "▾" : "▸";
 }
 
-// Initial default dataset load on startup
 loadPresetDataset("nominal");
 
 
@@ -625,7 +635,7 @@ function resizeDashboardEcg() {
 function setTimeframe(tf) {
   activeTimeframe = tf;
   document.querySelectorAll(".timeframe-btn").forEach((b) => b.classList.remove("is-active"));
-  event.target.classList.add("is-active");
+  if (window.event && window.event.target) window.event.target.classList.add("is-active");
 }
 
 function renderEcgLoop() {
@@ -726,11 +736,19 @@ function addDynamicAlert(title, message, severity) {
 }
 
 function setSubject(key) {
-  document.querySelectorAll(".crew-card").forEach((card) => {
+  document.querySelectorAll(".crew-card, .crew-card-editorial").forEach((card) => {
     card.classList.remove("is-active-subject");
   });
   const activeCard = document.querySelector(`#card-${key}`);
   if (activeCard) activeCard.classList.add("is-active-subject");
+
+  // Update subject labels in Dashboard rail & header
+  const subjectDisplay = document.querySelector("#dash-subject-display");
+  if (subjectDisplay) {
+    if (key === "anne") subjectDisplay.textContent = "Commander Anne McClain";
+    else if (key === "mike") subjectDisplay.textContent = "Flight Engineer Mike Fincke";
+    else if (key === "marcus") subjectDisplay.textContent = "Dr. Marcus Chen (Specialist)";
+  }
 }
 
 
