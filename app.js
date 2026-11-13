@@ -48,6 +48,17 @@ function showView(name) {
   if (name === "dashboard") {
     setTimeout(resizeDashboardEcg, 50);
   }
+
+  // Coordinate background space view with active tab
+  if (name === "assistant") {
+    setSpaceBackgroundById("jwst");
+  } else if (name === "insights") {
+    setSpaceBackgroundById("aurora");
+  } else if (name === "sources") {
+    setSpaceBackgroundById("earth");
+  } else {
+    setSpaceBackgroundById("airglow");
+  }
 }
 
 navButtons.forEach((button) => {
@@ -249,6 +260,10 @@ document.addEventListener("pointermove", (event) => {
   pointerFrame = window.requestAnimationFrame(() => {
     document.documentElement.style.setProperty("--cursor-x", `${event.clientX}px`);
     document.documentElement.style.setProperty("--cursor-y", `${event.clientY}px`);
+    const bgX = ((event.clientX / window.innerWidth) - 0.5) * -22;
+    const bgY = ((event.clientY / window.innerHeight) - 0.5) * -16;
+    document.documentElement.style.setProperty("--bg-shift-x", `${bgX.toFixed(1)}px`);
+    document.documentElement.style.setProperty("--bg-shift-y", `${bgY.toFixed(1)}px`);
     pointerFrame = 0;
   });
 }, { passive: true });
@@ -873,3 +888,75 @@ window.addEventListener('appinstalled', () => {
   console.log('[PWA] Orbital Health app installed successfully.');
   if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
 });
+
+
+/* ==========================================================================
+   9. NASA PHOTOGRAPHIC SPACE BACKGROUND SWITCHER
+   ========================================================================== */
+const NASA_BACKGROUNDS = [
+  {
+    id: "airglow",
+    name: "ISS Earth Airglow & Milky Way",
+    image: "assets/nasa-earth-airglow-milkyway.jpg",
+    credit: "NASA/JSC ISS Expedition 74 · Atmospheric Airglow & Milky Way"
+  },
+  {
+    id: "jwst",
+    name: "JWST Carina Cosmic Cliffs",
+    image: "assets/nasa-jwst-carina-nebula.jpg",
+    credit: "NASA/ESA/CSA JWST · NIRCam Cosmic Cliffs in Carina Nebula"
+  },
+  {
+    id: "aurora",
+    name: "ISS Aurora Australis & Horizon",
+    image: "assets/nasa-aurora-earth-limb.jpg",
+    credit: "NASA/JSC Expedition 30 · Polar Aurora Australis over Earth Limb"
+  },
+  {
+    id: "earth",
+    name: "Whole Earth Blue Marble",
+    image: "assets/earth.jpg",
+    credit: "NASA Earth Observatory · High-Resolution Orbital Disk"
+  }
+];
+
+let currentBgIndex = 0;
+let isLayerAPrimary = true;
+
+function setSpaceBackground(index) {
+  currentBgIndex = (index + NASA_BACKGROUNDS.length) % NASA_BACKGROUNDS.length;
+  const bg = NASA_BACKGROUNDS[currentBgIndex];
+
+  const layerA = document.querySelector("#space-bg-primary");
+  const layerB = document.querySelector("#space-bg-secondary");
+  const nameEl = document.querySelector("#bg-theme-name");
+  const creditEl = document.querySelector("#footer-credit-text");
+
+  if (layerA && layerB) {
+    if (isLayerAPrimary) {
+      layerB.style.backgroundImage = `url('${bg.image}')`;
+      layerB.style.opacity = "0.68";
+      layerA.style.opacity = "0";
+      isLayerAPrimary = false;
+    } else {
+      layerA.style.backgroundImage = `url('${bg.image}')`;
+      layerA.style.opacity = "0.68";
+      layerB.style.opacity = "0";
+      isLayerAPrimary = true;
+    }
+  }
+
+  if (nameEl) nameEl.textContent = bg.name;
+  if (creditEl) creditEl.textContent = bg.credit;
+}
+
+function setSpaceBackgroundById(id) {
+  const idx = NASA_BACKGROUNDS.findIndex((b) => b.id === id);
+  if (idx !== -1 && idx !== currentBgIndex) {
+    setSpaceBackground(idx);
+  }
+}
+
+function cycleSpaceBackground() {
+  setSpaceBackground(currentBgIndex + 1);
+}

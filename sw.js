@@ -4,7 +4,7 @@
    application operates with 0ms latency even in deep space or offline environments.
    ========================================================================== */
 
-const CACHE_NAME = "orbital-health-cache-v1";
+const CACHE_NAME = "orbital-health-cache-v2";
 const STATIC_ASSETS = [
   "./",
   "./index.html",
@@ -18,6 +18,9 @@ const STATIC_ASSETS = [
   "./assets/earth.jpg",
   "./assets/mars.jpg",
   "./assets/moon.jpg",
+  "./assets/nasa-earth-airglow-milkyway.jpg",
+  "./assets/nasa-jwst-carina-nebula.jpg",
+  "./assets/nasa-aurora-earth-limb.jpg",
   "./data/1_nasa_iss_cupola_nominal.csv",
   "./data/2_nasa_eva_spacewalk_hypoxia.csv",
   "./data/3_nasa_ared_heavy_exercise.csv",

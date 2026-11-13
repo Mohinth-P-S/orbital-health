@@ -16,7 +16,14 @@
     <script src="app.js" defer></script>
   </head>
   <body>
-    <div class="space-wash" aria-hidden="true"></div>
+    <!-- ================= NASA PHOTOGRAPHIC SPACE BACKDROP SYSTEM ================= -->
+    <div class="space-background-system" id="space-bg-system" aria-hidden="true">
+      <div class="space-bg-layer space-bg-primary" id="space-bg-primary"></div>
+      <div class="space-bg-layer space-bg-secondary" id="space-bg-secondary"></div>
+      <div class="space-bg-nebula"></div>
+      <div class="space-bg-vignette"></div>
+      <div class="space-stars-layer"></div>
+    </div>
     
     <!-- ================= TOP NAVIGATION BAR ================= -->
     <header class="topbar">
@@ -40,6 +47,13 @@
       </nav>
 
       <div class="topbar-end">
+        <!-- NASA Space Background Switcher -->
+        <button class="bg-theme-pill" id="bg-cycle-btn" type="button" onclick="cycleSpaceBackground()" title="Click to cycle real NASA space views in the background">
+          <span class="bg-orbit-glyph">✦</span>
+          <span class="bg-pill-label">NASA VIEW:</span>
+          <strong id="bg-theme-name">ISS Earth Airglow</strong>
+          <span class="bg-cycle-icon">↻</span>
+        </button>
         <button class="install-app-btn" id="pwa-install-btn" type="button" aria-label="Install App" style="display: none;">
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           <span>Install App</span>
@@ -704,7 +718,7 @@
 
     <footer class="footer">
       <span>ORBITAL CREW HEALTH // NASA SPACE MISSION MONITOR</span>
-      <span>NASA Open Science Data Repository · Bio-Harness Stream</span>
+      <span id="footer-bg-credit">BACKGROUND: <strong id="footer-credit-text">NASA/JSC ISS Expedition 74 (Earth Airglow & Milky Way)</strong></span>
       <span>DESIGNED FOR THE LONG VIEW <b>✦</b></span>
     </footer>
 

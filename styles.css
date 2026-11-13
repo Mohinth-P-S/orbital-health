@@ -20,7 +20,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--bg); }
-body { margin: 0; min-width: 320px; background: radial-gradient(ellipse at 70% 28%, #0a1730 0, #070d1b 34%, var(--bg) 74%); color: var(--text); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+body { margin: 0; min-width: 320px; background: #050811; color: var(--text); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 button, a { font: inherit; }
 button { color: inherit; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--blue-light); outline-offset: 4px; }
@@ -147,7 +147,7 @@ h1 em { color: #91aefa; font-style: normal; font-weight: 420; }
   --mint: #9bc5bb;
   --wine: #995b7b;
 }
-body { background: #080c12; }
+body { background: transparent; }
 .space-wash { opacity: .18; }
 .topbar { background: rgba(7, 10, 16, .92); border-color: rgba(231, 235, 242, .12); }
 .brand-mark { border-color: rgba(193, 220, 250, .7); }
@@ -1628,4 +1628,164 @@ button:not(:disabled):active { scale: .97; }
 }
 .install-app-btn svg {
   stroke: currentColor;
+}
+
+
+/* ==========================================================================
+   NASA PHOTOGRAPHIC SPACE BACKDROP SYSTEM
+   Replaces the plain dark void with authentic high-resolution NASA imagery
+   ========================================================================== */
+.space-background-system {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #040710;
+}
+
+.space-bg-layer {
+  position: absolute;
+  inset: -35px;
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s ease-out;
+  transform: translate3d(var(--bg-shift-x, 0px), var(--bg-shift-y, 0px), 0) scale(1.05);
+  will-change: transform, opacity;
+}
+
+.space-bg-primary {
+  background-image: url('assets/nasa-earth-airglow-milkyway.jpg');
+  opacity: 0.68;
+}
+
+.space-bg-secondary {
+  background-image: url('assets/nasa-jwst-carina-nebula.jpg');
+  opacity: 0;
+}
+
+/* Cosmic glowing gas & nebular dust overlay */
+.space-bg-nebula {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle 700px at 78% 22%, rgba(100, 145, 235, 0.22), transparent 72%),
+    radial-gradient(circle 600px at 15% 70%, rgba(208, 183, 135, 0.16), transparent 68%),
+    radial-gradient(circle 800px at 50% 92%, rgba(35, 88, 115, 0.26), transparent 75%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Cinematic atmospheric vignette ensuring high text contrast while keeping space visible */
+.space-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(4, 7, 13, 0.48) 0%, 
+      rgba(5, 9, 16, 0.62) 38%, 
+      rgba(3, 6, 11, 0.82) 100%
+    ),
+    radial-gradient(ellipse at 50% 30%, transparent 0%, rgba(4, 7, 12, 0.62) 80%);
+  pointer-events: none;
+}
+
+/* High-contrast star field layer */
+.space-stars-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.75;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 12% 16%, #ffffff 100%, transparent),
+    radial-gradient(1px 1px at 38% 42%, #d0b787 100%, transparent),
+    radial-gradient(1.5px 1.5px at 67% 24%, #c1dcfa 100%, transparent),
+    radial-gradient(2px 2px at 84% 68%, #ffffff 100%, transparent),
+    radial-gradient(1px 1px at 25% 82%, #e5d1a7 100%, transparent),
+    radial-gradient(1.5px 1.5px at 91% 15%, #9bc5bb 100%, transparent);
+  background-size: 520px 520px;
+}
+
+/* NASA Background Theme Switcher Pill in Topbar */
+.bg-theme-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(208, 183, 135, 0.4);
+  background: rgba(14, 21, 33, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #d7dce0;
+  font: 8px var(--mono);
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.bg-theme-pill:hover {
+  border-color: #d0b787;
+  background: rgba(208, 183, 135, 0.18);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(208, 183, 135, 0.35);
+  transform: translateY(-1px);
+}
+.bg-orbit-glyph {
+  color: #d0b787;
+  font-size: 11px;
+}
+.bg-pill-label {
+  color: #8b97a4;
+}
+.bg-theme-pill strong {
+  color: #f1f1ec;
+  font-weight: 600;
+}
+.bg-cycle-icon {
+  color: #d0b787;
+  font-size: 12px;
+  margin-left: 2px;
+  transition: transform 0.35s ease;
+}
+.bg-theme-pill:hover .bg-cycle-icon {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 1024px) {
+  .bg-theme-pill .bg-pill-label { display: none; }
+}
+@media (max-width: 780px) {
+  .bg-theme-pill { display: none; }
+}
+
+/* Footer Background Credit Line */
+#footer-bg-credit {
+  font: 8px var(--mono);
+  color: #8b97a4;
+  letter-spacing: .08em;
+}
+#footer-bg-credit strong {
+  color: #d0b787;
+  font-weight: 500;
+}
+
+/* Frosted glass enhancement for cards so the space imagery is visible through them */
+.metric-card, 
+.panel, 
+.crew-card-editorial, 
+.csv-engine-panel, 
+.assistant-intro, 
+.chat-panel, 
+.insight-card-editorial,
+.source-panel {
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  background: linear-gradient(145deg, rgba(14, 21, 33, 0.82), rgba(8, 12, 19, 0.75)) !important;
+}
+
+.topbar {
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  background: rgba(6, 10, 18, 0.82) !important;
 }
