@@ -892,7 +892,7 @@
         <div class="ai-console-wrapper">
           <div class="chat-panel panel ai-expanded-panel">
             
-            <!-- Command Bridge Telemetry Topbar -->
+            <!-- Clean Command Bridge Topbar (No overlapping HUD ribbon) -->
             <div class="chat-top ai-command-top">
               <div class="ai-console-brand">
                 <span class="chat-avatar ai-glow-avatar">✳</span>
@@ -902,15 +902,6 @@
                 </div>
               </div>
 
-              <!-- Live Flight Telemetry Ribbon inside Chat Console -->
-              <div class="ai-live-hud-ribbon">
-                <div class="ai-hud-chip"><span class="hud-icon">❤️</span> <span class="hud-label">HR:</span> <strong>74 BPM</strong></div>
-                <div class="ai-hud-chip"><span class="hud-icon">🫁</span> <span class="hud-label">SpO₂:</span> <strong>98.4%</strong></div>
-                <div class="ai-hud-chip"><span class="hud-icon">🛰️</span> <span class="hud-label">RELAY:</span> <strong id="ai-hud-latency">0.0s (LEO)</strong></div>
-                <div class="ai-hud-chip"><span class="hud-icon">🛡️</span> <span class="hud-label">SUIT:</span> <strong>14.7 psi</strong></div>
-                <div class="ai-hud-chip"><span class="hud-icon">☢️</span> <span class="hud-label">RAD:</span> <strong id="ai-hud-rad">0.45 mSv/d</strong></div>
-              </div>
-
               <div class="ai-status-right">
                 <span class="chat-online" id="chat-online-badge"><i></i> <span id="chat-online-text">READY (0ms LAG)</span></span>
               </div>
@@ -918,7 +909,7 @@
 
             <!-- Quick Clinical Command Action Ribbon -->
             <div class="ai-command-chips-ribbon">
-              <span class="chips-ribbon-label">QUICK FLIGHT SURGEON PROTOCOLS:</span>
+              <span class="chips-ribbon-label">QUICK CLINICAL PROTOCOLS:</span>
               <div class="chips-scroll-track">
                 <button type="button" class="ai-chip-btn" onclick="askAi('What does this dataset measure and how does it correlate with crew vitals?')">📊 Dataset Provenance</button>
                 <button type="button" class="ai-chip-btn" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">👁️ SANS Ocular Fluid Shift</button>
@@ -938,14 +929,6 @@
                 <strong>Greetings Commander.</strong> I am AURA, your onboard medical decision assistant. I am continuously monitoring crew biometrics across Anne McClain, Mike Fincke, and Dr. Marcus Chen.
                 <br><br>
                 You can ask me about <em>any</em> symptoms, ECG waveforms, SANS intracranial fluid shifts, radiation doses, or emergency resuscitation protocols.
-                <br><br>
-                <div class="ai-welcome-callout">
-                  <span class="awc-sparkle">✦</span>
-                  <div>
-                    <strong>Autonomous Flight Surgeon Active</strong>
-                    <p>AURA correlates continuous ECG biometrics, environmental telemetry, and SANS risk models to deliver instant clinical triage.</p>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -1346,6 +1329,14 @@
       <span class="app-dock-label">AI</span>
     </button>
   </nav>
+
+
+  <!-- Global Floating AI Shortcut (Accessible on Every Tab) -->
+  <button class="global-ai-fab" id="global-ai-fab" type="button" onclick="showView('assistant')" title="Open AURA Flight Surgeon AI" aria-label="Consult AURA AI Assistant">
+    <span class="ai-fab-glow"></span>
+    <span class="ai-fab-icon">✳</span>
+    <span class="ai-fab-label">Consult AI</span>
+  </button>
 
 </body>
 </html>
