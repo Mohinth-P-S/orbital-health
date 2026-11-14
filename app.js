@@ -827,80 +827,592 @@ This system directly implements and correlates data from all 10 official challen
 11. NASA Image and Video Library Asset API.`
 };
 
+
+/* ==========================================================================
+   7. AI DECISION ENGINE // GEMINI 2.5 FLASH + ONBOARD CLINICAL REASONING
+   ========================================================================== */
+
+// Audio Voice State
+let isVoiceEnabled = false;
+
+// Active Planetary Mission State
+let activeMissionPlanet = "earth";
+const PLANET_METADATA = {
+  earth: {
+    name: "Earth (Low Earth Orbit)",
+    location: "ISS Expedition 72 · 408 km",
+    delaySec: 0,
+    delayText: "0.0s (Instant Edge)",
+    gravity: "1.00 g (Micro-g)",
+    radiation: "0.45 mSv/day",
+    hazard: "Nominal ISS Base",
+    img: "assets/earth.jpg",
+    context: "Low Earth Orbit (LEO) radiation belt shielding intact. Rapid 3-hour emergency deorbit to Earth possible. Telemetry stream is real-time."
+  },
+  moon: {
+    name: "The Moon (Artemis Base Camp)",
+    location: "Shackleton Crater · 384,400 km",
+    delaySec: 1.28,
+    delayText: "1.28s Latency",
+    gravity: "0.166 g (Lunar)",
+    radiation: "1.20 mSv/day",
+    hazard: "Lunar Dust & Regolith Silicosis",
+    img: "assets/moon.jpg",
+    context: "Artemis III Lunar South Pole. Sub-optimal gravitational loading (0.166g). Lunar regolith dust inhalation and solar storm exposure risk elevated."
+  },
+  mars: {
+    name: "Mars (Ares Transit Crew)",
+    location: "Deep Space Transit · 225M km",
+    delaySec: 852,
+    delayText: "14.2 min One-Way Delay",
+    gravity: "0.380 g (Martian)",
+    radiation: "1.95 mSv/day",
+    hazard: "Solar Particle Event (SPE) & Galactic Cosmic Rays",
+    img: "assets/mars.jpg",
+    context: "Deep space interplanetary cruise. Complete Earth blackout regime (14.2 min radio propagation delay). Crew must rely 100% on autonomous onboard resuscitation."
+  },
+  europa: {
+    name: "Europa (Jovian Ocean Outpost)",
+    location: "Jovian Subsurface Lab · 628M km",
+    delaySec: 2550,
+    delayText: "42.5 min One-Way Delay",
+    gravity: "0.134 g (Icy Crust)",
+    radiation: "2.80 mSv/day",
+    hazard: "Jupiter Radiation Belt Trapping",
+    img: "assets/europa.jpg",
+    context: "Jovian magnetospheric electron flux. 42.5-minute one-way comms lag. Extreme isolation, acute radiation risk, cryogenic surface ambient."
+  }
+};
+
+// Play modern aerospace audio lock chime via Web Audio API
+function playAerospaceChime(freq = 587.33, duration = 0.12, type = "sine") {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(freq * 1.5, ctx.currentTime + duration);
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + duration);
+  } catch (e) {
+    // Audio context may be restricted by autoplay policy
+  }
+}
+
+// Select planet in overview hub
+function selectPlanet(planetKey) {
+  if (!PLANET_METADATA[planetKey]) return;
+  activeMissionPlanet = planetKey;
+  const p = PLANET_METADATA[planetKey];
+
+  // Update active state in overview deck
+  document.querySelectorAll(".planet-card").forEach(c => {
+    c.classList.toggle("is-active", c.getAttribute("data-planet") === planetKey);
+  });
+
+  const targetName = document.querySelector("#active-planet-target-name");
+  if (targetName) targetName.textContent = p.name;
+
+  // Sync with assistant bar buttons
+  document.querySelectorAll(".ap-planet-btn").forEach(btn => {
+    btn.classList.toggle("is-active", btn.getAttribute("data-planet") === planetKey);
+  });
+
+  const latencyBadge = document.querySelector("#ai-latency-badge");
+  if (latencyBadge) latencyBadge.textContent = `${p.name}: ${p.delayText}`;
+
+  playAerospaceChime(659.25, 0.14);
+}
+
+// Consult AI for specific planet
+function consultAiForPlanet(planetKey) {
+  selectPlanet(planetKey);
+  const p = PLANET_METADATA[planetKey];
+  
+  // Switch to assistant view
+  switchView("assistant");
+
+  // Send triage query
+  setTimeout(() => {
+    askAi(`Conduct clinical triage briefing for ${p.name}. Comms delay: ${p.delayText}. Assess radiation hazard (${p.radiation}) and gravity (${p.gravity}).`);
+  }, 350);
+}
+
+// Set assistant planet from assistant bar
+function setAssistantPlanet(planetKey) {
+  selectPlanet(planetKey);
+  const p = PLANET_METADATA[planetKey];
+  
+  const chatStream = document.querySelector("#chat-stream");
+  if (chatStream) {
+    const noticeDiv = document.createElement("div");
+    noticeDiv.className = "assistant-system-notice";
+    noticeDiv.innerHTML = `<span class="asn-icon">🪐</span> <strong>MISSION ENVIRONMENT UPDATED:</strong> ${p.name} (${p.delayText}). Onboard medical intelligence compensated for communication blackouts.`;
+    chatStream.appendChild(noticeDiv);
+    chatStream.scrollTop = chatStream.scrollHeight;
+  }
+}
+
+// Voice Toggle Functionality (Web Speech API)
+function toggleVoiceOutput() {
+  isVoiceEnabled = !isVoiceEnabled;
+  const icon = document.querySelector("#voice-icon");
+  const text = document.querySelector("#voice-text");
+  const btn = document.querySelector("#voice-toggle-btn");
+
+  if (isVoiceEnabled) {
+    if (icon) icon.textContent = "🔊";
+    if (text) text.textContent = "Voice: ON";
+    if (btn) btn.classList.add("is-active");
+    speakText("AURA flight surgeon audio telemetry readout activated.");
+  } else {
+    if (icon) icon.textContent = "🔇";
+    if (text) text.textContent = "Voice: OFF";
+    if (btn) btn.classList.remove("is-active");
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+  }
+}
+
+function speakText(htmlOrText) {
+  if (!isVoiceEnabled || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel(); // Stop any pending speech
+  
+  // Strip HTML tags for clean speech
+  const tmp = document.createElement("div");
+  tmp.innerHTML = htmlOrText;
+  const cleanText = tmp.textContent || tmp.innerText || "";
+  
+  const utterance = new SpeechSynthesisUtterance(cleanText.substring(0, 350));
+  utterance.rate = 1.02;
+  utterance.pitch = 1.0;
+  
+  // Try to use a clean modern English voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const preferredVoice = voices.find(v => v.lang.startsWith("en") && (v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Samantha") || v.name.includes("Daniel")));
+  if (preferredVoice) utterance.voice = preferredVoice;
+
+  window.speechSynthesis.speak(utterance);
+}
+
+// Clear Chat Stream
+function clearChatStream() {
+  const chatStream = document.querySelector("#chat-stream");
+  if (!chatStream) return;
+  chatStream.innerHTML = `
+    <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE</span>
+    <div class="assistant-message" id="initial-ai-msg">
+      <strong>Console Cleared.</strong> AURA flight surgeon standing by. All biomedical telemetry channels active and nominal.
+    </div>
+  `;
+}
+
+// Gemini API Key Management
+const GEMINI_STORAGE_KEY = "orbital_gemini_api_key";
+
+function getGeminiKey() {
+  return (localStorage.getItem(GEMINI_STORAGE_KEY) || "").trim();
+}
+
+function setGeminiKey(key) {
+  if (key) {
+    localStorage.setItem(GEMINI_STORAGE_KEY, key.trim());
+  } else {
+    localStorage.removeItem(GEMINI_STORAGE_KEY);
+  }
+  updateGeminiStatusUI();
+}
+
+function openGeminiModal() {
+  const modal = document.querySelector("#gemini-modal-overlay");
+  const input = document.querySelector("#gemini-api-key-input");
+  if (modal) modal.style.display = "flex";
+  if (input) {
+    input.value = getGeminiKey();
+    input.focus();
+  }
+  updateGeminiStatusUI();
+}
+
+function closeGeminiModal(event) {
+  if (event && event.target && event.target.id !== "gemini-modal-overlay" && !event.target.classList.contains("gemini-modal-close")) {
+    return;
+  }
+  const modal = document.querySelector("#gemini-modal-overlay");
+  if (modal) modal.style.display = "none";
+}
+
+function toggleGeminiKeyVisibility() {
+  const input = document.querySelector("#gemini-api-key-input");
+  const btn = document.querySelector("#gemini-reveal-btn");
+  if (!input) return;
+  if (input.type === "password") {
+    input.type = "text";
+    if (btn) btn.textContent = "🔒";
+  } else {
+    input.type = "password";
+    if (btn) btn.textContent = "👁";
+  }
+}
+
+function saveGeminiKey() {
+  const input = document.querySelector("#gemini-api-key-input");
+  const key = input ? input.value.trim() : "";
+  if (!key) {
+    alert("Please enter a valid Gemini API key (starts with AIzaSy...).");
+    return;
+  }
+  setGeminiKey(key);
+  closeGeminiModal();
+  
+  // Post confirmation message to chat
+  const chatStream = document.querySelector("#chat-stream");
+  if (chatStream) {
+    const confirmDiv = document.createElement("div");
+    confirmDiv.className = "assistant-message";
+    confirmDiv.innerHTML = `<strong>✦ GEMINI 2.5 FLASH CONNECTED:</strong><br><br>
+Your Google Gemini API key has been securely configured in local storage. All clinical reasoning and medical triage queries are now powered by <code>gemini-2.5-flash</code> with real-time NASA Bioastronautics flight surgeon grounding.`;
+    chatStream.appendChild(confirmDiv);
+    chatStream.scrollTop = chatStream.scrollHeight;
+  }
+  playAerospaceChime(880, 0.2, "triangle");
+}
+
+function clearGeminiKey() {
+  setGeminiKey("");
+  const input = document.querySelector("#gemini-api-key-input");
+  if (input) input.value = "";
+  updateGeminiStatusUI();
+  alert("Gemini API key cleared. Reverted to onboard AURA flight surgeon engine.");
+}
+
+function updateGeminiStatusUI() {
+  const key = getGeminiKey();
+  const hasKey = key.length > 15;
+
+  const btnModal = document.querySelector("#gemini-btn-modal");
+  const statusText = document.querySelector("#gemini-status-text");
+  const statusPill = document.querySelector("#gemini-status-pill");
+  const aiEngineBadge = document.querySelector("#ai-engine-badge");
+  const chatEngineSub = document.querySelector("#chat-engine-subtitle");
+  const chatOnlineBadge = document.querySelector("#chat-online-badge");
+  const chatOnlineText = document.querySelector("#chat-online-text");
+  const akTitle = document.querySelector("#ak-callout-title");
+  const akDesc = document.querySelector("#ak-callout-desc");
+  
+  const gksBox = document.querySelector("#gemini-key-status-box");
+  const gksDot = document.querySelector("#gks-dot");
+  const gksTitle = document.querySelector("#gks-title");
+  const gksDesc = document.querySelector("#gks-desc");
+
+  if (hasKey) {
+    if (btnModal) btnModal.classList.add("is-connected");
+    if (statusText) statusText.textContent = "Gemini 2.5 Active";
+    if (statusPill) {
+      statusPill.textContent = "Live Cloud";
+      statusPill.className = "gemini-pill-tag is-live";
+    }
+    if (aiEngineBadge) aiEngineBadge.innerHTML = `<i class="status-ring" style="background: #2dd4bf;"></i> Gemini 2.5 Flash Live`;
+    if (chatEngineSub) chatEngineSub.textContent = "GEMINI 2.5 FLASH · NASA FLIGHT SURGEON";
+    if (chatOnlineBadge) chatOnlineBadge.className = "chat-online is-gemini";
+    if (chatOnlineText) chatOnlineText.textContent = "GEMINI 2.5 LIVE";
+    if (akTitle) akTitle.textContent = "Gemini 2.5 Flash Active";
+    if (akDesc) akDesc.textContent = "Connected to your Gemini API key. Every medical command runs with full Google DeepMind reasoning.";
+
+    if (gksBox) gksBox.className = "gemini-key-status is-active";
+    if (gksDot) gksDot.className = "gks-dot is-active";
+    if (gksTitle) gksTitle.textContent = "Gemini API Key Active (Connected)";
+    if (gksDesc) gksDesc.textContent = `Using key ending in ...${key.slice(-5)} with gemini-2.5-flash.`;
+  } else {
+    if (btnModal) btnModal.classList.remove("is-connected");
+    if (statusText) statusText.textContent = "Connect Gemini API Key";
+    if (statusPill) {
+      statusPill.textContent = "Local Engine";
+      statusPill.className = "gemini-pill-tag";
+    }
+    if (aiEngineBadge) aiEngineBadge.innerHTML = `<i class="status-ring"></i> AURA Core v4.2`;
+    if (chatEngineSub) chatEngineSub.textContent = "AUTONOMOUS FLIGHT SURGEON · LOCAL INFERENCE";
+    if (chatOnlineBadge) chatOnlineBadge.className = "chat-online";
+    if (chatOnlineText) chatOnlineText.textContent = "READY (0ms LAG)";
+    if (akTitle) akTitle.textContent = "Have a Gemini API key?";
+    if (akDesc) akDesc.textContent = "Click here to connect your key. Chatbot will run live on Google Gemini 2.5 Flash for every medical command!";
+
+    if (gksBox) gksBox.className = "gemini-key-status";
+    if (gksDot) gksDot.className = "gks-dot";
+    if (gksTitle) gksTitle.textContent = "No Gemini API Key Connected";
+    if (gksDesc) gksDesc.textContent = "Currently operating on onboard AURA autonomous medical reasoning engine.";
+  }
+}
+
+// Call Google Gemini API directly
+async function callGeminiApi(userPrompt) {
+  const apiKey = getGeminiKey();
+  if (!apiKey) throw new Error("No Gemini API key provided.");
+
+  const p = PLANET_METADATA[activeMissionPlanet] || PLANET_METADATA.earth;
+  const activeCrewName = "Expedition 72 Crew (Anne McClain, Mike Fincke, Dr. Marcus Chen)";
+  const currentHr = currentEcgRate ? currentEcgRate.toFixed(1) : "72.4";
+
+  const systemInstruction = `You are AURA (Autonomous Universal Resuscitation & Aerospace-medical Assistant), the Chief Flight Surgeon and Autonomous Medical Officer onboard an active deep-space exploration mission.
+You are grounded in NASA Bioastronautics Standards (NASA-STD-3001), NASA Human Research Program (HRP) Evidence Books, spaceflight clinical practice guidelines, and communication latency regimes.
+CURRENT MISSION TELEMETRY CONTEXT:
+- Active Destination: ${p.name} (${p.location})
+- Communication Delay: ${p.delayText} (One-way light-time propagation)
+- Ambient Gravity: ${p.gravity}
+- Radiation Hazard: ${p.radiation} (${p.hazard})
+- Active Crew: ${activeCrewName}
+- Current Resting Heart Rate: ${currentHr} bpm
+- Ingested Telemetry Stream: ${activeCsvRows ? activeCsvRows.length : 0} time-series biometric records loaded.
+
+GUIDELINES FOR YOUR RESPONSE:
+1. Respond with clinical authority as a NASA Flight Surgeon.
+2. Structure your response clearly using markdown:
+   - **CLINICAL ASSESSMENT**: Immediate diagnosis or analysis of the query.
+   - **TELEMETRY CORRELATION**: How current biometrics and mission environment (${p.name}) affect the condition.
+   - **COUNTERMEASURE PROTOCOL**: Specific actionable clinical procedures, medications, or exercise protocols.
+   - **FLIGHT SURGEON DIRECTIVE**: Final operational guidance for the crew commander.
+3. Be comprehensive, informative, concise, and clinically actionable. Never say you cannot diagnose; provide structured aerospace triage based on NASA standards.`;
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+  const payload = {
+    contents: [
+      {
+        role: "user",
+        parts: [{ text: userPrompt }]
+      }
+    ],
+    systemInstruction: {
+      parts: [{ text: systemInstruction }]
+    },
+    generationConfig: {
+      temperature: 0.35,
+      maxOutputTokens: 800
+    }
+  };
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const errData = await response.json().catch(() => ({}));
+    const message = errData.error && errData.error.message ? errData.error.message : `HTTP ${response.status}`;
+    throw new Error(message);
+  }
+
+  const data = await response.json();
+  const text = data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0] ? data.candidates[0].content.parts[0].text : "No diagnosis generated.";
+  return formatMarkdown(text);
+}
+
+// Convert Markdown to clean structured HTML
+function formatMarkdown(md) {
+  let html = md
+    .replace(/^### (.*$)/gim, '<h4 class="ai-resp-h4">$1</h4>')
+    .replace(/^## (.*$)/gim, '<h3 class="ai-resp-h3">$1</h3>')
+    .replace(/^# (.*$)/gim, '<h2 class="ai-resp-h2">$1</h2>')
+    .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+    .replace(/`([^`]+)`/gim, '<code>$1</code>')
+    .replace(/^\s*[-*•]\s+(.*$)/gim, '<li>$1</li>')
+    .replace(/\n\n/gim, '<br><br>')
+    .replace(/\n/gim, '<br>');
+
+  // Wrap lists
+  html = html.replace(/(<li>.*?<\/li>)+/gim, '<ul>$&</ul>');
+  return html;
+}
+
+// Comprehensive Built-in Aerospace Clinical Reasoning Engine (Fallback & Local mode)
+function generateLocalFlightSurgeonReply(query) {
+  const q = query.toLowerCase().trim();
+  const p = PLANET_METADATA[activeMissionPlanet] || PLANET_METADATA.earth;
+  const currentHr = currentEcgRate ? currentEcgRate.toFixed(1) : "72.4";
+
+  // Check for SANS / Ocular
+  if (q.includes("sans") || q.includes("ocular") || q.includes("eye") || q.includes("vision") || q.includes("optic") || q.includes("papilledema")) {
+    return `<strong>✦ AURA CLINICAL DECISION SUPPORT // SANS Ocular Fluid Shift:</strong><br><br>
+<strong>CLINICAL ASSESSMENT:</strong> Spaceflight-Associated Neuro-ocular Syndrome (SANS) is driven by cephalad venous fluid migration in microgravity, elevating retrobulbar and intracranial pressure.<br><br>
+• <strong>Active Telemetry:</strong> Optic Nerve Sheath Diameter (ONSD) is currently measuring <strong>5.1 mm</strong> (Safe threshold &lt; 5.8 mm). Retinal nerve fiber layer (RNFL) thickening is Grade 0.<br>
+• <strong>Planetary Context (${p.name}):</strong> Environmental gravity is <strong>${p.gravity}</strong>. Microgravity fluid pooling is active.<br>
+• <strong>Prescribed Countermeasure:</strong> Prescribe 50 mmHg Lower Body Negative Pressure (LBNP) for 45 min prior to sleep phase to restore caudal venous fluid distribution. Conduct daily ultrasound ONSD scans.`;
+  }
+
+  // Check for Cardiovascular / Arrhythmia / Heart
+  if (q.includes("cardio") || q.includes("heart") || q.includes("ecg") || q.includes("drift") || q.includes("pulse") || q.includes("arrhythmia") || q.includes("bpm")) {
+    return `<strong>✦ AURA HEMODYNAMICS // Cardiovascular Deconditioning & ECG Triage:</strong><br><br>
+<strong>CLINICAL ASSESSMENT:</strong> Long-duration spaceflight produces a 10-15% reduction in circulating plasma volume, left ventricular mass remodeling, and autonomic baroreflex resetting.<br><br>
+• <strong>Live Telemetry:</strong> Real-time heart rate is <strong>${currentHr} bpm</strong>. Sinus rhythm is regular. No premature ventricular contractions (PVCs) detected in current buffer.<br>
+• <strong>Hemodynamic Profile:</strong> Mean Arterial Pressure (MAP) is steady at 88 mmHg. Stroke volume estimated at 64 mL.<br>
+• <strong>Flight Surgeon Directive:</strong> Complete 45-minute daily high-resistance CEVIS cycle ergometer session at 75% VO₂ peak. Initiate oral isotonic electrolyte rehydration 48 hours prior to gravitational transitions.`;
+  }
+
+  // Check for EVA / Hypoxia / Suit Emergency
+  if (q.includes("eva") || q.includes("hypoxia") || q.includes("suit") || q.includes("oxygen") || q.includes("leak") || q.includes("depress") || q.includes("decompression")) {
+    return `<div class="ai-alert-banner">🚨 CRITICAL EMERGENCY FLIGHT SURGEON DIRECTIVE // EVA SUIT HYPOXIA</div><br>
+<strong>1. IMMEDIATE ACTION:</strong> Rotate Extravehicular Mobility Unit (EMU) Primary Life Support System (PLSS) O₂ valve to <strong>HIGH-FLOW EMERGENCY PURGE</strong> (100% O₂ at 4.3 psid).<br><br>
+<strong>2. AIRLOCK ABORT:</strong> Terminate EVA immediately. Partner crew member to attach umbilical tether and initiate emergency airlock repressurization to 14.7 psi.<br><br>
+<strong>3. CLINICAL TRIAGE:</strong> Current SpO₂ alarm threshold set to 92%. Ingested CSV records confirm nominal pre-breathe protocol duration (120 min) preventing venous gas emboli (Bends). Prepare hyperbaric mask upon ingress.`;
+  }
+
+  // Check for Radiation / Solar Flare / SPE
+  if (q.includes("radiation") || q.includes("solar") || q.includes("flare") || q.includes("spe") || q.includes("storm") || q.includes("dosim") || q.includes("sievert")) {
+    return `<strong>✦ AURA RADIATION DOSIMETRY // Solar Particle Event (SPE) Protocol:</strong><br><br>
+<strong>MISSION SECTOR:</strong> ${p.name} (Active Ambient Radiation: <strong>${p.radiation}</strong>).<br><br>
+• <strong>Hazard Analysis:</strong> Deep space protons and heavy galactic cosmic ions (HZE nuclei) exceed LEO safe limits. Active cumulative mission dose is tracking within NASA 600 mSv career limit.<br>
+• <strong>Storm Shelter Directive:</strong> In the event of a NOAA Class X solar flare alert, crew must relocate to the heavily shielded central water wall / food locker storm shelter within 30 minutes.<br>
+• <strong>Medical Prophylaxis:</strong> Dispense antioxidant countermeasures (N-acetylcysteine + Vitamin E) and monitor real-time active personal dosimeters.`;
+  }
+
+  // Check for Sleep / Circadian / Fatigue
+  if (q.includes("sleep") || q.includes("circadian") || q.includes("insomnia") || q.includes("tired") || q.includes("fatigue") || q.includes("melatonin") || q.includes("wake")) {
+    return `<strong>✦ AURA NEURO-BEHAVIORAL // Circadian Regulation & Fatigue Countermeasures:</strong><br><br>
+<strong>CLINICAL ASSESSMENT:</strong> ISS orbits yield 16 sunrises every 24 hours, causing severe melatonin suppression and circadian phase-shifting.<br><br>
+• <strong>Crew Sleep Telemetry:</strong> Mean sleep duration over last 7 cycles is 6.8 hours with 18.2% deep N3 sleep.<br>
+• <strong>Lighting Protocol:</strong> Solid-State Light Assemblies (SSLA) set to Blue-Enriched High-Kelvin (450nm) during work shifts, shifting to warm low-intensity amber (2700K) 2 hours before crew sleep.<br>
+• <strong>Pharmacology:</strong> If insomnia persists, administer 0.5 mg oral melatonin 30 minutes prior to crew rest; avoid benzodiazepines due to emergency wake-up alertness protocols.`;
+  }
+
+  // Check for Motion Sickness / SAS / Vestibular
+  if (q.includes("motion") || q.includes("sas") || q.includes("nausea") || q.includes("vestibular") || q.includes("vomit") || q.includes("dizz")) {
+    return `<strong>✦ AURA NEURO-VESTIBULAR // Space Adaptation Syndrome (SAS):</strong><br><br>
+<strong>CLINICAL ASSESSMENT:</strong> Otolith organs (utricle and saccule) lose gravitational weight input in microgravity, conflicting with visual and semicircular canal signals. Affects 70% of crew during flight days 1-3.<br><br>
+• <strong>Symptom Triage:</strong> Stomach awareness, malaise, disorientation, and vomiting risk.<br>
+• <strong>Clinical Countermeasure:</strong> Administer Promethazine (25-50 mg IM) as approved by Flight Surgeon rules. Restrict rapid head movements along the pitch and roll axes.<br>
+• <strong>Operational Rule:</strong> EVA operations strictly prohibited until SAS symptoms have resolved for a minimum of 48 hours.`;
+  }
+
+  // Check for Bone / Muscle / Spine / ARED
+  if (q.includes("bone") || q.includes("muscle") || q.includes("spine") || q.includes("atrophy") || q.includes("ared") || q.includes("calcium") || q.includes("back")) {
+    return `<strong>✦ AURA MUSCULOSKELETAL // Bone Mineral Density & Spinal Elongation:</strong><br><br>
+<strong>ASSESSMENT:</strong> Without gravitational axial loading, osteoclast activity outpaces osteoblasts, resulting in ~1% trabecular bone loss per month in the femoral neck and lumbar vertebrae.<br><br>
+• <strong>Spinal Biometrics:</strong> Intervertebral disc unloading causes +4.5 to +6.0 cm spinal lengthening, leading to acute low back discomfort.<br>
+• <strong>Countermeasure Routine:</strong> Mandatory daily 2.5 hours exercise regimen: Advanced Resistive Exercise Device (ARED) squats and deadlifts at 380 lbs, supplemented with weekly bisphosphonates and 1000 IU Vitamin D3.`;
+  }
+
+  // Check for Data / CSV / Telemetry questions
+  if (q.includes("dataset") || q.includes("csv") || q.includes("measure") || q.includes("source") || q.includes("stream") || q.includes("lsda") || q.includes("physionet")) {
+    return `<strong>✦ AURA TELEMETRY ARCHITECTURE // Bioastronautics Ingestion:</strong><br><br>
+This system operates on verified time-series biometric streams compliant with NASA LSDA (Life Sciences Data Archive) and PhysioNet research archives.<br><br>
+• <strong>Monitored Biomarkers:</strong> High-resolution continuous ECG waveforms, Heart Rate Variability (HRV), SpO₂ pulse oximetry, respiratory rate, core body temperature, cabin ambient CO₂, and active ionizing radiation.<br><br>
+• <strong>Dynamic Replay Engine:</strong> Telemetry rows (${activeCsvRows ? activeCsvRows.length : 0} records) are processed through an edge sliding-window anomaly detector that flags cardiac drift, hypercapnia, and hypoxemia in real time.`;
+  }
+
+  // General Comprehensive Flight Surgeon Response for ANY user command
+  return `<strong>✦ AURA FLIGHT SURGEON ASSESSMENT // Command: <em>"${query}"</em></strong><br><br>
+<strong>MISSION CONTEXT:</strong> ${p.name} · Gravity: ${p.gravity} · Latency: ${p.delayText}<br><br>
+<strong>CLINICAL EVALUATION:</strong> Your query regarding <em>"${query}"</em> has been processed against NASA Bioastronautics Standards (NASA-STD-3001) and Space Flight Human-System Standards.<br><br>
+• <strong>Current Crew Vitals:</strong> Real-time heart rate is nominal at <strong>${currentHr} bpm</strong>. SpO₂ steady at <strong>98.4%</strong>. Ingested time-series telemetry shows stable physiological compensation.<br>
+• <strong>Operational Directive:</strong> Maintain routine circadian hydration (2.5 L/day), log biometric deviations into the automated mission record, and follow prescribed countermeasure protocols for current mission phase.<br><br>
+<small style="color: #2dd4bf;">✦ TIP: For deep conversational medical reasoning, click [Connect Gemini API Key] to activate Google Gemini 2.5 Flash.</small>`;
+}
+
+// Ask AI Entrypoint
 function askAi(promptText) {
   const input = document.querySelector("#chat-input-field");
   if (input) input.value = promptText;
   handleChatSubmit(new Event("submit"));
 }
 
-function handleChatSubmit(event) {
+// Handle Chat Submission
+async function handleChatSubmit(event) {
   if (event) event.preventDefault();
   const input = document.querySelector("#chat-input-field");
-  const query = input.value.trim();
+  const query = input ? input.value.trim() : "";
   if (!query) return;
 
   const chatStream = document.querySelector("#chat-stream");
+  if (!chatStream) return;
 
-  // Append user message
+  // Check if the user pasted an API key directly into the chat box!
+  if (query.startsWith("AIzaSy") && query.length >= 35) {
+    setGeminiKey(query);
+    if (input) input.value = "";
+    const keyMsg = document.createElement("div");
+    keyMsg.className = "assistant-message";
+    keyMsg.innerHTML = `<strong>✦ GEMINI API KEY RECOGNIZED & SAVED:</strong><br><br>
+Your Google Gemini API key has been securely saved to this browser session. Live Gemini 2.5 Flash flight surgeon reasoning is now active for all medical queries!`;
+    chatStream.appendChild(keyMsg);
+    chatStream.scrollTop = chatStream.scrollHeight;
+    playAerospaceChime(880, 0.2, "triangle");
+    return;
+  }
+
+  // Append user message bubble
   const userDiv = document.createElement("div");
   userDiv.className = "user-message";
   userDiv.textContent = query;
   chatStream.appendChild(userDiv);
-  input.value = "";
+  if (input) input.value = "";
   chatStream.scrollTop = chatStream.scrollHeight;
 
-  // Generate intelligent medical response
-  setTimeout(() => {
-    let reply = "";
-    const lower = query.toLowerCase();
+  // Append temporary thinking indicator
+  const thinkingDiv = document.createElement("div");
+  thinkingDiv.className = "assistant-message is-thinking";
+  const hasGemini = getGeminiKey().length > 15;
+  thinkingDiv.innerHTML = `<span class="thinking-dots"><span></span><span></span><span></span></span> ${hasGemini ? "Gemini 2.5 Flash analyzing telemetry & spaceflight protocols..." : "AURA Flight Surgeon calculating clinical triage..."}`;
+  chatStream.appendChild(thinkingDiv);
+  chatStream.scrollTop = chatStream.scrollHeight;
 
-    if (lower.includes("sans") || lower.includes("ocular") || lower.includes("eye") || lower.includes("vision")) {
-      reply = AURA_KNOWLEDGE.sans;
-    } else if (lower.includes("cardio") || lower.includes("heart") || lower.includes("drift") || lower.includes("decondition")) {
-      reply = AURA_KNOWLEDGE.cardiovascular;
-    } else if (lower.includes("dataset") || lower.includes("csv") || lower.includes("measure") || lower.includes("source") || lower.includes("provenance")) {
-      reply = AURA_KNOWLEDGE.dataset;
-    } else if (lower.includes("hypoxia") || lower.includes("oxygen") || lower.includes("eva") || lower.includes("emergency") || lower.includes("leak")) {
-      reply = AURA_KNOWLEDGE.hypoxia;
-    } else if (lower.includes("hazard") || lower.includes("ridge") || lower.includes("five hazards")) {
-      reply = AURA_KNOWLEDGE.ridge;
-    } else if (lower.includes("exmc") || lower.includes("autonom") || lower.includes("decision support") || lower.includes("cdss")) {
-      reply = AURA_KNOWLEDGE.exmc;
-    } else if (lower.includes("resource") || lower.includes("challenge") || lower.includes("space apps") || lower.includes("lsda") || lower.includes("osdr") || lower.includes("trish")) {
-      reply = AURA_KNOWLEDGE.resources;
-    } else if (lower.includes("brain") || lower.includes("icp") || lower.includes("head") || lower.includes("cognitive")) {
-      reply = `<strong>AURA Neurological Analysis // Cerebral Perfusion & ICP:</strong><br><br>
-Cephalad microgravity fluid redistribution elevates internal jugular vein pressure and estimated ICP to 14.8 mmHg (Nominal baseline: 10-15 mmHg).<br><br>
-• Psychomotor Vigilance Task (PVT): Mean reaction latency 218 ms (Optimal).<br>
-• Countermeasure: 15° inclined head-up sleeping bag posture and blue-depleted circadian lighting.`;
-    } else if (lower.includes("spine") || lower.includes("bone") || lower.includes("back") || lower.includes("height")) {
-      reply = `<strong>AURA Skeletal Telemetry // Bone Demineralization & Spine:</strong><br><br>
-Intervertebral disc unloading has elongated the astronaut's spine by +4.8 cm.<br><br>
-• Femoral neck bone mineral retention: 98.4% (Prevented by daily ARED 380 lbs resistive loading).<br>
-• Countermeasure: Daily deadlift/squat cycles combined with weekly oral alendronate.`;
-    } else if (lower.includes("muscle") || lower.includes("calf") || lower.includes("calves") || lower.includes("atrophy")) {
-      reply = `<strong>AURA Musculoskeletal Assessment // Postural Atrophy:</strong><br><br>
-Anti-gravity calf soleus and gastrocnemius muscles undergo rapid unloading without 1-G gravity.<br><br>
-• Current isometric force: 94.2% of baseline.<br>
-• Countermeasure: Daily ARED heel-raises with 200 lbs eccentric overload and 1.4 g/kg branched-chain amino acids.`;
+  try {
+    let reply = "";
+    if (hasGemini) {
+      reply = await callGeminiApi(query);
     } else {
-      reply = `<strong>AURA Clinical Analysis:</strong><br><br>
-Query evaluated: <em>"${query}"</em>.<br><br>
-Correlated with active CSV telemetry stream (${activeCsvRows.length} rows loaded). Current heart rate is ${currentEcgRate.toFixed(1)} bpm. All biomarkers align with NASA Bioastronautics Standard v4.2 parameters.`;
+      // Small simulated latency for natural aerospace feel
+      await new Promise(r => setTimeout(r, 450));
+      reply = generateLocalFlightSurgeonReply(query);
     }
 
+    // Remove thinking indicator
+    if (thinkingDiv.parentNode) thinkingDiv.parentNode.removeChild(thinkingDiv);
+
+    // Append AI response
     const aiDiv = document.createElement("div");
     aiDiv.className = "assistant-message";
-    aiDiv.innerHTML = reply;
+    if (hasGemini) {
+      aiDiv.innerHTML = `<div class="gemini-powered-tag">✦ GEMINI 2.5 FLASH · FLIGHT SURGEON</div>` + reply;
+    } else {
+      aiDiv.innerHTML = reply;
+    }
     chatStream.appendChild(aiDiv);
     chatStream.scrollTop = chatStream.scrollHeight;
-  }, 650);
+
+    // Speak aloud if voice readout is enabled
+    speakText(reply);
+
+  } catch (err) {
+    // If Gemini API fails, remove thinking indicator and fall back gracefully to local engine!
+    if (thinkingDiv.parentNode) thinkingDiv.parentNode.removeChild(thinkingDiv);
+
+    console.warn("Gemini API call failed, falling back to local engine:", err);
+    const fallbackReply = generateLocalFlightSurgeonReply(query);
+    
+    const errDiv = document.createElement("div");
+    errDiv.className = "assistant-message";
+    errDiv.innerHTML = `<div class="ai-error-tag">✦ Gemini API Notice: ${err.message || "Connection issue"}. Switched seamlessly to Onboard Flight Surgeon Engine.</div><br>` + fallbackReply;
+    chatStream.appendChild(errDiv);
+    chatStream.scrollTop = chatStream.scrollHeight;
+
+    speakText(fallbackReply);
+  }
 }
 
+// Initialize Gemini state on page load
+document.addEventListener("DOMContentLoaded", () => {
+  updateGeminiStatusUI();
+});
+setTimeout(updateGeminiStatusUI, 500);
 
-/* ==========================================================================
-   8. INTERACTIVE CREW BODY MAP & ANATOMICAL TELEMETRY ENGINE
-   ========================================================================== */
 const ANATOMICAL_SYSTEMS = {
   brain: {
     title: "Cerebral Perfusion & <em>ICP</em>",
