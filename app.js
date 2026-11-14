@@ -52,7 +52,7 @@ function showView(name) {
   // Coordinate background space view with active tab
   if (name === "assistant") {
     setSpaceBackgroundById("jwst");
-  } else if (name === "insights") {
+  } else if (name === "insights" || name === "bodymap") {
     setSpaceBackgroundById("aurora");
   } else if (name === "sources") {
     setSpaceBackgroundById("earth");
@@ -424,6 +424,9 @@ async function loadPresetDataset(presetKey) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const csvText = await res.text();
     ingestTelemetryCsv(csvText, preset.name);
+    if (typeof syncBodyMapWithPreset === "function") {
+      syncBodyMapWithPreset(presetKey);
+    }
   } catch (err) {
     console.error("Failed to load preset CSV:", err);
   }
@@ -795,7 +798,33 @@ This system operates on real time-series CSV datasets. You can upload any CSV co
 1. <strong>IMMEDIATE ACTION:</strong> Rotate suit PLSS primary oxygen regulator to <em>HIGH-FLOW PURGE</em> (100% O₂ at 4.3 psi).<br>
 2. Check helmet seal and glove disconnect rings for pressure decay rate (&gt; 0.1 psi/min indicates puncture).<br>
 3. Ingest hyperbaric emergency rebreather mask if suit cabin pO₂ drops below 16 kPa.<br>
-4. Terminate active EVA immediately and ingress through Quest airlock.`
+4. Terminate active EVA immediately and ingress through Quest airlock.`,
+
+  ridge: `<strong>NASA Human Research Program (HRP) // The 5 Space Hazards (R-I-D-G-E):</strong><br><br>
+1. <strong>R - Space Radiation:</strong> Galactic Cosmic Rays (GCR) and Solar Particle Events (SPE). Increases career carcinogenesis, CNS damage, and acute radiation sickness.<br>
+2. <strong>I - Isolation and Confinement:</strong> Circadian misalignment across 16 orbital sunrises/day, psychological friction, sleep debt, and cognitive readiness.<br>
+3. <strong>D - Distance from Earth:</strong> Up to 22.4-min one-way latency to Mars makes ground telemedicine impossible, demanding autonomous edge AI decision support.<br>
+4. <strong>G - Altered Gravity Fields:</strong> Microgravity triggers cephalad fluid shifts, SANS ocular flattening, -1.5%/month bone density loss, and cardiovascular deconditioning.<br>
+5. <strong>E - Hostile Closed Environments:</strong> Cabin pCO₂ buildup (&gt;3 mmHg), particulate accumulation, immune dysregulation, and closed-loop ECLSS life support constraints.`,
+
+  exmc: `<strong>Exploration Medical Capability (ExMC) & Autonomous CDSS:</strong><br><br>
+NASA HRP's ExMC element develops autonomous Clinical Decision Support Systems (CDSS) for deep-space missions.<br><br>
+• Because telemedicine experiences up to 44 minutes of round-trip communications latency on Mars, medical decision engines must run locally on the crew's edge hardware.<br>
+• AURA serves as the onboard autonomous clinical assistant, ingesting 250 Hz bio-harness telemetry, detecting arrhythmias, verifying ECLSS air quality, and recommending step-by-step non-physician medical protocols.`,
+
+  resources: `<strong>NASA Space Apps Challenge Official Resource Provenance:</strong><br><br>
+This system directly implements and correlates data from all 10 official challenge resources:<br>
+1. NASA Human Research Roadmap (HRR)<br>
+2. NASA Life Sciences Data Archive (LSDA-0042)<br>
+3. NASA Life Sciences Portal (NLSP)<br>
+4. NASA Open Science Data Repository (OSDR / RadLab / GeneLab)<br>
+5. Exploration Medical Capability (ExMC CDSS)<br>
+6. NASA TechPort (Wearable Biosensors)<br>
+7. TRISH (Translational Research Institute for Space Health)<br>
+8. Lifetime Surveillance of Astronaut Health (LSAH)<br>
+9. NASA-STD-3001 Bioastronautics Standards (Vol 1 & 2)<br>
+10. PhysioNet MIT-BIH & BIDMC Biomedical Waveforms<br>
+11. NASA Image and Video Library Asset API.`
 };
 
 function askAi(promptText) {
@@ -825,7 +854,7 @@ function handleChatSubmit(event) {
     let reply = "";
     const lower = query.toLowerCase();
 
-    if (lower.includes("sans") || lower.includes("ocular") || lower.includes("eye") || lower.includes("fluid")) {
+    if (lower.includes("sans") || lower.includes("ocular") || lower.includes("eye") || lower.includes("vision")) {
       reply = AURA_KNOWLEDGE.sans;
     } else if (lower.includes("cardio") || lower.includes("heart") || lower.includes("drift") || lower.includes("decondition")) {
       reply = AURA_KNOWLEDGE.cardiovascular;
@@ -833,6 +862,27 @@ function handleChatSubmit(event) {
       reply = AURA_KNOWLEDGE.dataset;
     } else if (lower.includes("hypoxia") || lower.includes("oxygen") || lower.includes("eva") || lower.includes("emergency") || lower.includes("leak")) {
       reply = AURA_KNOWLEDGE.hypoxia;
+    } else if (lower.includes("hazard") || lower.includes("ridge") || lower.includes("five hazards")) {
+      reply = AURA_KNOWLEDGE.ridge;
+    } else if (lower.includes("exmc") || lower.includes("autonom") || lower.includes("decision support") || lower.includes("cdss")) {
+      reply = AURA_KNOWLEDGE.exmc;
+    } else if (lower.includes("resource") || lower.includes("challenge") || lower.includes("space apps") || lower.includes("lsda") || lower.includes("osdr") || lower.includes("trish")) {
+      reply = AURA_KNOWLEDGE.resources;
+    } else if (lower.includes("brain") || lower.includes("icp") || lower.includes("head") || lower.includes("cognitive")) {
+      reply = `<strong>AURA Neurological Analysis // Cerebral Perfusion & ICP:</strong><br><br>
+Cephalad microgravity fluid redistribution elevates internal jugular vein pressure and estimated ICP to 14.8 mmHg (Nominal baseline: 10-15 mmHg).<br><br>
+• Psychomotor Vigilance Task (PVT): Mean reaction latency 218 ms (Optimal).<br>
+• Countermeasure: 15° inclined head-up sleeping bag posture and blue-depleted circadian lighting.`;
+    } else if (lower.includes("spine") || lower.includes("bone") || lower.includes("back") || lower.includes("height")) {
+      reply = `<strong>AURA Skeletal Telemetry // Bone Demineralization & Spine:</strong><br><br>
+Intervertebral disc unloading has elongated the astronaut's spine by +4.8 cm.<br><br>
+• Femoral neck bone mineral retention: 98.4% (Prevented by daily ARED 380 lbs resistive loading).<br>
+• Countermeasure: Daily deadlift/squat cycles combined with weekly oral alendronate.`;
+    } else if (lower.includes("muscle") || lower.includes("calf") || lower.includes("calves") || lower.includes("atrophy")) {
+      reply = `<strong>AURA Musculoskeletal Assessment // Postural Atrophy:</strong><br><br>
+Anti-gravity calf soleus and gastrocnemius muscles undergo rapid unloading without 1-G gravity.<br><br>
+• Current isometric force: 94.2% of baseline.<br>
+• Countermeasure: Daily ARED heel-raises with 200 lbs eccentric overload and 1.4 g/kg branched-chain amino acids.`;
     } else {
       reply = `<strong>AURA Clinical Analysis:</strong><br><br>
 Query evaluated: <em>"${query}"</em>.<br><br>
@@ -845,6 +895,306 @@ Correlated with active CSV telemetry stream (${activeCsvRows.length} rows loaded
     chatStream.appendChild(aiDiv);
     chatStream.scrollTop = chatStream.scrollHeight;
   }, 650);
+}
+
+
+/* ==========================================================================
+   8. INTERACTIVE CREW BODY MAP & ANATOMICAL TELEMETRY ENGINE
+   ========================================================================== */
+const ANATOMICAL_SYSTEMS = {
+  brain: {
+    title: "Cerebral Perfusion & <em>ICP</em>",
+    kicker: "NASA HRP RISK 02 // COGNITIVE READY & INTRACRANIAL PRESSURE",
+    desc: "Microgravity cephalad fluid volume shifts alter venous drainage from the sagittal sinus, elevating resting ICP and requiring cognitive vigilance monitoring.",
+    badge: "GRADE 0 · OPTIMAL",
+    badgeClass: "status-badge-nominal",
+    stats: [
+      { kicker: "ESTIMATED ICP", val: "14.8 mmHg", baseline: "Nominal Range: 10 - 15 mmHg" },
+      { kicker: "PVT REACTION LATENCY", val: "218 ms", baseline: "NASA Target: < 250 ms (Elite)" },
+      { kicker: "COGNITIVE WORKLOAD", val: "12%", baseline: "NASA-TLX Fatigue Index (Low)" },
+      { kicker: "SLEEP EFFICIENCY", val: "88.4%", baseline: "Deep Rest Duration: 7.1 hrs" }
+    ],
+    countermeasures: [
+      { step: "STEP 1", text: "<strong>PVT Alertness Assessment:</strong> Execute 3-minute Psychomotor Vigilance Task on the station tablet daily before critical robotics tasks." },
+      { step: "STEP 2", text: "<strong>Circadian Phase Alignment:</strong> Ensure blue-depleted cabin spectrum (480nm notched) is activated 45 minutes prior to scheduled crew rest." },
+      { step: "STEP 3", text: "<strong>Cephalad Drainage Restraint:</strong> Sleep in a 15° inclined head-up sleeping bag posture if morning frontal tension is reported." }
+    ]
+  },
+  eyes: {
+    title: "Optic Nerve & <em>Retina (SANS)</em>",
+    kicker: "NASA HRP RISK 03 // SANS OCULAR FLUID SHIFT",
+    desc: "Absence of hydrostatic gradient shifts interstitial fluid headward, flattening the posterior globe and increasing optic nerve sheath diameter (ONSD).",
+    badge: "GRADE 0 · OBSERVATION",
+    badgeClass: "status-badge-warning",
+    stats: [
+      { kicker: "OPTIC NERVE SHEATH (ONSD)", val: "5.1 mm", baseline: "Earth Baseline: < 5.8 mm (Nominal)" },
+      { kicker: "INTRAOCULAR PRESSURE (IOP)", val: "16.2 mmHg", baseline: "Target: 12 - 21 mmHg (Safe)" },
+      { kicker: "CHORIORETINAL FOLDS", val: "None", baseline: "OCT Scan: Crisp margin" },
+      { kicker: "VISUAL ACUITY", val: "20/20", baseline: "Snellen Standard: 100% Correct" }
+    ],
+    countermeasures: [
+      { step: "STEP 1", text: "<strong>Lower Body Negative Pressure (LBNP):</strong> Don the Russian Chibis / NASA LBNP suit for 30 minutes at -25 mmHg to draw ~1.2 liters of fluid back to lower extremities." },
+      { step: "STEP 2", text: "<strong>Optical Coherence Tomography (OCT):</strong> Perform automated retinal ultrasound and fundus imaging scan in Columbus module every 14 MET days." },
+      { step: "STEP 3", text: "<strong>Space Medicine Protocol:</strong> Ensure daily sodium intake is throttled under 2,000 mg to prevent additional intracranial interstitial fluid pressure spikes." }
+    ]
+  },
+  heart: {
+    title: "Cardiovascular System & <em>Lead-II ECG</em>",
+    kicker: "NASA HRP RISK 04 // CARDIOVASCULAR DECONDITIONING",
+    desc: "Microgravity removes the hydrostatic column; stroke volume increases transiently, followed by plasma volume contraction (~10-15%) and myocardial atrophy risk.",
+    badge: "SINUS RHYTHM STABLE",
+    badgeClass: "status-badge-nominal",
+    stats: [
+      { kicker: "HEART RATE (ECG)", val: "72.0 bpm", baseline: "Resting Sinus Rhythm (Normative)" },
+      { kicker: "HRV (RMSSD)", val: "48.2 ms", baseline: "Vagal Autonomic Tone (Healthy)" },
+      { kicker: "R-R INTERVAL", val: "833 ms", baseline: "Lead-II Waveform Synchronized" },
+      { kicker: "MEAN ARTERIAL PRESSURE", val: "88 mmHg", baseline: "Target: 70 - 105 mmHg" }
+    ],
+    countermeasures: [
+      { step: "STEP 1", text: "<strong>CEVIS High-Intensity Intervals:</strong> 30 minutes cycling at >75% VO2 Max (185-200 Watts) on the station cycle ergometer daily." },
+      { step: "STEP 2", text: "<strong>Orthostatic Intolerance Fluid Loading:</strong> Consume 1 liter water with 8 isotonic salt tablets 2 hours prior to de-orbit burn or high-G maneuvers." },
+      { step: "STEP 3", text: "<strong>250 Hz Continuous Oscilloscope:</strong> Smart Bio-Harness monitors Lead-II cardiac signal continuously to catch sub-clinical PVC arrhythmias." }
+    ]
+  },
+  lungs: {
+    title: "Pulmonary Dynamics & <em>Arterial SpO₂</em>",
+    kicker: "NASA HRP RISK 05 // CLOSED CABIN ECLSS & RESPIRATORY",
+    desc: "Ventilation-perfusion ratio becomes more uniform in weightlessness, but cabin CO2 buildup (>3.0 mmHg) risks acute hypercapnia and hypoxia.",
+    badge: "ARTERIAL SpO₂ OPTIMAL",
+    badgeClass: "status-badge-nominal",
+    stats: [
+      { kicker: "ARTERIAL SpO₂", val: "98.9%", baseline: "Target Margin: 96 - 100%" },
+      { kicker: "RESPIRATORY RATE", val: "14.0 /min", baseline: "Tidal Volume: 520 mL (Regular)" },
+      { kicker: "CABIN pCO₂", val: "0.31 mmHg", baseline: "NASA STD-3001 Limit: < 3.0 mmHg" },
+      { kicker: "CABIN AMBIENT O₂", val: "21.2 kPa", baseline: "Nominal Atmospheric Balance" }
+    ],
+    countermeasures: [
+      { step: "STEP 1", text: "<strong>Cabin ECLSS Verification:</strong> Verify Carbon Dioxide Removal Assembly (CDRA) desorbing cycles are actively clearing amine beds." },
+      { step: "STEP 2", text: "<strong>EVA Spacewalk Pre-Breathe:</strong> Follow strict 100% oxygen pre-breathe protocol (2.5 hours) before Quest airlock depressurization." },
+      { step: "STEP 3", text: "<strong>Emergency Hypoxia Protocol:</strong> If SpO2 drops below 90% or suit pO2 drops below 16 kPa, rotate PLSS regulator to HIGH-FLOW PURGE immediately." }
+    ]
+  },
+  spine: {
+    title: "Skeletal Column & <em>Bone Density</em>",
+    kicker: "NASA HRP RISK 01 // BONE DEMINERALIZATION & SPINAL ELONGATION",
+    desc: "Spinal intervertebral discs decompress and expand without gravity (+4 to 5 cm elongation), causing microgravity back discomfort and -1.5% monthly bone loss in the femoral neck.",
+    badge: "RETENTION: 98.4%",
+    badgeClass: "status-badge-nominal",
+    stats: [
+      { kicker: "SPINAL ELONGATION", val: "+4.8 cm", baseline: "Disc Decompression (Adaptive)" },
+      { kicker: "BONE MINERAL RETENTION", val: "98.4%", baseline: "ARED Resistance Load Maintained" },
+      { kicker: "SERUM CALCIUM", val: "9.2 mg/dL", baseline: "Safe (No Hypercalciuria)" },
+      { kicker: "LUMBAR COMPLAINT", val: "Score 1/10", baseline: "Transient Early Flight Adaptation" }
+    ],
+    countermeasures: [
+      { step: "STEP 1", text: "<strong>ARED Heavy Resistance:</strong> Execute 45-minute daily deadlift, squat, and heel-raise sets with 380 lbs force equivalent." },
+      { step: "STEP 2", text: "<strong>Nutritional Supplementation:</strong> Take weekly oral bisphosphonate (alendronate) and 1,000 IU Vitamin D3 to inhibit osteoclastic bone resorption." },
+      { step: "STEP 3", text: "<strong>Knee-to-Chest Decompression:</strong> Perform 10-minute fetal curl spinal stretch in sleep station to alleviate paraspinal muscle fatigue." }
+    ]
+  },
+  fluid: {
+    title: "Fluid Redistribution & <em>Cephalad Shift</em>",
+    kicker: "NASA HRP RISK 04 // CEPHALAD HYDROSTATIC SHIFT",
+    desc: "Instantaneous loss of gravity shifts approximately 1.5 to 2.0 liters of blood and interstitial fluid upward toward the neck and thoracic cavity ('puffy face, bird legs').",
+    badge: "PUFFY FACE / BIRD LEGS",
+    badgeClass: "status-badge-warning",
+    stats: [
+      { kicker: "CEPHALAD FLUID TRANSLOCATION", val: "+1.8 Liters", baseline: "Headward Volume Migration" },
+      { kicker: "CALF CIRCUMFERENCE", val: "-8.2%", baseline: "Lower Extremity Fluid Loss" },
+      { kicker: "PLASMA VOLUME ADJUSTMENT", val: "-12%", baseline: "Central Diuresis Reflex" },
+      { kicker: "HYDRATION STATUS", val: "88%", baseline: "2,200 / 2,500 mL Logged" }
+    ],
+    countermeasures: [
+      { step: "STEP 1", text: "<strong>Chibis LBNP Vacuum Countermeasure:</strong> 30 minutes in Russian Chibis or NASA LBNP chamber at -30 mmHg to draw fluid back to lower extremities." },
+      { step: "STEP 2", text: "<strong>Thigh Braslet Cuffs:</strong> Don elastic Braslet occlusive cuffs on upper thighs for first 14 flight days to simulate hydrostatic gradient." },
+      { step: "STEP 3", text: "<strong>Targeted Hydration Protocol:</strong> Ensure 2.5 L water intake daily with electrolyte replacement packs before heavy resistance exercise." }
+    ]
+  },
+  muscles: {
+    title: "Musculoskeletal Complex & <em>Calf Soleus</em>",
+    kicker: "NASA HRP RISK 04 // SKELETAL MUSCLE ATROPHY",
+    desc: "Postural anti-gravity muscles (soleus, gastrocnemius, quadriceps) undergo rapid slow-twitch to fast-twitch fiber conversion and up to 20% volume loss without daily loading.",
+    badge: "ARED COMPLIANT",
+    badgeClass: "status-badge-nominal",
+    stats: [
+      { kicker: "SOLEUS PEAK FORCE", val: "94.2%", baseline: "Neuromuscular Baseline Maintained" },
+      { kicker: "CALF LEG VOLUME", val: "-7.5%", baseline: "Fluid Loss Compensated" },
+      { kicker: "ARED FORCE EQUIVALENT", val: "380 lbs", baseline: "Daily Target: 350 lbs (Exceeded)" },
+      { kicker: "GRIP DYNAMOMETER", val: "48 kg", baseline: "Isometric Force: Strong" }
+    ],
+    countermeasures: [
+      { step: "STEP 1", text: "<strong>ARED Heel Raises & Squats:</strong> 3 sets of 15 reps with 200 lbs eccentric overload on soleus/gastrocnemius calf complex." },
+      { step: "STEP 2", text: "<strong>Protein & Amino Acid Intake:</strong> Ingest minimum 1.4g/kg protein with branched-chain amino acids (BCAAs) across all daily meals." },
+      { step: "STEP 3", text: "<strong>Neuromuscular Electrostimulation:</strong> Apply EMS pads to calves if scheduled EVA spacewalk fatigue prevents full gym session." }
+    ]
+  }
+};
+
+let currentSelectedOrgan = "eyes";
+
+function selectBodyOrgan(organId) {
+  const data = ANATOMICAL_SYSTEMS[organId];
+  if (!data) return;
+
+  currentSelectedOrgan = organId;
+
+  // 1. Update SVG Hotspots
+  document.querySelectorAll(".hotspot-node").forEach((node) => node.classList.remove("is-selected"));
+  const activeNode = document.querySelector(`#node-${organId}`);
+  if (activeNode) activeNode.classList.add("is-selected");
+
+  // 2. Update Organ Chips
+  document.querySelectorAll(".organ-chip").forEach((chip) => chip.classList.remove("is-active"));
+  const activeChip = document.querySelector(`#chip-${organId}`);
+  if (activeChip) activeChip.classList.add("is-active");
+
+  // 3. Update Header & Overview Rail
+  const sysNameEl = document.querySelector("#body-system-name");
+  if (sysNameEl) sysNameEl.innerHTML = data.title;
+  const sysStatusEl = document.querySelector("#body-system-status");
+  if (sysStatusEl) sysStatusEl.innerHTML = `<span class="${data.badgeClass}">${data.badge}</span>`;
+
+  // 4. Update Organ Detail Card
+  const kickerEl = document.querySelector("#organ-kicker");
+  const titleEl = document.querySelector("#organ-title");
+  const descEl = document.querySelector("#organ-desc");
+  const badgeEl = document.querySelector("#organ-badge");
+
+  if (kickerEl) kickerEl.textContent = data.kicker;
+  if (titleEl) titleEl.innerHTML = data.title;
+  if (descEl) descEl.textContent = data.desc;
+  if (badgeEl) {
+    badgeEl.textContent = data.badge;
+    badgeEl.className = `organ-status-badge ${data.badgeClass}`;
+  }
+
+  // 5. Update Telemetry Boxes
+  const boxesContainer = document.querySelector("#organ-telemetry-boxes");
+  if (boxesContainer && data.stats) {
+    let boxesHtml = "";
+    data.stats.forEach((st) => {
+      boxesHtml += `
+        <div class="organ-telemetry-box">
+          <span class="box-kicker">${st.kicker}</span>
+          <span class="box-val">${st.val}</span>
+          <span class="box-baseline">${st.baseline}</span>
+        </div>
+      `;
+    });
+    boxesContainer.innerHTML = boxesHtml;
+  }
+
+  // 6. Update Countermeasure Steps
+  const stepsContainer = document.querySelector("#countermeasure-steps-container");
+  if (stepsContainer && data.countermeasures) {
+    let stepsHtml = "";
+    data.countermeasures.forEach((cm) => {
+      stepsHtml += `
+        <div class="countermeasure-step">
+          <span class="countermeasure-step-num">${cm.step}</span>
+          <div>${cm.text}</div>
+        </div>
+      `;
+    });
+    stepsContainer.innerHTML = stepsHtml;
+  }
+}
+
+function consultAiForOrgan() {
+  const data = ANATOMICAL_SYSTEMS[currentSelectedOrgan];
+  const query = `Explain spaceflight protocols and clinical countermeasures for ${currentSelectedOrgan} in microgravity`;
+  showView("assistant");
+  askAi(query);
+}
+
+function syncBodyMapWithPreset(presetKey) {
+  if (presetKey === "hypoxia") {
+    selectBodyOrgan("lungs");
+    const badgeEl = document.querySelector("#organ-badge");
+    if (badgeEl) {
+      badgeEl.textContent = "CRITICAL HYPOXIA ALERT";
+      badgeEl.className = "organ-status-badge status-badge-critical";
+    }
+  } else if (presetKey === "sans") {
+    selectBodyOrgan("eyes");
+  } else if (presetKey === "arrhythmia") {
+    selectBodyOrgan("heart");
+    const badgeEl = document.querySelector("#organ-badge");
+    if (badgeEl) {
+      badgeEl.textContent = "VENTRICULAR ARRHYTHMIA (PVC)";
+      badgeEl.className = "organ-status-badge status-badge-critical";
+    }
+  } else if (presetKey === "ared") {
+    selectBodyOrgan("muscles");
+  } else if (presetKey === "radiation") {
+    selectBodyOrgan("brain");
+    const badgeEl = document.querySelector("#organ-badge");
+    if (badgeEl) {
+      badgeEl.textContent = "SOLAR FLARE SPE (18.4 mSv/h)";
+      badgeEl.className = "organ-status-badge status-badge-warning";
+    }
+  } else {
+    selectBodyOrgan("eyes");
+  }
+}
+
+function setMissionDelay(destKey) {
+  const dests = {
+    leo: { name: "ISS Low Earth Orbit (262 mi)", delay: "0.28 sec", telemed: "GROUND TELEMEDICINE: ONLINE", mode: "normal" },
+    moon: { name: "Artemis Gateway (Moon · 240,000 mi)", delay: "1.28 sec", telemed: "GROUND TELEMEDICINE: BORDERLINE", mode: "warning" },
+    "mars-min": { name: "Mars Opposition (Closest · 33.9M mi)", delay: "4.2 min", telemed: "GROUND TELEMED: UNAVAILABLE (8.4m RTT)", mode: "critical" },
+    "mars-max": { name: "Mars Conjunction (250M mi)", delay: "22.4 min", telemed: "100% AUTONOMOUS ONBOARD AI ENGAGED", mode: "critical" }
+  };
+
+  const d = dests[destKey];
+  if (!d) return;
+
+  document.querySelectorAll(".delay-chip").forEach((btn) => btn.classList.remove("is-active"));
+  const btn = document.querySelector(`#delay-btn-${destKey}`);
+  if (btn) btn.classList.add("is-active");
+
+  const nameEl = document.querySelector("#current-mission-dest");
+  const timeEl = document.querySelector("#current-delay-time");
+  const textEl = document.querySelector("#delay-telemed-text");
+  const badgeEl = document.querySelector("#delay-telemed-badge");
+
+  if (nameEl) nameEl.textContent = d.name;
+  if (timeEl) timeEl.textContent = d.delay;
+  if (textEl) textEl.textContent = d.telemed;
+
+  if (badgeEl) {
+    if (d.mode === "critical") {
+      badgeEl.style.borderColor = "#f87171";
+      badgeEl.style.color = "#f87171";
+    } else if (d.mode === "warning") {
+      badgeEl.style.borderColor = "#d0b787";
+      badgeEl.style.color = "#d0b787";
+    } else {
+      badgeEl.style.borderColor = "rgba(208, 183, 135, 0.25)";
+      badgeEl.style.color = "#d0b787";
+    }
+  }
+
+  addDynamicAlert(
+    `DISTANCE HAZARD: ${d.name}`,
+    `One-way comms delay shifted to ${d.delay}. ${d.mode === 'critical' ? 'Ground Houston medical consultation is impossible. Autonomous on-board AI triage activated.' : 'Standard communication link available.'}`,
+    d.mode === 'critical' ? 'critical' : 'warning'
+  );
+}
+
+function toggleQuest(id, el) {
+  if (!el) return;
+  const isDone = el.classList.toggle("is-completed");
+  const xpEl = el.querySelector(".quest-xp");
+  const fillEl = el.querySelector(".quest-progress-fill");
+
+  if (isDone) {
+    if (xpEl && !xpEl.textContent.includes("✓")) xpEl.textContent += " ✓";
+    if (fillEl) fillEl.style.width = "100%";
+  } else {
+    if (xpEl) xpEl.textContent = xpEl.textContent.replace(" ✓", "");
+    if (fillEl) fillEl.style.width = "40%";
+  }
 }
 
 

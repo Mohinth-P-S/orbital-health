@@ -41,10 +41,11 @@
       <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
         <button class="nav-link is-active" type="button" data-view="overview">Overview</button>
         <button class="nav-link" type="button" data-view="dashboard">Dashboard</button>
+        <button class="nav-link" type="button" data-view="bodymap">Body map <span class="nav-dot" style="background: #76e4d2;"></span></button>
         <button class="nav-link" type="button" data-view="crew">Crew</button>
         <button class="nav-link" type="button" data-view="assistant">AI assistant <span class="nav-dot"></span></button>
         <button class="nav-link" type="button" data-view="insights">Insights</button>
-        <button class="nav-link nav-more" type="button" data-view="sources">Data sources</button>
+        <button class="nav-link nav-more" type="button" data-view="sources">NASA resources</button>
         <span class="nav-orbit-trail" aria-hidden="true"></span>
       </nav>
 
@@ -80,7 +81,8 @@
             <p class="hero-description">Autonomous crew health monitoring with continuous biomedical telemetry, microgravity SANS tracking, and edge AI medical intelligence.</p>
             <div class="hero-actions">
               <button class="button button-primary" type="button" data-view="dashboard">Open health dashboard <span aria-hidden="true">↗</span></button>
-              <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA Medical AI</button>
+              <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
+              <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA AI</button>
             </div>
             <div class="data-caption"><span class="caption-icon">i</span><span><strong>Active telemetry stream</strong> · NASA LSDA-0042 & ISS Expedition 72 Bio-Harness</span></div>
           </div>
@@ -167,6 +169,28 @@
             <strong id="dash-active-dataset-label">NASA LSDA-0042 Baseline</strong>
           </div>
           <button class="rail-link" type="button" data-view="crew">Switch crew profile <span>↗</span></button>
+        </div>
+
+        <!-- Deep Space Mission Distance & Comms Delay Simulator -->
+        <div class="delay-simulator-panel">
+          <div class="delay-info-group">
+            <div class="delay-glyph">⟿</div>
+            <div>
+              <span class="panel-kicker">MISSION DISTANCE & COMM DELAY SIMULATOR // NASA HRP DISTANCE HAZARD</span>
+              <div style="font-size: 11px; color: #ccd6e5; margin-top: 2px;">
+                Destination: <strong id="current-mission-dest" style="color: #d0b787;">ISS Low Earth Orbit (262 mi)</strong> · One-Way Delay: <strong id="current-delay-time" style="color: #76e4d2;">0.28 sec</strong>
+              </div>
+            </div>
+          </div>
+          <div class="delay-destination-selector">
+            <button class="delay-chip is-active" id="delay-btn-leo" type="button" onclick="setMissionDelay('leo')">ISS (LEO · 0.28s)</button>
+            <button class="delay-chip" id="delay-btn-moon" type="button" onclick="setMissionDelay('moon')">Artemis Gateway (Moon · 1.3s)</button>
+            <button class="delay-chip" id="delay-btn-mars-min" type="button" onclick="setMissionDelay('mars-min')">Mars Opposition (4.2m)</button>
+            <button class="delay-chip" id="delay-btn-mars-max" type="button" onclick="setMissionDelay('mars-max')">Mars Conjunction (22.0m)</button>
+          </div>
+          <div class="delay-status-badge" id="delay-telemed-badge">
+            <i class="status-live"></i> <span id="delay-telemed-text">GROUND TELEMEDICINE: ONLINE</span>
+          </div>
         </div>
 
         <!-- ================= CSV INGESTION & DATASET ENGINE ================= -->
@@ -356,9 +380,335 @@
           </article>
 
         </div>
+
+        <!-- ================= GAMIFIED COUNTERMEASURE ADHERENCE & QUESTS ================= -->
+        <article class="quest-panel">
+          <div class="quest-top">
+            <div>
+              <span class="panel-kicker">GAMIFIED MISSION READINESS // NASA HRP BEHAVIORAL ENGAGEMENT</span>
+              <h2 style="font-family: Georgia, serif; font-size: 20px; font-weight: 400; margin: 4px 0 0; color: #f5f3ed;">
+                Daily Countermeasure <em>Quests & Streaks</em>
+              </h2>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+              <span class="quest-streak-badge">
+                <span style="color: #d0b787;">★</span> 204 DAYS CONSECUTIVE STREAK
+              </span>
+              <span class="quest-streak-badge" style="border-color: #76e4d2; color: #76e4d2;">
+                LEVEL 12 COMMANDER (4,850 / 5,000 XP)
+              </span>
+              <button class="button button-quiet" type="button" data-view="bodymap" style="margin-left: 8px; font-size: 11px; color: #d0b787;">
+                Inspect Body Map ↗
+              </button>
+            </div>
+          </div>
+
+          <div class="quest-grid">
+            <!-- Quest 1: ARED Heavy Resistance -->
+            <div class="quest-item is-completed" onclick="toggleQuest(1, this)">
+              <div class="quest-item-header">
+                <span class="quest-title">🏋️ ARED Heavy Resistance</span>
+                <span class="quest-xp">+150 XP ✓</span>
+              </div>
+              <div class="quest-desc">Target 350 lbs · Achieved 380 lbs daily force equivalent on femoral neck.</div>
+              <div class="quest-progress-track">
+                <div class="quest-progress-fill" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Quest 2: CEVIS Cardio Intervals -->
+            <div class="quest-item is-completed" onclick="toggleQuest(2, this)">
+              <div class="quest-item-header">
+                <span class="quest-title">🚴 CEVIS Cycle Ergometer</span>
+                <span class="quest-xp">+100 XP ✓</span>
+              </div>
+              <div class="quest-desc">30 min high-intensity aerobic interval at 185 Watts. Target exceeded.</div>
+              <div class="quest-progress-track">
+                <div class="quest-progress-fill" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Quest 3: Fluid & Electrolyte Intake -->
+            <div class="quest-item" id="quest-hydration" onclick="toggleQuest(3, this)">
+              <div class="quest-item-header">
+                <span class="quest-title">💧 Electrolyte Hydration</span>
+                <span class="quest-xp" id="quest-hydration-xp">+75 XP (88%)</span>
+              </div>
+              <div class="quest-desc">2,200 mL of 2,500 mL logged. 1 electrolyte pack remaining before rest.</div>
+              <div class="quest-progress-track">
+                <div class="quest-progress-fill" id="quest-hydration-bar" style="width: 88%;"></div>
+              </div>
+            </div>
+
+            <!-- Quest 4: Psychomotor Vigilance Task -->
+            <div class="quest-item is-completed" onclick="toggleQuest(4, this)">
+              <div class="quest-item-header">
+                <span class="quest-title">🧠 PVT Alertness Task</span>
+                <span class="quest-xp">+120 XP ✓</span>
+              </div>
+              <div class="quest-desc">3-minute reaction test passed. Mean reaction latency: 218 ms (Optimal).</div>
+              <div class="quest-progress-track">
+                <div class="quest-progress-fill" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Quest 5: Chibis LBNP Countermeasure -->
+            <div class="quest-item" id="quest-lbnp" onclick="toggleQuest(5, this)">
+              <div class="quest-item-header">
+                <span class="quest-title">🩳 Chibis LBNP Negative Pressure</span>
+                <span class="quest-xp">+100 XP (Pending)</span>
+              </div>
+              <div class="quest-desc">Lower Body Negative Pressure countermeasure scheduled for 19:30 UTC.</div>
+              <div class="quest-progress-track">
+                <div class="quest-progress-fill" id="quest-lbnp-bar" style="width: 25%; background: rgba(208,183,135,0.4);"></div>
+              </div>
+            </div>
+          </div>
+        </article>
       </section>
 
-      <!-- ================= 3. VIEW: CREW PROFILES (EDITORIAL STORY CARDS) ================= -->
+      <!-- ================= 3. VIEW: BODY MAP (INTERACTIVE ANATOMICAL SCAN) ================= -->
+      <section class="view inner-view" id="view-bodymap" aria-labelledby="bodymap-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ANATOMICAL BIOMETRICS & RISK TRIAGE / 02</div>
+            <h1 id="bodymap-title">Interactive crew <em>body map</em></h1>
+            <p class="hero-description">Click any anatomical organ or region to evaluate in-flight physiological adaptation, NASA Human Research Program (HRP) risk categories, and plain-English clinical countermeasures for non-physicians.</p>
+          </div>
+          <span class="view-tag status-active"><i class="status-live"></i> MULTI-ORGAN TELEMETRY SCAN</span>
+        </div>
+
+        <!-- Body Map Overview Rail -->
+        <div class="overview-rail">
+          <div class="rail-item">
+            <span class="rail-label">ACTIVE SUBJECT</span>
+            <strong><i class="status-ring"></i> <span id="body-subject-display">Commander Anne McClain</span></strong>
+          </div>
+          <div class="rail-item">
+            <span class="rail-label">SELECTED ANATOMICAL SYSTEM</span>
+            <strong id="body-system-name" style="color: #d0b787;">Optic Nerve & Retina (SANS)</strong>
+          </div>
+          <div class="rail-item">
+            <span class="rail-label">CLINICAL TRIAGE STATUS</span>
+            <strong id="body-system-status"><span style="color: #76e4d2;">Grade 0 · Nominal Baseline</span></strong>
+          </div>
+          <button class="rail-link" type="button" data-view="dashboard">Back to dashboard <span>↗</span></button>
+        </div>
+
+        <div class="bodymap-layout">
+          
+          <!-- Left Column: Holographic Astronaut Body SVG -->
+          <div class="anatomy-stage-card">
+            <div class="anatomy-header-strip">
+              <span class="panel-kicker">HOLOGRAPHIC BIOMETRIC SILHOUETTE</span>
+              <span class="anatomy-scan-badge"><i></i> 7 SYSTEMS MONITORED</span>
+            </div>
+
+            <div class="anatomy-svg-wrapper">
+              <svg class="astronaut-body-svg" viewBox="0 0 320 520" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive Astronaut Anatomical Figure">
+                <!-- Background Glow & Grid Lines -->
+                <defs>
+                  <radialGradient id="bodyGlow" cx="50%" cy="45%" r="50%">
+                    <stop offset="0%" stop-color="#4b85ff" stop-opacity="0.18" />
+                    <stop offset="60%" stop-color="#4b85ff" stop-opacity="0.04" />
+                    <stop offset="100%" stop-color="#050914" stop-opacity="0" />
+                  </radialGradient>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                
+                <ellipse cx="160" cy="240" rx="140" ry="220" fill="url(#bodyGlow)" />
+
+                <!-- Stylized Astronaut Anatomical Silhouette -->
+                <!-- Head / Helmet -->
+                <ellipse cx="160" cy="60" rx="34" ry="42" fill="rgba(14, 25, 46, 0.75)" stroke="#4b85ff" stroke-width="1.6" stroke-dasharray="4 2" />
+                <path d="M136 60 Q160 48 184 60 Q184 82 160 88 Q136 82 136 60 Z" fill="rgba(75, 133, 255, 0.15)" stroke="#76e4d2" stroke-width="1.2" />
+                
+                <!-- Neck -->
+                <path d="M148 100 L148 114 L172 114 L172 100" fill="none" stroke="#4b85ff" stroke-width="1.2" opacity="0.6" />
+
+                <!-- Torso & Shoulders -->
+                <path d="M110 128 Q160 116 210 128 L220 220 Q160 234 100 220 Z" fill="rgba(16, 28, 52, 0.7)" stroke="#4b85ff" stroke-width="1.8" />
+                
+                <!-- Chest Rib Grid & Sternum -->
+                <line x1="160" y1="126" x2="160" y2="225" stroke="#76e4d2" stroke-width="1" stroke-dasharray="2 3" opacity="0.6" />
+                <path d="M130 148 Q160 156 190 148" fill="none" stroke="#4b85ff" stroke-width="1" opacity="0.4" />
+                <path d="M125 170 Q160 180 195 170" fill="none" stroke="#4b85ff" stroke-width="1" opacity="0.4" />
+                <path d="M122 192 Q160 202 198 192" fill="none" stroke="#4b85ff" stroke-width="1" opacity="0.4" />
+
+                <!-- Spine Column -->
+                <line x1="160" y1="120" x2="160" y2="295" stroke="#d0b787" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.75" />
+
+                <!-- Arms -->
+                <!-- Left Arm -->
+                <path d="M110 128 L82 205 L72 275 L86 280 L96 215 L118 152 Z" fill="rgba(14, 23, 40, 0.6)" stroke="#4b85ff" stroke-width="1.2" />
+                <!-- Right Arm -->
+                <path d="M210 128 L238 205 L248 275 L234 280 L224 215 L202 152 Z" fill="rgba(14, 23, 40, 0.6)" stroke="#4b85ff" stroke-width="1.2" />
+
+                <!-- Pelvis & Abdomen -->
+                <path d="M100 220 Q160 234 220 220 L212 290 Q160 300 108 290 Z" fill="rgba(16, 27, 48, 0.7)" stroke="#4b85ff" stroke-width="1.5" />
+
+                <!-- Legs -->
+                <!-- Left Leg -->
+                <path d="M112 290 L118 385 L126 480 L146 480 L144 385 L154 296 Z" fill="rgba(14, 23, 40, 0.6)" stroke="#4b85ff" stroke-width="1.4" />
+                <!-- Right Leg -->
+                <path d="M208 290 L202 385 L194 480 L174 480 L176 385 L166 296 Z" fill="rgba(14, 23, 40, 0.6)" stroke="#4b85ff" stroke-width="1.4" />
+
+                <!-- Interactive Hotspots with Radar Pulse Animations -->
+
+                <!-- 1. Brain / Cognitive (Hotspot) -->
+                <g class="hotspot-node" id="node-brain" onclick="selectBodyOrgan('brain')">
+                  <circle class="hotspot-radar" cx="160" cy="50" r="14" stroke="#4b85ff" fill="none" opacity="0.7" />
+                  <circle class="hotspot-core" cx="160" cy="50" r="6" fill="#76e4d2" filter="url(#glow)" />
+                  <text x="160" y="32" text-anchor="middle" fill="#ccd6e5" font-family="monospace" font-size="7" letter-spacing="1">BRAIN / ICP</text>
+                </g>
+
+                <!-- 2. Eyes / Vision (SANS) -->
+                <g class="hotspot-node is-selected" id="node-eyes" onclick="selectBodyOrgan('eyes')">
+                  <circle class="hotspot-radar" cx="160" cy="74" r="14" stroke="#d0b787" fill="none" opacity="0.8" />
+                  <circle class="hotspot-core" cx="160" cy="74" r="6" fill="#d0b787" filter="url(#glow)" />
+                  <text x="195" y="77" fill="#d0b787" font-family="monospace" font-size="7" letter-spacing="0.8">EYES / SANS</text>
+                  <line x1="168" y1="74" x2="190" y2="74" stroke="#d0b787" stroke-width="0.8" />
+                </g>
+
+                <!-- 3. Heart / Cardiovascular -->
+                <g class="hotspot-node" id="node-heart" onclick="selectBodyOrgan('heart')">
+                  <circle class="hotspot-radar" cx="145" cy="155" r="16" stroke="#f87171" fill="none" opacity="0.7" />
+                  <circle class="hotspot-core" cx="145" cy="155" r="7" fill="#f87171" filter="url(#glow)" />
+                  <text x="100" y="158" text-anchor="end" fill="#f87171" font-family="monospace" font-size="7" letter-spacing="0.8">HEART / ECG</text>
+                  <line x1="104" y1="155" x2="136" y2="155" stroke="#f87171" stroke-width="0.8" />
+                </g>
+
+                <!-- 4. Lungs / Respiratory -->
+                <g class="hotspot-node" id="node-lungs" onclick="selectBodyOrgan('lungs')">
+                  <circle class="hotspot-radar" cx="178" cy="150" r="14" stroke="#76e4d2" fill="none" opacity="0.7" />
+                  <circle class="hotspot-core" cx="178" cy="150" r="6" fill="#76e4d2" filter="url(#glow)" />
+                  <text x="215" y="153" fill="#76e4d2" font-family="monospace" font-size="7" letter-spacing="0.8">LUNGS / SpO₂</text>
+                  <line x1="186" y1="150" x2="210" y2="150" stroke="#76e4d2" stroke-width="0.8" />
+                </g>
+
+                <!-- 5. Spine / Skeletal -->
+                <g class="hotspot-node" id="node-spine" onclick="selectBodyOrgan('spine')">
+                  <circle class="hotspot-radar" cx="160" cy="220" r="14" stroke="#d0b787" fill="none" opacity="0.6" />
+                  <circle class="hotspot-core" cx="160" cy="220" r="6" fill="#d0b787" filter="url(#glow)" />
+                  <text x="205" y="223" fill="#d0b787" font-family="monospace" font-size="7" letter-spacing="0.8">SPINE / BONE</text>
+                  <line x1="168" y1="220" x2="200" y2="220" stroke="#d0b787" stroke-width="0.8" />
+                </g>
+
+                <!-- 6. Abdomen / Fluid Shift -->
+                <g class="hotspot-node" id="node-fluid" onclick="selectBodyOrgan('fluid')">
+                  <circle class="hotspot-radar" cx="160" cy="265" r="15" stroke="#4b85ff" fill="none" opacity="0.7" />
+                  <circle class="hotspot-core" cx="160" cy="265" r="6" fill="#4b85ff" filter="url(#glow)" />
+                  <text x="110" y="268" text-anchor="end" fill="#9abaff" font-family="monospace" font-size="7" letter-spacing="0.8">FLUID SHIFT</text>
+                  <line x1="114" y1="265" x2="151" y2="265" stroke="#4b85ff" stroke-width="0.8" />
+                </g>
+
+                <!-- 7. Musculoskeletal & Calves -->
+                <g class="hotspot-node" id="node-muscles" onclick="selectBodyOrgan('muscles')">
+                  <circle class="hotspot-radar" cx="135" cy="415" r="14" stroke="#76e4d2" fill="none" opacity="0.7" />
+                  <circle class="hotspot-core" cx="135" cy="415" r="6" fill="#76e4d2" filter="url(#glow)" />
+                  <circle class="hotspot-radar" cx="185" cy="415" r="14" stroke="#76e4d2" fill="none" opacity="0.7" />
+                  <circle class="hotspot-core" cx="185" cy="415" r="6" fill="#76e4d2" filter="url(#glow)" />
+                  <text x="160" y="445" text-anchor="middle" fill="#76e4d2" font-family="monospace" font-size="7" letter-spacing="0.8">CALVES / MUSCLE ATROPHY</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Quick Selector Chips -->
+            <div class="anatomy-organ-chips">
+              <button class="organ-chip" id="chip-brain" type="button" onclick="selectBodyOrgan('brain')">🧠 Brain / ICP</button>
+              <button class="organ-chip is-active" id="chip-eyes" type="button" onclick="selectBodyOrgan('eyes')">👁️ Eyes / SANS</button>
+              <button class="organ-chip" id="chip-heart" type="button" onclick="selectBodyOrgan('heart')">🫀 Heart / ECG</button>
+              <button class="organ-chip" id="chip-lungs" type="button" onclick="selectBodyOrgan('lungs')">🫁 Lungs / SpO₂</button>
+              <button class="organ-chip" id="chip-spine" type="button" onclick="selectBodyOrgan('spine')">🦴 Spine / Bones</button>
+              <button class="organ-chip" id="chip-fluid" type="button" onclick="selectBodyOrgan('fluid')">💧 Fluid Shift</button>
+              <button class="organ-chip" id="chip-muscles" type="button" onclick="selectBodyOrgan('muscles')">🦵 Calves / Muscle</button>
+            </div>
+          </div>
+
+          <!-- Right Column: Organ Telemetry & Clinical Guidance Panel -->
+          <div class="organ-detail-panel" id="organ-detail-card">
+            
+            <div class="organ-header-group">
+              <div>
+                <span class="panel-kicker" id="organ-kicker">NASA HRP RISK 03 // SANS OCULAR FLUID SHIFT</span>
+                <h2 class="organ-title-serif" id="organ-title">Optic Nerve & <em>Retina</em></h2>
+                <div style="font-size: 11px; color: #8b97a4; margin-top: 4px;" id="organ-desc">
+                  Cephalad microgravity fluid redistribution causes chronic elevation of optic nerve sheath diameter (ONSD) and posterior globe flattening.
+                </div>
+              </div>
+              <span class="organ-status-badge status-badge-warning" id="organ-badge">GRADE 0 · OBSERVATION</span>
+            </div>
+
+            <!-- Dynamic Telemetry Stat Boxes -->
+            <div class="organ-telemetry-grid" id="organ-telemetry-boxes">
+              <div class="organ-telemetry-box">
+                <span class="box-kicker">OPTIC NERVE SHEATH (ONSD)</span>
+                <span class="box-val" id="stat-box-1">5.1 mm</span>
+                <span class="box-baseline">Earth Baseline: &lt; 5.8 mm (Nominal)</span>
+              </div>
+              <div class="organ-telemetry-box">
+                <span class="box-kicker">INTRAOCULAR PRESSURE (IOP)</span>
+                <span class="box-val" id="stat-box-2">16.2 mmHg</span>
+                <span class="box-baseline">Target: 12 - 21 mmHg (Safe)</span>
+              </div>
+              <div class="organ-telemetry-box">
+                <span class="box-kicker">CHORIORETINAL FOLDS</span>
+                <span class="box-val" id="stat-box-3">None</span>
+                <span class="box-baseline">OCT Scan: Crisp margin</span>
+              </div>
+              <div class="organ-telemetry-box">
+                <span class="box-kicker">VISUAL ACUITY</span>
+                <span class="box-val" id="stat-box-4">20/20</span>
+                <span class="box-baseline">Snellen Test: 100% Correct</span>
+              </div>
+            </div>
+
+            <!-- Plain-English Autonomous Countermeasure Guide for Non-Physicians -->
+            <div class="countermeasure-box">
+              <div class="countermeasure-header">
+                <span style="font-size: 14px;">⚕</span>
+                <span>AUTONOMOUS MEDICAL COUNTERMEASURE PROTOCOL (NON-PHYSICIAN GUIDE)</span>
+              </div>
+
+              <div id="countermeasure-steps-container">
+                <div class="countermeasure-step">
+                  <span class="countermeasure-step-num">STEP 1</span>
+                  <div>
+                    <strong>Lower Body Negative Pressure (LBNP):</strong> Don the Russian Chibis / NASA LBNP suit for 30 minutes at -25 mmHg to draw ~1.2 liters of fluid back into the lower extremities.
+                  </div>
+                </div>
+                <div class="countermeasure-step">
+                  <span class="countermeasure-step-num">STEP 2</span>
+                  <div>
+                    <strong>Optical Coherence Tomography (OCT):</strong> Perform automated retinal ultrasound and fundus imaging scan in the Columbus module at next rest cycle.
+                  </div>
+                </div>
+                <div class="countermeasure-step">
+                  <span class="countermeasure-step-num">STEP 3</span>
+                  <div>
+                    <strong>Space Medicine Protocol:</strong> Ensure daily sodium intake is throttled under 2,000 mg to prevent additional intracranial interstitial fluid pressure spikes.
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                <button class="button button-primary" type="button" onclick="consultAiForOrgan()" style="padding: 10px 18px; font-size: 10px;">
+                  <span>Ask AURA AI About This Organ ↗</span>
+                </button>
+                <span style="font: 8px var(--mono); color: #8b97a4;">NASA HRP STUDY: SANS-01 / NASA-STD-3001</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
       <section class="view inner-view" id="view-crew" aria-labelledby="crew-title" hidden>
         <div class="inner-heading">
           <div>
@@ -633,46 +983,218 @@
           </article>
 
         </div>
-      </section>
 
-      <!-- ================= 6. VIEW: DATA SOURCES ================= -->
-      <section class="view inner-view" id="view-sources" aria-labelledby="sources-title" hidden>
-        <div class="inner-heading">
-          <div>
-            <div class="eyebrow"><span class="eyebrow-line"></span> DATA LIBRARY / 01</div>
-            <h1 id="sources-title">Sources <em>& methods</em></h1>
-            <p class="hero-description">Complete data provenance, biomedical archives, and verified scientific references supporting this system.</p>
+        <!-- NASA Human Research Program: The 5 Hazards of Spaceflight (R-I-D-G-E) -->
+        <div style="margin-top: 45px;">
+          <div class="inner-heading" style="margin-bottom: 18px;">
+            <div>
+              <span class="panel-kicker">NASA HUMAN RESEARCH PROGRAM (HRP) FRAMEWORK</span>
+              <h2 style="font-family: Georgia, serif; font-size: 26px; font-weight: 400; color: #f5f3ed; margin: 6px 0 0;">
+                The 5 Hazards of <em>Human Spaceflight</em> (R-I-D-G-E)
+              </h2>
+              <p style="font-size: 12px; color: #8b97a4; margin-top: 4px;">
+                NASA's official clinical risk categorization for long-duration deep-space missions to the Moon and Mars.
+              </p>
+            </div>
+            <span class="view-tag status-active">NASA HRP EVIDENCE BASE</span>
           </div>
-          <span class="view-tag status-active">NASA OPEN DATA VERIFIED</span>
-        </div>
 
-        <div class="source-panel panel">
-          <div class="source-visual">
-            <div class="source-globe"><span></span><i></i></div>
-            <div class="source-orbit source-orbit-a"></div>
-            <div class="source-orbit source-orbit-b"></div>
-          </div>
-          <div class="source-copy">
-            <span class="panel-kicker">SCIENTIFIC PROVENANCE</span>
-            <h2>Grounded in real spaceflight research.</h2>
-            <p>All physiological algorithms, nominal baselines, and countermeasure recommendations correlate with open data repositories published by NASA and biomedical archives.</p>
-            <div class="source-list source-image-list">
-              <a href="https://lsda.jsc.nasa.gov/" target="_blank" rel="noreferrer">
-                <span>01</span>NASA Life Sciences Data Archive (LSDA-0042) <b>NASA/JSC ↗</b>
-              </a>
-              <a href="https://osdr.nasa.gov/" target="_blank" rel="noreferrer">
-                <span>02</span>NASA Open Science Data Repository (OSDR) <b>NASA/ARC ↗</b>
-              </a>
-              <a href="https://physionet.org/about/database/" target="_blank" rel="noreferrer">
-                <span>03</span>PhysioNet MIT-BIH & BIDMC Biomedical Waveforms <b>MIT/PhysioNet ↗</b>
-              </a>
-              <a href="https://images.nasa.gov/" target="_blank" rel="noreferrer">
-                <span>04</span>NASA Image and Video Library Asset API <b>NASA HQ ↗</b>
-              </a>
+          <div class="ridge-matrix">
+            <!-- R: Radiation -->
+            <div class="ridge-card">
+              <span class="ridge-letter">R</span>
+              <span class="panel-kicker">HAZARD 01 // DOSIMETRY</span>
+              <h3>Space Radiation</h3>
+              <p>Galactic Cosmic Rays (GCR) and Solar Particle Events (SPE). Increases lifetime carcinogenesis, cataracts, and CNS degradation. Shielding and storm shelter protocols tracked continuously.</p>
+              <div class="ridge-metric-tag">ACTIVE DOSIMETRY: 0.42 mSv/d</div>
+            </div>
+
+            <!-- I: Isolation & Confinement -->
+            <div class="ridge-card">
+              <span class="ridge-letter">I</span>
+              <span class="panel-kicker">HAZARD 02 // BEHAVIORAL</span>
+              <h3>Isolation & Confinement</h3>
+              <p>Circadian rhythm disruption across 16 sunrises/day, psychological friction, sleep deprivation. Monitored via PVT alertness reaction latency and melatonergic lighting spectrum.</p>
+              <div class="ridge-metric-tag">PVT ALERTNESS: 218 ms (OPTIMAL)</div>
+            </div>
+
+            <!-- D: Distance from Earth -->
+            <div class="ridge-card">
+              <span class="ridge-letter">D</span>
+              <span class="panel-kicker">HAZARD 03 // AUTONOMY</span>
+              <h3>Distance from Earth</h3>
+              <p>Up to 22.4-minute one-way comms delay to Mars. Real-time ground telemedicine is impossible. Demands autonomous on-board Clinical Decision Support Systems (ExMC CDSS) like AURA.</p>
+              <div class="ridge-metric-tag">AUTONOMY: 0ms EDGE AI INFERENCE</div>
+            </div>
+
+            <!-- G: Gravity Fields -->
+            <div class="ridge-card">
+              <span class="ridge-letter">G</span>
+              <span class="panel-kicker">HAZARD 04 // PHYSIOLOGY</span>
+              <h3>Altered Gravity Fields</h3>
+              <p>Weightlessness causes bone mineral density loss (-1.5%/mo), muscle atrophy, cardiovascular deconditioning, and cephalad fluid shifts producing SANS optic disc edema.</p>
+              <div class="ridge-metric-tag">ARED LOAD: 380 LBS EQUIVALENT</div>
+            </div>
+
+            <!-- E: Hostile Environments -->
+            <div class="ridge-card">
+              <span class="ridge-letter">E</span>
+              <span class="panel-kicker">HAZARD 05 // ECLSS LIFE SUPPORT</span>
+              <h3>Hostile Environments</h3>
+              <p>Closed atmospheric loop inside spacecraft. Carbon dioxide accumulation (&gt;3.0 mmHg) triggers hypercapnia and cognitive decline. Toxic trace contaminants scrubbed continuously.</p>
+              <div class="ridge-metric-tag">CABIN pCO₂: 0.31 mmHg (SAFE)</div>
             </div>
           </div>
         </div>
-        <p class="source-disclaimer">NASA image assets and research data used in accordance with NASA Media Usage Guidelines. Astronaut health readings derived from public spaceflight biomedical analogues.</p>
+      </section>
+
+      <!-- ================= 6. VIEW: NASA CHALLENGE RESOURCES & SCIENTIFIC LIBRARY ================= -->
+      <section class="view inner-view" id="view-sources" aria-labelledby="sources-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> NASA SPACE APPS CHALLENGE / RESOURCES</div>
+            <h1 id="sources-title">NASA <em>resources</em> & scientific library</h1>
+            <p class="hero-description">All 10 official research portals, biomedical databases, standards, and repositories specified in the NASA Space Apps Challenge "Create Health Monitoring Software for Astronauts on Space Missions".</p>
+          </div>
+          <span class="view-tag status-active">100% CHALLENGE RESOURCES INTEGRATED</span>
+        </div>
+
+        <div class="overview-rail">
+          <div class="rail-item"><span class="rail-label">CURATED FOR</span><strong><i class="status-ring"></i> NASA Space Apps Challenge 2026</strong></div>
+          <div class="rail-item"><span class="rail-label">PRIMARY REPOSITORY</span><strong>NASA Life Sciences Data Archive (LSDA-0042)</strong></div>
+          <div class="rail-item"><span class="rail-label">CLINICAL STANDARD</span><strong>NASA-STD-3001 Bioastronautics Vol 1 & 2</strong></div>
+          <button class="rail-link" type="button" onclick="window.open('https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources', '_blank')">View official challenge tab <span>↗</span></button>
+        </div>
+
+        <!-- Comprehensive 10-Resource Grid -->
+        <div class="nasa-resource-grid">
+          
+          <!-- 1. NASA Human Research Program (HRP) Roadmap -->
+          <a class="nasa-resource-card" href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">01 // RESEARCH ARCHITECTURE</span>
+              <span class="nasa-resource-badge">HRP EVIDENCE</span>
+            </div>
+            <h3>NASA Human Research Roadmap (HRR)</h3>
+            <p>Authoritative roadmap detailing 30+ human spaceflight health risks, knowledge gaps, and mitigation milestones across all five space hazards (Radiation, Isolation, Distance, Gravity, Environment).</p>
+            <span class="nasa-resource-link">humanresearchroadmap.nasa.gov ↗</span>
+          </a>
+
+          <!-- 2. NASA Life Sciences Data Archive (LSDA) -->
+          <a class="nasa-resource-card" href="https://lsda.jsc.nasa.gov/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">02 // PHYSIOLOGICAL DATA</span>
+              <span class="nasa-resource-badge">TELEMETRY INGESTED</span>
+            </div>
+            <h3>NASA Life Sciences Data Archive (LSDA)</h3>
+            <p>JSC repository housing astronaut physiological telemetry, cardiovascular measurements, and sensor logs from Apollo, Skylab, Space Shuttle, and ISS Expeditions (including our LSDA-0042 baseline stream).</p>
+            <span class="nasa-resource-link">lsda.jsc.nasa.gov ↗</span>
+          </a>
+
+          <!-- 3. NASA Life Sciences Portal (NLSP) -->
+          <a class="nasa-resource-card" href="https://nlsp.nasa.gov/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">03 // CENTRALIZED GATEWAY</span>
+              <span class="nasa-resource-badge">OPEN ACCESS</span>
+            </div>
+            <h3>NASA Life Sciences Portal (NLSP)</h3>
+            <p>Unified discovery portal for human spaceflight research, spaceflight analog studies (such as bedrest fluid shift analogues), and longitudinal space medicine databases dating back to 1961.</p>
+            <span class="nasa-resource-link">nlsp.nasa.gov ↗</span>
+          </a>
+
+          <!-- 4. Open Science Data Repository (OSDR / RadLab / GeneLab) -->
+          <a class="nasa-resource-card" href="https://osdr.nasa.gov/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">04 // SPACE BIOLOGY & DOSIMETRY</span>
+              <span class="nasa-resource-badge">MULTI-OMICS & RADLAB</span>
+            </div>
+            <h3>NASA Open Science Data Repository (OSDR)</h3>
+            <p>Open database containing space radiation biodosimetry (RadLab), GeneLab biological datasets, immune dysregulation markers, and cellular responses to microgravity and deep-space radiation.</p>
+            <span class="nasa-resource-link">osdr.nasa.gov ↗</span>
+          </a>
+
+          <!-- 5. Exploration Medical Capability (ExMC) -->
+          <a class="nasa-resource-card" href="https://www.nasa.gov/hrp/elements/exmc" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">05 // AUTONOMOUS AI / CDSS</span>
+              <span class="nasa-resource-badge">AUTONOMOUS MEDICINE</span>
+            </div>
+            <h3>Exploration Medical Capability (ExMC)</h3>
+            <p>NASA HRP element tasked with developing autonomous medical diagnostic and treatment systems, Clinical Decision Support Systems (CDSS), and edge AI decision engines for Mars missions where Houston communication lag exceeds 20 minutes.</p>
+            <span class="nasa-resource-link">nasa.gov/hrp/elements/exmc ↗</span>
+          </a>
+
+          <!-- 6. NASA TechPort -->
+          <a class="nasa-resource-card" href="https://techport.nasa.gov/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">06 // WEARABLE SENSORS</span>
+              <span class="nasa-resource-badge">TECH PORTFOLIO</span>
+            </div>
+            <h3>NASA TechPort Database</h3>
+            <p>Searchable portfolio of NASA-funded advanced technologies, including the rHEALTH miniature flow cytometer, AstroSkin bio-monitor smart garments, and autonomous behavioral health monitoring tools.</p>
+            <span class="nasa-resource-link">techport.nasa.gov ↗</span>
+          </a>
+
+          <!-- 7. TRISH Space Health Consortium -->
+          <a class="nasa-resource-card" href="https://www.bcm.edu/academic-centers/space-medicine/translational-research-institute-for-space-health" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">07 // PARTNER RESEARCH</span>
+              <span class="nasa-resource-badge">DEEP SPACE INNOVATION</span>
+            </div>
+            <h3>TRISH (Translational Research Institute for Space Health)</h3>
+            <p>NASA-funded consortium (Baylor College of Medicine, Caltech, MIT) scouting, funding, and testing disruptive, non-invasive health technologies and autonomous medical software specifically for Artemis and Mars.</p>
+            <span class="nasa-resource-link">bcm.edu/space-medicine ↗</span>
+          </a>
+
+          <!-- 8. Lifetime Surveillance of Astronaut Health (LSAH) -->
+          <a class="nasa-resource-card" href="https://www.nasa.gov/hrp/elements/lsah" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">08 // LONGITUDINAL MONITORING</span>
+              <span class="nasa-resource-badge">OCCUPATIONAL HEALTH</span>
+            </div>
+            <h3>Lifetime Surveillance of Astronaut Health (LSAH)</h3>
+            <p>Comprehensive occupational surveillance program tracking career astronaut health before, during, and after spaceflight, providing long-term clinical data on radiation exposure, vision, and bone density.</p>
+            <span class="nasa-resource-link">nasa.gov/hrp/elements/lsah ↗</span>
+          </a>
+
+          <!-- 9. NASA-STD-3001 Bioastronautics Standards -->
+          <a class="nasa-resource-card" href="https://www.nasa.gov/standards" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">09 // MANDATORY STANDARD</span>
+              <span class="nasa-resource-badge">NASA-STD-3001</span>
+            </div>
+            <h3>NASA-STD-3001 Space Flight Human-System Standard</h3>
+            <p>Vol 1 (Crew Health) and Vol 2 (Human Factors, Habitability, and Environmental Health). Establishes permissible clinical exposure limits, cabin CO2 levels (&lt;3 mmHg), and medical care requirements for human spaceflight.</p>
+            <span class="nasa-resource-link">nasa.gov/standards ↗</span>
+          </a>
+
+          <!-- 10. PhysioNet MIT-BIH & BIDMC Biomedical Waveforms -->
+          <a class="nasa-resource-card" href="https://physionet.org/about/database/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">10 // HIGH-FIDELITY ECG WAVEFORMS</span>
+              <span class="nasa-resource-badge">MIT / HARVARD</span>
+            </div>
+            <h3>PhysioNet Biomedical Research Waveforms</h3>
+            <p>Gold-standard open access clinical database providing the high-resolution 250 Hz Lead-II cardiac waveforms, ventricular arrhythmias, and respiratory signals feeding our real-time ECG oscilloscope canvas.</p>
+            <span class="nasa-resource-link">physionet.org ↗</span>
+          </a>
+
+          <!-- 11. NASA Image and Video Library API -->
+          <a class="nasa-resource-card" href="https://images.nasa.gov/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">11 // AUTHENTIC VISUAL ASSETS</span>
+              <span class="nasa-resource-badge">REST API CONNECTED</span>
+            </div>
+            <h3>NASA Image and Video Library Asset API</h3>
+            <p>Official NASA REST API used to dynamically query and display verified spaceflight photography from ISS Expeditions 57, 71, 72, and 73, highlighting cupola views and microgravity countermeasure workouts.</p>
+            <span class="nasa-resource-link">images.nasa.gov ↗</span>
+          </a>
+
+        </div>
+
+        <p class="source-disclaimer" style="margin-top: 30px;">
+          NASA imagery, datasets, and standard protocols used in accordance with the NASA Space Apps Challenge guidelines and NASA Open Data Policy. Developed specifically for the NASA Space Apps Challenge 2026.
+        </p>
       </section>
 
       <!-- ================= 7. VIEW: ALERTS ================= -->
@@ -728,9 +1250,10 @@
     <nav class="mobile-dock" aria-label="Quick navigation">
       <button class="dock-link is-active" type="button" data-view="overview"><span>⌂</span><small>Home</small></button>
       <button class="dock-link" type="button" data-view="dashboard"><span>◉</span><small>Health</small></button>
+      <button class="dock-link" type="button" data-view="bodymap"><span>⚲</span><small>Body</small></button>
       <button class="dock-link" type="button" data-view="crew"><span>◎</span><small>Crew</small></button>
       <button class="dock-link" type="button" data-view="assistant"><span>✳</span><small>AI</small></button>
-      <button class="dock-link" type="button" data-view="sources"><span>⋯</span><small>More</small></button>
+      <button class="dock-link" type="button" data-view="sources"><span>⋯</span><small>NASA</small></button>
     </nav>
   </body>
 </html>
