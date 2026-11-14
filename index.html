@@ -29,9 +29,6 @@
     
     <!-- ================= TOP NAVIGATION BAR ================= -->
     <header class="topbar">
-      <a class="brand" href="#overview" data-view="overview" aria-label="Orbital Health home">
-        <span class="brand-copy"><strong>ORBITAL</strong><small>CREW HEALTH</small></span>
-      </a>
 
       <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
         <span></span><span></span>
@@ -60,7 +57,7 @@
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           <span>Install App</span>
         </button>
-        <span class="demo-state"><i class="status-live"></i> NASA LSDA LIVE STREAM</span>
+        <span class="demo-state"><i class="status-live"></i> SIMULATED TELEMETRY · DEMO</span>
         <button class="alert-button" type="button" data-view="alerts" aria-label="Open alerts">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
           <span>Alerts</span>
@@ -83,7 +80,7 @@
               <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
               <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA AI</button>
             </div>
-            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Active telemetry stream</strong> · NASA LSDA-0042 & ISS Expedition 72 Bio-Harness</span></div>
+            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Sample telemetry view</strong> · illustrative dataset · not live crew data</span></div>
           </div>
 
           <figure class="nasa-hero">
@@ -105,7 +102,7 @@
         </div>
 
         <div class="overview-rail">
-          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> NASA LSDA Stream Active</strong></div>
+          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> Demo telemetry · simulated</strong></div>
 
         <!-- Interactive Deep-Space Planetary Telemetry Hub (Real NASA Photography) -->
         <div class="planet-hub-section">
@@ -113,7 +110,7 @@
             <div>
               <div class="eyebrow"><span class="eyebrow-line"></span> CELESTIAL TELEMETRY & FLIGHT REGIMES / 02</div>
               <h2>Deep space mission environments.<br /><em>Explore planetary bio-stressors.</em></h2>
-              <p class="hero-description">Select any celestial body to inspect real-time communications latency, gravitational stress, and radiation hazard levels using authentic NASA photographic textures.</p>
+              <p class="hero-description">Compare illustrative mission-environment values. Figures are scenario estimates, not live spacecraft telemetry.</p>
             </div>
             <div class="planet-hub-badge">
               <span class="status-live"></span> ACTIVE TARGET: <strong id="active-planet-target-name">Earth (Low Earth Orbit)</strong>
@@ -132,7 +129,7 @@
                 <div class="planet-kicker">LOW EARTH ORBIT · 408 KM</div>
                 <h3 class="planet-name">Earth (ISS Orbit)</h3>
                 <div class="planet-telemetry-grid">
-                  <div class="pt-item"><span class="pt-label">COMMS DELAY</span><strong class="pt-val">0.00 ms (Live)</strong></div>
+                  <div class="pt-item"><span class="pt-label">COMMS DELAY</span><strong class="pt-val">0.00 ms (Estimate)</strong></div>
                   <div class="pt-item"><span class="pt-label">GRAVITY</span><strong class="pt-val">1.00 g (Micro-g)</strong></div>
                   <div class="pt-item"><span class="pt-label">RADIATION</span><strong class="pt-val">0.45 mSv/day</strong></div>
                   <div class="pt-item"><span class="pt-label">STATUS</span><strong class="pt-val status-nominal">Nominal ISS Base</strong></div>
@@ -234,7 +231,7 @@
           </div>
           <div class="story-footnote">
             <span>IMAGES VIA NASA IMAGE AND VIDEO LIBRARY API</span>
-            <span>Real-time biometrics connected via NASA LSDA-0042 stream.</span>
+            <span>Illustrative interface only · no live astronaut data is connected.</span>
           </div>
         </section>
       </section>
@@ -245,9 +242,9 @@
           <div>
             <div class="eyebrow"><span class="eyebrow-line"></span> CREW TELEMETRY / 01</div>
             <h1 id="dashboard-title">Health <em>dashboard</em></h1>
-            <p class="hero-description">Continuous biomedical telemetry streamed from ingested spaceflight datasets, smart bio-harness garments, and real-time Lead-II cardiac sensors.</p>
+            <p class="hero-description">Explore sample biomedical datasets and visualizations. No live astronaut telemetry is connected.</p>
           </div>
-          <span class="view-tag status-active"><i class="status-live"></i> NASA LSDA STREAM 250 Hz</span>
+          <span class="view-tag status-active"><i class="status-live"></i> SAMPLE DATASET · 250 Hz</span>
         </div>
 
         <!-- Overview Rail for Dashboard -->
@@ -262,7 +259,7 @@
           </div>
           <div class="rail-item">
             <span class="rail-label">ACTIVE DATASET</span>
-            <strong id="dash-active-dataset-label">NASA LSDA-0042 Baseline</strong>
+            <strong id="dash-active-dataset-label">Sample baseline dataset</strong>
           </div>
           <button class="rail-link" type="button" data-view="crew">Switch crew profile <span>↗</span></button>
         </div>
@@ -296,7 +293,7 @@
               <span class="panel-kicker">TELEMETRY INGESTION ENGINE // NASA LSDA & PHYSIONET ARCHIVES</span>
               <h3>
                 <span>Dataset Stream Controller</span>
-                <span class="csv-source-badge" id="active-dataset-name">NASA LSDA-0042 NOMINAL BASELINE</span>
+                <span class="csv-source-badge" id="active-dataset-name">SAMPLE BASELINE · SOURCE: NASA LSDA</span>
               </h3>
             </div>
             <div style="font-size: 10px; color: var(--muted); font-family: var(--mono);" id="dataset-status-line">
@@ -423,7 +420,7 @@
           <article class="panel trend-panel">
             <div class="panel-heading">
               <div>
-                <span class="panel-kicker">CONTINUOUS BIO-HARNESS TELEMETRY (250 Hz)</span>
+                <span class="panel-kicker">SAMPLE BIO-HARNESS SIGNAL (250 Hz)</span>
                 <h2>Lead-II Real-time <em>Waveform</em></h2>
               </div>
               <div class="timeframe-group">
@@ -943,9 +940,9 @@
       <section class="view inner-view" id="view-assistant" aria-labelledby="assistant-title" hidden>
         <div class="inner-heading">
           <div>
-            <div class="eyebrow"><span class="eyebrow-line"></span> CLINICAL DECISION SUPPORT / 03 · FLIGHT SURGEON AI</div>
-            <h1 id="assistant-title">AURA <em>AI flight surgeon</em></h1>
-            <p class="hero-description">Autonomous clinical decision system grounded in NASA Bioastronautics Standards (NASA-STD-3001) and Google Gemini 2.5 Flash for deep-space communication latency regimes.</p>
+            <div class="eyebrow"><span class="eyebrow-line"></span> SPACEFLIGHT HEALTH EXPLORATION / 03</div>
+            <h1 id="assistant-title">AURA <em>AI assistant</em></h1>
+            <p class="hero-description">AI-assisted exploration of spaceflight health topics. Responses are informational and are not a medical diagnosis or treatment recommendation.</p>
           </div>
           <div class="assistant-header-actions">
             <button class="gemini-config-btn" id="gemini-btn-modal" type="button" onclick="openGeminiModal()">
@@ -953,7 +950,7 @@
               <span id="gemini-status-text">Connect Gemini API Key</span>
               <span class="gemini-pill-tag" id="gemini-status-pill">Local Engine</span>
             </button>
-            <button class="voice-toggle-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle flight surgeon voice readout">
+            <button class="voice-toggle-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle voice readout">
               <span id="voice-icon">🔇</span>
               <span id="voice-text">Voice: OFF</span>
             </button>
@@ -967,11 +964,11 @@
             <span class="ap-icon">🪐</span>
             <div>
               <strong>MISSION CELESTIAL REGIME</strong>
-              <small>Click any celestial target to simulate radio propagation latency and planetary gravitational stress</small>
+              <small>Select a target to compare estimated signal delay and surface gravity</small>
             </div>
           </div>
           <div class="ap-planets-row">
-            <button class="ap-planet-btn is-active" type="button" onclick="setAssistantPlanet('earth')" data-planet="earth" title="Earth Low Earth Orbit (0ms latency)">
+            <button class="ap-planet-btn is-active" type="button" onclick="setAssistantPlanet('earth')" data-planet="earth" title="Earth Low Earth Orbit (estimated latency)">
               <span class="ap-sphere" style="background-image: url('assets/earth.jpg');"></span>
               <span class="ap-info"><strong>Earth (ISS Orbit)</strong><small>0.0s delay · 1.0g</small></span>
             </button>
@@ -999,13 +996,14 @@
               <div class="ai-console-brand">
                 <span class="chat-avatar ai-glow-avatar">✳</span>
                 <div class="chat-meta">
-                  <strong>AURA Clinical Decision Support Console</strong>
-                  <small id="chat-engine-subtitle">AUTONOMOUS FLIGHT SURGEON · GEMINI 2.5 FLASH READY</small>
+                  <strong>AURA AI Assistant · Demo</strong>
+                  <small id="chat-engine-subtitle">AI ASSISTANT · DEMONSTRATION</small>
                 </div>
               </div>
 
-              <!-- Live Flight Telemetry Ribbon inside Chat Console -->
-              <div class="ai-live-hud-ribbon">
+              <!-- Simulated sample values; not connected to a crew or spacecraft -->
+              <div class="ai-live-hud-ribbon" aria-label="Simulated sample health values, not live crew telemetry">
+                <span class="chips-ribbon-label">SIMULATED SAMPLE VALUES</span>
                 <div class="ai-hud-chip"><span class="hud-icon">❤️</span> <span class="hud-label">HR:</span> <strong>74 BPM</strong></div>
                 <div class="ai-hud-chip"><span class="hud-icon">🫁</span> <span class="hud-label">SpO₂:</span> <strong>98.4%</strong></div>
                 <div class="ai-hud-chip"><span class="hud-icon">🛰️</span> <span class="hud-label">RELAY:</span> <strong id="ai-hud-latency">0.0s (LEO)</strong></div>
@@ -1014,13 +1012,13 @@
               </div>
 
               <div class="ai-status-right">
-                <span class="chat-online" id="chat-online-badge"><i></i> <span id="chat-online-text">READY (0ms LAG)</span></span>
+                <span class="chat-online" id="chat-online-badge"><i></i> <span id="chat-online-text">DEMO MODE</span></span>
               </div>
             </div>
 
             <!-- Quick Clinical Command Action Ribbon -->
             <div class="ai-command-chips-ribbon">
-              <span class="chips-ribbon-label">QUICK FLIGHT SURGEON PROTOCOLS:</span>
+              <span class="chips-ribbon-label">SAMPLE TOPICS:</span>
               <div class="chips-scroll-track">
                 <button type="button" class="ai-chip-btn" onclick="askAi('What does this dataset measure and how does it correlate with crew vitals?')">📊 Dataset Provenance</button>
                 <button type="button" class="ai-chip-btn" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">👁️ SANS Ocular Fluid Shift</button>
@@ -1035,17 +1033,17 @@
 
             <!-- Expansive Chat Stream -->
             <div class="chat-body ai-expanded-body" id="chat-stream">
-              <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · ACTIVE ORBIT</span>
+              <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · SIMULATED DEMO DATA</span>
               <div class="assistant-message" id="initial-ai-msg">
-                <strong>Greetings Commander.</strong> I am AURA, your onboard medical decision assistant. I am continuously monitoring crew biometrics across Anne McClain, Mike Fincke, and Dr. Marcus Chen.
+                <strong>Welcome.</strong> I can explain sample data and spaceflight health concepts. This demo does not monitor real crew biometrics and is not a substitute for a flight surgeon.
                 <br><br>
-                You can ask me about <em>any</em> symptoms, ECG waveforms, SANS intracranial fluid shifts, radiation doses, or emergency resuscitation protocols.
+                You can ask me to explain the sample waveforms and spaceflight health concepts. For real symptoms or emergencies, follow qualified medical guidance.
                 <br><br>
                 <div class="ai-welcome-callout">
                   <span class="awc-sparkle">✦</span>
                   <div>
-                    <strong>Google Gemini 2.5 Flash Connected & Grounded in NASA Standards</strong>
-                    <p>Click <code>[Connect Gemini API Key]</code> in the top right or paste your API key directly into the chat prompt below to enable live cloud inference.</p>
+                    <strong>Optional AI connection</strong>
+                    <p>Connect an AI provider to enable responses. Do not enter private medical or personal information.</p>
                   </div>
                 </div>
               </div>
@@ -1054,7 +1052,7 @@
             <!-- Aerospace Command Input Console -->
             <form class="chat-input-form ai-expanded-form" onsubmit="handleChatSubmit(event)">
               <div class="chat-input-wrapper">
-                <input type="text" id="chat-input-field" placeholder="Ask any space medicine command, clinical symptom, or paste Gemini API key (AIzaSy...)..." autocomplete="off" />
+                <input type="text" id="chat-input-field" placeholder="Ask about the sample data or spaceflight health concepts..." autocomplete="off" />
                 <button class="chat-send-btn ai-send-btn" type="submit" aria-label="Send message">
                   <span>Send</span>
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
@@ -1242,7 +1240,7 @@
               <span class="nasa-resource-badge">TELEMETRY INGESTED</span>
             </div>
             <h3>NASA Life Sciences Data Archive (LSDA)</h3>
-            <p>JSC repository housing astronaut physiological telemetry, cardiovascular measurements, and sensor logs from Apollo, Skylab, Space Shuttle, and ISS Expeditions (including our LSDA-0042 baseline stream).</p>
+            <p>JSC repository housing astronaut physiological telemetry, cardiovascular measurements, and sensor logs from Apollo, Skylab, Space Shuttle, and ISS Expeditions (including our sample baseline dataset).</p>
             <span class="nasa-resource-link">lsda.jsc.nasa.gov ↗</span>
           </a>
 
@@ -1330,7 +1328,7 @@
               <span class="nasa-resource-badge">MIT / HARVARD</span>
             </div>
             <h3>PhysioNet Biomedical Research Waveforms</h3>
-            <p>Gold-standard open access clinical database providing the high-resolution 250 Hz Lead-II cardiac waveforms, ventricular arrhythmias, and respiratory signals feeding our real-time ECG oscilloscope canvas.</p>
+            <p>Gold-standard open access clinical database providing the high-resolution 250 Hz Lead-II cardiac waveforms, ventricular arrhythmias, and respiratory signals used by the ECG oscilloscope demonstration.</p>
             <span class="nasa-resource-link">physionet.org ↗</span>
           </a>
 

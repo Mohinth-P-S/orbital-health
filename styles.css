@@ -21,7 +21,7 @@
   --blue-light: #5eead4;
   --lilac: #cbd5e1;
   --wine: #f472b6;
-  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --sans: "Avenir Next", Avenir, "Trebuchet MS", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
@@ -3639,4 +3639,30 @@ button:not(:disabled):active { scale: .97; }
 .ai-latency-tag {
   color: #2dd4bf;
   font-weight: 700;
+}
+
+
+/* Readability pass */
+body { font-family: var(--sans); }
+.hero-copy h1 { font-size: clamp(60px, 7vw, 96px); }
+.hero-description { font-size: 16px; }
+.inner-heading h1 { font-size: clamp(52px, 5.8vw, 78px); }
+.inner-heading p, .assistant-intro p, .source-copy p { font-size: 15px; }
+.nav-link { font-size: 15px; }
+@media (max-width: 700px) {
+  .hero-copy h1 { font-size: clamp(52px, 12vw, 72px); }
+  .hero-description { font-size: 15px; }
+}
+
+
+/* Readability pass */
+body { font-family: var(--sans); }
+.hero-copy h1 { font-size: clamp(60px, 7vw, 96px); }
+.hero-description { font-size: 16px; }
+.inner-heading h1 { font-size: clamp(52px, 5.8vw, 78px); }
+.inner-heading p, .assistant-intro p, .source-copy p { font-size: 15px; }
+.nav-link { font-size: 15px; }
+@media (max-width: 700px) {
+  .hero-copy h1 { font-size: clamp(52px, 12vw, 72px); }
+  .hero-description { font-size: 15px; }
 }
