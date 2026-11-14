@@ -512,13 +512,7 @@
                     <stop offset="60%" stop-color="#4b85ff" stop-opacity="0.04" />
                     <stop offset="100%" stop-color="#050914" stop-opacity="0" />
                   </radialGradient>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
+
                 </defs>
                 
                 <ellipse cx="160" cy="240" rx="140" ry="220" fill="url(#bodyGlow)" />
@@ -563,14 +557,14 @@
                 <!-- 1. Brain / Cognitive (Hotspot) -->
                 <g class="hotspot-node" id="node-brain" onclick="selectBodyOrgan('brain')">
                   <circle class="hotspot-radar" cx="160" cy="50" r="14" stroke="#4b85ff" fill="none" opacity="0.7" />
-                  <circle class="hotspot-core" cx="160" cy="50" r="6" fill="#76e4d2" filter="url(#glow)" />
+                  <circle class="hotspot-core" cx="160" cy="50" r="6" fill="#76e4d2" />
                   <text x="160" y="32" text-anchor="middle" fill="#ccd6e5" font-family="monospace" font-size="7" letter-spacing="1">BRAIN / ICP</text>
                 </g>
 
                 <!-- 2. Eyes / Vision (SANS) -->
                 <g class="hotspot-node is-selected" id="node-eyes" onclick="selectBodyOrgan('eyes')">
                   <circle class="hotspot-radar" cx="160" cy="74" r="14" stroke="#38bdf8" fill="none" opacity="0.8" />
-                  <circle class="hotspot-core" cx="160" cy="74" r="6" fill="#38bdf8" filter="url(#glow)" />
+                  <circle class="hotspot-core" cx="160" cy="74" r="6" fill="#38bdf8" />
                   <text x="195" y="77" fill="#38bdf8" font-family="monospace" font-size="7" letter-spacing="0.8">EYES / SANS</text>
                   <line x1="168" y1="74" x2="190" y2="74" stroke="#38bdf8" stroke-width="0.8" />
                 </g>
@@ -578,7 +572,7 @@
                 <!-- 3. Heart / Cardiovascular -->
                 <g class="hotspot-node" id="node-heart" onclick="selectBodyOrgan('heart')">
                   <circle class="hotspot-radar" cx="145" cy="155" r="16" stroke="#f87171" fill="none" opacity="0.7" />
-                  <circle class="hotspot-core" cx="145" cy="155" r="7" fill="#f87171" filter="url(#glow)" />
+                  <circle class="hotspot-core" cx="145" cy="155" r="7" fill="#f87171" />
                   <text x="100" y="158" text-anchor="end" fill="#f87171" font-family="monospace" font-size="7" letter-spacing="0.8">HEART / ECG</text>
                   <line x1="104" y1="155" x2="136" y2="155" stroke="#f87171" stroke-width="0.8" />
                 </g>
@@ -586,7 +580,7 @@
                 <!-- 4. Lungs / Respiratory -->
                 <g class="hotspot-node" id="node-lungs" onclick="selectBodyOrgan('lungs')">
                   <circle class="hotspot-radar" cx="178" cy="150" r="14" stroke="#76e4d2" fill="none" opacity="0.7" />
-                  <circle class="hotspot-core" cx="178" cy="150" r="6" fill="#76e4d2" filter="url(#glow)" />
+                  <circle class="hotspot-core" cx="178" cy="150" r="6" fill="#76e4d2" />
                   <text x="215" y="153" fill="#76e4d2" font-family="monospace" font-size="7" letter-spacing="0.8">LUNGS / SpO₂</text>
                   <line x1="186" y1="150" x2="210" y2="150" stroke="#76e4d2" stroke-width="0.8" />
                 </g>
@@ -594,7 +588,7 @@
                 <!-- 5. Spine / Skeletal -->
                 <g class="hotspot-node" id="node-spine" onclick="selectBodyOrgan('spine')">
                   <circle class="hotspot-radar" cx="160" cy="220" r="14" stroke="#38bdf8" fill="none" opacity="0.6" />
-                  <circle class="hotspot-core" cx="160" cy="220" r="6" fill="#38bdf8" filter="url(#glow)" />
+                  <circle class="hotspot-core" cx="160" cy="220" r="6" fill="#38bdf8" />
                   <text x="205" y="223" fill="#38bdf8" font-family="monospace" font-size="7" letter-spacing="0.8">SPINE / BONE</text>
                   <line x1="168" y1="220" x2="200" y2="220" stroke="#38bdf8" stroke-width="0.8" />
                 </g>
@@ -602,7 +596,7 @@
                 <!-- 6. Abdomen / Fluid Shift -->
                 <g class="hotspot-node" id="node-fluid" onclick="selectBodyOrgan('fluid')">
                   <circle class="hotspot-radar" cx="160" cy="265" r="15" stroke="#4b85ff" fill="none" opacity="0.7" />
-                  <circle class="hotspot-core" cx="160" cy="265" r="6" fill="#4b85ff" filter="url(#glow)" />
+                  <circle class="hotspot-core" cx="160" cy="265" r="6" fill="#4b85ff" />
                   <text x="110" y="268" text-anchor="end" fill="#9abaff" font-family="monospace" font-size="7" letter-spacing="0.8">FLUID SHIFT</text>
                   <line x1="114" y1="265" x2="151" y2="265" stroke="#4b85ff" stroke-width="0.8" />
                 </g>
@@ -610,9 +604,9 @@
                 <!-- 7. Musculoskeletal & Calves -->
                 <g class="hotspot-node" id="node-muscles" onclick="selectBodyOrgan('muscles')">
                   <circle class="hotspot-radar" cx="135" cy="415" r="14" stroke="#76e4d2" fill="none" opacity="0.7" />
-                  <circle class="hotspot-core" cx="135" cy="415" r="6" fill="#76e4d2" filter="url(#glow)" />
+                  <circle class="hotspot-core" cx="135" cy="415" r="6" fill="#76e4d2" />
                   <circle class="hotspot-radar" cx="185" cy="415" r="14" stroke="#76e4d2" fill="none" opacity="0.7" />
-                  <circle class="hotspot-core" cx="185" cy="415" r="6" fill="#76e4d2" filter="url(#glow)" />
+                  <circle class="hotspot-core" cx="185" cy="415" r="6" fill="#76e4d2" />
                   <text x="160" y="445" text-anchor="middle" fill="#76e4d2" font-family="monospace" font-size="7" letter-spacing="0.8">CALVES / MUSCLE ATROPHY</text>
                 </g>
               </svg>

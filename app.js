@@ -1460,16 +1460,13 @@ function cycleSpaceBackground() {
     const pulse = (Math.sin(time * 0.006) + 1) * 0.5;
     const strobeColor = pulse > 0.5 ? "#76e4d2" : "#38bdf8";
     ctx.beginPath();
-    ctx.arc(0, 0, 3 + pulse * 4, 0, Math.PI * 2);
+    ctx.arc(0, 0, 2.5 + pulse * 1.5, 0, Math.PI * 2);
     ctx.fillStyle = strobeColor;
-    ctx.shadowColor = strobeColor;
-    ctx.shadowBlur = 10;
     ctx.fill();
-    ctx.shadowBlur = 0;
 
     // Micro HUD Tag
     ctx.font = "8px SFMono-Regular, Consolas, monospace";
-    ctx.fillStyle = "rgba(208, 183, 135, 0.75)";
+    ctx.fillStyle = "rgba(226, 232, 240, 0.85)";
     ctx.fillText("ISS · EXP 72 · 262 MI", 14, 3);
     ctx.restore();
   }
