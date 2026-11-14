@@ -26,7 +26,7 @@
       <canvas id="space-canvas" class="space-canvas"></canvas>
       <div class="space-bg-vignette"></div>
     </div>
-    
+
     <!-- ================= TOP NAVIGATION BAR ================= -->
     <header class="topbar">
 
@@ -67,7 +67,7 @@
     </header>
 
     <main id="app-main">
-      
+
       <!-- ================= 1. VIEW: OVERVIEW (ORIGINAL GOLDEN REFERENCE) ================= -->
       <section class="view is-visible" id="view-overview" aria-labelledby="hero-title">
         <div class="hero-grid">
@@ -103,103 +103,6 @@
 
         <div class="overview-rail">
           <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> Demo telemetry · simulated</strong></div>
-
-        <!-- Interactive Deep-Space Planetary Telemetry Hub (Real NASA Photography) -->
-        <div class="planet-hub-section">
-          <div class="planet-hub-header">
-            <div>
-              <div class="eyebrow"><span class="eyebrow-line"></span> CELESTIAL TELEMETRY & FLIGHT REGIMES / 02</div>
-              <h2>Deep space mission environments.<br /><em>Explore planetary bio-stressors.</em></h2>
-              <p class="hero-description">Compare illustrative mission-environment values. Figures are scenario estimates, not live spacecraft telemetry.</p>
-            </div>
-            <div class="planet-hub-badge">
-              <span class="status-live"></span> ACTIVE TARGET: <strong id="active-planet-target-name">Earth (Low Earth Orbit)</strong>
-            </div>
-          </div>
-
-          <div class="planet-deck">
-            <!-- Earth Card -->
-            <div class="planet-card is-active" data-planet="earth" onclick="selectPlanet('earth')">
-              <div class="planet-sphere-wrap">
-                <div class="planet-sphere" style="--planet-img: url('assets/earth.jpg');"></div>
-                <div class="planet-halo earth-halo"></div>
-                <div class="planet-scan-ring"></div>
-              </div>
-              <div class="planet-card-info">
-                <div class="planet-kicker">LOW EARTH ORBIT · 408 KM</div>
-                <h3 class="planet-name">Earth (ISS Orbit)</h3>
-                <div class="planet-telemetry-grid">
-                  <div class="pt-item"><span class="pt-label">COMMS DELAY</span><strong class="pt-val">0.00 ms (Estimate)</strong></div>
-                  <div class="pt-item"><span class="pt-label">GRAVITY</span><strong class="pt-val">1.00 g (Micro-g)</strong></div>
-                  <div class="pt-item"><span class="pt-label">RADIATION</span><strong class="pt-val">0.45 mSv/day</strong></div>
-                  <div class="pt-item"><span class="pt-label">STATUS</span><strong class="pt-val status-nominal">Nominal ISS Base</strong></div>
-                </div>
-                <button class="planet-select-btn" type="button" onclick="event.stopPropagation(); consultAiForPlanet('earth')">Consult Flight Surgeon ↗</button>
-              </div>
-            </div>
-
-            <!-- Moon Card -->
-            <div class="planet-card" data-planet="moon" onclick="selectPlanet('moon')">
-              <div class="planet-sphere-wrap">
-                <div class="planet-sphere" style="--planet-img: url('assets/moon.jpg');"></div>
-                <div class="planet-halo moon-halo"></div>
-                <div class="planet-scan-ring"></div>
-              </div>
-              <div class="planet-card-info">
-                <div class="planet-kicker">LUNAR GATEWAY · 384,400 KM</div>
-                <h3 class="planet-name">The Moon (Artemis Base)</h3>
-                <div class="planet-telemetry-grid">
-                  <div class="pt-item"><span class="pt-label">COMMS DELAY</span><strong class="pt-val">1.28 seconds</strong></div>
-                  <div class="pt-item"><span class="pt-label">GRAVITY</span><strong class="pt-val">0.166 g (Lunar)</strong></div>
-                  <div class="pt-item"><span class="pt-label">RADIATION</span><strong class="pt-val">1.20 mSv/day</strong></div>
-                  <div class="pt-item"><span class="pt-label">STATUS</span><strong class="pt-val status-elevated">Lunar Dust Hazard</strong></div>
-                </div>
-                <button class="planet-select-btn" type="button" onclick="event.stopPropagation(); consultAiForPlanet('moon')">Consult Flight Surgeon ↗</button>
-              </div>
-            </div>
-
-            <!-- Mars Card -->
-            <div class="planet-card" data-planet="mars" onclick="selectPlanet('mars')">
-              <div class="planet-sphere-wrap">
-                <div class="planet-sphere" style="--planet-img: url('assets/mars.jpg');"></div>
-                <div class="planet-halo mars-halo"></div>
-                <div class="planet-scan-ring"></div>
-              </div>
-              <div class="planet-card-info">
-                <div class="planet-kicker">DEEP SPACE TRANSIT · 225M KM</div>
-                <h3 class="planet-name">Mars (Ares Transit)</h3>
-                <div class="planet-telemetry-grid">
-                  <div class="pt-item"><span class="pt-label">COMMS DELAY</span><strong class="pt-val">14.2 minutes</strong></div>
-                  <div class="pt-item"><span class="pt-label">GRAVITY</span><strong class="pt-val">0.380 g (Martian)</strong></div>
-                  <div class="pt-item"><span class="pt-label">RADIATION</span><strong class="pt-val">1.95 mSv/day</strong></div>
-                  <div class="pt-item"><span class="pt-label">STATUS</span><strong class="pt-val status-warning">Deep Solar Flares</strong></div>
-                </div>
-                <button class="planet-select-btn" type="button" onclick="event.stopPropagation(); consultAiForPlanet('mars')">Consult Flight Surgeon ↗</button>
-              </div>
-            </div>
-
-            <!-- Europa Card -->
-            <div class="planet-card" data-planet="europa" onclick="selectPlanet('europa')">
-              <div class="planet-sphere-wrap">
-                <div class="planet-sphere" style="--planet-img: url('assets/europa.jpg');"></div>
-                <div class="planet-halo europa-halo"></div>
-                <div class="planet-scan-ring"></div>
-              </div>
-              <div class="planet-card-info">
-                <div class="planet-kicker">JOVIAN SYSTEM · 628M KM</div>
-                <h3 class="planet-name">Europa (Ocean Outpost)</h3>
-                <div class="planet-telemetry-grid">
-                  <div class="pt-item"><span class="pt-label">COMMS DELAY</span><strong class="pt-val">42.5 minutes</strong></div>
-                  <div class="pt-item"><span class="pt-label">GRAVITY</span><strong class="pt-val">0.134 g (Icy)</strong></div>
-                  <div class="pt-item"><span class="pt-label">RADIATION</span><strong class="pt-val">2.80 mSv/day</strong></div>
-                  <div class="pt-item"><span class="pt-label">STATUS</span><strong class="pt-val status-critical">Jovian Magnetosphere</strong></div>
-                </div>
-                <button class="planet-select-btn" type="button" onclick="event.stopPropagation(); consultAiForPlanet('europa')">Consult Flight Surgeon ↗</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
           <div class="rail-item"><span class="rail-label">MONITORING</span><strong>Bio-Harness + SANS Model</strong></div>
           <div class="rail-item"><span class="rail-label">ASSISTANT</span><strong>AURA Medical AI (Online) <span class="tiny-arrow">↗</span></strong></div>
           <button class="rail-link" type="button" data-view="sources">Explore data sources <span>↗</span></button>
@@ -282,7 +185,7 @@
             <button class="delay-chip" id="delay-btn-mars-max" type="button" onclick="setMissionDelay('mars-max')">Mars Conjunction (22.0m)</button>
           </div>
           <div class="delay-status-badge" id="delay-telemed-badge">
-            <i class="status-live"></i> <span id="delay-telemed-text">GROUND TELEMEDICINE: ONLINE</span>
+            <i class="status-live"></i> <span id="delay-telemed-text">GROUND TELEMEDICINE: SIMULATION</span>
           </div>
         </div>
 
@@ -393,13 +296,13 @@
             <div class="metric-value"><span id="val-hr" class="metric-num">72.0</span> <small>bpm</small></div>
             <div class="metric-bottom"><span id="sub-hr">Sinus rhythm stable · HRV 48 ms</span><span class="mini-chart chart-blue"></span></div>
           </article>
-          
+
           <article class="metric-card">
             <div class="metric-top"><span>02 // OXYGEN SATURATION (CSV)</span><span class="metric-symbol">◌</span></div>
             <div class="metric-value"><span id="val-spo2" class="metric-num">98.9</span> <small>%</small></div>
             <div class="metric-bottom"><span id="sub-spo2">Arterial O₂ optimal (98-100%)</span><span class="mini-chart chart-lilac"></span></div>
           </article>
-          
+
           <article class="metric-card">
             <div class="metric-top"><span>03 // RESPIRATORY RATE (CSV)</span><span class="metric-symbol">≈</span></div>
             <div class="metric-value"><span id="val-resp" class="metric-num">14.0</span> <small>/min</small></div>
@@ -415,7 +318,7 @@
 
         <!-- Lower Dashboard: Real-Time ECG & Alert Feed -->
         <div class="dashboard-lower">
-          
+
           <!-- Live Trend Panel with Interactive ECG Canvas -->
           <article class="panel trend-panel">
             <div class="panel-heading">
@@ -589,7 +492,7 @@
         </div>
 
         <div class="bodymap-layout">
-          
+
           <!-- Left Column: Holographic Astronaut Body SVG -->
           <div class="anatomy-stage-card">
             <div class="anatomy-header-strip">
@@ -608,20 +511,20 @@
                   </radialGradient>
 
                 </defs>
-                
+
                 <ellipse cx="160" cy="240" rx="140" ry="220" fill="url(#bodyGlow)" />
 
                 <!-- Stylized Astronaut Anatomical Silhouette -->
                 <!-- Head / Helmet -->
                 <ellipse cx="160" cy="60" rx="34" ry="42" fill="rgba(14, 25, 46, 0.75)" stroke="#4b85ff" stroke-width="1.6" stroke-dasharray="4 2" />
                 <path d="M136 60 Q160 48 184 60 Q184 82 160 88 Q136 82 136 60 Z" fill="rgba(75, 133, 255, 0.15)" stroke="#76e4d2" stroke-width="1.2" />
-                
+
                 <!-- Neck -->
                 <path d="M148 100 L148 114 L172 114 L172 100" fill="none" stroke="#4b85ff" stroke-width="1.2" opacity="0.6" />
 
                 <!-- Torso & Shoulders -->
                 <path d="M110 128 Q160 116 210 128 L220 220 Q160 234 100 220 Z" fill="rgba(16, 28, 52, 0.7)" stroke="#4b85ff" stroke-width="1.8" />
-                
+
                 <!-- Chest Rib Grid & Sternum -->
                 <line x1="160" y1="126" x2="160" y2="225" stroke="#76e4d2" stroke-width="1" stroke-dasharray="2 3" opacity="0.6" />
                 <path d="M130 148 Q160 156 190 148" fill="none" stroke="#4b85ff" stroke-width="1" opacity="0.4" />
@@ -720,7 +623,7 @@
 
           <!-- Right Column: Organ Telemetry & Clinical Guidance Panel -->
           <div class="organ-detail-panel" id="organ-detail-card">
-            
+
             <div class="organ-header-group">
               <div>
                 <span class="panel-kicker" id="organ-kicker">NASA HRP RISK 03 // SANS OCULAR FLUID SHIFT</span>
@@ -815,7 +718,7 @@
         </div>
 
         <div class="crew-grid">
-          
+
           <!-- Astronaut 1: Anne McClain -->
           <article class="crew-card crew-card-editorial is-active-subject" id="card-anne">
             <div class="crew-photo-frame">
@@ -945,12 +848,7 @@
             <p class="hero-description">AI-assisted exploration of spaceflight health topics. Responses are informational and are not a medical diagnosis or treatment recommendation.</p>
           </div>
           <div class="assistant-header-actions">
-            <button class="gemini-config-btn" id="gemini-btn-modal" type="button" onclick="openGeminiModal()">
-              <span class="gemini-sparkle">✦</span>
-              <span id="gemini-status-text">Connect Gemini API Key</span>
-              <span class="gemini-pill-tag" id="gemini-status-pill">Local Engine</span>
-            </button>
-            <button class="voice-toggle-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle voice readout">
+            <button class="voice-toggle-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle flight surgeon voice readout">
               <span id="voice-icon">🔇</span>
               <span id="voice-text">Voice: OFF</span>
             </button>
@@ -964,11 +862,11 @@
             <span class="ap-icon">🪐</span>
             <div>
               <strong>MISSION CELESTIAL REGIME</strong>
-              <small>Select a target to compare estimated signal delay and surface gravity</small>
+              <small>Click any celestial target to simulate radio propagation latency and planetary gravitational stress</small>
             </div>
           </div>
           <div class="ap-planets-row">
-            <button class="ap-planet-btn is-active" type="button" onclick="setAssistantPlanet('earth')" data-planet="earth" title="Earth Low Earth Orbit (estimated latency)">
+            <button class="ap-planet-btn is-active" type="button" onclick="setAssistantPlanet('earth')" data-planet="earth" title="Earth Low Earth Orbit (0ms latency)">
               <span class="ap-sphere" style="background-image: url('assets/earth.jpg');"></span>
               <span class="ap-info"><strong>Earth (ISS Orbit)</strong><small>0.0s delay · 1.0g</small></span>
             </button>
@@ -990,7 +888,7 @@
         <!-- Expansive, Full-Width Aerospace AI Command Console -->
         <div class="ai-console-wrapper">
           <div class="chat-panel panel ai-expanded-panel">
-            
+
             <!-- Command Bridge Telemetry Topbar -->
             <div class="chat-top ai-command-top">
               <div class="ai-console-brand">
@@ -1033,17 +931,17 @@
 
             <!-- Expansive Chat Stream -->
             <div class="chat-body ai-expanded-body" id="chat-stream">
-              <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · SIMULATED DEMO DATA</span>
+              <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · ACTIVE ORBIT</span>
               <div class="assistant-message" id="initial-ai-msg">
                 <strong>Welcome.</strong> I can explain sample data and spaceflight health concepts. This demo does not monitor real crew biometrics and is not a substitute for a flight surgeon.
                 <br><br>
-                You can ask me to explain the sample waveforms and spaceflight health concepts. For real symptoms or emergencies, follow qualified medical guidance.
+                You can ask me to explain sample waveforms and spaceflight health concepts. For real symptoms or emergencies, follow qualified medical guidance.
                 <br><br>
                 <div class="ai-welcome-callout">
                   <span class="awc-sparkle">✦</span>
                   <div>
-                    <strong>Optional AI connection</strong>
-                    <p>Connect an AI provider to enable responses. Do not enter private medical or personal information.</p>
+                    <strong>Autonomous Flight Surgeon Active</strong>
+                    <p>This demonstration can explain selected datasets and spaceflight health concepts. It does not monitor crew, diagnose conditions, or recommend clinical interventions.</p>
                   </div>
                 </div>
               </div>
@@ -1052,15 +950,15 @@
             <!-- Aerospace Command Input Console -->
             <form class="chat-input-form ai-expanded-form" onsubmit="handleChatSubmit(event)">
               <div class="chat-input-wrapper">
-                <input type="text" id="chat-input-field" placeholder="Ask about the sample data or spaceflight health concepts..." autocomplete="off" />
+                <input type="text" id="chat-input-field" placeholder="Ask any space medicine command, clinical symptom, or emergency protocol..." autocomplete="off" />
                 <button class="chat-send-btn ai-send-btn" type="submit" aria-label="Send message">
                   <span>Send</span>
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
               </div>
               <div class="chat-input-footnote">
-                <span>🔒 SECURE LOCAL CDSS</span>
-                <span>Grounded in NASA Bioastronautics Standards (NASA-STD-3001) & Human Research Program</span>
+                <span>🔒 SECURE MEDICAL CDSS</span>
+                <span>References NASA Bioastronautics Standards (NASA-STD-3001) & Human Research Program; not clinical advice</span>
                 <span class="ai-latency-tag" id="ai-input-latency-tag">Earth Delay: 0.0s</span>
               </div>
             </form>
@@ -1089,7 +987,7 @@
         </div>
 
         <div class="insight-grid">
-          
+
           <!-- Card 1: Sleep -->
           <article class="insight-card-editorial">
             <div class="insight-card-photo">
@@ -1221,7 +1119,7 @@
 
         <!-- Comprehensive 10-Resource Grid -->
         <div class="nasa-resource-grid">
-          
+
           <!-- 1. NASA Human Research Program (HRP) Roadmap -->
           <a class="nasa-resource-card" href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer">
             <div class="nasa-resource-top">
@@ -1240,7 +1138,7 @@
               <span class="nasa-resource-badge">TELEMETRY INGESTED</span>
             </div>
             <h3>NASA Life Sciences Data Archive (LSDA)</h3>
-            <p>JSC repository housing astronaut physiological telemetry, cardiovascular measurements, and sensor logs from Apollo, Skylab, Space Shuttle, and ISS Expeditions (including our sample baseline dataset).</p>
+            <p>JSC repository housing astronaut physiological telemetry, cardiovascular measurements, and sensor logs from Apollo, Skylab, Space Shuttle, and ISS Expeditions (including our LSDA-0042 baseline stream).</p>
             <span class="nasa-resource-link">lsda.jsc.nasa.gov ↗</span>
           </a>
 
@@ -1408,51 +1306,44 @@
       <button class="dock-link" type="button" data-view="assistant"><span>✳</span><small>AI</small></button>
       <button class="dock-link" type="button" data-view="sources"><span>⋯</span><small>NASA</small></button>
     </nav>
-  
-  <!-- Google Gemini API Key Configuration Modal -->
-  <div class="gemini-modal-overlay" id="gemini-modal-overlay" onclick="closeGeminiModal(event)" style="display: none;">
-    <div class="gemini-modal" onclick="event.stopPropagation()">
-      <div class="gemini-modal-header">
-        <div class="gemini-modal-title">
-          <span class="gemini-modal-sparkle">✦</span>
-          <div>
-            <h3>Google Gemini API Configuration</h3>
-            <p>Connect your personal Gemini API key for real-time aerospace medical AI</p>
-          </div>
-        </div>
-        <button class="gemini-modal-close" type="button" onclick="closeGeminiModal()" aria-label="Close modal">×</button>
-      </div>
 
-      <div class="gemini-modal-body">
-        <div class="gemini-key-status" id="gemini-key-status-box">
-          <span class="gks-dot" id="gks-dot"></span>
-          <div class="gks-info">
-            <strong id="gks-title">No Gemini API Key Connected</strong>
-            <span id="gks-desc">Currently operating on onboard AURA autonomous medical engine.</span>
-          </div>
-        </div>
 
-        <label class="gemini-input-label" for="gemini-api-key-input">
-          GEMINI API KEY (starts with AIzaSy...)
-        </label>
-        <div class="gemini-input-group">
-          <input type="password" id="gemini-api-key-input" placeholder="AIzaSy..." autocomplete="off" spellcheck="false" />
-          <button type="button" class="gemini-reveal-btn" onclick="toggleGeminiKeyVisibility()" id="gemini-reveal-btn" title="Toggle visibility">👁</button>
-        </div>
 
-        <div class="gemini-modal-guidance">
-          <p><strong>🔒 Security & Privacy:</strong> Your key is stored strictly in your browser's local <code>localStorage</code>. It is never logged or sent to any server other than official Google Gemini endpoints (<code>generativelanguage.googleapis.com</code>).</p>
-          <p><strong>⚡ Model:</strong> Connects to <code>gemini-2.5-flash</code> with tailored NASA Bioastronautics & Flight Surgeon system context.</p>
-          <p><strong>🔑 Don't have a key?</strong> Get one free in 30 seconds at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google AI Studio (aistudio.google.com) ↗</a>.</p>
-        </div>
-      </div>
 
-      <div class="gemini-modal-footer">
-        <button class="btn-secondary" type="button" onclick="clearGeminiKey()">Clear Key</button>
-        <button class="btn-primary" type="button" onclick="saveGeminiKey()">Save & Activate Gemini 2.5</button>
-      </div>
-    </div>
-  </div>
+  <!-- App Floating Bottom Tab Bar (Active ONLY in App / Standalone mode, hidden on standard desktop web) -->
+  <nav class="app-dock" id="app-dock" aria-label="App Navigation">
+    <button class="app-dock-item is-active" type="button" data-view="overview" aria-label="Home">
+      <span class="app-dock-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </span>
+      <span class="app-dock-label">Home</span>
+      <span class="app-dock-indicator">• • •</span>
+    </button>
+    <button class="app-dock-item" type="button" data-view="dashboard" aria-label="Health">
+      <span class="app-dock-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+      </span>
+      <span class="app-dock-label">Health</span>
+    </button>
+    <button class="app-dock-item" type="button" data-view="bodymap" aria-label="Body">
+      <span class="app-dock-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"></circle><path d="M6 21v-2a6 6 0 0 1 12 0v2"></path></svg>
+      </span>
+      <span class="app-dock-label">Body</span>
+    </button>
+    <button class="app-dock-item" type="button" data-view="crew" aria-label="Crew">
+      <span class="app-dock-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="10"></circle></svg>
+      </span>
+      <span class="app-dock-label">Crew</span>
+    </button>
+    <button class="app-dock-item" type="button" data-view="assistant" aria-label="AI">
+      <span class="app-dock-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line></svg>
+      </span>
+      <span class="app-dock-label">AI</span>
+    </button>
+  </nav>
 
 </body>
 </html>
