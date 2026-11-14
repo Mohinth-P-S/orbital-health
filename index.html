@@ -1032,9 +1032,9 @@
       <section class="view inner-view" id="view-assistant" aria-labelledby="assistant-title" hidden>
         <div class="inner-heading">
           <div>
-            <div class="eyebrow"><span class="eyebrow-line"></span> CLINICAL DECISION SUPPORT / 03 · FLIGHT SURGEON AI</div>
-            <h1 id="assistant-title">AURA <em>AI flight surgeon</em></h1>
-            <p class="hero-description">Autonomous clinical decision system grounded in NASA Bioastronautics Standards (NASA-STD-3001) for deep-space communication latency regimes.</p>
+            <div class="eyebrow"><span class="eyebrow-line"></span> AURA INTELLIGENT AGENT / 03 · CREW COMPANION &amp; FLIGHT SURGEON</div>
+            <h1 id="assistant-title">AURA <em>AI space companion</em></h1>
+            <p class="hero-description">Your friendly mission companion and personal health agent. Ready to chat about anything—from how you're feeling and life in orbit to space medicine and vitals.</p>
           </div>
           <div class="assistant-header-actions">
             <button class="voice-toggle-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle flight surgeon voice readout">
@@ -1078,13 +1078,13 @@
         <div class="ai-console-wrapper">
           <div class="chat-panel panel ai-expanded-panel">
             
-            <!-- Clean Command Bridge Topbar (No overlapping HUD ribbon) -->
+            <!-- Clean Command Bridge Topbar -->
             <div class="chat-top ai-command-top">
               <div class="ai-console-brand">
                 <span class="chat-avatar ai-glow-avatar">✳</span>
                 <div class="chat-meta">
-                  <strong>AURA Clinical Decision Support Console</strong>
-                  <small id="chat-engine-subtitle">AUTONOMOUS FLIGHT SURGEON · ONBOARD CDSS</small>
+                  <strong>AURA Mission Companion &amp; Flight Surgeon</strong>
+                  <small id="chat-engine-subtitle">YOUR FRIEND IN DEEP SPACE · PERSONAL HEALTH AGENT</small>
                 </div>
               </div>
 
@@ -1093,43 +1093,46 @@
               </div>
             </div>
 
-            <!-- Quick Clinical Command Action Ribbon -->
+            <!-- Quick Friendly Action & Protocol Ribbon -->
             <div class="ai-command-chips-ribbon">
-              <span class="chips-ribbon-label">QUICK CLINICAL PROTOCOLS:</span>
+              <span class="chips-ribbon-label">QUICK CHAT &amp; TOPICS:</span>
               <div class="chips-scroll-track">
-                <button type="button" class="ai-chip-btn" onclick="askAi('What does this dataset measure and how does it correlate with crew vitals?')">📊 Dataset Provenance</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">👁️ SANS Ocular Fluid Shift</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Analyze cardiovascular drift and deconditioning under microgravity')">🫀 Cardiovascular Drift</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Emergency procedure for EVA suit hypoxia drop')">🚨 EVA Suit Hypoxia Emergency</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Solar particle event radiation triage and storm shelter protocol')">☀️ Solar Storm Shielding</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Space motion sickness / SAS treatment protocol')">🤢 Space Motion Sickness (SAS)</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Bone mineral density deconditioning and ARED protocol')">🦴 Bone Loss & ARED</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Circadian rhythm and sleep regulation in orbit')">💤 Sleep & Circadian Phase</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Hey AURA, how are you doing today?')">👋 How are you?</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('How is the crew doing today?')">💬 How is the crew?</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Tell me a funny space joke!')">😄 Tell a joke</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">👁️ SANS &amp; Eyes</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('How is my heart adapting to zero gravity?')">🫀 Heart &amp; Cardio</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('What are your best tips for sleeping in space?')">💤 Sleeping in Space</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('What should I do in an EVA suit oxygen emergency?')">🚨 EVA Emergency</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('How do we shield against solar storms and radiation?')">☀️ Solar Storms</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('How do astronauts deal with space motion sickness?')">🤢 Motion Sickness</button>
               </div>
             </div>
 
             <!-- Expansive Chat Stream -->
             <div class="chat-body ai-expanded-body" id="chat-stream">
-              <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · ACTIVE ORBIT</span>
+              <span class="chat-date">MISSION COMPANION &amp; CREW HEALTH STATION · ACTIVE ORBIT</span>
               <div class="assistant-message" id="initial-ai-msg">
-                <strong>Greetings Commander.</strong> I am AURA, your onboard medical decision assistant. I am continuously monitoring crew biometrics across Anne McClain, Mike Fincke, and Dr. Marcus Chen.
+                <strong>Hey Commander! 👋</strong> I'm AURA, your mission companion and personal health friend onboard.
                 <br><br>
-                You can ask me about <em>any</em> symptoms, ECG waveforms, SANS intracranial fluid shifts, radiation doses, or emergency resuscitation protocols.
+                I'm here for you 24/7! Whether you want to talk about how you're feeling, ask about your vitals and space medicine, chat about the view outside, or just share what's on your mind, I'm happy to reply to anything friendly.
+                <br><br>
+                How is your day going up here among the stars?
               </div>
             </div>
 
             <!-- Aerospace Command Input Console -->
             <form class="chat-input-form ai-expanded-form" onsubmit="handleChatSubmit(event)">
               <div class="chat-input-wrapper">
-                <input type="text" id="chat-input-field" placeholder="Ask any space medicine command, clinical symptom, or emergency protocol..." autocomplete="off" />
+                <input type="text" id="chat-input-field" placeholder="Chat with AURA about anything — health, feelings, space life, or just say hi..." autocomplete="off" />
                 <button class="chat-send-btn ai-send-btn" type="submit" aria-label="Send message">
                   <span>Send</span>
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
               </div>
               <div class="chat-input-footnote">
-                <span>🔒 SECURE MEDICAL CDSS</span>
-                <span>Grounded in NASA Bioastronautics Standards (NASA-STD-3001) & Human Research Program</span>
+                <span>✦ FRIENDLY AI AGENT &amp; CREW COMPANION</span>
+                <span>NASA Bioastronautics Knowledge &amp; Life Support</span>
                 <span class="ai-latency-tag" id="ai-input-latency-tag">Earth Delay: 0.0s</span>
               </div>
             </form>
