@@ -25,6 +25,20 @@
       <div class="space-bg-nebula"></div>
       <canvas id="space-canvas" class="space-canvas"></canvas>
       <div class="space-bg-vignette"></div>
+
+      <!-- Deep Space Trajectory Flight HUD (Reacts to page scrolling into deep space) -->
+      <div class="space-flight-hud" id="space-flight-hud" aria-hidden="true">
+        <div class="sf-hud-compass">
+          <span class="sf-reticle">⌖</span>
+          <span class="sf-heading" id="sf-heading-text">TRAJECTORY: LEO ASCENT</span>
+        </div>
+        <div class="sf-hud-telemetry">
+          <div class="sf-stat"><span class="sf-lbl">MISSION PHASE</span><strong id="sf-phase-val">LEO INSERTION</strong></div>
+          <div class="sf-stat"><span class="sf-lbl">SPACE DISTANCE</span><strong id="sf-dist-val">408 KM</strong></div>
+          <div class="sf-stat"><span class="sf-lbl">COSMIC DEPTH</span><strong id="sf-depth-val">STAGE 01</strong></div>
+        </div>
+      </div>
+
     </div>
     
     <!-- ================= TOP NAVIGATION BAR ================= -->
@@ -110,6 +124,185 @@
           <div class="rail-item"><span class="rail-label">ASSISTANT</span><strong>AURA Medical AI (Online) <span class="tiny-arrow">↗</span></strong></div>
           <button class="rail-link" type="button" data-view="sources">Explore data sources <span>↗</span></button>
         </div>
+
+        <!-- ===================================================================
+             HOME PAGE EXTENSION: ARCHITECTURE, METRICS & MISSION LOG
+             =================================================================== -->
+
+        <!-- SECTION 1: ARCHITECTURE & TECH STACK -->
+        <section class="home-content-block architecture-block" aria-labelledby="arch-heading">
+          <div class="block-header">
+            <div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM ARCHITECTURE & DATA ENGINE / 02</div>
+            <h2 id="arch-heading">Architecture &amp; Tech Stack<br /><em>Simulated bio-telemetry to clinical clarity.</em></h2>
+            <p class="hero-description">Orbital Health turns simulated biomedical telemetry into a clear crew health picture. Bundled CSV scenarios or a user-selected CSV are parsed locally in the browser. The dashboard visualizes the selected data, while AURA Medical AI uses local, rule-based responses to demonstrate decision support.</p>
+          </div>
+
+          <div class="arch-demo-note">
+            <span class="adn-icon">ℹ</span>
+            <p>The demo is inspired by NASA LSDA-0042 and deep-space health monitoring. It does not connect to a live NASA telemetry feed or an external AI service.</p>
+          </div>
+
+          <!-- Interactive Data Flow Pipeline -->
+          <div class="dataflow-pipeline">
+            <div class="dataflow-title">DATA FLOW ARCHITECTURE:</div>
+            <div class="dataflow-track">
+              <div class="df-node">
+                <div class="df-node-icon">📁</div>
+                <div class="df-node-copy">
+                  <strong>CSV Scenario</strong>
+                  <small>Bundled / User CSV</small>
+                </div>
+              </div>
+              <div class="df-connector"><span class="df-pulse"></span>→</div>
+              <div class="df-node">
+                <div class="df-node-icon">⚡</div>
+                <div class="df-node-copy">
+                  <strong>Browser Ingestion</strong>
+                  <small>Local client parsing</small>
+                </div>
+              </div>
+              <div class="df-connector"><span class="df-pulse"></span>→</div>
+              <div class="df-node">
+                <div class="df-node-icon">📊</div>
+                <div class="df-node-copy">
+                  <strong>Telemetry Dashboard</strong>
+                  <small>Interactive visual state</small>
+                </div>
+              </div>
+              <div class="df-connector"><span class="df-pulse"></span>→</div>
+              <div class="df-node df-node-highlight">
+                <div class="df-node-icon">✳</div>
+                <div class="df-node-copy">
+                  <strong>AURA Response</strong>
+                  <small>Rule-based decision support</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: KEY TELEMETRY METRICS -->
+        <section class="home-content-block metrics-block" aria-labelledby="metrics-heading">
+          <div class="block-header">
+            <div class="eyebrow"><span class="eyebrow-line"></span> PHYSIOLOGICAL SIGNALS / 03</div>
+            <h2 id="metrics-heading">Key Telemetry Metrics<br /><em>Simulated multi-signal demonstration.</em></h2>
+            <p class="hero-description">These example values illustrate how a crew health dashboard could present multiple signals. They are simulated for demonstration and are not live readings, validated clinical thresholds, or medical advice.</p>
+          </div>
+
+          <div class="home-metrics-grid">
+            <!-- Card 1: HRV -->
+            <div class="home-metric-card">
+              <div class="hm-card-top">
+                <span class="hm-badge">AUTONOMIC INDICATOR</span>
+                <span class="hm-icon">❤️</span>
+              </div>
+              <h3 class="hm-title">Heart Rate Variability (HRV)</h3>
+              <div class="hm-value-row">
+                <strong class="hm-val">48 <small>ms</small></strong>
+                <span class="hm-metric-unit">RMSSD</span>
+              </div>
+              <p class="hm-desc">48 ms RMSSD — an example autonomic trend indicator. Interpret alongside the crew member’s baseline and mission context.</p>
+              <div class="hm-footer-tag">AUTONOMIC HEALTH TREND</div>
+            </div>
+
+            <!-- Card 2: Blood Pressure -->
+            <div class="home-metric-card">
+              <div class="hm-card-top">
+                <span class="hm-badge">HEMODYNAMIC DISPLAY</span>
+                <span class="hm-icon">🩺</span>
+              </div>
+              <h3 class="hm-title">Blood Pressure</h3>
+              <div class="hm-value-row">
+                <strong class="hm-val">118/76 <small>mmHg</small></strong>
+                <span class="hm-metric-unit">SYS / DIA</span>
+              </div>
+              <p class="hm-desc">118/76 mmHg — an illustrative display value. Blood pressure is not currently sourced from the bundled CSV schema.</p>
+              <div class="hm-footer-tag">ILLUSTRATIVE TELEMETRY</div>
+            </div>
+
+            <!-- Card 3: Cranial Fluid Shift / SANS -->
+            <div class="home-metric-card">
+              <div class="hm-card-top">
+                <span class="hm-badge">NEURO-OCULAR CONCEPT</span>
+                <span class="hm-icon">👁️</span>
+              </div>
+              <h3 class="hm-title">Cranial Fluid Shift / SANS</h3>
+              <div class="hm-value-row">
+                <strong class="hm-val">5.1 <small>mm</small></strong>
+                <span class="hm-metric-unit">ONSD</span>
+              </div>
+              <p class="hm-desc">5.1 mm ONSD — an example optic nerve sheath diameter value for a SANS monitoring concept. It is not a diagnosis or alert threshold.</p>
+              <div class="hm-footer-tag">NASA HRP RISK 01</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: CREW STATUS & MISSION LOG -->
+        <section class="home-content-block timeline-block" aria-labelledby="log-heading">
+          <div class="block-header">
+            <div class="eyebrow"><span class="eyebrow-line"></span> SIMULATION · EXPEDITION SCENARIO / 04</div>
+            <h2 id="log-heading">Crew Status &amp; Mission Log<br /><em>Real-time simulation timeline.</em></h2>
+            <p class="hero-description">Chronological operational events illustrating scenario playback, alert thresholds, and autonomous clinical recommendation flows.</p>
+          </div>
+
+          <div class="mission-log-timeline">
+            <!-- Log 1: T+00:12 -->
+            <div class="log-entry log-watch">
+              <div class="log-time-badge">
+                <strong>T+00:12</strong>
+                <small>MISSION ELAPSED</small>
+              </div>
+              <div class="log-marker">
+                <span class="log-dot dot-watch"></span>
+                <span class="log-line"></span>
+              </div>
+              <div class="log-content">
+                <div class="log-header-row">
+                  <span class="log-crew-tag">CREW MEMBER A</span>
+                  <span class="log-status-pill pill-watch">WATCH</span>
+                </div>
+                <p class="log-text">SANS trend flagged for review. The illustrative ONSD trend is above this scenario’s recent baseline. Recommendation: review measurement quality and compare with the crew member’s established protocol.</p>
+              </div>
+            </div>
+
+            <!-- Log 2: T+00:08 -->
+            <div class="log-entry log-alert">
+              <div class="log-time-badge">
+                <strong>T+00:08</strong>
+                <small>MISSION ELAPSED</small>
+              </div>
+              <div class="log-marker">
+                <span class="log-dot dot-alert"></span>
+                <span class="log-line"></span>
+              </div>
+              <div class="log-content">
+                <div class="log-header-row">
+                  <span class="log-crew-tag">CREW MEMBER B</span>
+                  <span class="log-status-pill pill-alert">ALERT</span>
+                </div>
+                <p class="log-text">Oxygen saturation scenario alert. The selected demo scenario contains a low SpO₂ event. Recommendation: confirm sensor contact and follow the mission’s approved clinical procedure.</p>
+              </div>
+            </div>
+
+            <!-- Log 3: T+00:02 -->
+            <div class="log-entry log-nominal">
+              <div class="log-time-badge">
+                <strong>T+00:02</strong>
+                <small>MISSION ELAPSED</small>
+              </div>
+              <div class="log-marker">
+                <span class="log-dot dot-nominal"></span>
+              </div>
+              <div class="log-content">
+                <div class="log-header-row">
+                  <span class="log-crew-tag">CREW MEMBER A</span>
+                  <span class="log-status-pill pill-nominal">NOMINAL</span>
+                </div>
+                <p class="log-text">Telemetry playback started. A local CSV scenario is playing in the browser. No live crew telemetry or ground system is connected.</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section class="image-story" aria-labelledby="image-story-title">
           <div class="story-heading">
