@@ -1167,11 +1167,11 @@ function setMissionDelay(destKey) {
       badgeEl.style.borderColor = "#f87171";
       badgeEl.style.color = "#f87171";
     } else if (d.mode === "warning") {
-      badgeEl.style.borderColor = "#d0b787";
-      badgeEl.style.color = "#d0b787";
+      badgeEl.style.borderColor = "#38bdf8";
+      badgeEl.style.color = "#38bdf8";
     } else {
-      badgeEl.style.borderColor = "rgba(208, 183, 135, 0.25)";
-      badgeEl.style.color = "#d0b787";
+      badgeEl.style.borderColor = "rgba(56, 189, 248, 0.35)";
+      badgeEl.style.color = "#7dd3fc";
     }
   }
 
@@ -1337,7 +1337,7 @@ function cycleSpaceBackground() {
 
   // Multi-layered Stars
   const stars = [];
-  const STAR_COLORS = ["#ffffff", "#e0edff", "#c1dcfa", "#d0b787", "#9bc5bb"];
+  const STAR_COLORS = ["#ffffff", "#e0edff", "#c1dcfa", "#7dd3fc", "#38bdf8", "#76e4d2"];
 
   function initStars() {
     stars.length = 0;
@@ -1458,7 +1458,7 @@ function cycleSpaceBackground() {
 
     // Pulsing Strobe Beacon
     const pulse = (Math.sin(time * 0.006) + 1) * 0.5;
-    const strobeColor = pulse > 0.5 ? "#76e4d2" : "#d0b787";
+    const strobeColor = pulse > 0.5 ? "#76e4d2" : "#38bdf8";
     ctx.beginPath();
     ctx.arc(0, 0, 3 + pulse * 4, 0, Math.PI * 2);
     ctx.fillStyle = strobeColor;
