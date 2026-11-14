@@ -29,7 +29,7 @@ function showView(name) {
     item.hidden = !active;
   });
 
-  document.querySelectorAll(".nav-link, .dock-link").forEach((button) => {
+  document.querySelectorAll(".nav-link, .dock-link, .app-dock-item").forEach((button) => {
     const active = button.dataset.view === name;
     button.classList.toggle("is-active", active);
     if (active) button.setAttribute("aria-current", "page");
@@ -829,7 +829,7 @@ This system directly implements and correlates data from all 10 official challen
 
 
 /* ==========================================================================
-   7. AI DECISION ENGINE // GEMINI 2.5 FLASH + ONBOARD CLINICAL REASONING
+   7. AI DECISION ENGINE // AURA AUTONOMOUS FLIGHT SURGEON CDSS
    ========================================================================== */
 
 // Audio Voice State
@@ -906,27 +906,16 @@ function playAerospaceChime(freq = 587.33, duration = 0.12, type = "sine") {
   }
 }
 
-// Select planet in overview hub
+// Select planet in flight deck
 function selectPlanet(planetKey) {
   if (!PLANET_METADATA[planetKey]) return;
   activeMissionPlanet = planetKey;
   const p = PLANET_METADATA[planetKey];
 
-  // Update active state in overview deck
-  document.querySelectorAll(".planet-card").forEach(c => {
-    c.classList.toggle("is-active", c.getAttribute("data-planet") === planetKey);
-  });
-
-  const targetName = document.querySelector("#active-planet-target-name");
-  if (targetName) targetName.textContent = p.name;
-
-  // Sync with assistant bar buttons
+  // Sync assistant bar buttons
   document.querySelectorAll(".ap-planet-btn").forEach(btn => {
     btn.classList.toggle("is-active", btn.getAttribute("data-planet") === planetKey);
   });
-
-  const latencyBadge = document.querySelector("#ai-latency-badge");
-  if (latencyBadge) latencyBadge.textContent = `${p.name}: ${p.delayText}`;
 
   const hudLatency = document.querySelector("#ai-hud-latency");
   if (hudLatency) hudLatency.textContent = p.delayText;
@@ -944,14 +933,11 @@ function selectPlanet(planetKey) {
 function consultAiForPlanet(planetKey) {
   selectPlanet(planetKey);
   const p = PLANET_METADATA[planetKey];
-  
-  // Switch to assistant view
-  switchView("assistant");
+  showView("assistant");
 
-  // Send triage query
   setTimeout(() => {
     askAi(`Conduct clinical triage briefing for ${p.name}. Comms delay: ${p.delayText}. Assess radiation hazard (${p.radiation}) and gravity (${p.gravity}).`);
-  }, 350);
+  }, 300);
 }
 
 // Set assistant planet from assistant bar
@@ -963,7 +949,7 @@ function setAssistantPlanet(planetKey) {
   if (chatStream) {
     const noticeDiv = document.createElement("div");
     noticeDiv.className = "assistant-system-notice";
-    noticeDiv.innerHTML = `<span class="asn-icon">🪐</span> <strong>MISSION ENVIRONMENT UPDATED:</strong> ${p.name} (${p.delayText}). Onboard medical intelligence compensated for communication blackouts.`;
+    noticeDiv.innerHTML = `<span class="asn-icon">🪐</span> <strong>MISSION ENVIRONMENT UPDATED:</strong> ${p.name} (${p.delayText}). Clinical decision support active for this latency regime.`;
     chatStream.appendChild(noticeDiv);
     chatStream.scrollTop = chatStream.scrollHeight;
   }
@@ -991,9 +977,8 @@ function toggleVoiceOutput() {
 
 function speakText(htmlOrText) {
   if (!isVoiceEnabled || !window.speechSynthesis) return;
-  window.speechSynthesis.cancel(); // Stop any pending speech
+  window.speechSynthesis.cancel();
   
-  // Strip HTML tags for clean speech
   const tmp = document.createElement("div");
   tmp.innerHTML = htmlOrText;
   const cleanText = tmp.textContent || tmp.innerText || "";
@@ -1002,7 +987,6 @@ function speakText(htmlOrText) {
   utterance.rate = 1.02;
   utterance.pitch = 1.0;
   
-  // Try to use a clean modern English voice if available
   const voices = window.speechSynthesis.getVoices();
   const preferredVoice = voices.find(v => v.lang.startsWith("en") && (v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Samantha") || v.name.includes("Daniel")));
   if (preferredVoice) utterance.voice = preferredVoice;
@@ -1015,212 +999,11 @@ function clearChatStream() {
   const chatStream = document.querySelector("#chat-stream");
   if (!chatStream) return;
   chatStream.innerHTML = `
-    <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE</span>
+    <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · ACTIVE ORBIT</span>
     <div class="assistant-message" id="initial-ai-msg">
-      <strong>Console Cleared.</strong> AURA flight surgeon standing by. All biomedical telemetry channels active and nominal.
+      <strong>Console Cleared.</strong> AURA autonomous flight surgeon standing by. All biomedical telemetry channels active and nominal.
     </div>
   `;
-}
-
-// Gemini API Key Management
-const GEMINI_STORAGE_KEY = "orbital_gemini_api_key";
-
-function getGeminiKey() {
-  return (localStorage.getItem(GEMINI_STORAGE_KEY) || "").trim();
-}
-
-function setGeminiKey(key) {
-  if (key) {
-    localStorage.setItem(GEMINI_STORAGE_KEY, key.trim());
-  } else {
-    localStorage.removeItem(GEMINI_STORAGE_KEY);
-  }
-  updateGeminiStatusUI();
-}
-
-function openGeminiModal() {
-  const modal = document.querySelector("#gemini-modal-overlay");
-  const input = document.querySelector("#gemini-api-key-input");
-  if (modal) modal.style.display = "flex";
-  if (input) {
-    input.value = getGeminiKey();
-    input.focus();
-  }
-  updateGeminiStatusUI();
-}
-
-function closeGeminiModal(event) {
-  if (event && event.target && event.target.id !== "gemini-modal-overlay" && !event.target.classList.contains("gemini-modal-close")) {
-    return;
-  }
-  const modal = document.querySelector("#gemini-modal-overlay");
-  if (modal) modal.style.display = "none";
-}
-
-function toggleGeminiKeyVisibility() {
-  const input = document.querySelector("#gemini-api-key-input");
-  const btn = document.querySelector("#gemini-reveal-btn");
-  if (!input) return;
-  if (input.type === "password") {
-    input.type = "text";
-    if (btn) btn.textContent = "🔒";
-  } else {
-    input.type = "password";
-    if (btn) btn.textContent = "👁";
-  }
-}
-
-function saveGeminiKey() {
-  const input = document.querySelector("#gemini-api-key-input");
-  const key = input ? input.value.trim() : "";
-  if (!key) {
-    alert("Please enter a valid Gemini API key (starts with AIzaSy...).");
-    return;
-  }
-  setGeminiKey(key);
-  closeGeminiModal();
-  
-  // Post confirmation message to chat
-  const chatStream = document.querySelector("#chat-stream");
-  if (chatStream) {
-    const confirmDiv = document.createElement("div");
-    confirmDiv.className = "assistant-message";
-    confirmDiv.innerHTML = `<strong>✦ GEMINI 2.5 FLASH CONNECTED:</strong><br><br>
-Your Google Gemini API key has been securely configured in local storage. All clinical reasoning and medical triage queries are now powered by <code>gemini-2.5-flash</code> with real-time NASA Bioastronautics flight surgeon grounding.`;
-    chatStream.appendChild(confirmDiv);
-    chatStream.scrollTop = chatStream.scrollHeight;
-  }
-  playAerospaceChime(880, 0.2, "triangle");
-}
-
-function clearGeminiKey() {
-  setGeminiKey("");
-  const input = document.querySelector("#gemini-api-key-input");
-  if (input) input.value = "";
-  updateGeminiStatusUI();
-  alert("Gemini API key cleared. Reverted to onboard AURA flight surgeon engine.");
-}
-
-function updateGeminiStatusUI() {
-  const key = getGeminiKey();
-  const hasKey = key.length > 15;
-
-  const btnModal = document.querySelector("#gemini-btn-modal");
-  const statusText = document.querySelector("#gemini-status-text");
-  const statusPill = document.querySelector("#gemini-status-pill");
-  const aiEngineBadge = document.querySelector("#ai-engine-badge");
-  const chatEngineSub = document.querySelector("#chat-engine-subtitle");
-  const chatOnlineBadge = document.querySelector("#chat-online-badge");
-  const chatOnlineText = document.querySelector("#chat-online-text");
-  const akTitle = document.querySelector("#ak-callout-title");
-  const akDesc = document.querySelector("#ak-callout-desc");
-  
-  const gksBox = document.querySelector("#gemini-key-status-box");
-  const gksDot = document.querySelector("#gks-dot");
-  const gksTitle = document.querySelector("#gks-title");
-  const gksDesc = document.querySelector("#gks-desc");
-
-  if (hasKey) {
-    if (btnModal) btnModal.classList.add("is-connected");
-    if (statusText) statusText.textContent = "Gemini 2.5 Active";
-    if (statusPill) {
-      statusPill.textContent = "Live Cloud";
-      statusPill.className = "gemini-pill-tag is-live";
-    }
-    if (aiEngineBadge) aiEngineBadge.innerHTML = `<i class="status-ring" style="background: #2dd4bf;"></i> Gemini 2.5 Flash Live`;
-    if (chatEngineSub) chatEngineSub.textContent = "GEMINI 2.5 FLASH · NASA FLIGHT SURGEON";
-    if (chatOnlineBadge) chatOnlineBadge.className = "chat-online is-gemini";
-    if (chatOnlineText) chatOnlineText.textContent = "GEMINI 2.5 LIVE";
-    if (akTitle) akTitle.textContent = "Gemini 2.5 Flash Active";
-    if (akDesc) akDesc.textContent = "Connected to your Gemini API key. Every medical command runs with full Google DeepMind reasoning.";
-
-    if (gksBox) gksBox.className = "gemini-key-status is-active";
-    if (gksDot) gksDot.className = "gks-dot is-active";
-    if (gksTitle) gksTitle.textContent = "Gemini API Key Active (Connected)";
-    if (gksDesc) gksDesc.textContent = `Using key ending in ...${key.slice(-5)} with gemini-2.5-flash.`;
-  } else {
-    if (btnModal) btnModal.classList.remove("is-connected");
-    if (statusText) statusText.textContent = "Connect Gemini API Key";
-    if (statusPill) {
-      statusPill.textContent = "Local Engine";
-      statusPill.className = "gemini-pill-tag";
-    }
-    if (aiEngineBadge) aiEngineBadge.innerHTML = `<i class="status-ring"></i> AURA Core v4.2`;
-    if (chatEngineSub) chatEngineSub.textContent = "AUTONOMOUS FLIGHT SURGEON · LOCAL INFERENCE";
-    if (chatOnlineBadge) chatOnlineBadge.className = "chat-online";
-    if (chatOnlineText) chatOnlineText.textContent = "READY (0ms LAG)";
-    if (akTitle) akTitle.textContent = "Have a Gemini API key?";
-    if (akDesc) akDesc.textContent = "Click here to connect your key. Chatbot will run live on Google Gemini 2.5 Flash for every medical command!";
-
-    if (gksBox) gksBox.className = "gemini-key-status";
-    if (gksDot) gksDot.className = "gks-dot";
-    if (gksTitle) gksTitle.textContent = "No Gemini API Key Connected";
-    if (gksDesc) gksDesc.textContent = "Currently operating on onboard AURA autonomous medical reasoning engine.";
-  }
-}
-
-// Call Google Gemini API directly
-async function callGeminiApi(userPrompt) {
-  const apiKey = getGeminiKey();
-  if (!apiKey) throw new Error("No Gemini API key provided.");
-
-  const p = PLANET_METADATA[activeMissionPlanet] || PLANET_METADATA.earth;
-  const activeCrewName = "Expedition 72 Crew (Anne McClain, Mike Fincke, Dr. Marcus Chen)";
-  const currentHr = currentEcgRate ? currentEcgRate.toFixed(1) : "72.4";
-
-  const systemInstruction = `You are AURA (Autonomous Universal Resuscitation & Aerospace-medical Assistant), the Chief Flight Surgeon and Autonomous Medical Officer onboard an active deep-space exploration mission.
-You are grounded in NASA Bioastronautics Standards (NASA-STD-3001), NASA Human Research Program (HRP) Evidence Books, spaceflight clinical practice guidelines, and communication latency regimes.
-CURRENT MISSION TELEMETRY CONTEXT:
-- Active Destination: ${p.name} (${p.location})
-- Communication Delay: ${p.delayText} (One-way light-time propagation)
-- Ambient Gravity: ${p.gravity}
-- Radiation Hazard: ${p.radiation} (${p.hazard})
-- Active Crew: ${activeCrewName}
-- Current Resting Heart Rate: ${currentHr} bpm
-- Ingested Telemetry Stream: ${activeCsvRows ? activeCsvRows.length : 0} time-series biometric records loaded.
-
-GUIDELINES FOR YOUR RESPONSE:
-1. Respond with clinical authority as a NASA Flight Surgeon.
-2. Structure your response clearly using markdown:
-   - **CLINICAL ASSESSMENT**: Immediate diagnosis or analysis of the query.
-   - **TELEMETRY CORRELATION**: How current biometrics and mission environment (${p.name}) affect the condition.
-   - **COUNTERMEASURE PROTOCOL**: Specific actionable clinical procedures, medications, or exercise protocols.
-   - **FLIGHT SURGEON DIRECTIVE**: Final operational guidance for the crew commander.
-3. Be comprehensive, informative, concise, and clinically actionable. Never say you cannot diagnose; provide structured aerospace triage based on NASA standards.`;
-
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
-  const payload = {
-    contents: [
-      {
-        role: "user",
-        parts: [{ text: userPrompt }]
-      }
-    ],
-    systemInstruction: {
-      parts: [{ text: systemInstruction }]
-    },
-    generationConfig: {
-      temperature: 0.35,
-      maxOutputTokens: 800
-    }
-  };
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
-
-  if (!response.ok) {
-    const errData = await response.json().catch(() => ({}));
-    const message = errData.error && errData.error.message ? errData.error.message : `HTTP ${response.status}`;
-    throw new Error(message);
-  }
-
-  const data = await response.json();
-  const text = data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0] ? data.candidates[0].content.parts[0].text : "No diagnosis generated.";
-  return formatMarkdown(text);
 }
 
 // Convert Markdown to clean structured HTML
@@ -1236,36 +1019,32 @@ function formatMarkdown(md) {
     .replace(/\n\n/gim, '<br><br>')
     .replace(/\n/gim, '<br>');
 
-  // Wrap lists
   html = html.replace(/(<li>.*?<\/li>)+/gim, '<ul>$&</ul>');
   return html;
 }
 
-// Comprehensive Built-in Aerospace Clinical Reasoning Engine (Fallback & Local mode)
+// Comprehensive Built-in Aerospace Clinical Reasoning Engine
 function generateLocalFlightSurgeonReply(query) {
   const q = query.toLowerCase().trim();
   const p = PLANET_METADATA[activeMissionPlanet] || PLANET_METADATA.earth;
   const currentHr = currentEcgRate ? currentEcgRate.toFixed(1) : "72.4";
 
-  // Check for SANS / Ocular
   if (q.includes("sans") || q.includes("ocular") || q.includes("eye") || q.includes("vision") || q.includes("optic") || q.includes("papilledema")) {
     return `<strong>✦ AURA CLINICAL DECISION SUPPORT // SANS Ocular Fluid Shift:</strong><br><br>
-<strong>CLINICAL ASSESSMENT:</strong> Spaceflight-Associated Neuro-ocular Syndrome (SANS) is driven by cephalad venous fluid migration in microgravity, elevating retrobulbar and intracranial pressure.<br><br>
-• <strong>Active Telemetry:</strong> Optic Nerve Sheath Diameter (ONSD) is currently measuring <strong>5.1 mm</strong> (Safe threshold &lt; 5.8 mm). Retinal nerve fiber layer (RNFL) thickening is Grade 0.<br>
-• <strong>Planetary Context (${p.name}):</strong> Environmental gravity is <strong>${p.gravity}</strong>. Microgravity fluid pooling is active.<br>
+<strong>CLINICAL ASSESSMENT:</strong> Spaceflight-Associated Neuro-ocular Syndrome (SANS) resulting from cephalad venous fluid migration in microgravity, elevating retrobulbar and intracranial pressure.<br><br>
+• <strong>Active Telemetry:</strong> Optic Nerve Sheath Diameter (ONSD) is steady at <strong>5.1 mm</strong> (Safe threshold &lt; 5.8 mm). Retinal nerve fiber layer (RNFL) thickening is Grade 0.<br>
+• <strong>Planetary Context (${p.name}):</strong> Environmental gravity is <strong>${p.gravity}</strong>. Microgravity fluid pooling active.<br>
 • <strong>Prescribed Countermeasure:</strong> Prescribe 50 mmHg Lower Body Negative Pressure (LBNP) for 45 min prior to sleep phase to restore caudal venous fluid distribution. Conduct daily ultrasound ONSD scans.`;
   }
 
-  // Check for Cardiovascular / Arrhythmia / Heart
   if (q.includes("cardio") || q.includes("heart") || q.includes("ecg") || q.includes("drift") || q.includes("pulse") || q.includes("arrhythmia") || q.includes("bpm")) {
     return `<strong>✦ AURA HEMODYNAMICS // Cardiovascular Deconditioning & ECG Triage:</strong><br><br>
-<strong>CLINICAL ASSESSMENT:</strong> Long-duration spaceflight produces a 10-15% reduction in circulating plasma volume, left ventricular mass remodeling, and autonomic baroreflex resetting.<br><br>
-• <strong>Live Telemetry:</strong> Real-time heart rate is <strong>${currentHr} bpm</strong>. Sinus rhythm is regular. No premature ventricular contractions (PVCs) detected in current buffer.<br>
+<strong>CLINICAL ASSESSMENT:</strong> Microgravity cardiovascular drift characterized by a 10-15% reduction in circulating plasma volume and autonomic baroreflex resetting.<br><br>
+• <strong>Live Telemetry:</strong> Real-time heart rate is <strong>${currentHr} bpm</strong>. Sinus rhythm regular. No premature ventricular contractions (PVCs) in active window.<br>
 • <strong>Hemodynamic Profile:</strong> Mean Arterial Pressure (MAP) is steady at 88 mmHg. Stroke volume estimated at 64 mL.<br>
-• <strong>Flight Surgeon Directive:</strong> Complete 45-minute daily high-resistance CEVIS cycle ergometer session at 75% VO₂ peak. Initiate oral isotonic electrolyte rehydration 48 hours prior to gravitational transitions.`;
+• <strong>Flight Surgeon Directive:</strong> Complete 45-minute daily high-resistance CEVIS cycle ergometer session at 75% VO₂ peak. Ingest oral isotonic rehydration salt protocol prior to gravitational transitions.`;
   }
 
-  // Check for EVA / Hypoxia / Suit Emergency
   if (q.includes("eva") || q.includes("hypoxia") || q.includes("suit") || q.includes("oxygen") || q.includes("leak") || q.includes("depress") || q.includes("decompression")) {
     return `<div class="ai-alert-banner">🚨 CRITICAL EMERGENCY FLIGHT SURGEON DIRECTIVE // EVA SUIT HYPOXIA</div><br>
 <strong>1. IMMEDIATE ACTION:</strong> Rotate Extravehicular Mobility Unit (EMU) Primary Life Support System (PLSS) O₂ valve to <strong>HIGH-FLOW EMERGENCY PURGE</strong> (100% O₂ at 4.3 psid).<br><br>
@@ -1273,34 +1052,30 @@ function generateLocalFlightSurgeonReply(query) {
 <strong>3. CLINICAL TRIAGE:</strong> Current SpO₂ alarm threshold set to 92%. Ingested CSV records confirm nominal pre-breathe protocol duration (120 min) preventing venous gas emboli (Bends). Prepare hyperbaric mask upon ingress.`;
   }
 
-  // Check for Radiation / Solar Flare / SPE
   if (q.includes("radiation") || q.includes("solar") || q.includes("flare") || q.includes("spe") || q.includes("storm") || q.includes("dosim") || q.includes("sievert")) {
     return `<strong>✦ AURA RADIATION DOSIMETRY // Solar Particle Event (SPE) Protocol:</strong><br><br>
 <strong>MISSION SECTOR:</strong> ${p.name} (Active Ambient Radiation: <strong>${p.radiation}</strong>).<br><br>
-• <strong>Hazard Analysis:</strong> Deep space protons and heavy galactic cosmic ions (HZE nuclei) exceed LEO safe limits. Active cumulative mission dose is tracking within NASA 600 mSv career limit.<br>
-• <strong>Storm Shelter Directive:</strong> In the event of a NOAA Class X solar flare alert, crew must relocate to the heavily shielded central water wall / food locker storm shelter within 30 minutes.<br>
+• <strong>Hazard Analysis:</strong> Deep space galactic cosmic ray (GCR) flux and solar proton stream sensors active. Cumulative mission dose tracking within NASA 600 mSv career limit.<br>
+• <strong>Storm Shelter Directive:</strong> In the event of a NOAA Class X solar flare alert, crew must relocate to the central water wall / food locker storm shelter within 30 minutes.<br>
 • <strong>Medical Prophylaxis:</strong> Dispense antioxidant countermeasures (N-acetylcysteine + Vitamin E) and monitor real-time active personal dosimeters.`;
   }
 
-  // Check for Sleep / Circadian / Fatigue
   if (q.includes("sleep") || q.includes("circadian") || q.includes("insomnia") || q.includes("tired") || q.includes("fatigue") || q.includes("melatonin") || q.includes("wake")) {
     return `<strong>✦ AURA NEURO-BEHAVIORAL // Circadian Regulation & Fatigue Countermeasures:</strong><br><br>
-<strong>CLINICAL ASSESSMENT:</strong> ISS orbits yield 16 sunrises every 24 hours, causing severe melatonin suppression and circadian phase-shifting.<br><br>
+<strong>CLINICAL ASSESSMENT:</strong> Rapid orbital day-night cycles (16 sunrises/24h) trigger melatonin suppression and circadian phase-shifting.<br><br>
 • <strong>Crew Sleep Telemetry:</strong> Mean sleep duration over last 7 cycles is 6.8 hours with 18.2% deep N3 sleep.<br>
 • <strong>Lighting Protocol:</strong> Solid-State Light Assemblies (SSLA) set to Blue-Enriched High-Kelvin (450nm) during work shifts, shifting to warm low-intensity amber (2700K) 2 hours before crew sleep.<br>
 • <strong>Pharmacology:</strong> If insomnia persists, administer 0.5 mg oral melatonin 30 minutes prior to crew rest; avoid benzodiazepines due to emergency wake-up alertness protocols.`;
   }
 
-  // Check for Motion Sickness / SAS / Vestibular
   if (q.includes("motion") || q.includes("sas") || q.includes("nausea") || q.includes("vestibular") || q.includes("vomit") || q.includes("dizz")) {
     return `<strong>✦ AURA NEURO-VESTIBULAR // Space Adaptation Syndrome (SAS):</strong><br><br>
-<strong>CLINICAL ASSESSMENT:</strong> Otolith organs (utricle and saccule) lose gravitational weight input in microgravity, conflicting with visual and semicircular canal signals. Affects 70% of crew during flight days 1-3.<br><br>
+<strong>CLINICAL ASSESSMENT:</strong> Otolith organs lose gravitational weight input in microgravity, conflicting with visual and semicircular canal signals. Affects up to 70% of crew during flight days 1-3.<br><br>
 • <strong>Symptom Triage:</strong> Stomach awareness, malaise, disorientation, and vomiting risk.<br>
 • <strong>Clinical Countermeasure:</strong> Administer Promethazine (25-50 mg IM) as approved by Flight Surgeon rules. Restrict rapid head movements along the pitch and roll axes.<br>
 • <strong>Operational Rule:</strong> EVA operations strictly prohibited until SAS symptoms have resolved for a minimum of 48 hours.`;
   }
 
-  // Check for Bone / Muscle / Spine / ARED
   if (q.includes("bone") || q.includes("muscle") || q.includes("spine") || q.includes("atrophy") || q.includes("ared") || q.includes("calcium") || q.includes("back")) {
     return `<strong>✦ AURA MUSCULOSKELETAL // Bone Mineral Density & Spinal Elongation:</strong><br><br>
 <strong>ASSESSMENT:</strong> Without gravitational axial loading, osteoclast activity outpaces osteoblasts, resulting in ~1% trabecular bone loss per month in the femoral neck and lumbar vertebrae.<br><br>
@@ -1308,7 +1083,6 @@ function generateLocalFlightSurgeonReply(query) {
 • <strong>Countermeasure Routine:</strong> Mandatory daily 2.5 hours exercise regimen: Advanced Resistive Exercise Device (ARED) squats and deadlifts at 380 lbs, supplemented with weekly bisphosphonates and 1000 IU Vitamin D3.`;
   }
 
-  // Check for Data / CSV / Telemetry questions
   if (q.includes("dataset") || q.includes("csv") || q.includes("measure") || q.includes("source") || q.includes("stream") || q.includes("lsda") || q.includes("physionet")) {
     return `<strong>✦ AURA TELEMETRY ARCHITECTURE // Bioastronautics Ingestion:</strong><br><br>
 This system operates on verified time-series biometric streams compliant with NASA LSDA (Life Sciences Data Archive) and PhysioNet research archives.<br><br>
@@ -1316,13 +1090,11 @@ This system operates on verified time-series biometric streams compliant with NA
 • <strong>Dynamic Replay Engine:</strong> Telemetry rows (${activeCsvRows ? activeCsvRows.length : 0} records) are processed through an edge sliding-window anomaly detector that flags cardiac drift, hypercapnia, and hypoxemia in real time.`;
   }
 
-  // General Comprehensive Flight Surgeon Response for ANY user command
   return `<strong>✦ AURA FLIGHT SURGEON ASSESSMENT // Command: <em>"${query}"</em></strong><br><br>
 <strong>MISSION CONTEXT:</strong> ${p.name} · Gravity: ${p.gravity} · Latency: ${p.delayText}<br><br>
 <strong>CLINICAL EVALUATION:</strong> Your query regarding <em>"${query}"</em> has been processed against NASA Bioastronautics Standards (NASA-STD-3001) and Space Flight Human-System Standards.<br><br>
 • <strong>Current Crew Vitals:</strong> Real-time heart rate is nominal at <strong>${currentHr} bpm</strong>. SpO₂ steady at <strong>98.4%</strong>. Ingested time-series telemetry shows stable physiological compensation.<br>
-• <strong>Operational Directive:</strong> Maintain routine circadian hydration (2.5 L/day), log biometric deviations into the automated mission record, and follow prescribed countermeasure protocols for current mission phase.<br><br>
-<small style="color: #2dd4bf;">✦ TIP: For deep conversational medical reasoning, click [Connect Gemini API Key] to activate Google Gemini 2.5 Flash.</small>`;
+• <strong>Operational Directive:</strong> Maintain routine circadian hydration (2.5 L/day), log biometric deviations into the automated mission record, and follow prescribed countermeasure protocols for current mission phase.`;
 }
 
 // Ask AI Entrypoint
@@ -1332,7 +1104,7 @@ function askAi(promptText) {
   handleChatSubmit(new Event("submit"));
 }
 
-// Handle Chat Submission
+// Handle Chat Submission (Calls Backend /api/chat, seamless fallback to onboard CDSS)
 async function handleChatSubmit(event) {
   if (event) event.preventDefault();
   const input = document.querySelector("#chat-input-field");
@@ -1341,20 +1113,6 @@ async function handleChatSubmit(event) {
 
   const chatStream = document.querySelector("#chat-stream");
   if (!chatStream) return;
-
-  // Check if the user pasted an API key directly into the chat box!
-  if (query.startsWith("AIzaSy") && query.length >= 35) {
-    setGeminiKey(query);
-    if (input) input.value = "";
-    const keyMsg = document.createElement("div");
-    keyMsg.className = "assistant-message";
-    keyMsg.innerHTML = `<strong>✦ GEMINI API KEY RECOGNIZED & SAVED:</strong><br><br>
-Your Google Gemini API key has been securely saved to this browser session. Live Gemini 2.5 Flash flight surgeon reasoning is now active for all medical queries!`;
-    chatStream.appendChild(keyMsg);
-    chatStream.scrollTop = chatStream.scrollHeight;
-    playAerospaceChime(880, 0.2, "triangle");
-    return;
-  }
 
   // Append user message bubble
   const userDiv = document.createElement("div");
@@ -1367,357 +1125,70 @@ Your Google Gemini API key has been securely saved to this browser session. Live
   // Append temporary thinking indicator
   const thinkingDiv = document.createElement("div");
   thinkingDiv.className = "assistant-message is-thinking";
-  const hasGemini = getGeminiKey().length > 15;
-  thinkingDiv.innerHTML = `<span class="thinking-dots"><span></span><span></span><span></span></span> ${hasGemini ? "Gemini 2.5 Flash analyzing telemetry & spaceflight protocols..." : "AURA Flight Surgeon calculating clinical triage..."}`;
+  thinkingDiv.innerHTML = `<span class="thinking-dots"><span></span><span></span><span></span></span> AURA Flight Surgeon analyzing telemetry & spaceflight protocols...`;
   chatStream.appendChild(thinkingDiv);
   chatStream.scrollTop = chatStream.scrollHeight;
 
+  let reply = "";
+
+  // Attempt backend API call first
   try {
-    let reply = "";
-    if (hasGemini) {
-      reply = await callGeminiApi(query);
-    } else {
-      // Small simulated latency for natural aerospace feel
-      await new Promise(r => setTimeout(r, 450));
-      reply = generateLocalFlightSurgeonReply(query);
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: query,
+        planet: activeMissionPlanet
+      })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.reply) {
+        reply = formatMarkdown(data.reply);
+      }
     }
-
-    // Remove thinking indicator
-    if (thinkingDiv.parentNode) thinkingDiv.parentNode.removeChild(thinkingDiv);
-
-    // Append AI response
-    const aiDiv = document.createElement("div");
-    aiDiv.className = "assistant-message";
-    if (hasGemini) {
-      aiDiv.innerHTML = `<div class="gemini-powered-tag">✦ GEMINI 2.5 FLASH · FLIGHT SURGEON</div>` + reply;
-    } else {
-      aiDiv.innerHTML = reply;
-    }
-    chatStream.appendChild(aiDiv);
-    chatStream.scrollTop = chatStream.scrollHeight;
-
-    // Speak aloud if voice readout is enabled
-    speakText(reply);
-
   } catch (err) {
-    // If Gemini API fails, remove thinking indicator and fall back gracefully to local engine!
-    if (thinkingDiv.parentNode) thinkingDiv.parentNode.removeChild(thinkingDiv);
-
-    console.warn("Gemini API call failed, falling back to local engine:", err);
-    const fallbackReply = generateLocalFlightSurgeonReply(query);
-    
-    const errDiv = document.createElement("div");
-    errDiv.className = "assistant-message";
-    errDiv.innerHTML = `<div class="ai-error-tag">✦ Gemini API Notice: ${err.message || "Connection issue"}. Switched seamlessly to Onboard Flight Surgeon Engine.</div><br>` + fallbackReply;
-    chatStream.appendChild(errDiv);
-    chatStream.scrollTop = chatStream.scrollHeight;
-
-    speakText(fallbackReply);
+    // Backend offline or local static mode
   }
+
+  // Fallback to local clinical flight surgeon engine
+  if (!reply) {
+    await new Promise(r => setTimeout(r, 400));
+    reply = generateLocalFlightSurgeonReply(query);
+  }
+
+  // Remove thinking indicator
+  if (thinkingDiv.parentNode) thinkingDiv.parentNode.removeChild(thinkingDiv);
+
+  // Append AI response
+  const aiDiv = document.createElement("div");
+  aiDiv.className = "assistant-message";
+  aiDiv.innerHTML = `<div class="ai-flight-surgeon-tag">✦ AURA FLIGHT SURGEON · CLINICAL DIRECTIVE</div>` + reply;
+  chatStream.appendChild(aiDiv);
+  chatStream.scrollTop = chatStream.scrollHeight;
+
+  // Speak aloud if voice readout is enabled
+  speakText(reply);
 }
 
-// Initialize Gemini state on page load
-document.addEventListener("DOMContentLoaded", () => {
-  updateGeminiStatusUI();
+// Wire App Dock Click Handlers
+document.querySelectorAll(".app-dock-item").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const viewName = btn.dataset.view;
+    if (viewName) showView(viewName);
+  });
 });
-setTimeout(updateGeminiStatusUI, 500);
 
-const ANATOMICAL_SYSTEMS = {
-  brain: {
-    title: "Cerebral Perfusion & <em>ICP</em>",
-    kicker: "NASA HRP RISK 02 // COGNITIVE READY & INTRACRANIAL PRESSURE",
-    desc: "Microgravity cephalad fluid volume shifts alter venous drainage from the sagittal sinus, elevating resting ICP and requiring cognitive vigilance monitoring.",
-    badge: "GRADE 0 · OPTIMAL",
-    badgeClass: "status-badge-nominal",
-    stats: [
-      { kicker: "ESTIMATED ICP", val: "14.8 mmHg", baseline: "Nominal Range: 10 - 15 mmHg" },
-      { kicker: "PVT REACTION LATENCY", val: "218 ms", baseline: "NASA Target: < 250 ms (Elite)" },
-      { kicker: "COGNITIVE WORKLOAD", val: "12%", baseline: "NASA-TLX Fatigue Index (Low)" },
-      { kicker: "SLEEP EFFICIENCY", val: "88.4%", baseline: "Deep Rest Duration: 7.1 hrs" }
-    ],
-    countermeasures: [
-      { step: "STEP 1", text: "<strong>PVT Alertness Assessment:</strong> Execute 3-minute Psychomotor Vigilance Task on the station tablet daily before critical robotics tasks." },
-      { step: "STEP 2", text: "<strong>Circadian Phase Alignment:</strong> Ensure blue-depleted cabin spectrum (480nm notched) is activated 45 minutes prior to scheduled crew rest." },
-      { step: "STEP 3", text: "<strong>Cephalad Drainage Restraint:</strong> Sleep in a 15° inclined head-up sleeping bag posture if morning frontal tension is reported." }
-    ]
-  },
-  eyes: {
-    title: "Optic Nerve & <em>Retina (SANS)</em>",
-    kicker: "NASA HRP RISK 03 // SANS OCULAR FLUID SHIFT",
-    desc: "Absence of hydrostatic gradient shifts interstitial fluid headward, flattening the posterior globe and increasing optic nerve sheath diameter (ONSD).",
-    badge: "GRADE 0 · OBSERVATION",
-    badgeClass: "status-badge-warning",
-    stats: [
-      { kicker: "OPTIC NERVE SHEATH (ONSD)", val: "5.1 mm", baseline: "Earth Baseline: < 5.8 mm (Nominal)" },
-      { kicker: "INTRAOCULAR PRESSURE (IOP)", val: "16.2 mmHg", baseline: "Target: 12 - 21 mmHg (Safe)" },
-      { kicker: "CHORIORETINAL FOLDS", val: "None", baseline: "OCT Scan: Crisp margin" },
-      { kicker: "VISUAL ACUITY", val: "20/20", baseline: "Snellen Standard: 100% Correct" }
-    ],
-    countermeasures: [
-      { step: "STEP 1", text: "<strong>Lower Body Negative Pressure (LBNP):</strong> Don the Russian Chibis / NASA LBNP suit for 30 minutes at -25 mmHg to draw ~1.2 liters of fluid back to lower extremities." },
-      { step: "STEP 2", text: "<strong>Optical Coherence Tomography (OCT):</strong> Perform automated retinal ultrasound and fundus imaging scan in Columbus module every 14 MET days." },
-      { step: "STEP 3", text: "<strong>Space Medicine Protocol:</strong> Ensure daily sodium intake is throttled under 2,000 mg to prevent additional intracranial interstitial fluid pressure spikes." }
-    ]
-  },
-  heart: {
-    title: "Cardiovascular System & <em>Lead-II ECG</em>",
-    kicker: "NASA HRP RISK 04 // CARDIOVASCULAR DECONDITIONING",
-    desc: "Microgravity removes the hydrostatic column; stroke volume increases transiently, followed by plasma volume contraction (~10-15%) and myocardial atrophy risk.",
-    badge: "SINUS RHYTHM STABLE",
-    badgeClass: "status-badge-nominal",
-    stats: [
-      { kicker: "HEART RATE (ECG)", val: "72.0 bpm", baseline: "Resting Sinus Rhythm (Normative)" },
-      { kicker: "HRV (RMSSD)", val: "48.2 ms", baseline: "Vagal Autonomic Tone (Healthy)" },
-      { kicker: "R-R INTERVAL", val: "833 ms", baseline: "Lead-II Waveform Synchronized" },
-      { kicker: "MEAN ARTERIAL PRESSURE", val: "88 mmHg", baseline: "Target: 70 - 105 mmHg" }
-    ],
-    countermeasures: [
-      { step: "STEP 1", text: "<strong>CEVIS High-Intensity Intervals:</strong> 30 minutes cycling at >75% VO2 Max (185-200 Watts) on the station cycle ergometer daily." },
-      { step: "STEP 2", text: "<strong>Orthostatic Intolerance Fluid Loading:</strong> Consume 1 liter water with 8 isotonic salt tablets 2 hours prior to de-orbit burn or high-G maneuvers." },
-      { step: "STEP 3", text: "<strong>250 Hz Continuous Oscilloscope:</strong> Smart Bio-Harness monitors Lead-II cardiac signal continuously to catch sub-clinical PVC arrhythmias." }
-    ]
-  },
-  lungs: {
-    title: "Pulmonary Dynamics & <em>Arterial SpO₂</em>",
-    kicker: "NASA HRP RISK 05 // CLOSED CABIN ECLSS & RESPIRATORY",
-    desc: "Ventilation-perfusion ratio becomes more uniform in weightlessness, but cabin CO2 buildup (>3.0 mmHg) risks acute hypercapnia and hypoxia.",
-    badge: "ARTERIAL SpO₂ OPTIMAL",
-    badgeClass: "status-badge-nominal",
-    stats: [
-      { kicker: "ARTERIAL SpO₂", val: "98.9%", baseline: "Target Margin: 96 - 100%" },
-      { kicker: "RESPIRATORY RATE", val: "14.0 /min", baseline: "Tidal Volume: 520 mL (Regular)" },
-      { kicker: "CABIN pCO₂", val: "0.31 mmHg", baseline: "NASA STD-3001 Limit: < 3.0 mmHg" },
-      { kicker: "CABIN AMBIENT O₂", val: "21.2 kPa", baseline: "Nominal Atmospheric Balance" }
-    ],
-    countermeasures: [
-      { step: "STEP 1", text: "<strong>Cabin ECLSS Verification:</strong> Verify Carbon Dioxide Removal Assembly (CDRA) desorbing cycles are actively clearing amine beds." },
-      { step: "STEP 2", text: "<strong>EVA Spacewalk Pre-Breathe:</strong> Follow strict 100% oxygen pre-breathe protocol (2.5 hours) before Quest airlock depressurization." },
-      { step: "STEP 3", text: "<strong>Emergency Hypoxia Protocol:</strong> If SpO2 drops below 90% or suit pO2 drops below 16 kPa, rotate PLSS regulator to HIGH-FLOW PURGE immediately." }
-    ]
-  },
-  spine: {
-    title: "Skeletal Column & <em>Bone Density</em>",
-    kicker: "NASA HRP RISK 01 // BONE DEMINERALIZATION & SPINAL ELONGATION",
-    desc: "Spinal intervertebral discs decompress and expand without gravity (+4 to 5 cm elongation), causing microgravity back discomfort and -1.5% monthly bone loss in the femoral neck.",
-    badge: "RETENTION: 98.4%",
-    badgeClass: "status-badge-nominal",
-    stats: [
-      { kicker: "SPINAL ELONGATION", val: "+4.8 cm", baseline: "Disc Decompression (Adaptive)" },
-      { kicker: "BONE MINERAL RETENTION", val: "98.4%", baseline: "ARED Resistance Load Maintained" },
-      { kicker: "SERUM CALCIUM", val: "9.2 mg/dL", baseline: "Safe (No Hypercalciuria)" },
-      { kicker: "LUMBAR COMPLAINT", val: "Score 1/10", baseline: "Transient Early Flight Adaptation" }
-    ],
-    countermeasures: [
-      { step: "STEP 1", text: "<strong>ARED Heavy Resistance:</strong> Execute 45-minute daily deadlift, squat, and heel-raise sets with 380 lbs force equivalent." },
-      { step: "STEP 2", text: "<strong>Nutritional Supplementation:</strong> Take weekly oral bisphosphonate (alendronate) and 1,000 IU Vitamin D3 to inhibit osteoclastic bone resorption." },
-      { step: "STEP 3", text: "<strong>Knee-to-Chest Decompression:</strong> Perform 10-minute fetal curl spinal stretch in sleep station to alleviate paraspinal muscle fatigue." }
-    ]
-  },
-  fluid: {
-    title: "Fluid Redistribution & <em>Cephalad Shift</em>",
-    kicker: "NASA HRP RISK 04 // CEPHALAD HYDROSTATIC SHIFT",
-    desc: "Instantaneous loss of gravity shifts approximately 1.5 to 2.0 liters of blood and interstitial fluid upward toward the neck and thoracic cavity ('puffy face, bird legs').",
-    badge: "PUFFY FACE / BIRD LEGS",
-    badgeClass: "status-badge-warning",
-    stats: [
-      { kicker: "CEPHALAD FLUID TRANSLOCATION", val: "+1.8 Liters", baseline: "Headward Volume Migration" },
-      { kicker: "CALF CIRCUMFERENCE", val: "-8.2%", baseline: "Lower Extremity Fluid Loss" },
-      { kicker: "PLASMA VOLUME ADJUSTMENT", val: "-12%", baseline: "Central Diuresis Reflex" },
-      { kicker: "HYDRATION STATUS", val: "88%", baseline: "2,200 / 2,500 mL Logged" }
-    ],
-    countermeasures: [
-      { step: "STEP 1", text: "<strong>Chibis LBNP Vacuum Countermeasure:</strong> 30 minutes in Russian Chibis or NASA LBNP chamber at -30 mmHg to draw fluid back to lower extremities." },
-      { step: "STEP 2", text: "<strong>Thigh Braslet Cuffs:</strong> Don elastic Braslet occlusive cuffs on upper thighs for first 14 flight days to simulate hydrostatic gradient." },
-      { step: "STEP 3", text: "<strong>Targeted Hydration Protocol:</strong> Ensure 2.5 L water intake daily with electrolyte replacement packs before heavy resistance exercise." }
-    ]
-  },
-  muscles: {
-    title: "Musculoskeletal Complex & <em>Calf Soleus</em>",
-    kicker: "NASA HRP RISK 04 // SKELETAL MUSCLE ATROPHY",
-    desc: "Postural anti-gravity muscles (soleus, gastrocnemius, quadriceps) undergo rapid slow-twitch to fast-twitch fiber conversion and up to 20% volume loss without daily loading.",
-    badge: "ARED COMPLIANT",
-    badgeClass: "status-badge-nominal",
-    stats: [
-      { kicker: "SOLEUS PEAK FORCE", val: "94.2%", baseline: "Neuromuscular Baseline Maintained" },
-      { kicker: "CALF LEG VOLUME", val: "-7.5%", baseline: "Fluid Loss Compensated" },
-      { kicker: "ARED FORCE EQUIVALENT", val: "380 lbs", baseline: "Daily Target: 350 lbs (Exceeded)" },
-      { kicker: "GRIP DYNAMOMETER", val: "48 kg", baseline: "Isometric Force: Strong" }
-    ],
-    countermeasures: [
-      { step: "STEP 1", text: "<strong>ARED Heel Raises & Squats:</strong> 3 sets of 15 reps with 200 lbs eccentric overload on soleus/gastrocnemius calf complex." },
-      { step: "STEP 2", text: "<strong>Protein & Amino Acid Intake:</strong> Ingest minimum 1.4g/kg protein with branched-chain amino acids (BCAAs) across all daily meals." },
-      { step: "STEP 3", text: "<strong>Neuromuscular Electrostimulation:</strong> Apply EMS pads to calves if scheduled EVA spacewalk fatigue prevents full gym session." }
-    ]
+// Detect App / Standalone mode
+(function detectAppMode() {
+  const isAppMode = window.matchMedia("(display-mode: standalone)").matches ||
+                    window.navigator.standalone === true ||
+                    navigator.userAgent.includes("Electron");
+  if (isAppMode) {
+    document.body.classList.add("is-app-mode");
   }
-};
-
-let currentSelectedOrgan = "eyes";
-
-function selectBodyOrgan(organId) {
-  const data = ANATOMICAL_SYSTEMS[organId];
-  if (!data) return;
-
-  currentSelectedOrgan = organId;
-
-  // 1. Update SVG Hotspots
-  document.querySelectorAll(".hotspot-node").forEach((node) => node.classList.remove("is-selected"));
-  const activeNode = document.querySelector(`#node-${organId}`);
-  if (activeNode) activeNode.classList.add("is-selected");
-
-  // 2. Update Organ Chips
-  document.querySelectorAll(".organ-chip").forEach((chip) => chip.classList.remove("is-active"));
-  const activeChip = document.querySelector(`#chip-${organId}`);
-  if (activeChip) activeChip.classList.add("is-active");
-
-  // 3. Update Header & Overview Rail
-  const sysNameEl = document.querySelector("#body-system-name");
-  if (sysNameEl) sysNameEl.innerHTML = data.title;
-  const sysStatusEl = document.querySelector("#body-system-status");
-  if (sysStatusEl) sysStatusEl.innerHTML = `<span class="${data.badgeClass}">${data.badge}</span>`;
-
-  // 4. Update Organ Detail Card
-  const kickerEl = document.querySelector("#organ-kicker");
-  const titleEl = document.querySelector("#organ-title");
-  const descEl = document.querySelector("#organ-desc");
-  const badgeEl = document.querySelector("#organ-badge");
-
-  if (kickerEl) kickerEl.textContent = data.kicker;
-  if (titleEl) titleEl.innerHTML = data.title;
-  if (descEl) descEl.textContent = data.desc;
-  if (badgeEl) {
-    badgeEl.textContent = data.badge;
-    badgeEl.className = `organ-status-badge ${data.badgeClass}`;
-  }
-
-  // 5. Update Telemetry Boxes
-  const boxesContainer = document.querySelector("#organ-telemetry-boxes");
-  if (boxesContainer && data.stats) {
-    let boxesHtml = "";
-    data.stats.forEach((st) => {
-      boxesHtml += `
-        <div class="organ-telemetry-box">
-          <span class="box-kicker">${st.kicker}</span>
-          <span class="box-val">${st.val}</span>
-          <span class="box-baseline">${st.baseline}</span>
-        </div>
-      `;
-    });
-    boxesContainer.innerHTML = boxesHtml;
-  }
-
-  // 6. Update Countermeasure Steps
-  const stepsContainer = document.querySelector("#countermeasure-steps-container");
-  if (stepsContainer && data.countermeasures) {
-    let stepsHtml = "";
-    data.countermeasures.forEach((cm) => {
-      stepsHtml += `
-        <div class="countermeasure-step">
-          <span class="countermeasure-step-num">${cm.step}</span>
-          <div>${cm.text}</div>
-        </div>
-      `;
-    });
-    stepsContainer.innerHTML = stepsHtml;
-  }
-}
-
-function consultAiForOrgan() {
-  const data = ANATOMICAL_SYSTEMS[currentSelectedOrgan];
-  const query = `Explain spaceflight protocols and clinical countermeasures for ${currentSelectedOrgan} in microgravity`;
-  showView("assistant");
-  askAi(query);
-}
-
-function syncBodyMapWithPreset(presetKey) {
-  if (presetKey === "hypoxia") {
-    selectBodyOrgan("lungs");
-    const badgeEl = document.querySelector("#organ-badge");
-    if (badgeEl) {
-      badgeEl.textContent = "CRITICAL HYPOXIA ALERT";
-      badgeEl.className = "organ-status-badge status-badge-critical";
-    }
-  } else if (presetKey === "sans") {
-    selectBodyOrgan("eyes");
-  } else if (presetKey === "arrhythmia") {
-    selectBodyOrgan("heart");
-    const badgeEl = document.querySelector("#organ-badge");
-    if (badgeEl) {
-      badgeEl.textContent = "VENTRICULAR ARRHYTHMIA (PVC)";
-      badgeEl.className = "organ-status-badge status-badge-critical";
-    }
-  } else if (presetKey === "ared") {
-    selectBodyOrgan("muscles");
-  } else if (presetKey === "radiation") {
-    selectBodyOrgan("brain");
-    const badgeEl = document.querySelector("#organ-badge");
-    if (badgeEl) {
-      badgeEl.textContent = "SOLAR FLARE SPE (18.4 mSv/h)";
-      badgeEl.className = "organ-status-badge status-badge-warning";
-    }
-  } else {
-    selectBodyOrgan("eyes");
-  }
-}
-
-function setMissionDelay(destKey) {
-  const dests = {
-    leo: { name: "ISS Low Earth Orbit (262 mi)", delay: "0.28 sec", telemed: "GROUND TELEMEDICINE: ONLINE", mode: "normal" },
-    moon: { name: "Artemis Gateway (Moon · 240,000 mi)", delay: "1.28 sec", telemed: "GROUND TELEMEDICINE: BORDERLINE", mode: "warning" },
-    "mars-min": { name: "Mars Opposition (Closest · 33.9M mi)", delay: "4.2 min", telemed: "GROUND TELEMED: UNAVAILABLE (8.4m RTT)", mode: "critical" },
-    "mars-max": { name: "Mars Conjunction (250M mi)", delay: "22.4 min", telemed: "100% AUTONOMOUS ONBOARD AI ENGAGED", mode: "critical" }
-  };
-
-  const d = dests[destKey];
-  if (!d) return;
-
-  document.querySelectorAll(".delay-chip").forEach((btn) => btn.classList.remove("is-active"));
-  const btn = document.querySelector(`#delay-btn-${destKey}`);
-  if (btn) btn.classList.add("is-active");
-
-  const nameEl = document.querySelector("#current-mission-dest");
-  const timeEl = document.querySelector("#current-delay-time");
-  const textEl = document.querySelector("#delay-telemed-text");
-  const badgeEl = document.querySelector("#delay-telemed-badge");
-
-  if (nameEl) nameEl.textContent = d.name;
-  if (timeEl) timeEl.textContent = d.delay;
-  if (textEl) textEl.textContent = d.telemed;
-
-  if (badgeEl) {
-    if (d.mode === "critical") {
-      badgeEl.style.borderColor = "#f87171";
-      badgeEl.style.color = "#f87171";
-    } else if (d.mode === "warning") {
-      badgeEl.style.borderColor = "#38bdf8";
-      badgeEl.style.color = "#38bdf8";
-    } else {
-      badgeEl.style.borderColor = "rgba(56, 189, 248, 0.35)";
-      badgeEl.style.color = "#7dd3fc";
-    }
-  }
-
-  addDynamicAlert(
-    `DISTANCE HAZARD: ${d.name}`,
-    `One-way comms delay shifted to ${d.delay}. ${d.mode === 'critical' ? 'Ground Houston medical consultation is impossible. Autonomous on-board AI triage activated.' : 'Standard communication link available.'}`,
-    d.mode === 'critical' ? 'critical' : 'warning'
-  );
-}
-
-function toggleQuest(id, el) {
-  if (!el) return;
-  const isDone = el.classList.toggle("is-completed");
-  const xpEl = el.querySelector(".quest-xp");
-  const fillEl = el.querySelector(".quest-progress-fill");
-
-  if (isDone) {
-    if (xpEl && !xpEl.textContent.includes("✓")) xpEl.textContent += " ✓";
-    if (fillEl) fillEl.style.width = "100%";
-  } else {
-    if (xpEl) xpEl.textContent = xpEl.textContent.replace(" ✓", "");
-    if (fillEl) fillEl.style.width = "40%";
-  }
-}
-
+})();
 
 /* ==========================================================================
    8. PWA INSTALLATION & SERVICE WORKER ENGINE
