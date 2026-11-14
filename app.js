@@ -268,30 +268,18 @@ document.addEventListener("pointermove", (event) => {
   });
 }, { passive: true });
 
-let scrollFrame = 0;
 function updateScrollMotion() {
-  scrollFrame = 0;
-  if (reducedMotion.matches) return;
-
+  // Static nominal scale - all scroll effects removed
   if (hero && heroImage) {
-    const heroRect = hero.getBoundingClientRect();
-    const heroProgress = Math.max(0, Math.min(1, (window.innerHeight - heroRect.top) / (window.innerHeight + heroRect.height)));
-    const scrollScale = (1.025 + heroProgress * 0.13).toFixed(3);
-    hero.style.setProperty("--hero-scroll-scale", scrollScale);
-    heroImage.style.setProperty("--hero-scale", scrollScale);
+    hero.style.setProperty("--hero-scroll-scale", "1");
+    heroImage.style.setProperty("--hero-scale", "1");
   }
-  document.documentElement.style.setProperty("--space-parallax", `${Math.round(window.scrollY * -0.045)}px`);
-
+  document.documentElement.style.setProperty("--space-parallax", "0px");
   document.querySelectorAll(".story-photo").forEach((photo) => {
-    const rect = photo.getBoundingClientRect();
-    const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
-    photo.style.setProperty("--story-scroll-scale", (1 + progress * 0.045).toFixed(3));
+    photo.style.setProperty("--story-scroll-scale", "1");
   });
 }
-
-window.addEventListener("scroll", () => {
-  if (!scrollFrame) scrollFrame = window.requestAnimationFrame(updateScrollMotion);
-}, { passive: true });
+// Note: scroll event listeners removed to eliminate scrolling effects across all tabs
 
 if (hero && heroImage) {
   hero.addEventListener("pointermove", (event) => {
@@ -1327,19 +1315,18 @@ function cycleSpaceBackground() {
     initStars();
   }
 
-  // Multi-layered Stars with 3D Depth Coordinates
+  // Multi-layered Serene Stars
   const stars = [];
   const STAR_COLORS = ["#ffffff", "#e0edff", "#c1dcfa", "#7dd3fc", "#38bdf8", "#dfc79c", "#76e4d2"];
 
   function initStars() {
     stars.length = 0;
-    const starCount = Math.min(260, Math.floor((width * height) / 6500));
+    const starCount = Math.min(220, Math.floor((width * height) / 7500));
     for (let i = 0; i < starCount; i++) {
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        z: Math.random() * 800 + 50,
-        radius: Math.random() * 1.6 + 0.5,
+        radius: Math.random() * 1.5 + 0.5,
         color: STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)],
         alpha: Math.random() * 0.7 + 0.25,
         twinkleSpeed: Math.random() * 0.02 + 0.008,
@@ -1357,7 +1344,7 @@ function cycleSpaceBackground() {
   function spawnMeteor(forcedX, forcedY) {
     const startX = forcedX !== undefined ? forcedX : Math.random() * width * 0.9;
     const startY = forcedY !== undefined ? forcedY : Math.random() * (height * 0.45);
-    const angle = (Math.PI / 180) * (Math.random() * 20 + 35); // 35 to 55 degrees
+    const angle = (Math.PI / 180) * (Math.random() * 20 + 35);
     const speed = Math.random() * 10 + 16;
     const length = Math.random() * 90 + 110;
     const colors = [
@@ -1404,74 +1391,6 @@ function cycleSpaceBackground() {
     mouseX = e.clientX;
     mouseY = e.clientY;
   });
-
-  // Dynamic Scroll & Deep Space Warp Flight Engine
-  let lastScrollY = window.scrollY;
-  let warpFactor = 0;
-  let targetWarp = 0;
-  let scrollProgress = 0;
-
-  function handleScrollFlight() {
-    const currentY = window.scrollY;
-    const deltaY = currentY - lastScrollY;
-    lastScrollY = currentY;
-
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    scrollProgress = docHeight > 0 ? Math.min(1, Math.max(0, currentY / docHeight)) : 0;
-
-    const scrollSpeed = Math.abs(deltaY);
-    if (scrollSpeed > 1) {
-      // Accelerate warp factor on scroll
-      targetWarp = Math.min(2.5, targetWarp + scrollSpeed * 0.045);
-    }
-
-    // Parallax zoom on cosmic nebula and backdrop elements
-    const nebula = document.querySelector(".space-bg-nebula");
-    if (nebula) {
-      const zoomScale = 1 + scrollProgress * 0.18;
-      const panY = -scrollProgress * 40;
-      nebula.style.transform = `scale(${zoomScale}) translateY(${panY}px)`;
-    }
-
-    const auroraWave = document.querySelector(".space-bg-aurora-wave");
-    if (auroraWave) {
-      auroraWave.style.opacity = `${0.35 + scrollProgress * 0.45}`;
-    }
-
-    // Update real-time Space Flight HUD
-    updateFlightHud(scrollProgress);
-  }
-
-  window.addEventListener("scroll", handleScrollFlight, { passive: true });
-
-  function updateFlightHud(progress) {
-    const hud = document.querySelector("#space-flight-hud");
-    if (!hud) return;
-
-    const heading = document.querySelector("#sf-heading-text");
-    const phase = document.querySelector("#sf-phase-val");
-    const dist = document.querySelector("#sf-dist-val");
-    const depth = document.querySelector("#sf-depth-val");
-
-    if (progress < 0.28) {
-      if (heading) heading.textContent = "TRAJECTORY: LEO ASCENT (ISS EXPEDITION 72)";
-      if (phase) phase.textContent = "LEO INSERTION";
-      if (dist) dist.textContent = "408 KM ALTITUDE";
-      if (depth) depth.textContent = "STAGE 01 · LOW EARTH ORBIT";
-    } else if (progress < 0.68) {
-      if (heading) heading.textContent = "TRAJECTORY: TRANSLUNAR INJECTION (ARTEMIS)";
-      if (phase) phase.textContent = "CISLUNAR TRANSIT";
-      const lunarDist = Math.floor(408 + (progress - 0.28) * 960000);
-      if (dist) dist.textContent = `${lunarDist.toLocaleString()} KM`;
-      if (depth) depth.textContent = "STAGE 02 · CISLUNAR DEEP SPACE";
-    } else {
-      if (heading) heading.textContent = "TRAJECTORY: INTERPLANETARY MARS CRUISE";
-      if (phase) phase.textContent = "HELIOCENTRIC CRUISE";
-      const marsDist = Math.floor(384400 + (progress - 0.68) * 54200000);
-      if (dist) dist.textContent = `${marsDist.toLocaleString()} KM`;
-      if (depth) depth.textContent = "STAGE 03 · DEEP SPACE EXPLORATION";
-    }
-  }
 
   // ISS Satellite Orbital Tracker
   let issAngle = 0.2;
@@ -1527,7 +1446,7 @@ function cycleSpaceBackground() {
     ctx.restore();
   }
 
-  // Main Render Loop
+  // Main Render Loop (Pure peaceful drift, zero scroll effects)
   function animate(timestamp) {
     if (document.hidden) {
       requestAnimationFrame(animate);
@@ -1535,14 +1454,6 @@ function cycleSpaceBackground() {
     }
 
     ctx.clearRect(0, 0, width, height);
-
-    // Smooth warp deceleration
-    targetWarp *= 0.92;
-    warpFactor += (targetWarp - warpFactor) * 0.14;
-    if (warpFactor < 0.002) warpFactor = 0;
-
-    const centerX = width * 0.5;
-    const centerY = height * 0.5;
 
     // 1. Draw Ripples
     for (let i = ripples.length - 1; i >= 0; i--) {
@@ -1571,77 +1482,43 @@ function cycleSpaceBackground() {
       ctx.restore();
     }
 
-    // 2. Draw Stars with 3D Warp Streaks on Scroll
+    // 2. Draw Stars (Gentle, steady celestial twinkling - no scroll distortion)
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
 
-      // Twinkle calculation
       s.twinklePhase += s.twinkleSpeed;
       const currentAlpha = s.alpha * (0.65 + 0.35 * Math.sin(s.twinklePhase));
 
-      // Vector from cosmic center
-      const dx = s.x - centerX;
-      const dy = s.y - centerY;
-      const distFromCenter = Math.hypot(dx, dy) || 1;
-      const normX = dx / distFromCenter;
-      const normY = dy / distFromCenter;
+      s.x += s.vx;
+      s.y += s.vy;
+      if (s.x < 0) s.x = width;
+      if (s.x > width) s.x = 0;
+      if (s.y < 0) s.y = height;
+      if (s.y > height) s.y = 0;
 
-      if (warpFactor > 0.02) {
-        // Warp travel: accelerate stars outward from center
-        s.x += normX * warpFactor * (distFromCenter * 0.02 + 2.5);
-        s.y += normY * warpFactor * (distFromCenter * 0.02 + 2.5);
-
-        // Respawn when flying out of screen
-        if (s.x < 0 || s.x > width || s.y < 0 || s.y > height) {
-          s.x = centerX + (Math.random() - 0.5) * (width * 0.35);
-          s.y = centerY + (Math.random() - 0.5) * (height * 0.35);
-        }
-
-        // Draw Warp Speed Motion Streak
-        const streakLength = Math.min(80, (distFromCenter * 0.12 + 6) * warpFactor);
-        ctx.save();
+      // Interactive Constellation Lines on Mouse Hover
+      const distToMouse = Math.hypot(mouseX - s.x, mouseY - s.y);
+      if (distToMouse < 95) {
+        const lineAlpha = (1 - distToMouse / 95) * 0.32;
         ctx.beginPath();
         ctx.moveTo(s.x, s.y);
-        ctx.lineTo(s.x - normX * streakLength, s.y - normY * streakLength);
-        ctx.strokeStyle = s.color;
-        ctx.lineWidth = Math.max(0.8, s.radius * (1 + warpFactor * 0.35));
-        ctx.globalAlpha = Math.max(0, Math.min(1, currentAlpha * (0.75 + warpFactor * 0.35)));
+        ctx.lineTo(mouseX, mouseY);
+        ctx.strokeStyle = `rgba(223, 199, 156, ${lineAlpha})`;
+        ctx.lineWidth = 0.8;
         ctx.stroke();
-        ctx.restore();
-      } else {
-        // Gentle peaceful cosmic drift
-        s.x += s.vx;
-        s.y += s.vy;
-        if (s.x < 0) s.x = width;
-        if (s.x > width) s.x = 0;
-        if (s.y < 0) s.y = height;
-        if (s.y > height) s.y = 0;
-
-        // Interactive Constellation Lines on Mouse Hover
-        const distToMouse = Math.hypot(mouseX - s.x, mouseY - s.y);
-        if (distToMouse < 95) {
-          const lineAlpha = (1 - distToMouse / 95) * 0.32;
-          ctx.beginPath();
-          ctx.moveTo(s.x, s.y);
-          ctx.lineTo(mouseX, mouseY);
-          ctx.strokeStyle = `rgba(223, 199, 156, ${lineAlpha})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-        }
-
-        // Normal point star
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-        ctx.fillStyle = s.color;
-        ctx.globalAlpha = Math.max(0, Math.min(1, currentAlpha));
-        if (s.layer === "foreground") {
-          ctx.shadowColor = s.color;
-          ctx.shadowBlur = 6;
-        }
-        ctx.fill();
-        ctx.shadowBlur = 0;
-        ctx.globalAlpha = 1;
       }
+
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = Math.max(0, Math.min(1, currentAlpha));
+      if (s.layer === "foreground") {
+        ctx.shadowColor = s.color;
+        ctx.shadowBlur = 6;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
     }
 
     // 3. Draw ISS Orbit & Vehicle
@@ -1684,7 +1561,6 @@ function cycleSpaceBackground() {
       ctx.shadowBlur = 10;
       ctx.stroke();
 
-      // Glowing Meteor Head
       ctx.beginPath();
       ctx.arc(m.x, m.y, 2.5, 0, Math.PI * 2);
       ctx.fillStyle = "#ffffff";

@@ -26,14 +26,7 @@
       <canvas id="space-canvas" class="space-canvas"></canvas>
       <div class="space-bg-vignette"></div>
 
-      <!-- Deep Space Trajectory Flight HUD (Reacts to page scrolling into deep space) -->
-      <div class="space-flight-hud" id="space-flight-hud" aria-hidden="true">
-        <div class="sf-hud-compass">
-          <span class="sf-reticle">⌖</span>
-          <span class="sf-heading" id="sf-heading-text">TRAJECTORY: LEO ASCENT</span>
-        </div>
-        <div class="sf-hud-telemetry">
-          <div class="sf-stat"><span class="sf-lbl">MISSION PHASE</span><strong id="sf-phase-val">LEO INSERTION</strong></div>
+      
           <div class="sf-stat"><span class="sf-lbl">SPACE DISTANCE</span><strong id="sf-dist-val">408 KM</strong></div>
           <div class="sf-stat"><span class="sf-lbl">COSMIC DEPTH</span><strong id="sf-depth-val">STAGE 01</strong></div>
         </div>
@@ -58,7 +51,7 @@
         <button class="nav-link" type="button" data-view="crew">Crew</button>
         <button class="nav-link" type="button" data-view="assistant">AI assistant <span class="nav-dot"></span></button>
         <button class="nav-link" type="button" data-view="insights">Insights</button>
-        <button class="nav-link nav-more" type="button" data-view="sources">NASA resources</button>
+        <button class="nav-link nav-more" type="button" data-view="sources">Resources</button>
         <span class="nav-orbit-trail" aria-hidden="true"></span>
       </nav>
 
@@ -66,7 +59,7 @@
         <!-- NASA Space Background Switcher -->
         <button class="bg-theme-pill" id="bg-cycle-btn" type="button" onclick="cycleSpaceBackground()" title="Click to cycle real NASA space views in the background">
           <span class="bg-orbit-glyph">✦</span>
-          <span class="bg-pill-label">NASA VIEW:</span>
+          <span class="bg-pill-label">VIEW:</span>
           <strong id="bg-theme-name">ISS Earth Airglow</strong>
           <span class="bg-cycle-icon">↻</span>
         </button>
@@ -74,7 +67,7 @@
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           <span>Install App</span>
         </button>
-        <span class="demo-state"><i class="status-live"></i> NASA LSDA LIVE STREAM</span>
+        <span class="demo-state"><i class="status-live"></i> LIVE</span>
         <button class="alert-button" type="button" data-view="alerts" aria-label="Open alerts">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
           <span>Alerts</span>
