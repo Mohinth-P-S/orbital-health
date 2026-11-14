@@ -5,12 +5,16 @@
   --panel: rgba(13, 20, 36, 0.82);
   --panel-strong: rgba(17, 26, 46, 0.94);
   --line: rgba(255, 255, 255, 0.12);
-  --line-bright: rgba(255, 255, 255, 0.24);
+  --line-bright: rgba(223, 199, 156, 0.35);
   --text: #ffffff;
   --muted: #cbd5e1;
   --faint: #94a3b8;
-  --blue: #38bdf8;
-  --blue-light: #7dd3fc;
+  --gold: #dfc79c;
+  --gold-light: #eed8b2;
+  --gold-dark: #bfa15f;
+  --gold-glow: rgba(223, 199, 156, 0.25);
+  --blue: #dfc79c;
+  --blue-light: #eed8b2;
   --sky: #38bdf8;
   --ice: #ffffff;
   --ice-soft: #f1f5f9;
@@ -3156,4 +3160,378 @@ body.is-app-mode .app-shell {
   color: #38bdf8;
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+
+
+/* Brand Header (Champagne Gold Accents) */
+.brand-copy strong { font-size: 19px !important; line-height: 1.1; letter-spacing: .24em; font-weight: 800 !important; color: #ffffff !important; }
+.brand-copy small { color: #dfc79c !important; font-family: var(--mono); letter-spacing: .22em; font-size: 11.5px !important; font-weight: 700 !important; }
+
+/* Eyebrows & Kickers in Radiant Gold */
+.eyebrow { color: #dfc79c !important; font-family: var(--mono); font-size: 13.5px !important; font-weight: 750 !important; letter-spacing: .22em; text-transform: uppercase; }
+.eyebrow-line { height: 2px !important; width: 44px !important; background: #dfc79c !important; }
+.panel-kicker { color: #dfc79c !important; font-size: 12.5px !important; font-weight: 700 !important; letter-spacing: .18em; }
+
+/* Headings italic / em in radiant gold */
+h1 em, h2 em, h3 em, #assistant-title em, #hero-title em { color: #dfc79c !important; font-style: italic; }
+
+/* Navigation in Gold */
+.nav-orbit-trail { background: #dfc79c !important; }
+.nav-orbit-trail::after { border-color: #ffffff !important; background: #dfc79c !important; }
+.nav-link.is-active { color: #ffffff !important; }
+
+/* Primary Button in Gold Glass */
+.button-primary { 
+  background: linear-gradient(135deg, rgba(223, 199, 156, 0.25), rgba(191, 161, 95, 0.35)) !important; 
+  border-color: rgba(223, 199, 156, 0.6) !important; 
+  color: #ffffff !important; 
+  font-size: 14px !important; 
+  font-weight: 600 !important; 
+}
+.button-primary:hover { 
+  background: linear-gradient(135deg, rgba(223, 199, 156, 0.45), rgba(191, 161, 95, 0.55)) !important; 
+  border-color: #dfc79c !important; 
+  transform: translateY(-1px); 
+}
+
+.bg-theme-pill { border-color: rgba(223, 199, 156, 0.35) !important; color: #ffffff !important; }
+.bg-theme-pill:hover { border-color: #dfc79c !important; background: rgba(223, 199, 156, 0.12) !important; }
+#bg-theme-name { color: #dfc79c !important; font-weight: 700 !important; }
+
+
+
+/* ==========================================================================
+   PERFECT AI COMMAND CONSOLE ALIGNMENT & GOLD THEME
+   ========================================================================== */
+.ai-console-wrapper {
+  width: 100% !important;
+  max-width: 1240px !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+.chat-panel.ai-expanded-panel {
+  width: 100% !important;
+  min-height: 680px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: rgba(11, 17, 30, 0.9) !important;
+  border: 1px solid rgba(223, 199, 156, 0.28) !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(223, 199, 156, 0.1) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 1. Command Topbar: Explicit Clean Row Layout */
+.chat-top.ai-command-top {
+  height: auto !important;
+  min-height: 64px !important;
+  padding: 14px 24px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(8, 12, 22, 0.92) !important;
+}
+
+.ai-console-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+.ai-glow-avatar {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(223, 199, 156, 0.15) !important;
+  border: 1px solid #dfc79c !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 16px !important;
+  color: #dfc79c !important;
+  box-shadow: 0 0 14px rgba(223, 199, 156, 0.25) !important;
+}
+
+.ai-console-brand .chat-meta {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.ai-console-brand .chat-meta strong {
+  font-size: 15px !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-family: var(--sans) !important;
+  line-height: 1.2 !important;
+}
+
+.ai-console-brand .chat-meta small {
+  font-size: 11px !important;
+  font-family: var(--mono) !important;
+  color: #dfc79c !important;
+  letter-spacing: .14em !important;
+  margin: 0 !important;
+}
+
+/* Live Telemetry HUD Ribbon: Clean Row of Chips */
+.ai-live-hud-ribbon {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.ai-hud-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 5px 12px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(223, 199, 156, 0.25) !important;
+  border-radius: 999px !important;
+  font-size: 11.5px !important;
+  color: #cbd5e1 !important;
+  font-family: var(--mono) !important;
+  white-space: nowrap !important;
+}
+
+.ai-hud-chip strong {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.hud-icon { font-size: 12px !important; }
+.hud-label { color: #dfc79c !important; font-weight: 600 !important; }
+
+.ai-status-right {
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+}
+
+/* 2. Quick Action Command Chips Ribbon */
+.ai-command-chips-ribbon {
+  padding: 10px 24px !important;
+  background: rgba(6, 9, 18, 0.75) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  overflow-x: auto !important;
+}
+
+.chips-ribbon-label {
+  font-family: var(--mono) !important;
+  font-size: 11px !important;
+  color: #dfc79c !important;
+  letter-spacing: .15em !important;
+  white-space: nowrap !important;
+  font-weight: 700 !important;
+  flex-shrink: 0 !important;
+}
+
+.chips-scroll-track {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+
+.chips-scroll-track::-webkit-scrollbar { display: none !important; }
+
+.ai-chip-btn {
+  padding: 6px 14px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 999px !important;
+  color: #f1f5f9 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all 0.2s ease !important;
+}
+
+.ai-chip-btn:hover {
+  background: rgba(223, 199, 156, 0.18) !important;
+  border-color: #dfc79c !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 3. Expansive Chat Body */
+.chat-body.ai-expanded-body {
+  flex: 1 !important;
+  min-height: 440px !important;
+  max-height: 520px !important;
+  padding: 24px 28px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.chat-date {
+  font-family: var(--mono) !important;
+  font-size: 11px !important;
+  color: #dfc79c !important;
+  letter-spacing: .16em !important;
+  text-align: center !important;
+  margin-bottom: 6px !important;
+}
+
+.user-message {
+  align-self: flex-end !important;
+  background: linear-gradient(135deg, rgba(223, 199, 156, 0.22), rgba(191, 161, 95, 0.28)) !important;
+  border: 1px solid rgba(223, 199, 156, 0.5) !important;
+  color: #ffffff !important;
+  padding: 12px 18px !important;
+  border-radius: 16px 16px 4px 16px !important;
+  max-width: 78% !important;
+  font-size: 14.5px !important;
+  line-height: 1.5 !important;
+}
+
+.assistant-message {
+  align-self: flex-start !important;
+  background: rgba(16, 24, 40, 0.94) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #f8fafc !important;
+  padding: 18px 22px !important;
+  border-radius: 16px 16px 16px 4px !important;
+  max-width: 88% !important;
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45) !important;
+}
+
+.ai-welcome-callout {
+  margin-top: 14px !important;
+  padding: 14px 18px !important;
+  background: rgba(223, 199, 156, 0.1) !important;
+  border: 1px dashed rgba(223, 199, 156, 0.4) !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  gap: 12px !important;
+  align-items: flex-start !important;
+}
+
+.awc-sparkle { font-size: 18px !important; color: #dfc79c !important; }
+.ai-welcome-callout strong { font-size: 13.5px !important; color: #ffffff !important; }
+.ai-welcome-callout p { font-size: 12.5px !important; color: #cbd5e1 !important; margin: 2px 0 0 !important; }
+
+/* 4. Command Input Form: Flawless Column + Full-Width Input Row */
+.chat-input-form.ai-expanded-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  height: auto !important;
+  min-height: 80px !important;
+  padding: 16px 24px 14px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 0 0 18px 18px !important;
+  background: rgba(8, 12, 22, 0.95) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.chat-input-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.chat-input-wrapper input {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  height: 48px !important;
+  background: rgba(16, 24, 42, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 12px !important;
+  padding: 0 18px !important;
+  color: #ffffff !important;
+  font-size: 14.5px !important;
+  font-family: inherit !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+.chat-input-wrapper input:focus {
+  border-color: #dfc79c !important;
+  box-shadow: 0 0 0 2px rgba(223, 199, 156, 0.25) !important;
+  background: rgba(20, 30, 52, 0.95) !important;
+}
+
+.chat-send-btn.ai-send-btn {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 90px !important;
+  height: 48px !important;
+  padding: 0 20px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #dfc79c, #c6a258) !important;
+  border: none !important;
+  color: #080c16 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.chat-send-btn.ai-send-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 14px rgba(223, 199, 156, 0.4) !important;
+}
+
+.chat-input-footnote {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+  font-family: var(--mono) !important;
+  padding: 0 4px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.ai-latency-tag {
+  color: #dfc79c !important;
+  font-weight: 700 !important;
+}
+
+/* Celestial Mission Latency Bar in Gold */
+.assistant-planet-bar {
+  border-color: rgba(223, 199, 156, 0.25) !important;
+}
+.ap-planet-btn.is-active {
+  border-color: #dfc79c !important;
+  box-shadow: 0 0 0 1px #dfc79c !important;
+}
+.ap-info small {
+  color: #dfc79c !important;
 }
