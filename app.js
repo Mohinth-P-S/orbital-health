@@ -960,3 +960,301 @@ function setSpaceBackgroundById(id) {
 function cycleSpaceBackground() {
   setSpaceBackground(currentBgIndex + 1);
 }
+
+
+/* ==========================================================================
+   10. INTERACTIVE COSMIC CANVAS ENGINE
+   Living starfield, shooting stars/meteors, ISS orbital beacon, and click ripples
+   ========================================================================== */
+(function initCosmicCanvas() {
+  const canvas = document.querySelector("#space-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let dpr = window.devicePixelRatio || 1;
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+    initStars();
+  }
+
+  // Multi-layered Stars
+  const stars = [];
+  const STAR_COLORS = ["#ffffff", "#e0edff", "#c1dcfa", "#d0b787", "#9bc5bb"];
+
+  function initStars() {
+    stars.length = 0;
+    const starCount = Math.min(220, Math.floor((width * height) / 8000));
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.6 + 0.5,
+        color: STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)],
+        alpha: Math.random() * 0.7 + 0.25,
+        twinkleSpeed: Math.random() * 0.02 + 0.008,
+        twinklePhase: Math.random() * Math.PI * 2,
+        vx: (Math.random() - 0.5) * 0.08,
+        vy: (Math.random() - 0.5) * 0.08,
+        layer: Math.random() > 0.85 ? "foreground" : "background"
+      });
+    }
+  }
+
+  // Meteors / Shooting Stars
+  const meteors = [];
+
+  function spawnMeteor(forcedX, forcedY) {
+    const startX = forcedX !== undefined ? forcedX : Math.random() * width * 0.9;
+    const startY = forcedY !== undefined ? forcedY : Math.random() * (height * 0.45);
+    const angle = (Math.PI / 180) * (Math.random() * 20 + 35); // 35 to 55 degrees
+    const speed = Math.random() * 10 + 16;
+    const length = Math.random() * 90 + 110;
+    const colors = [
+      { head: "#ffffff", tail: "rgba(118, 228, 210, 0.7)" },
+      { head: "#fef3c7", tail: "rgba(208, 183, 135, 0.7)" },
+      { head: "#e0f2fe", tail: "rgba(96, 165, 250, 0.7)" }
+    ];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    meteors.push({
+      x: startX,
+      y: startY,
+      dx: Math.cos(angle) * speed,
+      dy: Math.sin(angle) * speed,
+      length: length,
+      alpha: 1,
+      decay: Math.random() * 0.02 + 0.016,
+      headColor: color.head,
+      tailColor: color.tail
+    });
+  }
+
+  // Periodically spawn meteors (every 4-7 seconds)
+  let nextMeteorTime = Date.now() + 2500;
+
+  // Gravitational Ripples on Click
+  const ripples = [];
+  window.addEventListener("pointerdown", (e) => {
+    ripples.push({
+      x: e.clientX,
+      y: e.clientY,
+      radius: 5,
+      maxRadius: Math.min(260, width * 0.35),
+      alpha: 0.65
+    });
+    // Chance to trigger a responsive shooting star on click
+    if (Math.random() > 0.4) {
+      spawnMeteor(e.clientX - 100, Math.max(10, e.clientY - 120));
+    }
+  });
+
+  // Track Mouse for Constellation / Warp interactions
+  let mouseX = -1000;
+  let mouseY = -1000;
+  window.addEventListener("pointermove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  // ISS Satellite Orbital Tracker
+  let issAngle = 0.2;
+  const ISS_SPEED = 0.00045;
+
+  function drawIssOrbit(time) {
+    // Orbital Arc Ellipse
+    const cx = width * 0.52;
+    const cy = height * 0.05;
+    const rx = width * 0.65;
+    const ry = height * 0.42;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, rx, ry, -0.18, Math.PI * 0.15, Math.PI * 0.88);
+    ctx.strokeStyle = "rgba(208, 183, 135, 0.14)";
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 10]);
+    ctx.stroke();
+    ctx.restore();
+
+    // ISS Position
+    issAngle += ISS_SPEED;
+    if (issAngle > Math.PI * 0.88) issAngle = Math.PI * 0.15;
+
+    const rot = -0.18;
+    const px0 = rx * Math.cos(issAngle);
+    const py0 = ry * Math.sin(issAngle);
+    const issX = cx + px0 * Math.cos(rot) - py0 * Math.sin(rot);
+    const issY = cy + px0 * Math.sin(rot) + py0 * Math.cos(rot);
+
+    // Draw ISS Craft Symbol
+    ctx.save();
+    ctx.translate(issX, issY);
+
+    // Solar panels
+    ctx.fillStyle = "rgba(147, 197, 253, 0.65)";
+    ctx.fillRect(-11, -3, 6, 6);
+    ctx.fillRect(5, -3, 6, 6);
+    // Main module
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(-4, -2, 8, 4);
+
+    // Pulsing Strobe Beacon
+    const pulse = (Math.sin(time * 0.006) + 1) * 0.5;
+    const strobeColor = pulse > 0.5 ? "#76e4d2" : "#d0b787";
+    ctx.beginPath();
+    ctx.arc(0, 0, 3 + pulse * 4, 0, Math.PI * 2);
+    ctx.fillStyle = strobeColor;
+    ctx.shadowColor = strobeColor;
+    ctx.shadowBlur = 10;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Micro HUD Tag
+    ctx.font = "8px SFMono-Regular, Consolas, monospace";
+    ctx.fillStyle = "rgba(208, 183, 135, 0.75)";
+    ctx.fillText("ISS · EXP 72 · 262 MI", 14, 3);
+    ctx.restore();
+  }
+
+  // Main Render Loop
+  function animate(timestamp) {
+    if (document.hidden) {
+      requestAnimationFrame(animate);
+      return;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    // 1. Draw Ripples
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const rip = ripples[i];
+      rip.radius += 2.8;
+      rip.alpha -= 0.012;
+      if (rip.alpha <= 0 || rip.radius >= rip.maxRadius) {
+        ripples.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(rip.x, rip.y, rip.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(208, 183, 135, ${rip.alpha * 0.5})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Inner faint secondary wave
+      if (rip.radius > 20) {
+        ctx.beginPath();
+        ctx.arc(rip.x, rip.y, rip.radius - 18, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(118, 228, 210, ${rip.alpha * 0.3})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // 2. Draw Stars & Interactive Constellations
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+
+      // Twinkle calculation
+      s.twinklePhase += s.twinkleSpeed;
+      const currentAlpha = s.alpha * (0.65 + 0.35 * Math.sin(s.twinklePhase));
+
+      // Subtle slow drift
+      s.x += s.vx;
+      s.y += s.vy;
+      if (s.x < 0) s.x = width;
+      if (s.x > width) s.x = 0;
+      if (s.y < 0) s.y = height;
+      if (s.y > height) s.y = 0;
+
+      // Mouse distance for subtle constellation lines
+      const distToMouse = Math.hypot(mouseX - s.x, mouseY - s.y);
+      if (distToMouse < 90) {
+        const lineAlpha = (1 - distToMouse / 90) * 0.28;
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(mouseX, mouseY);
+        ctx.strokeStyle = `rgba(208, 183, 135, ${lineAlpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+
+      // Draw star dot
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = Math.max(0, Math.min(1, currentAlpha));
+      if (s.layer === "foreground") {
+        ctx.shadowColor = s.color;
+        ctx.shadowBlur = 6;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+    }
+
+    // 3. Draw ISS Orbit & Vehicle
+    drawIssOrbit(timestamp);
+
+    // 4. Spawn Meteors
+    if (Date.now() > nextMeteorTime) {
+      spawnMeteor();
+      nextMeteorTime = Date.now() + Math.random() * 3500 + 4000; // 4 to 7.5 seconds
+    }
+
+    // 5. Draw Meteors
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      const m = meteors[i];
+      m.x += m.dx;
+      m.y += m.dy;
+      m.alpha -= m.decay;
+
+      if (m.alpha <= 0 || m.x < -100 || m.x > width + 100 || m.y > height + 100) {
+        meteors.splice(i, 1);
+        continue;
+      }
+
+      const tailX = m.x - (m.dx / Math.hypot(m.dx, m.dy)) * m.length;
+      const tailY = m.y - (m.dy / Math.hypot(m.dx, m.dy)) * m.length;
+
+      ctx.save();
+      const grad = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
+      grad.addColorStop(0, "rgba(255, 255, 255, 0)");
+      grad.addColorStop(0.7, m.tailColor);
+      grad.addColorStop(1, m.headColor);
+
+      ctx.beginPath();
+      ctx.moveTo(tailX, tailY);
+      ctx.lineTo(m.x, m.y);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2.2;
+      ctx.globalAlpha = Math.max(0, m.alpha);
+      ctx.shadowColor = m.headColor;
+      ctx.shadowBlur = 10;
+      ctx.stroke();
+
+      // Glowing Meteor Head
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+  requestAnimationFrame(animate);
+})();

@@ -1646,13 +1646,67 @@ button:not(:disabled):active { scale: .97; }
 
 .space-bg-layer {
   position: absolute;
-  inset: -35px;
+  inset: -45px;
   background-size: cover;
   background-position: center 25%;
   background-repeat: no-repeat;
-  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s ease-out;
+  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   transform: translate3d(var(--bg-shift-x, 0px), var(--bg-shift-y, 0px), 0) scale(1.05);
+  animation: nasa-orbital-drift 42s ease-in-out infinite alternate;
   will-change: transform, opacity;
+}
+
+@keyframes nasa-orbital-drift {
+  0% {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.10) translate3d(-1.8%, 1.2%, 0);
+  }
+  100% {
+    transform: scale(1.06) translate3d(1.2%, -1%, 0);
+  }
+}
+
+/* Cosmic Aurora Waves */
+.space-bg-aurora-wave {
+  position: absolute;
+  inset: -60px 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 1;
+}
+.aurora-wave-1 {
+  background: 
+    radial-gradient(ellipse 130% 55% at 50% 12%, rgba(74, 222, 128, 0.32), transparent 72%),
+    radial-gradient(ellipse 85% 45% at 25% 28%, rgba(96, 165, 250, 0.26), transparent 65%);
+  animation: aurora-wave-drift-1 18s ease-in-out infinite alternate;
+}
+.aurora-wave-2 {
+  background: 
+    radial-gradient(ellipse 110% 65% at 75% 18%, rgba(208, 183, 135, 0.26), transparent 68%),
+    radial-gradient(ellipse 130% 55% at 40% 8%, rgba(167, 139, 250, 0.22), transparent 72%);
+  animation: aurora-wave-drift-2 24s ease-in-out infinite alternate;
+}
+@keyframes aurora-wave-drift-1 {
+  0% { transform: translateY(0) scaleY(1) rotate(0deg); opacity: 0.30; }
+  50% { transform: translateY(-24px) scaleY(1.18) rotate(1.2deg); opacity: 0.48; }
+  100% { transform: translateY(18px) scaleY(0.92) rotate(-1.2deg); opacity: 0.35; }
+}
+@keyframes aurora-wave-drift-2 {
+  0% { transform: translateY(0) scaleY(1) rotate(0deg); opacity: 0.24; }
+  50% { transform: translateY(28px) scaleY(1.22) rotate(-1.6deg); opacity: 0.44; }
+  100% { transform: translateY(-18px) scaleY(0.88) rotate(1.6deg); opacity: 0.26; }
+}
+
+/* Full-Screen Interactive Space Canvas */
+.space-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .space-bg-primary {
