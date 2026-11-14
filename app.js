@@ -928,6 +928,15 @@ function selectPlanet(planetKey) {
   const latencyBadge = document.querySelector("#ai-latency-badge");
   if (latencyBadge) latencyBadge.textContent = `${p.name}: ${p.delayText}`;
 
+  const hudLatency = document.querySelector("#ai-hud-latency");
+  if (hudLatency) hudLatency.textContent = p.delayText;
+
+  const hudRad = document.querySelector("#ai-hud-rad");
+  if (hudRad) hudRad.textContent = p.radiation;
+
+  const inputTag = document.querySelector("#ai-input-latency-tag");
+  if (inputTag) inputTag.textContent = `${p.name}: ${p.delayText}`;
+
   playAerospaceChime(659.25, 0.14);
 }
 

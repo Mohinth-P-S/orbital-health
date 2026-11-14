@@ -3354,3 +3354,289 @@ button:not(:disabled):active { scale: .97; }
   transform: translateY(-1px);
   box-shadow: 0 4px 14px rgba(45, 212, 191, 0.35);
 }
+
+
+
+/* ==========================================================================
+   17. FULL-WIDTH EXPANDED AI COMMAND CONSOLE (CREATIVE AEROSPACE HUD)
+   ========================================================================== */
+.ai-console-wrapper {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.ai-expanded-panel {
+  min-height: 720px;
+  border-radius: 20px;
+  background: rgba(12, 19, 34, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Command Bridge HUD Topbar */
+.ai-command-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: rgba(8, 14, 25, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ai-console-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-glow-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.25), rgba(167, 139, 250, 0.3));
+  border: 1px solid #2dd4bf;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.35);
+}
+
+.ai-console-brand .chat-meta strong {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+
+.ai-console-brand .chat-meta small {
+  font-size: 11.5px;
+  font-family: var(--mono);
+  color: #2dd4bf;
+  letter-spacing: .15em;
+  display: block;
+  margin-top: 2px;
+}
+
+/* Live Flight Telemetry Ribbon inside Chat Topbar */
+.ai-live-hud-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ai-hud-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: rgba(18, 27, 48, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  font-size: 12px;
+  color: #cbd5e1;
+  font-family: var(--mono);
+}
+
+.ai-hud-chip strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.hud-icon {
+  font-size: 12px;
+}
+
+.hud-label {
+  color: #94a3b8;
+}
+
+.ai-status-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Quick Action Command Chips Ribbon */
+.ai-command-chips-ribbon {
+  padding: 12px 24px;
+  background: rgba(6, 10, 18, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow-x: auto;
+}
+
+.chips-ribbon-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #94a3b8;
+  letter-spacing: .15em;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.chips-scroll-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chips-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.ai-chip-btn {
+  padding: 7px 14px;
+  background: rgba(18, 27, 48, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: #f1f5f9;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ai-chip-btn:hover {
+  background: rgba(45, 212, 191, 0.2);
+  border-color: #2dd4bf;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(45, 212, 191, 0.25);
+}
+
+/* Expansive Chat Body */
+.ai-expanded-body {
+  flex: 1;
+  min-height: 480px;
+  max-height: 560px;
+  padding: 26px 30px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ai-welcome-callout {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.12), rgba(167, 139, 250, 0.14));
+  border: 1px dashed rgba(45, 212, 191, 0.45);
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.awc-sparkle {
+  font-size: 20px;
+  color: #2dd4bf;
+}
+
+.ai-welcome-callout strong {
+  display: block;
+  font-size: 13.5px;
+  color: #ffffff;
+  margin-bottom: 3px;
+}
+
+.ai-welcome-callout p {
+  margin: 0;
+  font-size: 12.5px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.ai-welcome-callout code {
+  color: #2dd4bf;
+  font-family: var(--mono);
+}
+
+/* Aerospace Command Input Form */
+.ai-expanded-form {
+  padding: 18px 24px 16px;
+  background: rgba(8, 14, 25, 0.92);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-input-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.chat-input-wrapper input {
+  flex: 1;
+  background: rgba(16, 25, 44, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.chat-input-wrapper input:focus {
+  border-color: #2dd4bf;
+  background: rgba(20, 32, 56, 0.95);
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.25);
+}
+
+.ai-send-btn {
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #10b981, #2dd4bf);
+  border: none;
+  color: #060913;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.ai-send-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(45, 212, 191, 0.4);
+}
+
+.chat-input-footnote {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: #94a3b8;
+  font-family: var(--mono);
+  padding: 0 4px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ai-latency-tag {
+  color: #2dd4bf;
+  font-weight: 700;
+}

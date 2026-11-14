@@ -943,7 +943,7 @@
       <section class="view inner-view" id="view-assistant" aria-labelledby="assistant-title" hidden>
         <div class="inner-heading">
           <div>
-            <div class="eyebrow"><span class="eyebrow-line"></span> CLINICAL DECISION SUPPORT / 03</div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> CLINICAL DECISION SUPPORT / 03 · FLIGHT SURGEON AI</div>
             <h1 id="assistant-title">AURA <em>AI flight surgeon</em></h1>
             <p class="hero-description">Autonomous clinical decision system grounded in NASA Bioastronautics Standards (NASA-STD-3001) and Google Gemini 2.5 Flash for deep-space communication latency regimes.</p>
           </div>
@@ -957,108 +957,117 @@
               <span id="voice-icon">🔇</span>
               <span id="voice-text">Voice: OFF</span>
             </button>
-            <button class="clear-chat-btn" type="button" onclick="clearChatStream()" title="Clear chat history">Clear</button>
+            <button class="clear-chat-btn" type="button" onclick="clearChatStream()" title="Clear chat history">Clear Console</button>
           </div>
         </div>
 
-        <!-- Interactive Planetary Latency Bar (Select celestial destination) -->
+        <!-- Interactive Celestial Mission Selector (Real NASA Photographic Spheres) -->
         <div class="assistant-planet-bar">
           <div class="ap-bar-label">
             <span class="ap-icon">🪐</span>
             <div>
               <strong>MISSION CELESTIAL REGIME</strong>
-              <small>Click a planet to simulate communication latency & environmental triage</small>
+              <small>Click any celestial target to simulate radio propagation latency and planetary gravitational stress</small>
             </div>
           </div>
           <div class="ap-planets-row">
             <button class="ap-planet-btn is-active" type="button" onclick="setAssistantPlanet('earth')" data-planet="earth" title="Earth Low Earth Orbit (0ms latency)">
               <span class="ap-sphere" style="background-image: url('assets/earth.jpg');"></span>
-              <span class="ap-info"><strong>Earth (ISS)</strong><small>0.0s delay</small></span>
+              <span class="ap-info"><strong>Earth (ISS Orbit)</strong><small>0.0s delay · 1.0g</small></span>
             </button>
             <button class="ap-planet-btn" type="button" onclick="setAssistantPlanet('moon')" data-planet="moon" title="The Moon Artemis Base Camp (1.3s latency)">
               <span class="ap-sphere" style="background-image: url('assets/moon.jpg');"></span>
-              <span class="ap-info"><strong>Moon (Artemis)</strong><small>1.3s delay</small></span>
+              <span class="ap-info"><strong>The Moon (Artemis)</strong><small>1.28s delay · 0.166g</small></span>
             </button>
             <button class="ap-planet-btn" type="button" onclick="setAssistantPlanet('mars')" data-planet="mars" title="Mars Transit Crew (14.2 min latency)">
               <span class="ap-sphere" style="background-image: url('assets/mars.jpg');"></span>
-              <span class="ap-info"><strong>Mars (Transit)</strong><small>14.2m delay</small></span>
+              <span class="ap-info"><strong>Mars (Transit Crew)</strong><small>14.2m delay · 0.380g</small></span>
             </button>
             <button class="ap-planet-btn" type="button" onclick="setAssistantPlanet('europa')" data-planet="europa" title="Europa Jovian Outpost (42.5 min latency)">
               <span class="ap-sphere" style="background-image: url('assets/europa.jpg');"></span>
-              <span class="ap-info"><strong>Europa (Jovian)</strong><small>42.5m delay</small></span>
+              <span class="ap-info"><strong>Europa (Ocean Lab)</strong><small>42.5m delay · 0.134g</small></span>
             </button>
           </div>
         </div>
 
-        <!-- Assistant Overview Rail -->
-        <div class="overview-rail assistant-rail">
-          <div class="rail-item"><span class="rail-label">DECISION ENGINE</span><strong id="ai-engine-badge"><i class="status-ring"></i> AURA Core + Gemini 2.5</strong></div>
-          <div class="rail-item"><span class="rail-label">LATENCY SIMULATION</span><strong id="ai-latency-badge">Earth Orbit: 0.0s Lag (Instant Edge)</strong></div>
-          <div class="rail-item"><span class="rail-label">CLINICAL GROUND TRUTH</span><strong>NASA STD-3001 Bioastronautics</strong></div>
-          <button class="rail-link" type="button" onclick="askAi('Analyze cardiovascular drift and deconditioning under microgravity')">Run diagnostic <span>↗</span></button>
-        </div>
-
-        <div class="assistant-layout">
-          
-          <!-- Left Intro Panel with Quick Clinical Protocols -->
-          <div class="assistant-intro panel">
-            <div class="assistant-symbol">✳</div>
-            <span class="panel-kicker">AURA FLIGHT SURGEON // PROTOCOL GUIDANCE</span>
-            <h2>Autonomous triage<br /><em>when Earth is silent.</em></h2>
-            <p>Designed for deep-space communication blackouts (up to 42 min one-way). AURA correlates continuous biometric telemetry, suit pressure, and SANS ocular risks to recommend immediate clinical interventions without waiting for Houston.</p>
+        <!-- Expansive, Full-Width Aerospace AI Command Console -->
+        <div class="ai-console-wrapper">
+          <div class="chat-panel panel ai-expanded-panel">
             
-            <div class="api-key-callout" onclick="openGeminiModal()">
-              <span class="ak-icon">✦</span>
-              <div class="ak-text">
-                <strong id="ak-callout-title">Have a Gemini API key?</strong>
-                <p id="ak-callout-desc">Click here to connect your key. Chatbot will run live on Google Gemini 2.5 Flash for every medical command!</p>
+            <!-- Command Bridge Telemetry Topbar -->
+            <div class="chat-top ai-command-top">
+              <div class="ai-console-brand">
+                <span class="chat-avatar ai-glow-avatar">✳</span>
+                <div class="chat-meta">
+                  <strong>AURA Clinical Decision Support Console</strong>
+                  <small id="chat-engine-subtitle">AUTONOMOUS FLIGHT SURGEON · GEMINI 2.5 FLASH READY</small>
+                </div>
               </div>
-              <span class="ak-arrow">→</span>
-            </div>
 
-            <div class="prompt-chips" style="margin-top: 18px;">
-              <span class="chips-title">QUICK FLIGHT SURGEON PROTOCOLS:</span>
-              <button type="button" onclick="askAi('What does this dataset measure and how does it correlate with crew vitals?')">What does this dataset measure?</button>
-              <button type="button" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">Explain SANS and ocular fluid shifts</button>
-              <button type="button" onclick="askAi('Analyze cardiovascular drift and deconditioning')">Analyze cardiovascular drift</button>
-              <button type="button" onclick="askAi('Emergency procedure for EVA suit hypoxia drop')">Emergency procedure for EVA suit hypoxia</button>
-              <button type="button" onclick="askAi('Solar particle event radiation triage and storm shelter protocol')">Solar radiation storm triage</button>
-              <button type="button" onclick="askAi('Space motion sickness / SAS treatment protocol')">Space motion sickness treatment</button>
-            </div>
-
-            <div class="assistant-note">
-              <span>i</span> Grounded in NASA Bioastronautics Standards (NASA-STD-3001) & Flight Surgeon Clinical Practice Guidelines.
-            </div>
-          </div>
-
-          <!-- Right Interactive Chat Panel -->
-          <div class="chat-panel panel">
-            <div class="chat-top">
-              <span class="chat-avatar">✳</span>
-              <div class="chat-meta">
-                <strong>AURA Medical Assistant</strong>
-                <small id="chat-engine-subtitle">AUTONOMOUS FLIGHT SURGEON · GEMINI READY</small>
+              <!-- Live Flight Telemetry Ribbon inside Chat Console -->
+              <div class="ai-live-hud-ribbon">
+                <div class="ai-hud-chip"><span class="hud-icon">❤️</span> <span class="hud-label">HR:</span> <strong>74 BPM</strong></div>
+                <div class="ai-hud-chip"><span class="hud-icon">🫁</span> <span class="hud-label">SpO₂:</span> <strong>98.4%</strong></div>
+                <div class="ai-hud-chip"><span class="hud-icon">🛰️</span> <span class="hud-label">RELAY:</span> <strong id="ai-hud-latency">0.0s (LEO)</strong></div>
+                <div class="ai-hud-chip"><span class="hud-icon">🛡️</span> <span class="hud-label">SUIT:</span> <strong>14.7 psi</strong></div>
+                <div class="ai-hud-chip"><span class="hud-icon">☢️</span> <span class="hud-label">RAD:</span> <strong id="ai-hud-rad">0.45 mSv/d</strong></div>
               </div>
-              <span class="chat-online" id="chat-online-badge"><i></i> <span id="chat-online-text">READY (0ms LAG)</span></span>
+
+              <div class="ai-status-right">
+                <span class="chat-online" id="chat-online-badge"><i></i> <span id="chat-online-text">READY (0ms LAG)</span></span>
+              </div>
             </div>
 
-            <div class="chat-body" id="chat-stream">
-              <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE</span>
+            <!-- Quick Clinical Command Action Ribbon -->
+            <div class="ai-command-chips-ribbon">
+              <span class="chips-ribbon-label">QUICK FLIGHT SURGEON PROTOCOLS:</span>
+              <div class="chips-scroll-track">
+                <button type="button" class="ai-chip-btn" onclick="askAi('What does this dataset measure and how does it correlate with crew vitals?')">📊 Dataset Provenance</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">👁️ SANS Ocular Fluid Shift</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Analyze cardiovascular drift and deconditioning under microgravity')">🫀 Cardiovascular Drift</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Emergency procedure for EVA suit hypoxia drop')">🚨 EVA Suit Hypoxia Emergency</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Solar particle event radiation triage and storm shelter protocol')">☀️ Solar Storm Shielding</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Space motion sickness / SAS treatment protocol')">🤢 Space Motion Sickness (SAS)</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Bone mineral density deconditioning and ARED protocol')">🦴 Bone Loss & ARED</button>
+                <button type="button" class="ai-chip-btn" onclick="askAi('Circadian rhythm and sleep regulation in orbit')">💤 Sleep & Circadian Phase</button>
+              </div>
+            </div>
+
+            <!-- Expansive Chat Stream -->
+            <div class="chat-body ai-expanded-body" id="chat-stream">
+              <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · ACTIVE ORBIT</span>
               <div class="assistant-message" id="initial-ai-msg">
-                <strong>Greetings Commander.</strong> I am AURA, your onboard medical decision assistant. I continuously monitor crew biometrics across Anne McClain, Mike Fincke, and Dr. Marcus Chen.
+                <strong>Greetings Commander.</strong> I am AURA, your onboard medical decision assistant. I am continuously monitoring crew biometrics across Anne McClain, Mike Fincke, and Dr. Marcus Chen.
                 <br><br>
                 You can ask me about <em>any</em> symptoms, ECG waveforms, SANS intracranial fluid shifts, radiation doses, or emergency resuscitation protocols.
                 <br><br>
-                <small style="color: #2dd4bf;">✦ TIP: Click [Connect Gemini API Key] above or paste your key directly into the chat to enable live Google Gemini 2.5 Flash reasoning.</small>
+                <div class="ai-welcome-callout">
+                  <span class="awc-sparkle">✦</span>
+                  <div>
+                    <strong>Google Gemini 2.5 Flash Connected & Grounded in NASA Standards</strong>
+                    <p>Click <code>[Connect Gemini API Key]</code> in the top right or paste your API key directly into the chat prompt below to enable live cloud inference.</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <form class="chat-input-form" onsubmit="handleChatSubmit(event)">
-              <input type="text" id="chat-input-field" placeholder="Ask any space medicine command, symptom, or paste Gemini API key..." autocomplete="off" />
-              <button class="chat-send-btn" type="submit" aria-label="Send message">↑</button>
+            <!-- Aerospace Command Input Console -->
+            <form class="chat-input-form ai-expanded-form" onsubmit="handleChatSubmit(event)">
+              <div class="chat-input-wrapper">
+                <input type="text" id="chat-input-field" placeholder="Ask any space medicine command, clinical symptom, or paste Gemini API key (AIzaSy...)..." autocomplete="off" />
+                <button class="chat-send-btn ai-send-btn" type="submit" aria-label="Send message">
+                  <span>Send</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+              </div>
+              <div class="chat-input-footnote">
+                <span>🔒 SECURE LOCAL CDSS</span>
+                <span>Grounded in NASA Bioastronautics Standards (NASA-STD-3001) & Human Research Program</span>
+                <span class="ai-latency-tag" id="ai-input-latency-tag">Earth Delay: 0.0s</span>
+              </div>
             </form>
-          </div>
 
+          </div>
         </div>
       </section>
 
