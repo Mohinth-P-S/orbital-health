@@ -3567,7 +3567,7 @@ h1 em, h2 em, h3 em, #assistant-title em, #hero-title em { color: #dfc79c !impor
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center 12% !important; /* Perfectly frames astronaut face & cupola */
+  object-position: center 36% !important; /* Perfectly frames astronaut & cupola windows */
   transform: translate3d(var(--hero-shift-x, 0px), var(--hero-shift-y, 0px), 0) scale(var(--hero-scale, var(--hero-scroll-scale, 1.02))) !important;
   transition: opacity .34s ease, filter .34s ease, transform .22s cubic-bezier(.2,.65,.3,1) !important;
   animation: none !important;
@@ -5734,4 +5734,207 @@ body {
 
 .gemini-hero-subheading {
   font-size: 18px !important;
+}
+
+
+/* ==========================================================================
+   10. HIGH CONTRAST & CLEAR VISIBILITY FOR SENTENCES AND DESCRIPTIONS
+   ========================================================================== */
+.hero-description,
+.inner-heading p,
+.home-content-block .hero-description {
+  font-size: 16.5px !important;
+  line-height: 1.7 !important;
+  color: #f8fafc !important;
+  font-weight: 500 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85) !important;
+}
+
+.data-caption {
+  font-size: 14px !important;
+  color: #e2e8f0 !important;
+  font-weight: 600 !important;
+}
+
+.data-caption strong {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.overview-rail .rail-label {
+  color: #dfc79c !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+}
+
+.overview-rail .rail-item strong {
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+
+.overview-rail .rail-link {
+  color: #38bdf8 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.arch-demo-note p {
+  font-size: 15.5px !important;
+  font-weight: 550 !important;
+  color: #ffffff !important;
+  line-height: 1.65 !important;
+}
+
+.dataflow-title {
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  color: #38bdf8 !important;
+  letter-spacing: 0.14em !important;
+}
+
+.df-node strong {
+  font-size: 15px !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.df-node small {
+  font-size: 13px !important;
+  color: #cbd5e1 !important;
+  font-weight: 600 !important;
+}
+
+.home-metric-card .hm-title {
+  font-size: 20px !important;
+  color: #ffffff !important;
+  font-weight: 750 !important;
+}
+
+.hm-val {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #dfc79c !important;
+}
+
+.hm-desc {
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+  color: #f1f5f9 !important;
+  font-weight: 500 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85) !important;
+}
+
+.log-time-badge strong {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #dfc79c !important;
+}
+
+.log-crew-tag {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #38bdf8 !important;
+}
+
+.log-text {
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85) !important;
+}
+
+.story-heading p,
+.insight-card-body p,
+.ridge-card p,
+.nasa-resource-card p {
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+  color: #f1f5f9 !important;
+  font-weight: 500 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75) !important;
+}
+
+.metric-subtext {
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  color: #f1f5f9 !important;
+}
+
+.pictorial-alert-panel .alert-content p {
+  font-size: 14.5px !important;
+  color: #f8fafc !important;
+  line-height: 1.6 !important;
+}
+
+.quest-desc {
+  font-size: 14.5px !important;
+  color: #e2e8f0 !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+}
+
+#organ-desc {
+  font-size: 15.5px !important;
+  color: #f1f5f9 !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
+}
+
+.box-baseline {
+  font-size: 13.5px !important;
+  color: #cbd5e1 !important;
+  font-weight: 600 !important;
+}
+
+.crew-detail-list {
+  font-size: 14.5px !important;
+  color: #ffffff !important;
+  line-height: 1.7 !important;
+}
+
+.crew-detail-list span {
+  color: #dfc79c !important;
+  font-family: var(--mono) !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+}
+
+.crew-detail-list strong {
+  color: #ffffff !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+}
+
+.hero-image-label .label-kicker {
+  color: #76e4d2 !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+}
+
+.hero-image-label strong {
+  color: #ffffff !important;
+  font-size: clamp(30px, 3.5vw, 44px) !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+}
+
+.hero-image-label .label-coordinate {
+  color: #e2e8f0 !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+.image-credit {
+  background: rgba(7, 13, 24, 0.92) !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.image-credit a {
+  color: #38bdf8 !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
 }

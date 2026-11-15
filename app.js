@@ -156,13 +156,22 @@ const heroCount = document.querySelector("#hero-image-count");
 const heroNext = document.querySelector("#hero-image-next");
 const heroSlides = [
   {
-    id: "iss071e581260_alt",
-    src: "https://images-assets.nasa.gov/image/iss071e581260_alt/iss071e581260_alt~large.jpg",
-    alt: "An astronaut looks out the International Space Station cupola as the setting sun lights Earth's horizon.",
+    id: "iss066e136051",
+    src: "https://images-assets.nasa.gov/image/iss066e136051/iss066e136051~large.jpg",
+    alt: "NASA astronaut Mark Vande Hei gazes out from the seven-windowed cupola at the bright blue Earth below.",
     kicker: "FROM THE CUPOLA",
-    title: "Earth, at the edge of day.",
+    title: "Earth observation from orbit's window.",
     coordinate: "INTERNATIONAL SPACE STATION · 262 MILES ABOVE EARTH",
-    credit: "NASA/JSC · 01 SEP 2024 · ISS071E581260_ALT",
+    credit: "NASA/JSC · 04 FEB 2022 · ISS066E136051",
+  },
+  {
+    id: "iss061e065379",
+    src: "https://images-assets.nasa.gov/image/iss061e065379/iss061e065379~large.jpg",
+    alt: "NASA astronaut Andrew Morgan tethered to the International Space Station with the vivid blue Earth 250 miles below during EVA.",
+    kicker: "EXTRAVEHICULAR ACTIVITY",
+    title: "Spacewalk across the blue orbital horizon.",
+    coordinate: "ALPHA MAGNETIC SPECTROMETER · ORBITAL VELOCITY 17,500 MPH",
+    credit: "NASA/JSC · 02 DEC 2019 · ISS061E065379",
   },
   {
     id: "iss073e0702307",
@@ -172,15 +181,6 @@ const heroSlides = [
     title: "Cardiovascular conditioning in orbit.",
     coordinate: "DESTINY LABORATORY MODULE · 51.6° ORBITAL INCLINATION",
     credit: "NASA/JSC · 17 SEP 2025 · ISS073E0702307",
-  },
-  {
-    id: "iss057e134112",
-    src: "https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~large.jpg",
-    alt: "NASA astronaut Anne McClain completes countermeasure exercises in the space station laboratory.",
-    kicker: "COUNTERMEASURE LOG",
-    title: "Preserving muscle and bone density.",
-    coordinate: "NODE 2 HARMONY · CONTINUOUS MONITORING ACTIVE",
-    credit: "NASA/JSC · 13 DEC 2018 · ISS057E134112",
   },
 ];
 
