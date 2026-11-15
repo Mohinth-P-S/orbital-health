@@ -18,7 +18,27 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { message, planet, crew } = req.body || {};
+  let body = req.body;
+  if (!body && req.readable) {
+    try {
+      const chunks = [];
+      for await (const chunk of req) {
+        chunks.push(chunk);
+      }
+      const raw = Buffer.concat(chunks).toString('utf8');
+      body = JSON.parse(raw);
+    } catch (e) {
+      body = {};
+    }
+  } else if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body);
+    } catch (e) {
+      body = {};
+    }
+  }
+
+  const { message, planet, crew } = body || {};
   const query = (message || '').trim();
   if (!query) {
     return res.status(400).json({ error: 'Message query is required' });
