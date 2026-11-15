@@ -406,7 +406,10 @@
         <div class="csv-engine-panel">
           <div class="csv-engine-header">
             <div class="csv-title-group">
-              <span class="panel-kicker">TELEMETRY SCENARIO STREAM</span>
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <span class="panel-kicker">TELEMETRY SCENARIO STREAM</span>
+                <span style="font-size: 10.5px; font-family: var(--mono); color: #76e4d2; background: rgba(118, 228, 210, 0.12); border: 1px solid rgba(118, 228, 210, 0.3); border-radius: 999px; padding: 2px 9px; letter-spacing: .06em;">🌐 NASA · CSA ASTROSKIN · ESA · JAXA</span>
+              </div>
               <h3>
                 <span class="csv-source-badge" id="active-dataset-name">NASA LSDA-0042 NOMINAL BASELINE</span>
               </h3>
@@ -1275,6 +1278,11 @@
                 <span class="prompt-card-text">Solar particle storm shielding protocol</span>
                 <span class="prompt-card-arrow">↗</span>
               </button>
+              <button type="button" class="gemini-prompt-card" onclick="askAi('How do international space agencies (NASA, ESA, CSA, JAXA) collaborate on biomedical monitoring?')">
+                <span class="prompt-card-icon">🌍</span>
+                <span class="prompt-card-text">Multilateral agency health telemetry (NASA · ESA · CSA · JAXA)</span>
+                <span class="prompt-card-arrow">↗</span>
+              </button>
             </div>
 
           </div>
@@ -1585,8 +1593,64 @@
 
         </div>
 
+        <!-- ================= SPACE AGENCY PARTNERS & OPEN RESEARCH SECTION ================= -->
+        <div class="inner-heading" style="margin-top: 56px; margin-bottom: 24px;">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> MULTILATERAL SPACE AGENCY PARTNERS &amp; OPEN RESEARCH</div>
+            <h2 style="font-size: clamp(26px, 3.2vw, 36px); font-weight: 500; color: #ffffff; margin: 6px 0;">International space agency <em>partners</em> &amp; clinical data</h2>
+            <p class="hero-description" style="max-width: 820px;">Orbital Health integrates biomedical telemetry standards, wearable sensor technologies, and analog research from official NASA Space Apps Challenge international space agency partners (ESA, CSA, JAXA) and open clinical research repositories.</p>
+          </div>
+          <span class="view-tag status-active" style="background: rgba(118, 228, 210, 0.12); color: #76e4d2; border-color: rgba(118, 228, 210, 0.35);">INTERNATIONAL COLLABORATION</span>
+        </div>
+
+        <div class="nasa-resource-grid">
+          <!-- 1. CSA Bio-Monitor (Astroskin) -->
+          <a class="nasa-resource-card" href="https://www.asc-csa.gc.ca/eng/sciences/bio-monitor.asp" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">CSA // WEARABLE BIOMONITOR</span>
+              <span class="nasa-resource-badge" style="background: rgba(223, 199, 156, 0.16); color: #dfc79c; border-color: rgba(223, 199, 156, 0.4);">CANADIAN SPACE AGENCY</span>
+            </div>
+            <h3>CSA Bio-Monitor (Astroskin Smart Garment)</h3>
+            <p>Canadian Space Agency wearable biomedical smart shirt flown on ISS Expedition 58. Directly inspired our cable-free telemetry parameters: continuous Lead-II ECG, blood pressure, respiration rate, skin temperature, and SpO₂ without disrupting daily astronaut tasks.</p>
+            <span class="nasa-resource-link">asc-csa.gc.ca/bio-monitor ↗</span>
+          </a>
+
+          <!-- 2. ESA European Astronaut Centre -->
+          <a class="nasa-resource-card" href="https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">ESA // SPACE MEDICINE OFFICE</span>
+              <span class="nasa-resource-badge" style="background: rgba(56, 189, 248, 0.14); color: #38bdf8; border-color: rgba(56, 189, 248, 0.35);">EUROPEAN SPACE AGENCY</span>
+            </div>
+            <h3>ESA European Astronaut Centre (EAC)</h3>
+            <p>European Space Agency space medicine center overseeing astronaut healthcare, physical countermeasure conditioning, and clinical operations. Provided the foundation for our Tempus Pro telemetry relay and bed-rest cephalad fluid shift countermeasure protocols.</p>
+            <span class="nasa-resource-link">esa.int/Astronauts ↗</span>
+          </a>
+
+          <!-- 3. JAXA Space Biomedical Research -->
+          <a class="nasa-resource-card" href="https://humans-in-space.jaxa.jp/en/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">JAXA // KIBO BIOMEDICAL LAB</span>
+              <span class="nasa-resource-badge" style="background: rgba(191, 163, 223, 0.16); color: #c2a7ff; border-color: rgba(191, 163, 223, 0.4);">JAPAN AEROSPACE (JAXA)</span>
+            </div>
+            <h3>JAXA Space Biomedical Research Group</h3>
+            <p>Japan Aerospace Exploration Agency physiological research conducted inside the ISS Kibo module. Benchmarked our bone density preservation parameters, muscle atrophy mitigation under microgravity, and circadian rhythm sleep synchronization using dynamic lighting.</p>
+            <span class="nasa-resource-link">humans-in-space.jaxa.jp ↗</span>
+          </a>
+
+          <!-- 4. PhysioNet MIT-BIH & BIDMC -->
+          <a class="nasa-resource-card" href="https://physionet.org/about/database/" target="_blank" rel="noreferrer">
+            <div class="nasa-resource-top">
+              <span class="nasa-resource-kicker">MIT / HARVARD // CARDIAC SIGNALS</span>
+              <span class="nasa-resource-badge">OPEN PHYSIOLOGY</span>
+            </div>
+            <h3>PhysioNet Open Biomedical Waveforms</h3>
+            <p>Gold-standard open access clinical database (MIT-BIH Arrhythmia Database &amp; BIDMC PPG repository) providing high-fidelity 250 Hz Lead-II cardiac vector waveforms and ventricular arrhythmia anomalies powering our real-time oscilloscope canvas.</p>
+            <span class="nasa-resource-link">physionet.org ↗</span>
+          </a>
+        </div>
+
         <p class="source-disclaimer" style="margin-top: 30px;">
-          NASA imagery, datasets, and standard protocols used in accordance with the NASA Space Apps Challenge guidelines and NASA Open Data Policy. Developed specifically for the NASA Space Apps Challenge 2026.
+          NASA imagery, international space agency partner datasets, and clinical standard protocols used in accordance with the NASA Space Apps Challenge guidelines and Open Data Policy. Developed specifically for the NASA Space Apps Challenge 2026.
         </p>
       </section>
 
