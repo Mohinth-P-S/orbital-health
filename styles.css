@@ -5005,63 +5005,733 @@ body.is-app-mode .global-ai-fab {
   margin-bottom: 12px !important;
 }
 
-/* Dashboard layout: keep controls, readings, and trends in a clear scan order. */
-#view-dashboard { padding-top: 34px; padding-bottom: 36px; }
-#view-dashboard .inner-heading { align-items: center; margin-bottom: 20px; gap: 18px; }
-#view-dashboard .inner-heading h1 { margin: 10px 0 6px; }
-#view-dashboard .inner-heading p { max-width: 660px; }
-#view-dashboard .dashboard-rail { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; padding: 14px 18px; }
-#view-dashboard .dashboard-rail .rail-item { min-width: 0; }
-#view-dashboard .dashboard-rail .rail-item strong { margin-top: 6px; line-height: 1.4; }
-#view-dashboard .dashboard-rail .rail-link { justify-self: end; align-self: center; }
-#view-dashboard .delay-simulator-panel { margin-bottom: 14px; padding: 12px 16px; }
-#view-dashboard .delay-info-group { flex: 1 1 260px; }
-#view-dashboard .delay-destination-selector { flex: 2 1 430px; }
-#view-dashboard .delay-status-badge { flex: 0 0 auto; }
-#view-dashboard .csv-engine-panel { padding: 16px 18px; margin-bottom: 14px; }
-#view-dashboard .csv-engine-header { align-items: center; padding-bottom: 10px; }
-#view-dashboard .csv-title-group h3 { flex-wrap: wrap; }
-#view-dashboard .csv-actions-row { grid-template-columns: minmax(230px, .85fr) minmax(0, 1.6fr); gap: 18px; padding-top: 12px; }
-#view-dashboard .csv-dropzone { min-height: 66px; }
-#view-dashboard .preset-chips { gap: 7px; }
-#view-dashboard .preset-chip { padding: 7px 10px; }
-#view-dashboard .playback-bar { margin-top: 12px; padding: 8px 12px; }
-#view-dashboard .metric-grid { gap: 12px; }
-#view-dashboard .metric-card { min-height: 138px; padding: 16px 18px; }
-#view-dashboard .metric-value { margin: 12px 0 10px; font-size: 36px; }
-#view-dashboard .dashboard-lower { margin-top: 14px; grid-template-columns: minmax(0, 1.55fr) minmax(320px, 1fr); gap: 14px; }
-#view-dashboard .dashboard-lower > .panel { min-width: 0; padding: 18px; }
-#view-dashboard .ecg-container { height: 190px; }
 
-@media (max-width: 900px) {
-  #view-dashboard .dashboard-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  #view-dashboard .csv-actions-row { grid-template-columns: 1fr; }
-  #view-dashboard .dashboard-lower { grid-template-columns: 1fr; }
-}
-@media (max-width: 560px) {
-  #view-dashboard { padding-top: 28px; }
-  #view-dashboard .dashboard-rail { grid-template-columns: 1fr 1fr; gap: 14px 10px; padding: 14px; }
-  #view-dashboard .dashboard-rail .rail-link { justify-self: start; }
-  #view-dashboard .delay-simulator-panel { align-items: flex-start; }
-  #view-dashboard .delay-destination-selector { flex-basis: 100%; }
-  #view-dashboard .csv-engine-panel { padding: 14px; }
-  #view-dashboard .csv-engine-header { align-items: flex-start; }
-  #view-dashboard .csv-source-badge { display: inline-block; }
-  #view-dashboard .playback-bar { align-items: stretch; }
-  #view-dashboard .scrubber-group { order: 2; min-width: 100%; max-width: none; }
-  #view-dashboard .speed-group { margin-left: auto; }
-  #view-dashboard .metric-grid-4 { grid-template-columns: 1fr 1fr; }
-  #view-dashboard .metric-card { min-height: 128px; padding: 14px; }
-  #view-dashboard .metric-top { font-size: 10px; }
-  #view-dashboard .metric-bottom { font-size: 11px; }
-}
-@media (max-width: 380px) {
-  #view-dashboard .metric-grid-4 { grid-template-columns: 1fr; }
+/* ==========================================================================
+   21. HIGH-VISIBILITY JUDGE PRESENTATION TYPOGRAPHY & PICTORIAL HEALTH HUD
+   Enlarged typography visible from 4-6 feet away, bold pictorial vital cards,
+   and clean visual infographics.
+   ========================================================================== */
+
+/* 1. Global Presentation Typography Scaling */
+body {
+  font-size: 15.5px !important;
+  line-height: 1.6 !important;
 }
 
-/* Larger readable type carried forward from the refreshed UI. */
-body { font-size: 16px; }
-.nav-link { font-size: 16px; }
-.hero-description { font-size: clamp(17px, 1.35vw, 20px); line-height: 1.65; }
-.eyebrow, .rail-label, .panel-kicker { font-size: 13px; }
-.rail-item strong, .button, .alert-button { font-size: 15px; }
+/* Primary Navigation (Bold, Clear, Readable from distance) */
+.nav-link {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: .02em !important;
+  padding: 10px 18px !important;
+}
+
+.brand-copy strong {
+  font-size: 21px !important;
+}
+
+.brand-copy small {
+  font-size: 13px !important;
+}
+
+/* View Headings & Eyebrows */
+.inner-heading h1, #dashboard-title, #bodymap-title, #crew-title, #insights-title {
+  font-size: clamp(38px, 4.5vw, 52px) !important;
+  font-weight: 400 !important;
+  letter-spacing: -.02em !important;
+}
+
+.eyebrow {
+  font-size: 13.5px !important;
+  letter-spacing: .24em !important;
+  font-weight: 800 !important;
+}
+
+.panel-kicker {
+  font-size: 13px !important;
+  font-weight: 750 !important;
+  letter-spacing: .16em !important;
+}
+
+.view-tag {
+  font-size: 13.5px !important;
+  padding: 6px 14px !important;
+  font-weight: 700 !important;
+}
+
+/* 2. Pictorial Dashboard Header & HUD Rail */
+.dashboard-header-compact {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  margin-bottom: 16px !important;
+}
+
+.dash-header-badges {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.dashboard-rail {
+  padding: 14px 22px !important;
+  gap: 20px !important;
+  background: rgba(10, 16, 30, 0.78) !important;
+  border: 1px solid rgba(223, 199, 156, 0.25) !important;
+  border-radius: 16px !important;
+}
+
+.rail-item-subject {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.rail-avatar-thumb {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border: 2px solid #76e4d2 !important;
+  box-shadow: 0 0 10px rgba(118, 228, 210, 0.4) !important;
+  flex-shrink: 0 !important;
+}
+
+.rail-icon-lead {
+  font-size: 24px !important;
+  display: grid !important;
+  place-items: center !important;
+  flex-shrink: 0 !important;
+}
+
+.rail-item .rail-label {
+  font-size: 12px !important;
+  font-weight: 750 !important;
+  letter-spacing: .12em !important;
+  color: #dfc79c !important;
+}
+
+.rail-item strong {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+}
+
+.rail-link {
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  color: #38bdf8 !important;
+  padding: 8px 16px !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  border-radius: 999px !important;
+}
+
+/* 3. Pictorial Mission Delay Simulator */
+.delay-simulator-panel {
+  padding: 16px 22px !important;
+  background: rgba(12, 19, 36, 0.8) !important;
+  border: 1px solid rgba(223, 199, 156, 0.25) !important;
+  border-radius: 16px !important;
+  margin-bottom: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+}
+
+.delay-summary-line {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-top: 4px !important;
+  font-size: 14.5px !important;
+  color: #e2e8f0 !important;
+}
+
+.delay-summary-line strong, .delay-summary-line span:first-child {
+  font-weight: 700 !important;
+  color: #38bdf8 !important;
+}
+
+.delay-badge-val {
+  background: rgba(118, 228, 210, 0.14) !important;
+  border: 1px solid rgba(118, 228, 210, 0.4) !important;
+  color: #76e4d2 !important;
+  padding: 2px 10px !important;
+  border-radius: 999px !important;
+  font-family: var(--mono) !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+}
+
+.delay-destination-selector {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+.delay-chip {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 16px !important;
+  background: rgba(18, 28, 52, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 999px !important;
+  font-size: 13.5px !important;
+  font-weight: 650 !important;
+  color: #cbd5e1 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.delay-chip:hover {
+  border-color: #dfc79c !important;
+  color: #ffffff !important;
+  background: rgba(26, 42, 74, 0.85) !important;
+  transform: translateY(-1px) !important;
+}
+
+.delay-chip.is-active {
+  border-color: #dfc79c !important;
+  background: linear-gradient(135deg, rgba(223, 199, 156, 0.25), rgba(191, 161, 95, 0.35)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(223, 199, 156, 0.3) !important;
+}
+
+.delay-thumb {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background-size: cover !important;
+  background-position: center !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 0 6px rgba(0,0,0,0.6) !important;
+}
+
+.delay-status-badge {
+  font-size: 13px !important;
+  font-weight: 750 !important;
+  padding: 6px 14px !important;
+}
+
+/* 4. Pictorial Scenario Grid (CSV Ingestion Engine) */
+.csv-engine-panel {
+  padding: 20px 24px !important;
+  background: rgba(11, 17, 32, 0.82) !important;
+  border: 1px solid rgba(223, 199, 156, 0.25) !important;
+  border-radius: 18px !important;
+  margin-bottom: 24px !important;
+}
+
+.csv-source-badge {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  padding: 4px 14px !important;
+}
+
+.dataset-status-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: var(--mono) !important;
+  font-size: 13px !important;
+  color: #76e4d2 !important;
+  background: rgba(118, 228, 210, 0.12) !important;
+  padding: 4px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(118, 228, 210, 0.3) !important;
+  font-weight: 700 !important;
+}
+
+.pulse-dot-green {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: #76e4d2 !important;
+  box-shadow: 0 0 8px #76e4d2 !important;
+  animation: pulse-dot 1.4s infinite !important;
+}
+
+.pictorial-scenario-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+.preset-chip {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 14px !important;
+  background: rgba(16, 25, 46, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.22s ease !important;
+  text-align: left !important;
+}
+
+.preset-chip:hover {
+  background: rgba(24, 38, 70, 0.9) !important;
+  border-color: rgba(223, 199, 156, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+}
+
+.preset-chip.is-active {
+  background: linear-gradient(135deg, rgba(223, 199, 156, 0.2), rgba(191, 161, 95, 0.32)) !important;
+  border-color: #dfc79c !important;
+  box-shadow: 0 0 16px rgba(223, 199, 156, 0.25) !important;
+}
+
+.scenario-icon {
+  font-size: 24px !important;
+  flex-shrink: 0 !important;
+}
+
+.scenario-meta strong {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.25 !important;
+}
+
+.scenario-meta small {
+  display: block !important;
+  font-size: 11.5px !important;
+  font-family: var(--mono) !important;
+  color: #dfc79c !important;
+  margin-top: 2px !important;
+}
+
+.csv-dropzone {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 18px !important;
+  background: rgba(14, 22, 40, 0.6) !important;
+  border: 1.5px dashed rgba(223, 199, 156, 0.35) !important;
+  border-radius: 12px !important;
+}
+
+.csv-dropzone-copy strong {
+  font-size: 14.5px !important;
+  color: #ffffff !important;
+}
+
+.csv-dropzone-copy small {
+  font-size: 12px !important;
+  color: #94a3b8 !important;
+}
+
+/* Playback Bar */
+.playback-bar {
+  padding: 12px 16px !important;
+  background: rgba(8, 12, 24, 0.7) !important;
+  border-radius: 12px !important;
+}
+
+.play-btn {
+  font-size: 14px !important;
+  font-weight: 750 !important;
+  padding: 9px 18px !important;
+  background: linear-gradient(135deg, #dfc79c, #bfa15f) !important;
+  color: #060913 !important;
+  border-radius: 8px !important;
+}
+
+.sim-btn {
+  font-size: 13.5px !important;
+  padding: 8px 14px !important;
+}
+
+.time-counter {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  color: #76e4d2 !important;
+}
+
+.speed-btn {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  padding: 6px 12px !important;
+}
+
+/* 5. BIG BOLD PICTORIAL VITAL TELEMETRY CARDS (JUDGE VISIBILITY) */
+.pictorial-vitals-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: 16px !important;
+  margin-bottom: 24px !important;
+}
+
+.vital-card-pictorial {
+  background: rgba(11, 18, 34, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 18px !important;
+  padding: 22px 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55) !important;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.vital-card-pictorial:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(223, 199, 156, 0.3) !important;
+}
+
+.card-hr { border-top: 3px solid #f43f5e !important; }
+.card-spo2 { border-top: 3px solid #38bdf8 !important; }
+.card-resp { border-top: 3px solid #76e4d2 !important; }
+.card-env { border-top: 3px solid #dfc79c !important; }
+
+.vital-card-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+}
+
+.vital-identity {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.vital-glyph-bubble {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 12px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 24px !important;
+  flex-shrink: 0 !important;
+}
+
+.bubble-pink { background: rgba(244, 63, 94, 0.16) !important; border: 1px solid rgba(244, 63, 94, 0.4) !important; }
+.bubble-cyan { background: rgba(56, 189, 248, 0.16) !important; border: 1px solid rgba(56, 189, 248, 0.4) !important; }
+.bubble-teal { background: rgba(118, 228, 210, 0.16) !important; border: 1px solid rgba(118, 228, 210, 0.4) !important; }
+.bubble-gold { background: rgba(223, 199, 156, 0.16) !important; border: 1px solid rgba(223, 199, 156, 0.4) !important; }
+
+.vital-tag {
+  font-family: var(--mono) !important;
+  font-size: 11.5px !important;
+  font-weight: 750 !important;
+  color: #94a3b8 !important;
+  letter-spacing: .12em !important;
+  display: block !important;
+}
+
+.vital-label {
+  font-size: 17px !important;
+  font-weight: 750 !important;
+  color: #ffffff !important;
+  margin: 2px 0 0 !important;
+}
+
+.vital-status-pill {
+  font-family: var(--mono) !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  letter-spacing: .08em !important;
+  white-space: nowrap !important;
+}
+
+.status-nominal { background: rgba(16, 185, 129, 0.16) !important; color: #6ee7b7 !important; border: 1px solid rgba(16, 185, 129, 0.4) !important; }
+.status-optimal { background: rgba(56, 189, 248, 0.16) !important; color: #7dd3fc !important; border: 1px solid rgba(56, 189, 248, 0.4) !important; }
+.status-shielded { background: rgba(223, 199, 156, 0.16) !important; color: #f5e6c8 !important; border: 1px solid rgba(223, 199, 156, 0.4) !important; }
+
+/* Giant Metric Numbers (Readable from distance) */
+.vital-display-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 18px 0 14px !important;
+  gap: 12px !important;
+}
+
+.vital-big-number {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+}
+
+.metric-num {
+  font-family: var(--mono), -apple-system, sans-serif !important;
+  font-size: clamp(40px, 4.2vw, 50px) !important;
+  font-weight: 850 !important;
+  color: #ffffff !important;
+  line-height: 1.0 !important;
+  letter-spacing: -.03em !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+}
+
+.vital-unit {
+  font-family: var(--mono) !important;
+  font-size: 17px !important;
+  font-weight: 750 !important;
+  color: #dfc79c !important;
+  letter-spacing: .06em !important;
+}
+
+.vital-pictorial-gauge {
+  flex-shrink: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.cardiac-pulse-wave polyline {
+  animation: cardiac-dash 2s ease-in-out infinite !important;
+}
+
+@keyframes cardiac-dash {
+  0% { stroke-dashoffset: 100; stroke-dasharray: 100; opacity: 0.6; }
+  50% { stroke-dashoffset: 0; stroke-dasharray: 100; opacity: 1; }
+  100% { stroke-dashoffset: -100; stroke-dasharray: 100; opacity: 0.6; }
+}
+
+.radial-gauge-mini circle:last-child {
+  filter: drop-shadow(0 0 6px #38bdf8) !important;
+}
+
+.resp-waves path {
+  animation: resp-float 3s ease-in-out infinite alternate !important;
+}
+
+@keyframes resp-float {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-2px); }
+}
+
+.shield-meter-mini {
+  text-align: right !important;
+}
+
+.shield-icon-badge {
+  font-family: var(--mono) !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: #dfc79c !important;
+}
+
+.vital-bottom-status {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-top: 10px !important;
+}
+
+.metric-subtext {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #cbd5e1 !important;
+}
+
+.vital-meter-track {
+  width: 100% !important;
+  height: 5px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+
+.vital-meter-fill {
+  height: 100% !important;
+  border-radius: 999px !important;
+  display: block !important;
+}
+
+.fill-pink { background: linear-gradient(90deg, #f43f5e, #fb7185) !important; box-shadow: 0 0 8px #f43f5e !important; }
+.fill-cyan { background: linear-gradient(90deg, #0284c7, #38bdf8) !important; box-shadow: 0 0 8px #38bdf8 !important; }
+.fill-teal { background: linear-gradient(90deg, #0d9488, #76e4d2) !important; box-shadow: 0 0 8px #76e4d2 !important; }
+.fill-gold { background: linear-gradient(90deg, #d97706, #dfc79c) !important; box-shadow: 0 0 8px #dfc79c !important; }
+
+/* 6. Lower Dashboard (ECG & Alerts) */
+.pictorial-ecg-panel {
+  padding: 22px 24px !important;
+}
+
+.ecg-panel-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+}
+
+.ecg-status-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.ecg-live-badge {
+  font-family: var(--mono) !important;
+  font-size: 13px !important;
+  color: #76e4d2 !important;
+  background: rgba(118, 228, 210, 0.12) !important;
+  border: 1px solid rgba(118, 228, 210, 0.3) !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  font-weight: 750 !important;
+}
+
+.pictorial-ecg-overlay {
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 10px 16px !important;
+  font-size: 13.5px !important;
+  background: rgba(8, 14, 26, 0.88) !important;
+}
+
+.pictorial-ecg-overlay span {
+  font-size: 13px !important;
+  color: #94a3b8 !important;
+}
+
+.pictorial-ecg-overlay b {
+  color: #ffffff !important;
+  font-size: 14.5px !important;
+}
+
+.pictorial-alert-panel {
+  padding: 22px 24px !important;
+}
+
+.pictorial-alert-panel .alert-item {
+  padding: 14px 16px !important;
+}
+
+.pictorial-alert-panel .alert-content strong {
+  font-size: 16px !important;
+  font-weight: 750 !important;
+  color: #ffffff !important;
+}
+
+.pictorial-alert-panel .alert-content p {
+  font-size: 14px !important;
+  color: #cbd5e1 !important;
+  margin-top: 4px !important;
+}
+
+.alert-time {
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+}
+
+/* 7. Pictorial Quests Adherence */
+.pictorial-quest-panel {
+  padding: 22px 24px !important;
+}
+
+.pictorial-quest-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+}
+
+.quest-item {
+  padding: 14px 16px !important;
+}
+
+.quest-title {
+  font-size: 15px !important;
+  font-weight: 750 !important;
+  color: #ffffff !important;
+}
+
+.quest-xp {
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+}
+
+.quest-desc {
+  font-size: 13px !important;
+  color: #94a3b8 !important;
+  margin: 6px 0 10px !important;
+}
+
+.quest-streak-badge {
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  padding: 6px 14px !important;
+}
+
+/* 8. Body Map Large Typography for Judges */
+.organ-telemetry-box {
+  padding: 14px 18px !important;
+}
+
+.box-val {
+  font-size: 32px !important;
+  font-weight: 850 !important;
+  color: #ffffff !important;
+}
+
+.box-kicker {
+  font-size: 12px !important;
+  font-weight: 750 !important;
+}
+
+.box-baseline {
+  font-size: 13px !important;
+  color: #94a3b8 !important;
+}
+
+.countermeasure-step strong {
+  font-size: 15px !important;
+}
+
+.countermeasure-step div {
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+}
+
+/* 9. AI Chatbot Large Typography for Judges */
+.gemini-prompt-card {
+  font-size: 14.5px !important;
+  padding: 14px 18px !important;
+}
+
+.prompt-card-text {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.gemini-input-capsule input#chat-input-field {
+  font-size: 16px !important;
+}
+
+.gemini-view-assistant .user-message {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+
+.gemini-view-assistant .assistant-message {
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+}
+
+.gemini-hero-heading {
+  font-size: clamp(38px, 5vw, 56px) !important;
+}
+
+.gemini-hero-subheading {
+  font-size: 18px !important;
+}

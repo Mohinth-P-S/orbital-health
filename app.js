@@ -1534,8 +1534,9 @@ function cycleSpaceBackground() {
 
 
 /* ==========================================================================
-   10. INTERACTIVE COSMIC CANVAS ENGINE
-   Living starfield, shooting stars/meteors, ISS orbital beacon, and click ripples
+   10. HIGHLY ANIMATIVE INTERACTIVE COSMIC CANVAS ENGINE
+   Deep space nebular clouds, living starfield with JWST diffraction spikes,
+   interactive stardust cursor trail, shooting stars, and ISS orbit beacon
    ========================================================================== */
 (function initCosmicCanvas() {
   const canvas = document.querySelector("#space-canvas");
@@ -1554,44 +1555,100 @@ function cycleSpaceBackground() {
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
     initStars();
+    initStardust();
   }
 
-  // Multi-layered Serene Stars
+  // 1. Drifting Nebular Cosmic Glow Clouds
+  const nebulae = [
+    { xRatio: 0.20, yRatio: 0.28, baseR: 0.38, color1: "rgba(56, 189, 248, 0.12)", color2: "rgba(14, 116, 144, 0)", speed: 0.00028, phase: 0 },
+    { xRatio: 0.76, yRatio: 0.32, baseR: 0.44, color1: "rgba(223, 199, 156, 0.10)", color2: "rgba(180, 83, 9, 0)", speed: 0.00032, phase: 1.8 },
+    { xRatio: 0.48, yRatio: 0.82, baseR: 0.42, color1: "rgba(118, 228, 210, 0.10)", color2: "rgba(13, 148, 136, 0)", speed: 0.00022, phase: 3.4 },
+    { xRatio: 0.85, yRatio: 0.78, baseR: 0.36, color1: "rgba(129, 140, 248, 0.09)", color2: "rgba(67, 56, 202, 0)", speed: 0.00025, phase: 4.9 }
+  ];
+
+  // 2. Multi-layered Stars with Twinkle & Diffraction Spikes
   const stars = [];
-  const STAR_COLORS = ["#ffffff", "#e0edff", "#c1dcfa", "#7dd3fc", "#38bdf8", "#dfc79c", "#76e4d2"];
+  const STAR_COLORS = ["#ffffff", "#f8fafc", "#e0edff", "#c1dcfa", "#7dd3fc", "#38bdf8", "#dfc79c", "#76e4d2"];
 
   function initStars() {
     stars.length = 0;
-    const starCount = Math.min(220, Math.floor((width * height) / 7500));
+    const starCount = Math.min(260, Math.floor((width * height) / 6500));
     for (let i = 0; i < starCount; i++) {
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * 1.5 + 0.5,
+        radius: Math.random() * 1.6 + 0.6,
         color: STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)],
-        alpha: Math.random() * 0.7 + 0.25,
-        twinkleSpeed: Math.random() * 0.02 + 0.008,
+        alpha: Math.random() * 0.75 + 0.25,
+        twinkleSpeed: Math.random() * 0.025 + 0.01,
         twinklePhase: Math.random() * Math.PI * 2,
-        vx: (Math.random() - 0.5) * 0.08,
-        vy: (Math.random() - 0.5) * 0.08,
-        layer: Math.random() > 0.82 ? "foreground" : "background"
+        vx: (Math.random() - 0.5) * 0.09,
+        vy: (Math.random() - 0.5) * 0.09,
+        layer: Math.random() > 0.80 ? "foreground" : "background",
+        hasSpikes: Math.random() > 0.88
       });
     }
   }
 
-  // Meteors / Shooting Stars
+  // 3. Floating Zero-G Micro Stardust Embers
+  const stardust = [];
+  function initStardust() {
+    stardust.length = 0;
+    const dustCount = Math.min(65, Math.floor(width / 24));
+    for (let i = 0; i < dustCount; i++) {
+      stardust.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 1.8 + 0.6,
+        alpha: Math.random() * 0.6 + 0.2,
+        vy: -(Math.random() * 0.22 + 0.08),
+        vx: (Math.random() - 0.5) * 0.06,
+        color: Math.random() > 0.5 ? "rgba(223, 199, 156," : "rgba(118, 228, 210,"
+      });
+    }
+  }
+
+  // 4. Interactive Stardust Cursor Particles (Leaves a trail on movement)
+  const cursorTrail = [];
+  let mouseX = -1000;
+  let mouseY = -1000;
+  let lastSpawnTime = 0;
+
+  window.addEventListener("pointermove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    const now = Date.now();
+    if (now - lastSpawnTime > 32) {
+      lastSpawnTime = now;
+      for (let i = 0; i < 2; i++) {
+        cursorTrail.push({
+          x: e.clientX + (Math.random() - 0.5) * 14,
+          y: e.clientY + (Math.random() - 0.5) * 14,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8 - 0.3,
+          size: Math.random() * 2.4 + 1.0,
+          alpha: 0.9,
+          decay: Math.random() * 0.022 + 0.016,
+          color: Math.random() > 0.5 ? "#dfc79c" : "#76e4d2"
+        });
+      }
+    }
+  });
+
+  // 5. Meteors / Shooting Stars
   const meteors = [];
 
   function spawnMeteor(forcedX, forcedY) {
     const startX = forcedX !== undefined ? forcedX : Math.random() * width * 0.9;
     const startY = forcedY !== undefined ? forcedY : Math.random() * (height * 0.45);
     const angle = (Math.PI / 180) * (Math.random() * 20 + 35);
-    const speed = Math.random() * 10 + 16;
-    const length = Math.random() * 90 + 110;
+    const speed = Math.random() * 10 + 17;
+    const length = Math.random() * 100 + 120;
     const colors = [
-      { head: "#ffffff", tail: "rgba(118, 228, 210, 0.7)" },
-      { head: "#fef3c7", tail: "rgba(223, 199, 156, 0.7)" },
-      { head: "#e0f2fe", tail: "rgba(96, 165, 250, 0.7)" }
+      { head: "#ffffff", tail: "rgba(118, 228, 210, 0.8)" },
+      { head: "#fef3c7", tail: "rgba(223, 199, 156, 0.85)" },
+      { head: "#e0f2fe", tail: "rgba(56, 189, 248, 0.8)" }
     ];
     const color = colors[Math.floor(Math.random() * colors.length)];
 
@@ -1602,40 +1659,32 @@ function cycleSpaceBackground() {
       dy: Math.sin(angle) * speed,
       length: length,
       alpha: 1,
-      decay: Math.random() * 0.02 + 0.016,
+      decay: Math.random() * 0.02 + 0.018,
       headColor: color.head,
       tailColor: color.tail
     });
   }
 
-  let nextMeteorTime = Date.now() + 2500;
+  let nextMeteorTime = Date.now() + 1800;
 
-  // Gravitational Ripples on Click
+  // 6. Gravitational Ripples on Click
   const ripples = [];
   window.addEventListener("pointerdown", (e) => {
     ripples.push({
       x: e.clientX,
       y: e.clientY,
-      radius: 5,
+      radius: 6,
       maxRadius: Math.min(260, width * 0.35),
-      alpha: 0.65
+      alpha: 0.75
     });
-    if (Math.random() > 0.4) {
+    if (Math.random() > 0.35) {
       spawnMeteor(e.clientX - 100, Math.max(10, e.clientY - 120));
     }
   });
 
-  // Mouse Tracking for Interactive Constellation Nodes
-  let mouseX = -1000;
-  let mouseY = -1000;
-  window.addEventListener("pointermove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  // ISS Satellite Orbital Tracker
+  // 7. ISS Satellite Orbital Tracker
   let issAngle = 0.2;
-  const ISS_SPEED = 0.00045;
+  const ISS_SPEED = 0.00048;
 
   function drawIssOrbit(time) {
     const cx = width * 0.52;
@@ -1646,7 +1695,7 @@ function cycleSpaceBackground() {
     ctx.save();
     ctx.beginPath();
     ctx.ellipse(cx, cy, rx, ry, -0.18, Math.PI * 0.15, Math.PI * 0.88);
-    ctx.strokeStyle = "rgba(223, 199, 156, 0.15)";
+    ctx.strokeStyle = "rgba(223, 199, 156, 0.16)";
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 10]);
     ctx.stroke();
@@ -1665,9 +1714,9 @@ function cycleSpaceBackground() {
     ctx.translate(issX, issY);
 
     // Solar panels
-    ctx.fillStyle = "rgba(147, 197, 253, 0.65)";
-    ctx.fillRect(-11, -3, 6, 6);
-    ctx.fillRect(5, -3, 6, 6);
+    ctx.fillStyle = "rgba(147, 197, 253, 0.75)";
+    ctx.fillRect(-12, -3, 6, 6);
+    ctx.fillRect(6, -3, 6, 6);
     // Main module
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(-4, -2, 8, 4);
@@ -1676,18 +1725,21 @@ function cycleSpaceBackground() {
     const pulse = (Math.sin(time * 0.006) + 1) * 0.5;
     const strobeColor = pulse > 0.5 ? "#76e4d2" : "#dfc79c";
     ctx.beginPath();
-    ctx.arc(0, 0, 2.5 + pulse * 1.5, 0, Math.PI * 2);
+    ctx.arc(0, 0, 3 + pulse * 1.8, 0, Math.PI * 2);
     ctx.fillStyle = strobeColor;
+    ctx.shadowColor = strobeColor;
+    ctx.shadowBlur = 10;
     ctx.fill();
+    ctx.shadowBlur = 0;
 
-    // Micro HUD Tag
-    ctx.font = "8px 'JetBrains Mono', Consolas, monospace";
+    // HUD Tag
+    ctx.font = "9px 'JetBrains Mono', Consolas, monospace";
     ctx.fillStyle = "rgba(226, 232, 240, 0.85)";
-    ctx.fillText("ISS · EXP 72 · 262 MI", 14, 3);
+    ctx.fillText("ISS · EXP 72 · 262 MI", 16, 3);
     ctx.restore();
   }
 
-  // Main Render Loop (Pure peaceful drift, zero scroll effects)
+  // Main Dynamic Animation Loop
   function animate(timestamp) {
     if (document.hidden) {
       requestAnimationFrame(animate);
@@ -1696,11 +1748,29 @@ function cycleSpaceBackground() {
 
     ctx.clearRect(0, 0, width, height);
 
-    // 1. Draw Ripples
+    // A. Draw Drifting Nebular Clouds
+    for (let i = 0; i < nebulae.length; i++) {
+      const neb = nebulae[i];
+      neb.phase += neb.speed;
+      const nx = (neb.xRatio + Math.sin(neb.phase) * 0.04) * width;
+      const ny = (neb.yRatio + Math.cos(neb.phase * 0.8) * 0.04) * height;
+      const nr = (neb.baseR + Math.sin(neb.phase * 0.5) * 0.05) * Math.max(width, height);
+
+      const grad = ctx.createRadialGradient(nx, ny, 0, nx, ny, nr);
+      grad.addColorStop(0, neb.color1);
+      grad.addColorStop(1, neb.color2);
+
+      ctx.save();
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, width, height);
+      ctx.restore();
+    }
+
+    // B. Draw Gravitational Click Ripples
     for (let i = ripples.length - 1; i >= 0; i--) {
       const rip = ripples[i];
-      rip.radius += 2.8;
-      rip.alpha -= 0.012;
+      rip.radius += 3.0;
+      rip.alpha -= 0.013;
       if (rip.alpha <= 0 || rip.radius >= rip.maxRadius) {
         ripples.splice(i, 1);
         continue;
@@ -1709,26 +1779,67 @@ function cycleSpaceBackground() {
       ctx.save();
       ctx.beginPath();
       ctx.arc(rip.x, rip.y, rip.radius, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(223, 199, 156, ${rip.alpha * 0.5})`;
+      ctx.strokeStyle = `rgba(223, 199, 156, ${rip.alpha * 0.6})`;
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
       if (rip.radius > 20) {
         ctx.beginPath();
         ctx.arc(rip.x, rip.y, rip.radius - 18, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(118, 228, 210, ${rip.alpha * 0.3})`;
+        ctx.strokeStyle = `rgba(118, 228, 210, ${rip.alpha * 0.35})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
       ctx.restore();
     }
 
-    // 2. Draw Stars (Gentle, steady celestial twinkling - no scroll distortion)
+    // C. Draw Zero-G Floating Stardust Embers
+    for (let i = 0; i < stardust.length; i++) {
+      const d = stardust[i];
+      d.y += d.vy;
+      d.x += d.vx;
+      if (d.y < 0) {
+        d.y = height + 10;
+        d.x = Math.random() * width;
+      }
+      if (d.x < 0) d.x = width;
+      if (d.x > width) d.x = 0;
+
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+      ctx.fillStyle = `${d.color} ${d.alpha})`;
+      ctx.fill();
+    }
+
+    // D. Draw Cursor Stardust Trail
+    for (let i = cursorTrail.length - 1; i >= 0; i--) {
+      const p = cursorTrail[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0) {
+        cursorTrail.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // E. Draw Stars & Diffraction Cross Spikes
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
 
       s.twinklePhase += s.twinkleSpeed;
-      const currentAlpha = s.alpha * (0.65 + 0.35 * Math.sin(s.twinklePhase));
+      const currentAlpha = s.alpha * (0.60 + 0.40 * Math.sin(s.twinklePhase));
 
       s.x += s.vx;
       s.y += s.vy;
@@ -1737,15 +1848,15 @@ function cycleSpaceBackground() {
       if (s.y < 0) s.y = height;
       if (s.y > height) s.y = 0;
 
-      // Interactive Constellation Lines on Mouse Hover
+      // Mouse interactive constellation link
       const distToMouse = Math.hypot(mouseX - s.x, mouseY - s.y);
-      if (distToMouse < 95) {
-        const lineAlpha = (1 - distToMouse / 95) * 0.32;
+      if (distToMouse < 110) {
+        const lineAlpha = (1 - distToMouse / 110) * 0.35;
         ctx.beginPath();
         ctx.moveTo(s.x, s.y);
         ctx.lineTo(mouseX, mouseY);
         ctx.strokeStyle = `rgba(223, 199, 156, ${lineAlpha})`;
-        ctx.lineWidth = 0.8;
+        ctx.lineWidth = 0.9;
         ctx.stroke();
       }
 
@@ -1753,25 +1864,40 @@ function cycleSpaceBackground() {
       ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
       ctx.fillStyle = s.color;
       ctx.globalAlpha = Math.max(0, Math.min(1, currentAlpha));
+      
       if (s.layer === "foreground") {
         ctx.shadowColor = s.color;
-        ctx.shadowBlur = 6;
+        ctx.shadowBlur = 8;
       }
       ctx.fill();
       ctx.shadowBlur = 0;
+
+      // Luminous 4-Point JWST Cross Spikes for Brightest Stars
+      if (s.hasSpikes && currentAlpha > 0.65) {
+        const spikeLen = s.radius * 4.5 * (currentAlpha * 0.8);
+        ctx.strokeStyle = s.color;
+        ctx.lineWidth = 0.6;
+        ctx.beginPath();
+        ctx.moveTo(s.x - spikeLen, s.y);
+        ctx.lineTo(s.x + spikeLen, s.y);
+        ctx.moveTo(s.x, s.y - spikeLen);
+        ctx.lineTo(s.x, s.y + spikeLen);
+        ctx.stroke();
+      }
+
       ctx.globalAlpha = 1;
     }
 
-    // 3. Draw ISS Orbit & Vehicle
+    // F. Draw ISS Orbit & Vehicle
     drawIssOrbit(timestamp);
 
-    // 4. Spawn Meteors
+    // G. Spawn Frequent Meteors
     if (Date.now() > nextMeteorTime) {
       spawnMeteor();
-      nextMeteorTime = Date.now() + Math.random() * 3500 + 4000;
+      nextMeteorTime = Date.now() + Math.random() * 2200 + 2000;
     }
 
-    // 5. Draw Meteors
+    // H. Draw Meteors
     for (let i = meteors.length - 1; i >= 0; i--) {
       const m = meteors[i];
       m.x += m.dx;
@@ -1796,14 +1922,14 @@ function cycleSpaceBackground() {
       ctx.moveTo(tailX, tailY);
       ctx.lineTo(m.x, m.y);
       ctx.strokeStyle = grad;
-      ctx.lineWidth = 2.2;
+      ctx.lineWidth = 2.4;
       ctx.globalAlpha = Math.max(0, m.alpha);
       ctx.shadowColor = m.headColor;
-      ctx.shadowBlur = 10;
+      ctx.shadowBlur = 12;
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.arc(m.x, m.y, 2.5, 0, Math.PI * 2);
+      ctx.arc(m.x, m.y, 2.6, 0, Math.PI * 2);
       ctx.fillStyle = "#ffffff";
       ctx.fill();
       ctx.restore();
