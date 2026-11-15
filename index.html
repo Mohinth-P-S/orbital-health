@@ -8,7 +8,11 @@
     <title>Orbital Health — Astronaut Biometric Telemetry & Autonomous Medical System</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Orbital Health" />
@@ -25,18 +29,14 @@
       <div class="space-bg-nebula"></div>
       <canvas id="space-canvas" class="space-canvas"></canvas>
       <div class="space-bg-vignette"></div>
-
-      
-          <div class="sf-stat"><span class="sf-lbl">SPACE DISTANCE</span><strong id="sf-dist-val">408 KM</strong></div>
-          <div class="sf-stat"><span class="sf-lbl">COSMIC DEPTH</span><strong id="sf-depth-val">STAGE 01</strong></div>
-        </div>
-      </div>
-
     </div>
     
     <!-- ================= TOP NAVIGATION BAR ================= -->
     <header class="topbar">
       <a class="brand" href="#overview" data-view="overview" aria-label="Orbital Health home">
+        <div class="brand-logo-frame">
+          <img class="brand-logo-img" src="assets/app-logo.png" alt="Orbital Crew Health Astronaut Logo" width="36" height="36" />
+        </div>
         <span class="brand-copy"><strong>ORBITAL</strong><small>CREW HEALTH</small></span>
       </a>
 

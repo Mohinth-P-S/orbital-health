@@ -4,13 +4,18 @@
    application operates with 0ms latency even in deep space or offline environments.
    ========================================================================== */
 
-const CACHE_NAME = "orbital-health-cache-v3";
+const CACHE_NAME = "orbital-health-cache-v4";
 const STATIC_ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
   "./manifest.json",
+  "./favicon.ico",
+  "./assets/app-logo.png",
+  "./assets/logo-full.png",
+  "./assets/favicon-32x32.png",
+  "./assets/favicon-16x16.png",
   "./assets/icon-192.png",
   "./assets/icon-512.png",
   "./assets/apple-touch-icon.png",
