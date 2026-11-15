@@ -1942,3 +1942,87 @@ function cycleSpaceBackground() {
   resize();
   requestAnimationFrame(animate);
 })();
+
+
+/* ==========================================================================
+   10. PREVENT ACCIDENTAL SINGLE-CLICK / SINGLE-TAP SELECTION
+       (Preserves standard website double-click & long-press selection)
+   ========================================================================== */
+(function setupSelectionBehavior() {
+  let isDoubleInteraction = false;
+  let lastClickTime = 0;
+
+  // Track double-click events
+  document.addEventListener("dblclick", () => {
+    isDoubleInteraction = true;
+    setTimeout(() => { isDoubleInteraction = false; }, 450);
+  }, { capture: true, passive: true });
+
+  // On click: if it's a single click (detail === 1) and not a double-click
+  document.addEventListener("click", (e) => {
+    // Allow inputs, textareas, or explicitly editable fields
+    if (e.target.closest("input, textarea, [contenteditable]")) return;
+
+    const now = Date.now();
+    const isConsecutiveClick = (now - lastClickTime) < 350;
+    lastClickTime = now;
+
+    // Single click/tap (e.detail === 1 and not part of double-click)
+    if (e.detail === 1 && !isConsecutiveClick && !isDoubleInteraction) {
+      const sel = window.getSelection ? window.getSelection() : null;
+      if (sel && !sel.isCollapsed && sel.type === "Range") {
+        sel.removeAllRanges();
+      }
+      // Async check for mobile browsers that set selection after click
+      setTimeout(() => {
+        if (!isDoubleInteraction) {
+          const s = window.getSelection ? window.getSelection() : null;
+          if (s && !s.isCollapsed && s.type === "Range" && !isDoubleInteraction) {
+            s.removeAllRanges();
+          }
+        }
+      }, 25);
+    }
+  }, { capture: true });
+
+  // Touch device single-tap handler
+  let touchStartMs = 0;
+  let touchMoved = false;
+
+  document.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 1) {
+      touchStartMs = Date.now();
+      touchMoved = false;
+    }
+  }, { passive: true });
+
+  document.addEventListener("touchmove", () => {
+    touchMoved = true;
+  }, { passive: true });
+
+  document.addEventListener("touchend", (e) => {
+    if (e.target.closest("input, textarea, [contenteditable]")) return;
+    const duration = Date.now() - touchStartMs;
+
+    // If it was a quick single tap (under 260ms without moving)
+    if (duration < 260 && !touchMoved) {
+      const now = Date.now();
+      const isDoubleTap = (now - lastClickTime) < 350;
+      lastClickTime = now;
+
+      if (!isDoubleTap && !isDoubleInteraction) {
+        setTimeout(() => {
+          if (!isDoubleInteraction) {
+            const s = window.getSelection ? window.getSelection() : null;
+            if (s && !s.isCollapsed && s.type === "Range") {
+              s.removeAllRanges();
+            }
+          }
+        }, 40);
+      } else {
+        isDoubleInteraction = true;
+        setTimeout(() => { isDoubleInteraction = false; }, 450);
+      }
+    }
+  }, { passive: true });
+})();

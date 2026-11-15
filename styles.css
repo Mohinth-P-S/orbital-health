@@ -5938,3 +5938,58 @@ body {
   font-size: 13px !important;
   font-weight: 750 !important;
 }
+
+
+/* ==========================================================================
+   11. PREVENT ACCIDENTAL SINGLE-CLICK / SINGLE-TAP SELECTION ON UI HEADINGS
+   ========================================================================== */
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Headings, titles, brand, navigation, buttons, badges, controls must NEVER select on single tap */
+h1, h2, h3, h4, h5, h6,
+.brand, .brand *,
+.brand-copy, .brand-copy *,
+.hero-copy h1, .hero-copy h1 *,
+.eyebrow, .eyebrow *,
+.label-kicker, .label-coordinate,
+.nav-link, .dock-link, .app-dock-item,
+.button, button,
+.rail-label, .rail-item strong, .rail-link,
+.panel-kicker, .view-tag,
+.home-content-block h2, .home-content-block h2 *,
+.hm-title, .hm-badge, .hm-val, .hm-footer-tag,
+.log-time-badge, .log-crew-tag, .log-status-pill,
+.vital-label, .vital-tag, .vital-status-pill,
+.vital-big-number, .vital-bottom-status,
+.quest-title, .quest-xp, .quest-streak-badge,
+.organ-chip, .box-kicker, .box-val, .organ-status-badge,
+.countermeasure-step-num,
+.crew-name-serif, .crew-role-kicker, .crew-photo-badge, .crew-stat,
+.gemini-top-bar, .gemini-planet-pill,
+.nasa-hero, .hero-image-label, .image-credit,
+.app-dock, .topbar {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  cursor: default;
+}
+
+/* Ensure buttons and links keep pointer cursor */
+button, .button, a, .nav-link, .dock-link, .app-dock-item, .chip, .preset-chip, .organ-chip {
+  cursor: pointer !important;
+}
+
+/* Text / Prose paragraphs allow standard double-click / double-tap selection */
+p, .hero-description, .log-text, .hm-desc, .arch-demo-note p,
+.insight-card-body p, .ridge-card p, .nasa-resource-card p,
+.assistant-message, .user-message {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
