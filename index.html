@@ -176,7 +176,7 @@
             <div class="delay-glyph">⟿</div>
             <div>
               <span class="panel-kicker">MISSION DISTANCE & COMM DELAY SIMULATOR // NASA HRP DISTANCE HAZARD</span>
-              <div style="font-size: 11px; color: #ccd6e5; margin-top: 2px;">
+              <div style="font-size: 13px; font-weight: 550; color: #ccd6e5; margin-top: 2px;">
                 Destination: <strong id="current-mission-dest" style="color: #d0b787;">ISS Low Earth Orbit (262 mi)</strong> · One-Way Delay: <strong id="current-delay-time" style="color: #76e4d2;">0.28 sec</strong>
               </div>
             </div>
@@ -202,7 +202,7 @@
                 <span class="csv-source-badge" id="active-dataset-name">NASA LSDA-0042 NOMINAL BASELINE</span>
               </h3>
             </div>
-            <div style="font-size: 10px; color: var(--muted); font-family: var(--mono);" id="dataset-status-line">
+            <div style="font-size: 11.5px; font-weight: 600; color: #ccd6e5; font-family: var(--mono);" id="dataset-status-line">
               STATUS: <strong style="color: #76e4d2;">STREAMING 60 SAMPLES</strong> · 00:01 / 01:00
             </div>
           </div>
@@ -396,7 +396,7 @@
               <span class="quest-streak-badge" style="border-color: #76e4d2; color: #76e4d2;">
                 LEVEL 12 COMMANDER (4,850 / 5,000 XP)
               </span>
-              <button class="button button-quiet" type="button" data-view="bodymap" style="margin-left: 8px; font-size: 11px; color: #d0b787;">
+              <button class="button button-quiet" type="button" data-view="bodymap" style="margin-left: 8px; font-size: 13px; font-weight: 600; color: #d0b787;">
                 Inspect Body Map ↗
               </button>
             </div>
@@ -564,14 +564,14 @@
                 <g class="hotspot-node" id="node-brain" onclick="selectBodyOrgan('brain')">
                   <circle class="hotspot-radar" cx="160" cy="50" r="14" stroke="#4b85ff" fill="none" opacity="0.7" />
                   <circle class="hotspot-core" cx="160" cy="50" r="6" fill="#76e4d2" filter="url(#glow)" />
-                  <text x="160" y="32" text-anchor="middle" fill="#ccd6e5" font-family="monospace" font-size="7" letter-spacing="1">BRAIN / ICP</text>
+                  <text x="160" y="32" text-anchor="middle" fill="#ccd6e5" font-family="monospace" font-size="10" font-weight="700" letter-spacing="1">BRAIN / ICP</text>
                 </g>
 
                 <!-- 2. Eyes / Vision (SANS) -->
                 <g class="hotspot-node is-selected" id="node-eyes" onclick="selectBodyOrgan('eyes')">
                   <circle class="hotspot-radar" cx="160" cy="74" r="14" stroke="#d0b787" fill="none" opacity="0.8" />
                   <circle class="hotspot-core" cx="160" cy="74" r="6" fill="#d0b787" filter="url(#glow)" />
-                  <text x="195" y="77" fill="#d0b787" font-family="monospace" font-size="7" letter-spacing="0.8">EYES / SANS</text>
+                  <text x="195" y="77" fill="#d0b787" font-family="monospace" font-size="10" font-weight="700" letter-spacing="0.8">EYES / SANS</text>
                   <line x1="168" y1="74" x2="190" y2="74" stroke="#d0b787" stroke-width="0.8" />
                 </g>
 
@@ -579,7 +579,7 @@
                 <g class="hotspot-node" id="node-heart" onclick="selectBodyOrgan('heart')">
                   <circle class="hotspot-radar" cx="145" cy="155" r="16" stroke="#f87171" fill="none" opacity="0.7" />
                   <circle class="hotspot-core" cx="145" cy="155" r="7" fill="#f87171" filter="url(#glow)" />
-                  <text x="100" y="158" text-anchor="end" fill="#f87171" font-family="monospace" font-size="7" letter-spacing="0.8">HEART / ECG</text>
+                  <text x="100" y="158" text-anchor="end" fill="#f87171" font-family="monospace" font-size="10" font-weight="700" letter-spacing="0.8">HEART / ECG</text>
                   <line x1="104" y1="155" x2="136" y2="155" stroke="#f87171" stroke-width="0.8" />
                 </g>
 
@@ -587,7 +587,7 @@
                 <g class="hotspot-node" id="node-lungs" onclick="selectBodyOrgan('lungs')">
                   <circle class="hotspot-radar" cx="178" cy="150" r="14" stroke="#76e4d2" fill="none" opacity="0.7" />
                   <circle class="hotspot-core" cx="178" cy="150" r="6" fill="#76e4d2" filter="url(#glow)" />
-                  <text x="215" y="153" fill="#76e4d2" font-family="monospace" font-size="7" letter-spacing="0.8">LUNGS / SpO₂</text>
+                  <text x="215" y="153" fill="#76e4d2" font-family="monospace" font-size="10" font-weight="700" letter-spacing="0.8">LUNGS / SpO₂</text>
                   <line x1="186" y1="150" x2="210" y2="150" stroke="#76e4d2" stroke-width="0.8" />
                 </g>
 
@@ -595,7 +595,7 @@
                 <g class="hotspot-node" id="node-spine" onclick="selectBodyOrgan('spine')">
                   <circle class="hotspot-radar" cx="160" cy="220" r="14" stroke="#d0b787" fill="none" opacity="0.6" />
                   <circle class="hotspot-core" cx="160" cy="220" r="6" fill="#d0b787" filter="url(#glow)" />
-                  <text x="205" y="223" fill="#d0b787" font-family="monospace" font-size="7" letter-spacing="0.8">SPINE / BONE</text>
+                  <text x="205" y="223" fill="#d0b787" font-family="monospace" font-size="10" font-weight="700" letter-spacing="0.8">SPINE / BONE</text>
                   <line x1="168" y1="220" x2="200" y2="220" stroke="#d0b787" stroke-width="0.8" />
                 </g>
 
@@ -603,7 +603,7 @@
                 <g class="hotspot-node" id="node-fluid" onclick="selectBodyOrgan('fluid')">
                   <circle class="hotspot-radar" cx="160" cy="265" r="15" stroke="#4b85ff" fill="none" opacity="0.7" />
                   <circle class="hotspot-core" cx="160" cy="265" r="6" fill="#4b85ff" filter="url(#glow)" />
-                  <text x="110" y="268" text-anchor="end" fill="#9abaff" font-family="monospace" font-size="7" letter-spacing="0.8">FLUID SHIFT</text>
+                  <text x="110" y="268" text-anchor="end" fill="#9abaff" font-family="monospace" font-size="10" font-weight="700" letter-spacing="0.8">FLUID SHIFT</text>
                   <line x1="114" y1="265" x2="151" y2="265" stroke="#4b85ff" stroke-width="0.8" />
                 </g>
 
@@ -613,7 +613,7 @@
                   <circle class="hotspot-core" cx="135" cy="415" r="6" fill="#76e4d2" filter="url(#glow)" />
                   <circle class="hotspot-radar" cx="185" cy="415" r="14" stroke="#76e4d2" fill="none" opacity="0.7" />
                   <circle class="hotspot-core" cx="185" cy="415" r="6" fill="#76e4d2" filter="url(#glow)" />
-                  <text x="160" y="445" text-anchor="middle" fill="#76e4d2" font-family="monospace" font-size="7" letter-spacing="0.8">CALVES / MUSCLE ATROPHY</text>
+                  <text x="160" y="445" text-anchor="middle" fill="#76e4d2" font-family="monospace" font-size="10" font-weight="700" letter-spacing="0.8">CALVES / MUSCLE ATROPHY</text>
                 </g>
               </svg>
             </div>
@@ -637,7 +637,7 @@
               <div>
                 <span class="panel-kicker" id="organ-kicker">NASA HRP RISK 03 // SANS OCULAR FLUID SHIFT</span>
                 <h2 class="organ-title-serif" id="organ-title">Optic Nerve & <em>Retina</em></h2>
-                <div style="font-size: 11px; color: #8b97a4; margin-top: 4px;" id="organ-desc">
+                <div style="font-size: 13.5px; line-height: 1.6; color: #a8b8cc; margin-top: 4px;" id="organ-desc">
                   Cephalad microgravity fluid redistribution causes chronic elevation of optic nerve sheath diameter (ONSD) and posterior globe flattening.
                 </div>
               </div>
@@ -697,10 +697,10 @@
               </div>
 
               <div style="margin-top: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-                <button class="button button-primary" type="button" onclick="consultAiForOrgan()" style="padding: 10px 18px; font-size: 10px;">
+                <button class="button button-primary" type="button" onclick="consultAiForOrgan()" style="padding: 11px 20px; font-size: 12.5px; font-weight: 650;">
                   <span>Ask AURA AI About This Organ ↗</span>
                 </button>
-                <span style="font: 8px var(--mono); color: #8b97a4;">NASA HRP STUDY: SANS-01 / NASA-STD-3001</span>
+                <span style="font: 700 11px var(--mono); color: #a4b5cc;">NASA HRP STUDY: SANS-01 / NASA-STD-3001</span>
               </div>
             </div>
 
@@ -947,7 +947,7 @@
               <h2>Circadian <em>regulation</em></h2>
               <p>16 sunrises every 24 hours disrupt natural melatonergic cycles. Crew sleep sleep-efficiency averages 86% with blue-depleted cabin lighting.</p>
               <div class="insight-metric-tag">AVG SLEEP: 6.8h · DEEP 19%</div>
-              <div style="margin-top: 14px; font: 7px var(--mono); color: #8896a8;">STUDY REF: NASA HRP-CR01 ↗</div>
+              <div style="margin-top: 14px; font: 700 11px var(--mono); color: #a4b5cc;">STUDY REF: NASA HRP-CR01 ↗</div>
             </div>
           </article>
 
@@ -962,7 +962,7 @@
               <h2>Resistive <em>countermeasure</em></h2>
               <p>ARED resistive exercise outputs average 380 lbs daily force equivalent, preventing the expected 1.5% monthly bone mineral loss in the femoral neck.</p>
               <div class="insight-metric-tag insight-metric-tag-lilac">RETENTION: 98.4% · 35 MIN/DAY</div>
-              <div style="margin-top: 14px; font: 7px var(--mono); color: #8896a8;">STUDY REF: NASA HRP-EX04 ↗</div>
+              <div style="margin-top: 14px; font: 700 11px var(--mono); color: #a4b5cc;">STUDY REF: NASA HRP-EX04 ↗</div>
             </div>
           </article>
 
@@ -977,7 +977,7 @@
               <h2>Cephalad <em>fluid shift</em></h2>
               <p>Absence of hydrostatic pressure gradient draws ~2 liters of interstitial fluid toward the head. Optic nerve sheath diameter (ONSD) measured at 5.1 mm.</p>
               <div class="insight-metric-tag insight-metric-tag-amber">ONSD: 5.1mm · SAFE (&lt;5.8mm)</div>
-              <div style="margin-top: 14px; font: 7px var(--mono); color: #8896a8;">STUDY REF: NASA SANS-01 ↗</div>
+              <div style="margin-top: 14px; font: 700 11px var(--mono); color: #a4b5cc;">STUDY REF: NASA SANS-01 ↗</div>
             </div>
           </article>
 
@@ -991,7 +991,7 @@
               <h2 style="font-family: Georgia, serif; font-size: 26px; font-weight: 400; color: #f5f3ed; margin: 6px 0 0;">
                 The 5 Hazards of <em>Human Spaceflight</em> (R-I-D-G-E)
               </h2>
-              <p style="font-size: 12px; color: #8b97a4; margin-top: 4px;">
+              <p style="font-size: 14px; color: #aebecf; margin-top: 4px;">
                 NASA's official clinical risk categorization for long-duration deep-space missions to the Moon and Mars.
               </p>
             </div>
