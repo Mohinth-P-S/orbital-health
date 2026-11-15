@@ -93,4 +93,4 @@ npm start
 
 ## License and Media Usage
 
-NASA imagery and data assets are used under the NASA Media Usage Guidelines. Spaceflight biomedical parameters are derived from open-access scientific analogue s.
+NASA imagery and data assets are used under the NASA Media Usage Guidelines. Spaceflight biomedical parameters are derived from open-access scientific analogues.
