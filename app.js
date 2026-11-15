@@ -1946,54 +1946,79 @@ function cycleSpaceBackground() {
 
 /* ==========================================================================
    10. PREVENT ACCIDENTAL SINGLE-CLICK / SINGLE-TAP SELECTION
-       (Preserves standard website double-click & long-press selection)
+       (Preserves standard website double-click & double-tap word selection)
    ========================================================================== */
 (function setupSelectionBehavior() {
-  let isDoubleInteraction = false;
-  let lastClickTime = 0;
+  const isInteractiveOrInput = (el) => {
+    return !el || !!el.closest("input, textarea, [contenteditable], button, .button, a, .nav-link, .dock-link, .chip, .preset-chip, .organ-chip, .menu-toggle, canvas, svg");
+  };
 
-  // Track double-click events
-  document.addEventListener("dblclick", () => {
-    isDoubleInteraction = true;
-    setTimeout(() => { isDoubleInteraction = false; }, 450);
-  }, { capture: true, passive: true });
+  // Helper to select word under coordinates
+  function selectWordAtPoint(x, y, target) {
+    let range = null;
+    if (document.caretRangeFromPoint) {
+      range = document.caretRangeFromPoint(x, y);
+    } else if (document.caretPositionFromPoint) {
+      const pos = document.caretPositionFromPoint(x, y);
+      if (pos && pos.offsetNode) {
+        range = document.createRange();
+        range.setStart(pos.offsetNode, pos.offset);
+        range.collapse(true);
+      }
+    }
+    if (range && range.startContainer && range.startContainer.nodeType === Node.TEXT_NODE) {
+      const textNode = range.startContainer;
+      const offset = range.startOffset;
+      const text = textNode.textContent || "";
+      let start = offset;
+      let end = offset;
+      const isWordChar = (ch) => /[\w\u00C0-\u024F\u1E00-\u1EFF]/.test(ch);
+      while (start > 0 && isWordChar(text[start - 1])) start--;
+      while (end < text.length && isWordChar(text[end])) end++;
+      if (start < end) {
+        if (target && target.style) {
+          target.style.setProperty("user-select", "text", "important");
+          target.style.setProperty("-webkit-user-select", "text", "important");
+        }
+        const wordRange = document.createRange();
+        wordRange.setStart(textNode, start);
+        wordRange.setEnd(textNode, end);
+        const sel = window.getSelection();
+        if (sel) {
+          sel.removeAllRanges();
+          sel.addRange(wordRange);
+        }
+      }
+    }
+  }
 
-  // On click: if it's a single click (detail === 1) and not a double-click
-  document.addEventListener("click", (e) => {
-    // Allow inputs, textareas, or explicitly editable fields
-    if (e.target.closest("input, textarea, [contenteditable]")) return;
-
-    const now = Date.now();
-    const isConsecutiveClick = (now - lastClickTime) < 350;
-    lastClickTime = now;
-
-    // Single click/tap (e.detail === 1 and not part of double-click)
-    if (e.detail === 1 && !isConsecutiveClick && !isDoubleInteraction) {
-      const sel = window.getSelection ? window.getSelection() : null;
-      if (sel && !sel.isCollapsed && sel.type === "Range") {
+  // Prevent single-click mousedown from starting accidental text selection
+  document.addEventListener("mousedown", (e) => {
+    if (isInteractiveOrInput(e.target)) return;
+    if (e.detail === 1) {
+      // Clear any previous selection when single-clicking elsewhere
+      const sel = window.getSelection();
+      if (sel && !sel.isCollapsed) {
         sel.removeAllRanges();
       }
-      // Async check for mobile browsers that set selection after click
-      setTimeout(() => {
-        if (!isDoubleInteraction) {
-          const s = window.getSelection ? window.getSelection() : null;
-          if (s && !s.isCollapsed && s.type === "Range" && !isDoubleInteraction) {
-            s.removeAllRanges();
-          }
-        }
-      }, 25);
+      e.preventDefault();
     }
-  }, { capture: true });
+  });
 
-  // Touch device single-tap handler
-  let touchStartMs = 0;
+  // Enable word selection on true double click (desktop / laptop)
+  document.addEventListener("dblclick", (e) => {
+    if (isInteractiveOrInput(e.target)) return;
+    selectWordAtPoint(e.clientX, e.clientY, e.target);
+  });
+
+  // Touch handling for mobile devices (phones & tablets)
+  let lastTapTime = 0;
+  let lastTapX = 0;
+  let lastTapY = 0;
   let touchMoved = false;
 
   document.addEventListener("touchstart", (e) => {
-    if (e.touches.length === 1) {
-      touchStartMs = Date.now();
-      touchMoved = false;
-    }
+    touchMoved = false;
   }, { passive: true });
 
   document.addEventListener("touchmove", () => {
@@ -2001,27 +2026,24 @@ function cycleSpaceBackground() {
   }, { passive: true });
 
   document.addEventListener("touchend", (e) => {
-    if (e.target.closest("input, textarea, [contenteditable]")) return;
-    const duration = Date.now() - touchStartMs;
+    if (isInteractiveOrInput(e.target) || touchMoved) return;
+    const touch = e.changedTouches ? e.changedTouches[0] : null;
+    if (!touch) return;
 
-    // If it was a quick single tap (under 260ms without moving)
-    if (duration < 260 && !touchMoved) {
-      const now = Date.now();
-      const isDoubleTap = (now - lastClickTime) < 350;
-      lastClickTime = now;
+    const now = Date.now();
+    const dist = Math.hypot(touch.clientX - lastTapX, touch.clientY - lastTapY);
+    const isDoubleTap = (now - lastTapTime < 340) && (dist < 28);
+    lastTapTime = now;
+    lastTapX = touch.clientX;
+    lastTapY = touch.clientY;
 
-      if (!isDoubleTap && !isDoubleInteraction) {
-        setTimeout(() => {
-          if (!isDoubleInteraction) {
-            const s = window.getSelection ? window.getSelection() : null;
-            if (s && !s.isCollapsed && s.type === "Range") {
-              s.removeAllRanges();
-            }
-          }
-        }, 40);
-      } else {
-        isDoubleInteraction = true;
-        setTimeout(() => { isDoubleInteraction = false; }, 450);
+    if (isDoubleTap) {
+      selectWordAtPoint(touch.clientX, touch.clientY, e.target);
+    } else {
+      // Single tap: clear any active selection
+      const sel = window.getSelection();
+      if (sel && !sel.isCollapsed) {
+        sel.removeAllRanges();
       }
     }
   }, { passive: true });

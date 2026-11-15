@@ -4,7 +4,7 @@
    application operates with 0ms latency even in deep space or offline environments.
    ========================================================================== */
 
-const CACHE_NAME = "orbital-health-cache-v4";
+const CACHE_NAME = "orbital-health-cache-v5";
 const STATIC_ASSETS = [
   "./",
   "./index.html",

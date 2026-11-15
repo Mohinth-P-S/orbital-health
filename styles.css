@@ -5969,34 +5969,34 @@ body {
 
 
 /* ==========================================================================
-   11. PREVENT ACCIDENTAL SINGLE-CLICK / SINGLE-TAP SELECTION ON UI HEADINGS
+   11. PREVENT ACCIDENTAL SINGLE-CLICK / SINGLE-TAP SELECTION ACROSS THE APP
+   (Resolves unwanted single-click/single-tap selection on phone & laptop)
    ========================================================================== */
 *, *::before, *::after {
   -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Headings, titles, brand, navigation, buttons, badges, controls must NEVER select on single tap */
+html, body,
 h1, h2, h3, h4, h5, h6,
+p, span, div, small, strong, em, b, i,
+label, li, ul, ol, td, th, tr, table,
+section, article, aside, header, footer,
+figcaption, blockquote, pre:not(.selectable-code),
 .brand, .brand *,
-.brand-copy, .brand-copy *,
-.hero-copy h1, .hero-copy h1 *,
-.eyebrow, .eyebrow *,
-.label-kicker, .label-coordinate,
-.nav-link, .dock-link, .app-dock-item,
-.button, button,
-.rail-label, .rail-item strong, .rail-link,
-.panel-kicker, .view-tag,
-.home-content-block h2, .home-content-block h2 *,
-.hm-title, .hm-badge, .hm-val, .hm-footer-tag,
-.log-time-badge, .log-crew-tag, .log-status-pill,
-.vital-label, .vital-tag, .vital-status-pill,
-.vital-big-number, .vital-bottom-status,
-.quest-title, .quest-xp, .quest-streak-badge,
-.organ-chip, .box-kicker, .box-val, .organ-status-badge,
-.countermeasure-step-num,
-.crew-name-serif, .crew-role-kicker, .crew-photo-badge, .crew-stat,
-.gemini-top-bar, .gemini-planet-pill,
-.nasa-hero, .hero-image-label, .image-credit,
+.hero-copy, .hero-copy *,
+.hero-description, .hero-description *,
+.home-content-block, .home-content-block *,
+.panel, .panel *,
+.metric-card, .metric-card *,
+.insight-card, .insight-card *,
+.crew-card, .crew-card *,
+.log-card, .log-card *,
+.log-text, .log-text *,
+.hm-desc, .hm-desc *,
+.arch-demo-note, .arch-demo-note *,
+.assistant-message, .assistant-message *,
+.user-message, .user-message *,
+.gemini-chat-area, .gemini-chat-area *,
 .app-dock, .topbar {
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
@@ -6006,18 +6006,17 @@ h1, h2, h3, h4, h5, h6,
   cursor: default;
 }
 
-/* Ensure buttons and links keep pointer cursor */
-button, .button, a, .nav-link, .dock-link, .app-dock-item, .chip, .preset-chip, .organ-chip {
-  cursor: pointer !important;
+/* Form inputs, textareas, search bars, and editable content allow standard text input & selection */
+input, textarea, [contenteditable], [contenteditable] * {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+  -webkit-touch-callout: default !important;
+  cursor: text !important;
 }
 
-/* Text / Prose paragraphs allow standard double-click / double-tap selection */
-p, .hero-description, .log-text, .hm-desc, .arch-demo-note p,
-.insight-card-body p, .ridge-card p, .nasa-resource-card p,
-.assistant-message, .user-message {
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-  -webkit-touch-callout: default;
+/* Ensure buttons, chips, links keep interactive pointer */
+button, .button, a, .nav-link, .dock-link, .app-dock-item, .chip, .preset-chip, .organ-chip {
+  cursor: pointer !important;
 }
