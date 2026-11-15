@@ -5735,3 +5735,30 @@ body {
 .gemini-hero-subheading {
   font-size: 18px !important;
 }
+
+/* Subtle readability pass: typography only; preserve existing layouts and behavior. */
+.primary-nav .nav-link {
+  color: #e2e8f0;
+  font-size: 15.5px;
+}
+
+.demo-state {
+  color: #e2e8f0;
+  font-size: 13.5px;
+}
+
+.alert-button {
+  color: #dbeafe;
+  font-size: 14px;
+}
+
+small {
+  color: #cbd5e1;
+  font-size: clamp(11px, 0.8em, 12.5px) !important;
+}
+
+@media (max-width: 620px) {
+  .primary-nav .nav-link {
+    font-size: 14px;
+  }
+}
