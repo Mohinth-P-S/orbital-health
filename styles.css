@@ -4532,3 +4532,16 @@ body.is-app-mode .global-ai-fab {
 .nasa-hero img {
   transform: scale(1.02) !important;
 }
+
+/* Refined, larger interface typography */
+body { font-size: 16px; }
+.primary-nav { gap: clamp(15px, 1.75vw, 28px); }
+.nav-link { font-size: 16px; }
+.hero-description { font-size: clamp(17px, 1.35vw, 20px); line-height: 1.65; }
+.eyebrow, .rail-label, .panel-kicker { font-size: 13px; }
+.rail-item strong, .button, .alert-button { font-size: 15px; }
+.demo-state { font-size: 13px; }
+@media (max-width: 760px) {
+  .nav-link { font-size: 15px; }
+  .hero-description { font-size: 17px; }
+}

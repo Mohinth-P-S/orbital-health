@@ -36,10 +36,6 @@
     
     <!-- ================= TOP NAVIGATION BAR ================= -->
     <header class="topbar">
-      <a class="brand" href="#overview" data-view="overview" aria-label="Orbital Health home">
-        <span class="brand-copy"><strong>ORBITAL</strong><small>CREW HEALTH</small></span>
-      </a>
-
       <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
         <span></span><span></span>
       </button>
@@ -67,7 +63,7 @@
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           <span>Install App</span>
         </button>
-        <span class="demo-state"><i class="status-live"></i> LIVE</span>
+        <span class="demo-state"><i class="status-live"></i> SIMULATED DEMO</span>
         <button class="alert-button" type="button" data-view="alerts" aria-label="Open alerts">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
           <span>Alerts</span>
@@ -90,7 +86,7 @@
               <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
               <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA AI</button>
             </div>
-            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Active telemetry stream</strong> · NASA LSDA-0042 & ISS Expedition 72 Bio-Harness</span></div>
+            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Sample telemetry view</strong> · Illustrative dataset; no live crew data</span></div>
           </div>
 
           <figure class="nasa-hero">
@@ -112,9 +108,9 @@
         </div>
 
         <div class="overview-rail">
-          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> NASA LSDA Stream Active</strong></div>
+          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> Demo telemetry · simulated</strong></div>
           <div class="rail-item"><span class="rail-label">MONITORING</span><strong>Bio-Harness + SANS Model</strong></div>
-          <div class="rail-item"><span class="rail-label">ASSISTANT</span><strong>AURA Medical AI (Online) <span class="tiny-arrow">↗</span></strong></div>
+          <div class="rail-item"><span class="rail-label">ASSISTANT</span><strong>AURA AI (Demo) <span class="tiny-arrow">↗</span></strong></div>
           <button class="rail-link" type="button" data-view="sources">Explore data sources <span>↗</span></button>
         </div>
 
@@ -323,7 +319,7 @@
           </div>
           <div class="story-footnote">
             <span>IMAGES VIA NASA IMAGE AND VIDEO LIBRARY API</span>
-            <span>Real-time biometrics connected via NASA LSDA-0042 stream.</span>
+            <span>Illustrative interface only · no live astronaut data is connected.</span>
           </div>
         </section>
       </section>
@@ -334,9 +330,9 @@
           <div>
             <div class="eyebrow"><span class="eyebrow-line"></span> CREW TELEMETRY / 01</div>
             <h1 id="dashboard-title">Health <em>dashboard</em></h1>
-            <p class="hero-description">Continuous biomedical telemetry streamed from ingested spaceflight datasets, smart bio-harness garments, and real-time Lead-II cardiac sensors.</p>
+            <p class="hero-description">Explore sample biomedical datasets and visualizations. No live astronaut telemetry is connected.</p>
           </div>
-          <span class="view-tag status-active"><i class="status-live"></i> NASA LSDA STREAM 250 Hz</span>
+          <span class="view-tag status-active">SAMPLE DATASET · 250 Hz</span>
         </div>
 
         <!-- Overview Rail for Dashboard -->
@@ -351,7 +347,7 @@
           </div>
           <div class="rail-item">
             <span class="rail-label">ACTIVE DATASET</span>
-            <strong id="dash-active-dataset-label">NASA LSDA-0042 Baseline</strong>
+            <strong id="dash-active-dataset-label">Sample baseline dataset</strong>
           </div>
           <button class="rail-link" type="button" data-view="crew">Switch crew profile <span>↗</span></button>
         </div>
@@ -374,7 +370,7 @@
             <button class="delay-chip" id="delay-btn-mars-max" type="button" onclick="setMissionDelay('mars-max')">Mars Conjunction (22.0m)</button>
           </div>
           <div class="delay-status-badge" id="delay-telemed-badge">
-            <i class="status-live"></i> <span id="delay-telemed-text">GROUND TELEMEDICINE: ONLINE</span>
+            <i class="status-live"></i> <span id="delay-telemed-text">GROUND TELEMEDICINE: SIMULATION</span>
           </div>
         </div>
 
@@ -385,7 +381,7 @@
               <span class="panel-kicker">TELEMETRY INGESTION ENGINE // NASA LSDA & PHYSIONET ARCHIVES</span>
               <h3>
                 <span>Dataset Stream Controller</span>
-                <span class="csv-source-badge" id="active-dataset-name">NASA LSDA-0042 NOMINAL BASELINE</span>
+                <span class="csv-source-badge" id="active-dataset-name">SAMPLE BASELINE · SOURCE: NASA LSDA</span>
               </h3>
             </div>
             <div style="font-size: 10px; color: var(--muted); font-family: var(--mono);" id="dataset-status-line">
@@ -512,8 +508,8 @@
           <article class="panel trend-panel">
             <div class="panel-heading">
               <div>
-                <span class="panel-kicker">CONTINUOUS BIO-HARNESS TELEMETRY (250 Hz)</span>
-                <h2>Lead-II Real-time <em>Waveform</em></h2>
+                <span class="panel-kicker">SAMPLE BIO-HARNESS SIGNAL (250 Hz)</span>
+                <h2>Lead-II Sample <em>Waveform</em></h2>
               </div>
               <div class="timeframe-group">
                 <button class="timeframe-btn is-active" type="button" onclick="setTimeframe('live')">LIVE</button>
@@ -1032,12 +1028,12 @@
       <section class="view inner-view" id="view-assistant" aria-labelledby="assistant-title" hidden>
         <div class="inner-heading">
           <div>
-            <div class="eyebrow"><span class="eyebrow-line"></span> AURA INTELLIGENT AGENT / 03 · CREW COMPANION &amp; FLIGHT SURGEON</div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> AURA AI ASSISTANT / 03 · INFORMATIONAL DEMO</div>
             <h1 id="assistant-title">AURA <em>AI space companion</em></h1>
-            <p class="hero-description">Your friendly mission companion and personal health agent. Ready to chat about anything—from how you're feeling and life in orbit to space medicine and vitals.</p>
+            <p class="hero-description">An AI demo for general spaceflight health topics. It does not monitor crew, diagnose conditions, or recommend treatment.</p>
           </div>
           <div class="assistant-header-actions">
-            <button class="voice-toggle-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle flight surgeon voice readout">
+            <button class="voice-toggle-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle voice readout">
               <span id="voice-icon">🔇</span>
               <span id="voice-text">Voice: OFF</span>
             </button>
@@ -1083,8 +1079,8 @@
               <div class="ai-console-brand">
                 <span class="chat-avatar ai-glow-avatar">✳</span>
                 <div class="chat-meta">
-                  <strong>AURA Mission Companion &amp; Flight Surgeon</strong>
-                  <small id="chat-engine-subtitle">YOUR FRIEND IN DEEP SPACE · PERSONAL HEALTH AGENT</small>
+                  <strong>AURA Mission Companion · Demo</strong>
+                  <small id="chat-engine-subtitle">INFORMATIONAL DEMO · NO LIVE CREW MONITORING</small>
                 </div>
               </div>
 
@@ -1521,7 +1517,7 @@
 
 
   <!-- Global Floating AI Shortcut (Accessible on Every Tab) -->
-  <button class="global-ai-fab" id="global-ai-fab" type="button" onclick="showView('assistant')" title="Open AURA Flight Surgeon AI" aria-label="Consult AURA AI Assistant">
+  <button class="global-ai-fab" id="global-ai-fab" type="button" onclick="showView('assistant')" title="Open AURA AI Assistant" aria-label="Consult AURA AI Assistant">
     <span class="ai-fab-glow"></span>
     <span class="ai-fab-icon">✳</span>
     <span class="ai-fab-label">Consult AI</span>

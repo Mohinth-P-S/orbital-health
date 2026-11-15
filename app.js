@@ -363,7 +363,7 @@ function parseCsvString(csvText) {
 const PRESET_DATASETS = {
   nominal: {
     file: "data/1_nasa_iss_cupola_nominal.csv",
-    name: "NASA LSDA-0042 NOMINAL BASELINE",
+    name: "SAMPLE BASELINE · SOURCE: NASA LSDA",
     description: "Expedition 72 nominal biometrics during Cupola Earth observation."
   },
   hypoxia: {
@@ -954,7 +954,7 @@ function toggleVoiceOutput() {
     if (icon) icon.textContent = "🔊";
     if (text) text.textContent = "Voice: ON";
     if (btn) btn.classList.add("is-active");
-    speakText("AURA flight surgeon audio telemetry readout activated.");
+    speakText("AURA demo voice readout activated.");
   } else {
     if (icon) icon.textContent = "🔇";
     if (text) text.textContent = "Voice: OFF";
@@ -987,9 +987,9 @@ function clearChatStream() {
   const chatStream = document.querySelector("#chat-stream");
   if (!chatStream) return;
   chatStream.innerHTML = `
-    <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · ACTIVE ORBIT</span>
+    <span class="chat-date">SAMPLE CREW HEALTH CONSOLE · DEMO MODE</span>
     <div class="assistant-message" id="initial-ai-msg">
-      <strong>Console Cleared.</strong> AURA autonomous flight surgeon standing by. All biomedical telemetry channels active and nominal.
+      <strong>Console Cleared.</strong> AURA informational demo is ready. Displayed biomedical values are illustrative and are not live crew telemetry.
     </div>
   `;
 }
@@ -1027,7 +1027,7 @@ function generateLocalFlightSurgeonReply(query) {
   }
 
   if (q.includes("who are you") || q.includes("what are you") || q.includes("what can you do") || q.includes("introduce yourself")) {
-    return `I'm <strong>AURA</strong>! Think of me as your personal flight surgeon, co-pilot, and best friend aboard this mission. ✨<br><br>I keep an eye on crew health telemetry (like ECG signals, fluid shifts, and radiation levels) and NASA bioastronautics protocols, but just as importantly, I'm here to talk about <em>anything</em>—how you're feeling, science questions, mission banter, or just helping you unwind after a long day in space. You can ask or share whatever you'd like!`;
+    return `I'm <strong>AURA</strong>! Think of me as your spaceflight health information assistant. ✨<br><br>I can explain general topics such as ECG signals, fluid shifts, and NASA bioastronautics research. I do not monitor crew, interpret personal vitals, diagnose conditions, or provide treatment advice. For health concerns, consult a qualified clinician or mission medical officer.`;
   }
 
   if (q.includes("joke") || q.includes("funny") || q.includes("laugh") || q.includes("humor")) {
