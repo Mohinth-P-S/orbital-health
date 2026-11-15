@@ -36,10 +36,6 @@
     
     <!-- ================= TOP NAVIGATION BAR ================= -->
     <header class="topbar">
-      <a class="brand" href="#overview" data-view="overview" aria-label="Orbital Health home">
-        <span class="brand-copy"><strong>ORBITAL</strong><small>CREW HEALTH</small></span>
-      </a>
-
       <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
         <span></span><span></span>
       </button>
@@ -67,7 +63,7 @@
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           <span>Install App</span>
         </button>
-        <span class="demo-state"><i class="status-live"></i> LIVE</span>
+        <span class="demo-state"><i class="status-live"></i> SIMULATED DEMO</span>
         <button class="alert-button" type="button" data-view="alerts" aria-label="Open alerts">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
           <span>Alerts</span>
@@ -90,7 +86,7 @@
               <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
               <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA AI</button>
             </div>
-            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Active telemetry stream</strong> · NASA LSDA-0042 & ISS Expedition 72 Bio-Harness</span></div>
+            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Sample telemetry view</strong> · Illustrative dataset; no live crew data</span></div>
           </div>
 
           <figure class="nasa-hero">
@@ -112,7 +108,7 @@
         </div>
 
         <div class="overview-rail">
-          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> NASA LSDA Stream Active</strong></div>
+          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> Demo telemetry · simulated</strong></div>
           <div class="rail-item"><span class="rail-label">MONITORING</span><strong>Bio-Harness + SANS Model</strong></div>
           <div class="rail-item"><span class="rail-label">ASSISTANT</span><strong>AURA Medical AI (Online) <span class="tiny-arrow">↗</span></strong></div>
           <button class="rail-link" type="button" data-view="sources">Explore data sources <span>↗</span></button>
@@ -323,7 +319,7 @@
           </div>
           <div class="story-footnote">
             <span>IMAGES VIA NASA IMAGE AND VIDEO LIBRARY API</span>
-            <span>Real-time biometrics connected via NASA LSDA-0042 stream.</span>
+            <span>Illustrative interface only · no live astronaut data is connected.</span>
           </div>
         </section>
       </section>
@@ -334,9 +330,9 @@
           <div>
             <div class="eyebrow"><span class="eyebrow-line"></span> CREW TELEMETRY / 01</div>
             <h1 id="dashboard-title">Health <em>dashboard</em></h1>
-            <p class="hero-description">Continuous biomedical telemetry streamed from ingested spaceflight datasets, smart bio-harness garments, and real-time Lead-II cardiac sensors.</p>
+            <p class="hero-description">Explore sample biomedical datasets and visualizations. No live astronaut telemetry is connected.</p>
           </div>
-          <span class="view-tag status-active"><i class="status-live"></i> NASA LSDA STREAM 250 Hz</span>
+          <span class="view-tag status-active">SAMPLE DATASET · 250 Hz</span>
         </div>
 
         <!-- Overview Rail for Dashboard -->
@@ -351,7 +347,7 @@
           </div>
           <div class="rail-item">
             <span class="rail-label">ACTIVE DATASET</span>
-            <strong id="dash-active-dataset-label">NASA LSDA-0042 Baseline</strong>
+            <strong id="dash-active-dataset-label">Sample baseline dataset</strong>
           </div>
           <button class="rail-link" type="button" data-view="crew">Switch crew profile <span>↗</span></button>
         </div>
@@ -385,7 +381,7 @@
               <span class="panel-kicker">TELEMETRY INGESTION ENGINE // NASA LSDA & PHYSIONET ARCHIVES</span>
               <h3>
                 <span>Dataset Stream Controller</span>
-                <span class="csv-source-badge" id="active-dataset-name">NASA LSDA-0042 NOMINAL BASELINE</span>
+                <span class="csv-source-badge" id="active-dataset-name">SAMPLE BASELINE · SOURCE: NASA LSDA</span>
               </h3>
             </div>
             <div style="font-size: 10px; color: var(--muted); font-family: var(--mono);" id="dataset-status-line">
@@ -512,8 +508,8 @@
           <article class="panel trend-panel">
             <div class="panel-heading">
               <div>
-                <span class="panel-kicker">CONTINUOUS BIO-HARNESS TELEMETRY (250 Hz)</span>
-                <h2>Lead-II Real-time <em>Waveform</em></h2>
+                <span class="panel-kicker">SAMPLE BIO-HARNESS SIGNAL (250 Hz)</span>
+                <h2>Lead-II Sample <em>Waveform</em></h2>
               </div>
               <div class="timeframe-group">
                 <button class="timeframe-btn is-active" type="button" onclick="setTimeframe('live')">LIVE</button>

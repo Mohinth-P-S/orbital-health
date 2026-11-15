@@ -5058,3 +5058,10 @@ body.is-app-mode .global-ai-fab {
 @media (max-width: 380px) {
   #view-dashboard .metric-grid-4 { grid-template-columns: 1fr; }
 }
+
+/* Larger readable type carried forward from the refreshed UI. */
+body { font-size: 16px; }
+.nav-link { font-size: 16px; }
+.hero-description { font-size: clamp(17px, 1.35vw, 20px); line-height: 1.65; }
+.eyebrow, .rail-label, .panel-kicker { font-size: 13px; }
+.rail-item strong, .button, .alert-button { font-size: 15px; }
