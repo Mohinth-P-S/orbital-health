@@ -5004,3 +5004,69 @@ body.is-app-mode .global-ai-fab {
   font-weight: 700 !important;
   margin-bottom: 12px !important;
 }
+
+/* Dashboard-only progressive disclosure: keep core vitals in the first view. */
+#view-dashboard .dashboard-disclosure {
+  margin: 14px 0;
+  border: 1px solid rgba(192,207,230,.14);
+  background: rgba(8,14,25,.66);
+}
+#view-dashboard .dashboard-disclosure-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 68px;
+  padding: 14px 18px;
+  cursor: pointer;
+  list-style: none;
+}
+#view-dashboard .dashboard-disclosure-summary::-webkit-details-marker { display: none; }
+#view-dashboard .dashboard-disclosure-summary:focus-visible {
+  outline: 2px solid var(--blue-light);
+  outline-offset: 3px;
+}
+#view-dashboard .dashboard-disclosure-copy { display: grid; gap: 5px; }
+#view-dashboard .dashboard-disclosure-copy strong {
+  color: var(--text);
+  font: 700 11px var(--mono);
+  letter-spacing: .11em;
+}
+#view-dashboard .dashboard-disclosure-copy small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+#view-dashboard .dashboard-disclosure-action {
+  color: var(--mint);
+  font: 700 10px var(--mono);
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+#view-dashboard .dashboard-disclosure-action b {
+  display: inline-grid;
+  width: 22px;
+  height: 22px;
+  margin-left: 7px;
+  place-items: center;
+  border: 1px solid rgba(118,228,210,.35);
+  border-radius: 50%;
+  font-size: 13px;
+}
+#view-dashboard .dashboard-disclosure-close { display: none; }
+#view-dashboard .dashboard-disclosure[open] .dashboard-disclosure-open { display: none; }
+#view-dashboard .dashboard-disclosure[open] .dashboard-disclosure-close { display: inline; }
+#view-dashboard .dashboard-disclosure > .delay-simulator-panel,
+#view-dashboard .dashboard-disclosure > .csv-engine-panel,
+#view-dashboard .dashboard-disclosure > .quest-panel {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid rgba(192,207,230,.1);
+}
+#view-dashboard .dashboard-quest-disclosure { margin-top: 18px; }
+@media (max-width: 620px) {
+  #view-dashboard .dashboard-disclosure-summary { padding: 13px 14px; }
+  #view-dashboard .dashboard-disclosure-copy strong { font-size: 9px; }
+  #view-dashboard .dashboard-disclosure-copy small { font-size: 11px; }
+  #view-dashboard .dashboard-disclosure-action { font-size: 8px; }
+}

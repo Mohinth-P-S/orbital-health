@@ -356,6 +356,17 @@
           <button class="rail-link" type="button" data-view="crew">Switch crew profile <span>↗</span></button>
         </div>
 
+        <details class="dashboard-disclosure">
+          <summary class="dashboard-disclosure-summary">
+            <span class="dashboard-disclosure-copy">
+              <strong>MISSION DATA & CONTROLS</strong>
+              <small>Mission delay · CSV sources · playback tools</small>
+            </span>
+            <span class="dashboard-disclosure-action">
+              <span class="dashboard-disclosure-open">OPEN CONTROLS <b aria-hidden="true">＋</b></span>
+              <span class="dashboard-disclosure-close">HIDE CONTROLS <b aria-hidden="true">−</b></span>
+            </span>
+          </summary>
         <!-- Deep Space Mission Distance & Comms Delay Simulator -->
         <div class="delay-simulator-panel">
           <div class="delay-info-group">
@@ -478,6 +489,8 @@
           </div>
         </div>
 
+        </details>
+
         <!-- 4-Card Vital Metrics Grid (Driven 100% by CSV row values) -->
         <div class="metric-grid metric-grid-4">
           <article class="metric-card metric-card-feature">
@@ -567,7 +580,18 @@
         </div>
 
         <!-- ================= GAMIFIED COUNTERMEASURE ADHERENCE & QUESTS ================= -->
-        <article class="quest-panel">
+        <details class="dashboard-disclosure dashboard-quest-disclosure">
+          <summary class="dashboard-disclosure-summary">
+            <span class="dashboard-disclosure-copy">
+              <strong>DAILY COUNTERMEASURE QUESTS</strong>
+              <small>Mission readiness · streaks · crew activities</small>
+            </span>
+            <span class="dashboard-disclosure-action">
+              <span class="dashboard-disclosure-open">VIEW QUESTS <b aria-hidden="true">＋</b></span>
+              <span class="dashboard-disclosure-close">HIDE QUESTS <b aria-hidden="true">−</b></span>
+            </span>
+          </summary>
+          <article class="quest-panel">
           <div class="quest-top">
             <div>
               <span class="panel-kicker">GAMIFIED MISSION READINESS // NASA HRP BEHAVIORAL ENGAGEMENT</span>
@@ -649,7 +673,8 @@
               </div>
             </div>
           </div>
-        </article>
+          </article>
+        </details>
       </section>
 
       <!-- ================= 3. VIEW: BODY MAP (INTERACTIVE ANATOMICAL SCAN) ================= -->
