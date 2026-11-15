@@ -1028,117 +1028,131 @@
         </div>
       </section>
 
-      <!-- ================= 4. VIEW: AI ASSISTANT (AURA MEDICAL INTELLIGENCE) ================= -->
-      <section class="view inner-view" id="view-assistant" aria-labelledby="assistant-title" hidden>
-        <div class="inner-heading">
-          <div>
-            <div class="eyebrow"><span class="eyebrow-line"></span> AURA INTELLIGENT AGENT / 03 · CREW COMPANION &amp; FLIGHT SURGEON</div>
-            <h1 id="assistant-title">AURA <em>AI space companion</em></h1>
-            <p class="hero-description">Your friendly mission companion and personal health agent. Ready to chat about anything—from how you're feeling and life in orbit to space medicine and vitals.</p>
+      <!-- ================= 4. VIEW: AI ASSISTANT (GEMINI / CHATGPT SPACE INTERFACE) ================= -->
+      <section class="view inner-view gemini-view-assistant" id="view-assistant" aria-labelledby="gemini-hero-heading" hidden>
+        
+        <!-- Sleek Top Control Bar (Zero clutter, all functions intact) -->
+        <header class="gemini-top-bar">
+          <div class="gemini-top-left">
+            <span class="gemini-brand-spark">✳</span>
+            <div class="gemini-brand-text">
+              <strong>AURA Flight Surgeon</strong>
+              <span class="gemini-status-pill"><i class="gemini-pulse-dot"></i> <span id="chat-online-text">Ready · 0s Delay</span></span>
+            </div>
           </div>
-          <div class="assistant-header-actions">
-            <button class="voice-toggle-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle flight surgeon voice readout">
+
+          <!-- Celestial Latency Switcher (Earth, Moon, Mars, Europa with real NASA textures) -->
+          <div class="gemini-planet-pills" role="radiogroup" aria-label="Celestial Latency Regime">
+            <button class="gemini-planet-pill is-active" type="button" onclick="setAssistantPlanet('earth')" data-planet="earth" title="Earth (LEO) - 0.0s delay">
+              <span class="gemini-pill-thumb" style="background-image: url('assets/earth.jpg');"></span>
+              <span class="gemini-pill-name">Earth</span>
+              <span class="gemini-pill-delay">0s</span>
+            </button>
+            <button class="gemini-planet-pill" type="button" onclick="setAssistantPlanet('moon')" data-planet="moon" title="The Moon (Artemis) - 1.28s delay">
+              <span class="gemini-pill-thumb" style="background-image: url('assets/moon.jpg');"></span>
+              <span class="gemini-pill-name">Moon</span>
+              <span class="gemini-pill-delay">1.3s</span>
+            </button>
+            <button class="gemini-planet-pill" type="button" onclick="setAssistantPlanet('mars')" data-planet="mars" title="Mars Transit Crew - 14.2 min delay">
+              <span class="gemini-pill-thumb" style="background-image: url('assets/mars.jpg');"></span>
+              <span class="gemini-pill-name">Mars</span>
+              <span class="gemini-pill-delay">14m</span>
+            </button>
+            <button class="gemini-planet-pill" type="button" onclick="setAssistantPlanet('europa')" data-planet="europa" title="Europa Ocean Lab - 42.5 min delay">
+              <span class="gemini-pill-thumb" style="background-image: url('assets/europa.jpg');"></span>
+              <span class="gemini-pill-name">Europa</span>
+              <span class="gemini-pill-delay">42m</span>
+            </button>
+          </div>
+
+          <div class="gemini-top-actions">
+            <button class="gemini-action-btn" id="voice-toggle-btn" type="button" onclick="toggleVoiceOutput()" title="Toggle voice readout">
               <span id="voice-icon">🔇</span>
               <span id="voice-text">Voice: OFF</span>
             </button>
-            <button class="clear-chat-btn" type="button" onclick="clearChatStream()" title="Clear chat history">Clear Console</button>
+            <button class="gemini-action-btn" type="button" onclick="clearChatStream()" title="Clear chat history and return to center search">
+              <span>↻ Clear</span>
+            </button>
           </div>
-        </div>
+        </header>
 
-        <!-- Interactive Celestial Mission Selector (Real NASA Photographic Spheres) -->
-        <div class="assistant-planet-bar">
-          <div class="ap-bar-label">
-            <span class="ap-icon">🪐</span>
-            <div>
-              <strong>MISSION CELESTIAL REGIME</strong>
-              <small>Click any celestial target to simulate radio propagation latency and planetary gravitational stress</small>
-            </div>
-          </div>
-          <div class="ap-planets-row">
-            <button class="ap-planet-btn is-active" type="button" onclick="setAssistantPlanet('earth')" data-planet="earth" title="Earth Low Earth Orbit (0ms latency)">
-              <span class="ap-sphere" style="background-image: url('assets/earth.jpg');"></span>
-              <span class="ap-info"><strong>Earth (ISS Orbit)</strong><small>0.0s delay · 1.0g</small></span>
-            </button>
-            <button class="ap-planet-btn" type="button" onclick="setAssistantPlanet('moon')" data-planet="moon" title="The Moon Artemis Base Camp (1.3s latency)">
-              <span class="ap-sphere" style="background-image: url('assets/moon.jpg');"></span>
-              <span class="ap-info"><strong>The Moon (Artemis)</strong><small>1.28s delay · 0.166g</small></span>
-            </button>
-            <button class="ap-planet-btn" type="button" onclick="setAssistantPlanet('mars')" data-planet="mars" title="Mars Transit Crew (14.2 min latency)">
-              <span class="ap-sphere" style="background-image: url('assets/mars.jpg');"></span>
-              <span class="ap-info"><strong>Mars (Transit Crew)</strong><small>14.2m delay · 0.380g</small></span>
-            </button>
-            <button class="ap-planet-btn" type="button" onclick="setAssistantPlanet('europa')" data-planet="europa" title="Europa Jovian Outpost (42.5 min latency)">
-              <span class="ap-sphere" style="background-image: url('assets/europa.jpg');"></span>
-              <span class="ap-info"><strong>Europa (Ocean Lab)</strong><small>42.5m delay · 0.134g</small></span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Expansive, Full-Width Aerospace AI Command Console -->
-        <div class="ai-console-wrapper">
-          <div class="chat-panel panel ai-expanded-panel">
+        <!-- Main Gemini Conversation Canvas -->
+        <div class="gemini-canvas">
+          
+          <!-- Centered Initial Hero State (Visible when not chatting) -->
+          <div class="gemini-hero-center" id="gemini-hero-center">
             
-            <!-- Clean Command Bridge Topbar -->
-            <div class="chat-top ai-command-top">
-              <div class="ai-console-brand">
-                <span class="chat-avatar ai-glow-avatar">✳</span>
-                <div class="chat-meta">
-                  <strong>AURA Mission Companion &amp; Flight Surgeon</strong>
-                  <small id="chat-engine-subtitle">YOUR FRIEND IN DEEP SPACE · PERSONAL HEALTH AGENT</small>
-                </div>
-              </div>
-
-              <div class="ai-status-right">
-                <span class="chat-online" id="chat-online-badge"><i></i> <span id="chat-online-text">READY (0ms LAG)</span></span>
-              </div>
+            <!-- Animated Glowing Cosmic Sparkle -->
+            <div class="gemini-sparkle-emblem" aria-hidden="true">
+              <div class="sparkle-orbit-ring ring-1"></div>
+              <div class="sparkle-orbit-ring ring-2"></div>
+              <div class="sparkle-core-star">✦</div>
             </div>
 
-            <!-- Quick Friendly Action & Protocol Ribbon -->
-            <div class="ai-command-chips-ribbon">
-              <span class="chips-ribbon-label">QUICK CHAT &amp; TOPICS:</span>
-              <div class="chips-scroll-track">
-                <button type="button" class="ai-chip-btn" onclick="askAi('Hey AURA, how are you doing today?')">👋 How are you?</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('How is the crew doing today?')">💬 How is the crew?</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Tell me a funny space joke!')">😄 Tell a joke</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">👁️ SANS &amp; Eyes</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('How is my heart adapting to zero gravity?')">🫀 Heart &amp; Cardio</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('What are your best tips for sleeping in space?')">💤 Sleeping in Space</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('What should I do in an EVA suit oxygen emergency?')">🚨 EVA Emergency</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('How do we shield against solar storms and radiation?')">☀️ Solar Storms</button>
-                <button type="button" class="ai-chip-btn" onclick="askAi('How do astronauts deal with space motion sickness?')">🤢 Motion Sickness</button>
-              </div>
+            <h1 class="gemini-hero-heading" id="gemini-hero-heading">
+              Hello, <em>Commander.</em>
+            </h1>
+            <p class="gemini-hero-subheading">
+              How can I assist your health and mission today?
+            </p>
+
+            <!-- Centered Suggestion Prompt Cards -->
+            <div class="gemini-prompt-cards">
+              <button type="button" class="gemini-prompt-card" onclick="askAi('Analyze cardiovascular drift & ECG vitals')">
+                <span class="prompt-card-icon">🫀</span>
+                <span class="prompt-card-text">Analyze cardiovascular drift &amp; ECG vitals</span>
+                <span class="prompt-card-arrow">↗</span>
+              </button>
+              <button type="button" class="gemini-prompt-card" onclick="askAi('Explain SANS and ocular fluid shifts in microgravity')">
+                <span class="prompt-card-icon">👁️</span>
+                <span class="prompt-card-text">Explain SANS ocular fluid shift protocol</span>
+                <span class="prompt-card-arrow">↗</span>
+              </button>
+              <button type="button" class="gemini-prompt-card" onclick="askAi('What should I do in an EVA suit oxygen emergency?')">
+                <span class="prompt-card-icon">🚨</span>
+                <span class="prompt-card-text">Emergency procedure for EVA suit hypoxia</span>
+                <span class="prompt-card-arrow">↗</span>
+              </button>
+              <button type="button" class="gemini-prompt-card" onclick="askAi('How do we shield against solar storms and radiation?')">
+                <span class="prompt-card-icon">☀️</span>
+                <span class="prompt-card-text">Solar particle storm shielding protocol</span>
+                <span class="prompt-card-arrow">↗</span>
+              </button>
             </div>
 
-            <!-- Expansive Chat Stream -->
-            <div class="chat-body ai-expanded-body" id="chat-stream">
-              <span class="chat-date">MISSION COMPANION &amp; CREW HEALTH STATION · ACTIVE ORBIT</span>
-              <div class="assistant-message" id="initial-ai-msg">
-                <strong>Hey Commander! 👋</strong> I'm AURA, your mission companion and personal health friend onboard.
-                <br><br>
-                I'm here for you 24/7! Whether you want to talk about how you're feeling, ask about your vitals and space medicine, chat about the view outside, or just share what's on your mind, I'm happy to reply to anything friendly.
-                <br><br>
-                How is your day going up here among the stars?
-              </div>
-            </div>
+          </div>
 
-            <!-- Aerospace Command Input Console -->
-            <form class="chat-input-form ai-expanded-form" onsubmit="handleChatSubmit(event)">
-              <div class="chat-input-wrapper">
-                <input type="text" id="chat-input-field" placeholder="Chat with AURA about anything — health, feelings, space life, or just say hi..." autocomplete="off" />
-                <button class="chat-send-btn ai-send-btn" type="submit" aria-label="Send message">
-                  <span>Send</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          <!-- Dynamic Chat Message Stream (Expands as conversations grow) -->
+          <div class="gemini-chat-stream" id="chat-stream">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Centered / Bottom-Docked Chat Bar -->
+          <div class="gemini-input-container">
+            <form class="gemini-chat-form" id="gemini-chat-form" onsubmit="handleChatSubmit(event)">
+              <div class="gemini-input-capsule">
+                <input 
+                  type="text" 
+                  id="chat-input-field" 
+                  placeholder="Ask about vitals, space medicine, flight protocols, or how you feel..." 
+                  autocomplete="off" 
+                  aria-label="Ask AURA Flight Surgeon"
+                />
+                <button class="gemini-send-btn" id="gemini-send-btn" type="submit" aria-label="Send message">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
                 </button>
               </div>
-              <div class="chat-input-footnote">
-                <span>✦ FRIENDLY AI AGENT &amp; CREW COMPANION</span>
-                <span>NASA Bioastronautics Knowledge &amp; Life Support</span>
-                <span class="ai-latency-tag" id="ai-input-latency-tag">Earth Delay: 0.0s</span>
+              <div class="gemini-input-caption">
+                <span>AURA Autonomous Flight Surgeon CDSS · NASA LSDA &amp; Bioastronautics Knowledge</span>
               </div>
             </form>
-
           </div>
+
         </div>
+
       </section>
 
       <!-- ================= 5. VIEW: MISSION INSIGHTS (EDITORIAL STORY CARDS) ================= -->

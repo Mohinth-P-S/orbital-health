@@ -928,16 +928,255 @@ function consultAiForPlanet(planetKey) {
   }, 300);
 }
 
+/* ==========================================================================
+   INTERACTIVE BODY MAP ORGAN SELECTION & AI CONSULTATION
+   ========================================================================== */
+const BODY_ORGAN_DATA = {
+  eyes: {
+    name: "Optic Nerve & Retina (SANS)",
+    status: "Grade 0 · Nominal Baseline",
+    statusBadge: "GRADE 0 · OBSERVATION",
+    badgeClass: "status-badge-warning",
+    kicker: "NASA HRP RISK 03 // SANS OCULAR FLUID SHIFT",
+    title: "Optic Nerve & <em>Retina</em>",
+    desc: "Cephalad microgravity fluid redistribution causes chronic elevation of optic nerve sheath diameter (ONSD) and posterior globe flattening.",
+    stats: [
+      { kicker: "OPTIC NERVE SHEATH (ONSD)", val: "5.1 mm", baseline: "Earth Baseline: < 5.8 mm (Nominal)" },
+      { kicker: "INTRAOCULAR PRESSURE (IOP)", val: "16.2 mmHg", baseline: "Target: 12 - 21 mmHg (Safe)" },
+      { kicker: "CHORIORETINAL FOLDS", val: "None", baseline: "OCT Scan: Crisp margin" },
+      { kicker: "VISUAL ACUITY", val: "20/20", baseline: "Snellen Test: 100% Correct" }
+    ],
+    steps: [
+      { num: "STEP 1", text: "<strong>Lower Body Negative Pressure (LBNP):</strong> Don the Russian Chibis / NASA LBNP suit for 30 minutes at -25 mmHg to draw ~1.2 liters of fluid back into the lower extremities." },
+      { num: "STEP 2", text: "<strong>Optical Coherence Tomography (OCT):</strong> Perform automated retinal ultrasound and fundus imaging scan in the Columbus module at next rest cycle." },
+      { num: "STEP 3", text: "<strong>Space Medicine Protocol:</strong> Ensure daily sodium intake is throttled under 2,000 mg to prevent additional intracranial interstitial fluid pressure spikes." }
+    ],
+    query: "Explain SANS ocular fluid shifts and recommend in-flight countermeasures for optic nerve health."
+  },
+  heart: {
+    name: "Heart & Cardiovascular Autonomics",
+    status: "Nominal · 72 bpm (Sinus Rhythm)",
+    statusBadge: "OPTIMAL · SINUS RHYTHM",
+    badgeClass: "status-badge-success",
+    kicker: "NASA HRP RISK 01 // CARDIOVASCULAR DECONDITIONING",
+    title: "Heart & <em>Cardiovascular System</em>",
+    desc: "Microgravity eliminates hydrostatic blood column gradients, triggering stroke volume adaptation, plasma volume shifts, and cardiovascular drift.",
+    stats: [
+      { kicker: "RESTING HEART RATE", val: "72 bpm", baseline: "Sinus Rhythm (Normal)" },
+      { kicker: "BLOOD PRESSURE", val: "118/76 mmHg", baseline: "Optimal In-Flight Pressure" },
+      { kicker: "HEART RATE VARIABILITY", val: "48 ms RMSSD", baseline: "Autonomic Balance Normal" },
+      { kicker: "CARDIAC OUTPUT", val: "5.4 L/min", baseline: "Target Range: 4.8 - 6.2 L/min" }
+    ],
+    steps: [
+      { num: "STEP 1", text: "<strong>CEVIS Cycle Ergometer:</strong> Execute 30-minute high-intensity aerobic interval session at 185 Watts to maintain stroke volume." },
+      { num: "STEP 2", text: "<strong>Pre-EVA Fluid Loading:</strong> Ingest 1 liter of 0.9% isotonic saline solution with electrolyte tablets prior to high-stress mission activities." },
+      { num: "STEP 3", text: "<strong>Continuous Holter ECG:</strong> Verify 3-lead ECG rhythm continuity to guard against microgravity-induced ectopic ventricular depolarizations." }
+    ],
+    query: "Evaluate cardiovascular telemetry drift and cardiac countermeasure compliance aboard ISS."
+  },
+  brain: {
+    name: "Cerebral Perfusion & Neurovestibular ICP",
+    status: "Nominal · Mean ICP Normal",
+    statusBadge: "OPTIMAL · COGNITIVE INDEX 96%",
+    badgeClass: "status-badge-success",
+    kicker: "NASA HRP RISK 02 // INTRACRANIAL HYPERTENSION & ICP",
+    title: "Brain & <em>Cerebral Perfusion</em>",
+    desc: "Cephalad fluid shift elevates internal jugular vein pressure and alters cerebral venous drainage dynamics in weightlessness.",
+    stats: [
+      { kicker: "ESTIMATED ICP", val: "14.8 mmHg", baseline: "Safe Range: 10 - 18 mmHg" },
+      { kicker: "COGNITIVE SPEED (PVT)", val: "218 ms", baseline: "Mean Reaction Latency: Optimal" },
+      { kicker: "JUGULAR VEIN VELOCITY", val: "24 cm/s", baseline: "Doppler Ultrasound: Forward flow" },
+      { kicker: "SLEEP ARCHITECTURE", val: "92% Quality", baseline: "Deep NREM Cycle Restored" }
+    ],
+    steps: [
+      { num: "STEP 1", text: "<strong>Circadian Light Modulation:</strong> Shift cabin LED spectrum to 2700K warm blue-depleted light 90 minutes before scheduled sleep." },
+      { num: "STEP 2", text: "<strong>Jugular Doppler Assessment:</strong> Perform ultrasound of the internal jugular vein to rule out flow stasis or retrograde thrombosis." },
+      { num: "STEP 3", text: "<strong>Ventilation Verification:</strong> Confirm cabin pCO₂ remains below 2.5 mmHg to eliminate CO₂-mediated cerebral vasodilation." }
+    ],
+    query: "Assess intracranial pressure and neurovestibular adaptation in microgravity."
+  },
+  lungs: {
+    name: "Pulmonary Dynamics & Alveolar Exchange",
+    status: "Optimal · SpO₂ 98.9%",
+    statusBadge: "OPTIMAL · 98.9% SpO₂",
+    badgeClass: "status-badge-success",
+    kicker: "NASA HRP RISK 05 // PULMONARY VENTILATION & GAS DYNAMICS",
+    title: "Lungs & <em>Gas Exchange</em>",
+    desc: "Absence of gravity abolishes ventilation-perfusion gradients across upper and lower lung lobes, achieving uniform alveolar aeration.",
+    stats: [
+      { kicker: "OXYGEN SATURATION (SpO₂)", val: "98.9%", baseline: "Target: > 96.0% (Nominal)" },
+      { kicker: "RESPIRATION RATE", val: "14 br/min", baseline: "Resting Baseline: 12 - 16" },
+      { kicker: "CABIN O₂ PARTIAL PRESSURE", val: "159 mmHg", baseline: "Atmosphere Nominal (21% O₂)" },
+      { kicker: "CABIN CO₂ PARTIAL PRESSURE", val: "2.3 mmHg", baseline: "Scrubber Status: Optimal" }
+    ],
+    steps: [
+      { num: "STEP 1", text: "<strong>Spirometry Verification:</strong> Measure forced vital capacity (FVC) and peak expiratory flow rate during weekly health check." },
+      { num: "STEP 2", text: "<strong>ECLSS Scrubber Status:</strong> Monitor CDRA (Carbon Dioxide Removal Assembly) bed cycle to prevent hypercapnia." },
+      { num: "STEP 3", text: "<strong>Aerosol Filtration:</strong> Inspect cabin HEPA filter airflow to avoid particulate aspiration in microgravity air circulation." }
+    ],
+    query: "Check pulmonary gas exchange, SpO2 telemetry, and cabin atmospheric life support."
+  },
+  spine: {
+    name: "Spinal Column & Skeletal Density",
+    status: "Lengthened +4.2 cm · Bone Retention 98.4%",
+    statusBadge: "DECOMPRESSED · +4.2 CM",
+    badgeClass: "status-badge-warning",
+    kicker: "NASA HRP RISK 04 // SKELETAL DECONDITIONING & OSTEOPENIA",
+    title: "Spine & <em>Skeletal Framework</em>",
+    desc: "Lack of gravitational axial loading decompresses intervertebral discs (+4–6 cm height expansion) and increases osteoclast-mediated bone mineral resorption.",
+    stats: [
+      { kicker: "SPINAL ELONGATION", val: "+4.2 cm", baseline: "Postural Adjustment Expected" },
+      { kicker: "BONE RETENTION RATE", val: "98.4%", baseline: "Optimal via ARED Loading" },
+      { kicker: "DAILY CALCIUM EXCRETION", val: "220 mg/day", baseline: "Renal Stone Risk: Low" },
+      { kicker: "LUMBAR STRESS INDEX", val: "0.22 (Low)", baseline: "Spinal Muscle Tone Protected" }
+    ],
+    steps: [
+      { num: "STEP 1", text: "<strong>ARED Axial Loading:</strong> Perform daily heavy deadlifts and squats with 350+ lbs equivalent force to stimulate osteoblasts." },
+      { num: "STEP 2", text: "<strong>Nutritional Supplementation:</strong> Ingest 800 IU Vitamin D3 and bisphosphonate regimen as prescribed by flight surgeon." },
+      { num: "STEP 3", text: "<strong>Spinal Neutral Posture:</strong> Sleep in tethered sack with knees slightly elevated to avoid paraspinal muscular spasms." }
+    ],
+    query: "Evaluate spinal decompression, lumbar comfort, and ARED bone density preservation."
+  },
+  fluid: {
+    name: "Cephalad Fluid Shift & Interstitial Redistribution",
+    status: "1.8 L Cephalad Translocation",
+    statusBadge: "TRANSFUSED · 1.8 L SHIFT",
+    badgeClass: "status-badge-warning",
+    kicker: "NASA HRP RISK 06 // CEPHALAD FLUID REDISTRIBUTION",
+    title: "Body Fluids & <em>Lymphatic Shifts</em>",
+    desc: "Loss of hydrostatic pressure immediately redistributes ~1.8–2.0 liters of venous and interstitial fluid from legs upward to thorax, neck, and cranial vault.",
+    stats: [
+      { kicker: "CEPHALAD FLUID SHIFT", val: "1.8 Liters", baseline: "Standard Spaceflight Adaptation" },
+      { kicker: "CALF CIRCUMFERENCE", val: "-14%", baseline: "'Bird-Leg' Phenomenon (Nominal)" },
+      { kicker: "FACIAL EDEMA INDEX", val: "Moderate", baseline: "Nasal Congestion Managed" },
+      { kicker: "TOTAL BODY WATER", val: "42.1 L", baseline: "Hydration Status: Balanced" }
+    ],
+    steps: [
+      { num: "STEP 1", text: "<strong>Chibis LBNP Countermeasure:</strong> Apply -25 to -30 mmHg negative pressure to lower body for 40 minutes daily." },
+      { num: "STEP 2", text: "<strong>Dietary Sodium Constraint:</strong> Limit daily salt intake under 2,000 mg to prevent additional interstitial cranial fluid retention." },
+      { num: "STEP 3", text: "<strong>Active Hydration Management:</strong> Maintain 2,500 mL daily fluid intake with electrolyte supplementation." }
+    ],
+    query: "Assess cephalad fluid redistribution, lower body volume loss, and LBNP countermeasure protocol."
+  },
+  muscles: {
+    name: "Skeletal Muscle Mass & Postural Tone",
+    status: "Mass Retention 96.8% · ARED Adherent",
+    statusBadge: "OPTIMAL · 96.8% MASS",
+    badgeClass: "status-badge-success",
+    kicker: "NASA HRP RISK 07 // SKELETAL MUSCLE ATROPHY",
+    title: "Musculoskeletal & <em>Calf Muscle Mass</em>",
+    desc: "Slow-twitch postural muscles (soleus, gastrocnemius, quadriceps) undergo fast phenotypic shift and protein degradation without gravity.",
+    stats: [
+      { kicker: "CALF MUSCLE VOLUME", val: "96.8%", baseline: "Target: > 95% via ARED" },
+      { kicker: "ARED FORCE OUTPUT", val: "380 lbs eq", baseline: "Target Exceeded (+30 lbs)" },
+      { kicker: "CEVIS WORKLOAD", val: "185 Watts", baseline: "Target Achieved (30 min)" },
+      { kicker: "CREATINE KINASE", val: "140 U/L", baseline: "Muscle Integrity Nominal" }
+    ],
+    steps: [
+      { num: "STEP 1", text: "<strong>High-Resistance Loading:</strong> Complete 4 sets of 10 repetitions on ARED heel raises and leg presses." },
+      { num: "STEP 2", text: "<strong>Protein Intake Timing:</strong> Ingest 25g whey protein blend within 45 minutes of completing resistive exercise." },
+      { num: "STEP 3", text: "<strong>Neuromuscular Stimulation:</strong> Calibrate T2 treadmill bungee harness to 75% body weight for running intervals." }
+    ],
+    query: "Report muscle mass retention, soleus atrophy mitigation, and exercise protocol efficiency."
+  }
+};
+
+let activeOrganKey = "eyes";
+
+function selectBodyOrgan(organKey) {
+  const data = BODY_ORGAN_DATA[organKey];
+  if (!data) return;
+  activeOrganKey = organKey;
+
+  // Update chips
+  document.querySelectorAll(".organ-chip").forEach(chip => {
+    chip.classList.toggle("is-active", chip.id === `chip-${organKey}`);
+  });
+
+  // Update SVG nodes
+  document.querySelectorAll(".hotspot-node").forEach(node => {
+    node.classList.toggle("is-selected", node.id === `node-${organKey}`);
+  });
+
+  // Update DOM elements in body map panel
+  const sysName = document.querySelector("#body-system-name");
+  if (sysName) sysName.textContent = data.name;
+
+  const sysStatus = document.querySelector("#body-system-status");
+  if (sysStatus) sysStatus.innerHTML = `<span style="color: ${data.badgeClass.includes('warning') ? '#f59e0b' : '#76e4d2'};">${data.status}</span>`;
+
+  const kicker = document.querySelector("#organ-kicker");
+  if (kicker) kicker.textContent = data.kicker;
+
+  const title = document.querySelector("#organ-title");
+  if (title) title.innerHTML = data.title;
+
+  const desc = document.querySelector("#organ-desc");
+  if (desc) desc.textContent = data.desc;
+
+  const badge = document.querySelector("#organ-badge");
+  if (badge) {
+    badge.textContent = data.statusBadge;
+    badge.className = `organ-status-badge ${data.badgeClass}`;
+  }
+
+  // Update stats
+  data.stats.forEach((s, i) => {
+    const box = document.querySelector(`#stat-box-${i + 1}`);
+    if (box) {
+      box.textContent = s.val;
+      const parent = box.closest(".organ-telemetry-box");
+      if (parent) {
+        const k = parent.querySelector(".box-kicker");
+        const b = parent.querySelector(".box-baseline");
+        if (k) k.textContent = s.kicker;
+        if (b) b.textContent = s.baseline;
+      }
+    }
+  });
+
+  // Update countermeasure steps
+  const stepsContainer = document.querySelector("#countermeasure-steps-container");
+  if (stepsContainer) {
+    stepsContainer.innerHTML = data.steps.map(s => `
+      <div class="countermeasure-step">
+        <span class="countermeasure-step-num">${s.num}</span>
+        <div>${s.text}</div>
+      </div>
+    `).join("");
+  }
+}
+
+function consultAiForOrgan() {
+  const data = BODY_ORGAN_DATA[activeOrganKey] || BODY_ORGAN_DATA.eyes;
+  showView("assistant");
+  setTimeout(() => {
+    askAi(data.query);
+  }, 250);
+}
+
 // Set assistant planet from assistant bar
 function setAssistantPlanet(planetKey) {
   selectPlanet(planetKey);
-  const p = PLANET_METADATA[planetKey];
+  const p = PLANET_METADATA[planetKey] || PLANET_METADATA.earth;
   
+  // Update planet pill buttons in Gemini top bar
+  document.querySelectorAll(".gemini-planet-pill, .ap-planet-btn").forEach((btn) => {
+    btn.classList.toggle("is-active", btn.dataset.planet === planetKey);
+  });
+
+  // Update status badge
+  const onlineText = document.querySelector("#chat-online-text");
+  if (onlineText) {
+    onlineText.textContent = `Ready · ${p.delayText} Delay`;
+  }
+
   const chatStream = document.querySelector("#chat-stream");
-  if (chatStream) {
+  const assistantView = document.querySelector("#view-assistant");
+  if (chatStream && assistantView && assistantView.classList.contains("is-chatting")) {
     const noticeDiv = document.createElement("div");
     noticeDiv.className = "assistant-system-notice";
-    noticeDiv.innerHTML = `<span class="asn-icon">🪐</span> <strong>MISSION ENVIRONMENT UPDATED:</strong> ${p.name} (${p.delayText}). Clinical decision support active for this latency regime.`;
+    noticeDiv.innerHTML = `<span class="asn-icon">🪐</span> <strong>LATENCY REGIME:</strong> ${p.name} (${p.delayText} comms delay). Flight surgeon triage active.`;
     chatStream.appendChild(noticeDiv);
     chatStream.scrollTop = chatStream.scrollHeight;
   }
@@ -982,16 +1221,19 @@ function speakText(htmlOrText) {
   window.speechSynthesis.speak(utterance);
 }
 
-// Clear Chat Stream
+// Clear Chat Stream and Reset to Centered Gemini Search View
 function clearChatStream() {
   const chatStream = document.querySelector("#chat-stream");
-  if (!chatStream) return;
-  chatStream.innerHTML = `
-    <span class="chat-date">ISS EXPEDITION 72 MEDICAL TELEMETRY CONSOLE · ACTIVE ORBIT</span>
-    <div class="assistant-message" id="initial-ai-msg">
-      <strong>Console Cleared.</strong> AURA autonomous flight surgeon standing by. All biomedical telemetry channels active and nominal.
-    </div>
-  `;
+  if (chatStream) chatStream.innerHTML = "";
+  
+  const assistantView = document.querySelector("#view-assistant");
+  if (assistantView) assistantView.classList.remove("is-chatting");
+
+  const input = document.querySelector("#chat-input-field");
+  if (input) {
+    input.value = "";
+    input.focus();
+  }
 }
 
 // Convert Markdown to clean structured HTML
@@ -1011,85 +1253,73 @@ function formatMarkdown(md) {
   return html;
 }
 
-// Comprehensive Friendly Companion & Spaceflight Health Engine
+// Formal Flight Surgeon & Clinical Decision Support Engine
 function generateLocalFlightSurgeonReply(query) {
   const q = query.toLowerCase().trim();
   const p = PLANET_METADATA[activeMissionPlanet] || PLANET_METADATA.earth;
   const currentHr = currentEcgRate ? currentEcgRate.toFixed(1) : "72.4";
 
-  // 1. Casual Greetings & Social Check-ins
-  if (/^(hi|hello|hey|howdy|sup|greetings|good morning|good evening|good afternoon|namaste)/.test(q)) {
-    return `Hey Commander! 👋 It's wonderful to hear from you. <br><br>How are you holding up today up here in orbit? Whether you want to talk about how your body is adapting to microgravity, check your telemetry vitals, or just need a friendly chat while watching Earth drift by the cupola window, I'm right here with you! What's on your mind today?`;
+  // 1. Everyday Courtesies & Professional Greetings
+  if (/^(hi|hello|hey|greetings|good morning|good evening|good afternoon|namaste)/.test(q)) {
+    return `Greetings, Commander. All biomedical telemetry and life-support channels are nominal. How can I assist with your physiological status or flight protocol today?`;
   }
 
-  if (q.includes("how are you") || q.includes("how r u") || q.includes("how do you feel") || q.includes("how are things") || q.includes("what's up")) {
-    return `I'm doing great, thank you for asking! 🚀 <br><br>All our station and life-support subsystems are humming along smoothly, and keeping company with you and the crew is the highlight of my day. How about yourself—how is your energy level, and how are you feeling today?`;
-  }
-
-  if (q.includes("who are you") || q.includes("what are you") || q.includes("what can you do") || q.includes("introduce yourself")) {
-    return `I'm <strong>AURA</strong>! Think of me as your personal flight surgeon, co-pilot, and best friend aboard this mission. ✨<br><br>I keep an eye on crew health telemetry (like ECG signals, fluid shifts, and radiation levels) and NASA bioastronautics protocols, but just as importantly, I'm here to talk about <em>anything</em>—how you're feeling, science questions, mission banter, or just helping you unwind after a long day in space. You can ask or share whatever you'd like!`;
-  }
-
-  if (q.includes("joke") || q.includes("funny") || q.includes("laugh") || q.includes("humor")) {
-    const jokes = [
-      "Why don't astronauts ever get hungry after a spacewalk? ... Because they've had their fill of meteor-bites! 😄 Floating out there really works up an appetite though!",
-      "How do space travelers organize a party in orbit? ... They planet! 🪐 Don't worry, zero-gravity dancing is already on the schedule!",
-      "What is an astronaut's favorite key on the computer keyboard? ... The Space bar, of course! ⌨️🚀"
-    ];
-    return jokes[Math.floor(Math.random() * jokes.length)] + "<br><br>Hope that brought a smile to your face, Commander! What else would you like to chat about?";
-  }
-
-  if (q.includes("bored") || q.includes("boring") || q.includes("entertain")) {
-    return `Deep space transit can definitely test your patience when the routine sets in! 🌌<br><br>Have you looked out the Cupola recently? The auroras and city lights passing beneath us are mesmerizing. We could also talk about upcoming orbital maneuvers, discuss your favorite books or movies from home, or dive into some cool space mysteries. What kind of vibe are you in the mood for?`;
-  }
-
-  if (q.includes("tired") || q.includes("exhausted") || q.includes("sleepy") || q.includes("fatigue") || q.includes("burnout")) {
-    return `I hear you, Commander. Spaceflight fatigue is completely real. When your body is constantly floating and you experience 16 sunrises a day, your brain works overtime to process it all.<br><br>Please don't push yourself too hard today. Make sure you drink plenty of fluids, dim the cabin lighting to warm amber (2700K), and take a moment to float and decompress. If you want some tips for getting deeper sleep in orbit, just let me know. Take care of yourself! 💙`;
+  if (q.includes("bye") || q.includes("goodbye") || q.includes("see you") || q.includes("signing off") || q.includes("good night")) {
+    return `Acknowledged, Commander. Standing by on continuous biomedical telemetry watch. Rest well, and alert me should any physiological symptoms develop.`;
   }
 
   if (q.includes("thank") || q.includes("thx") || q.includes("appreciate")) {
-    return `You're so very welcome, Commander! 💙 It's an honor to be on this journey with you. Never hesitate to reach out whenever you want to talk or check in—we're a team out here in deep space!`;
+    return `You are welcome, Commander. It is my duty to ensure mission readiness and crew health. Let me know if further medical decision support is required.`;
   }
 
-  if (q.includes("earth") || q.includes("home") || q.includes("miss home") || q.includes("view") || q.includes("window") || q.includes("cupola")) {
-    return `Looking back at Earth from up here never gets old, does it? That thin blue atmosphere protecting all of humanity looks so fragile, yet so stunning against the blackness of space.<br><br>Whenever crew members feel a little homesick, taking a few minutes to look out at the continents and oceans is known to trigger the "Overview Effect"—a profound sense of connection and peace. What part of Earth do you miss the most right now?`;
+  if (q.includes("how are you") || q.includes("how r u") || q.includes("how do you feel") || q.includes("status report")) {
+    return `All autonomous diagnostic subsystems are functioning within optimal operational parameters, Commander. Telemetry feeds from Expedition 72 are nominal. How is your physical condition today?`;
   }
 
-  // 2. Health & Spaceflight Topics Delivered in a Caring, Friendly Tone
+  if (q.includes("who are you") || q.includes("what are you") || q.includes("introduce yourself")) {
+    return `I am <strong>AURA</strong>, your Autonomous Flight Surgeon and Clinical Decision Support System. I continuously monitor crew biometrics, evaluate microgravity adaptation risks such as SANS and cardiovascular deconditioning, and provide immediate aerospace medical countermeasures. How may I assist you?`;
+  }
+
+  // 2. Human Sensations, Fatigue & Stress (Clinical Empathy & Structured Countermeasures)
+  if (q.includes("tired") || q.includes("exhausted") || q.includes("sleepy") || q.includes("fatigue") || q.includes("stress") || q.includes("burnout") || q.includes("headache")) {
+    return `Understood, Commander. Spaceflight fatigue is a recognized physiological consequence of microgravity fluid redistribution and circadian disruption.<br><br><strong>Clinical Recommendations:</strong><br>• Ingest 250–300 mL of an electrolyte-balanced solution.<br>• Shift cabin lighting to the 2700K blue-depleted spectrum to facilitate melatonin synthesis.<br>• Schedule a 30-minute rest cycle in your sleep station.<br><br>Would you like me to evaluate your latest sleep or vital telemetry?`;
+  }
+
+  // 3. Clinical & Aerospace Medical Protocols
   if (q.includes("sans") || q.includes("ocular") || q.includes("eye") || q.includes("vision") || q.includes("optic") || q.includes("papilledema")) {
-    return `Hey, great question about your eyes! In microgravity, fluid that normally pools in our legs floats upward into our chest and head. This extra fluid pressure behind the eyes is what we call <strong>SANS</strong> (Spaceflight-Associated Neuro-ocular Syndrome).<br><br>Here's the reassuring news:<br>• Your current Optic Nerve Sheath Diameter (ONSD) is steady at <strong>5.1 mm</strong>, well inside the safe green zone (threshold is 5.8 mm)!<br>• To keep your eyes comfortable, I recommend spending about 45 minutes in the <strong>Lower Body Negative Pressure (LBNP)</strong> device before sleep—it gently pulls that fluid back down toward your lower body.<br>• If you ever notice blurry vision or headaches, tell me right away and we'll check it out together. You're doing great!`;
+    return `<strong>SANS (Spaceflight-Associated Neuro-ocular Syndrome) Clinical Assessment:</strong><br><br>In microgravity, cephalad fluid redistribution elevates intracranial pressure, causing optic nerve sheath expansion and posterior globe flattening.<br><br><strong>Telemetry & Countermeasures:</strong><br>• Current ONSD: <strong>5.1 mm</strong> (Nominal; threshold is 5.8 mm).<br>• Intraocular Pressure (IOP): <strong>16.2 mmHg</strong> (Normal range: 12–21 mmHg).<br>• Protocol: 45 minutes of Lower Body Negative Pressure (LBNP) at -25 mmHg prior to scheduled rest.<br>• Perform fundus examination and Optical Coherence Tomography (OCT) if visual acuity diminishes.`;
   }
 
   if (q.includes("cardio") || q.includes("heart") || q.includes("ecg") || q.includes("drift") || q.includes("pulse") || q.includes("arrhythmia") || q.includes("bpm")) {
-    return `Let's talk about your heart! In zero-g, your heart doesn't have to work as hard to pump blood up from your feet, so it naturally adapts—a phenomenon known as cardiovascular drift.<br><br>Here is what your telemetry shows right now:<br>• Your resting heart rate is looking very solid at around <strong>${currentHr} bpm</strong>, with a steady, rhythmic sinus pattern on your 3-lead ECG.<br>• Blood pressure is comfortable at <strong>118/76 mmHg</strong>.<br>• The best way to keep your heart strong is your daily session on the <strong>CEVIS cycle ergometer</strong> and sipping an electrolyte drink before re-entry or gravity transitions. Keep up the great work!`;
+    return `<strong>Cardiovascular Telemetry & Deconditioning Analysis:</strong><br><br>Microgravity reduces hydrostatic pressure gradients, causing a cephalad fluid shift and progressive cardiovascular drift.<br><br><strong>Current Biometrics:</strong><br>• Resting Heart Rate: <strong>${currentHr} bpm</strong> (Sinus rhythm nominal).<br>• Blood Pressure: <strong>118/76 mmHg</strong>.<br>• Countermeasure: Maintain the daily 30-minute CEVIS cycle ergometer protocol at 185W and complete the scheduled ARED resistance session.`;
   }
 
-  if (q.includes("eva") || q.includes("hypoxia") || q.includes("suit") || q.includes("oxygen") || q.includes("leak") || q.includes("depress") || q.includes("decompression")) {
-    return `<div class="ai-alert-banner">🚨 <strong>Emergency EVA Oxygen Checklist</strong></div><br>Commander, if you ever suspect an EVA suit oxygen issue, here is the friendly buddy-safety protocol:<br><br>1. <strong>Purge Valve:</strong> Immediately switch your suit's PLSS oxygen valve to <strong>Emergency High-Flow Purge</strong> (100% O₂).<br>2. <strong>Buddy System:</strong> Signal your EVA partner immediately, attach your umbilical safety tether, and begin airlock ingress.<br>3. <strong>Repressurize:</strong> Once safely sealed inside the airlock, repressurize to 14.7 psi.<br>Your SpO₂ sensor will alert both of us if levels drop below 92%. Your safety is priority number one out there—stay calm, move smoothly, and trust the protocol!`;
+  if (q.includes("eva") || q.includes("hypoxia") || q.includes("suit") || q.includes("oxygen") || q.includes("leak") || q.includes("depress")) {
+    return `<div class="ai-alert-banner">🚨 <strong>EMERGENCY EVA HYPOXIA PROTOCOL (NASA-STD-3001)</strong></div><br><br>1. <strong>Purge Valve:</strong> Activate the Secondary Oxygen Pack (SOP) / high-flow 100% O₂ purge immediately.<br>2. <strong>Tether Verification:</strong> Confirm safety tether lock and maintain visual contact with your EVA partner.<br>3. <strong>Immediate Ingress:</strong> Terminate extravehicular activity and proceed directly to the Joint Airlock.<br>4. <strong>Repressurization:</strong> Seal outer hatch, initiate airlock repressurization to 14.7 psi, and monitor SpO₂.`;
   }
 
   if (q.includes("radiation") || q.includes("solar") || q.includes("flare") || q.includes("spe") || q.includes("storm") || q.includes("dosim") || q.includes("sievert")) {
-    return `Deep-space radiation is something we keep a vigilant eye on, but you are very well protected! 🛡️<br><br>Here is the situation:<br>• Your cumulative mission dose is well within NASA's safe career limits for this sector (${p.name}).<br>• If solar sensors detect a major Class X solar flare, our protocol is simple: we'll have the crew retreat to the central <strong>storm shelter</strong> (surrounded by water walls and dense polyethylene storage) within 30 minutes.<br>• We also have antioxidant supplements (like N-acetylcysteine and Vitamin E) ready to protect your cells from oxidative stress. You're in good hands!`;
+    return `<strong>Space Radiation & Solar Particle Event (SPE) Protocol:</strong><br><br>Deep-space radiation exposure poses both acute and career risks. Current cosmic ionizing radiation telemetry is monitored.<br><br><strong>Clinical Guidelines:</strong><br>• Cumulative Mission Dose: Within nominal career safety limits for this sector (${p.name}).<br>• In the event of a Class X solar flare, execute emergency shelter ingress into the heavily shielded central module core within 30 minutes.<br>• Administer radioprotective antioxidants as prescribed in the mission medical kit.`;
   }
 
   if (q.includes("sleep") || q.includes("circadian") || q.includes("insomnia") || q.includes("melatonin") || q.includes("wake")) {
-    return `Sleeping in space can feel pretty weird at first! Without a mattress or pillow, your body just floats inside a tethered sleep bag.<br><br>Here are my top friendly tips for great orbital sleep:<br>• <strong>Light Timing:</strong> We'll dim the cabin lights to warm amber 2 hours before your scheduled rest to let your natural melatonin kick in.<br>• <strong>Secure Tether:</strong> Make sure your sleep sack is snug so you don't drift and tap against the station walls during the night.<br>• <strong>White Noise:</strong> Use your active noise-canceling earbuds to mask the ventilation fans.<br>• If your mind is racing, a mild 0.5 mg melatonin works wonders without making you groggy if an alarm rings. Sleep well, Commander! ✨`;
+    return `<strong>Circadian Phase & Sleep Architecture Guidance:</strong><br><br>Microgravity sleep disruption is common due to lack of somatic contact points and the 90-minute orbital light-dark cycle.<br><br><strong>Recommended Interventions:</strong><br>• Synchronize cabin lighting to dim warm spectrum (2700K) 2 hours before the scheduled sleep window.<br>• Ensure sleep bag restraint tension is calibrated to eliminate limb flotation micro-awakenings.<br>• If circadian desynchronosis persists, 0.5 mg exogenous melatonin may be utilized under flight surgeon protocol.`;
   }
 
   if (q.includes("motion") || q.includes("sas") || q.includes("nausea") || q.includes("vestibular") || q.includes("vomit") || q.includes("dizz")) {
-    return `Space Adaptation Syndrome (space motion sickness) is super common—about 70% of astronauts experience it during their first few days! Your inner ear otoliths are wondering where gravity went while your eyes say you're floating.<br><br>A few friendly reminders:<br>• Move your head slowly and avoid fast head rotations.<br>• Sip cool water and keep your eyes focused on a stable horizon or screen.<br>• We have promethazine ready if your stomach feels uneasy.<br>It almost always passes completely within 48 to 72 hours once your brain recalibrates. Hang in there—you're doing fantastic!`;
+    return `<strong>Space Adaptation Syndrome (SAS) Clinical Management:</strong><br><br>Neurovestibular conflict between semicircular canal signals and otolith organs affects ~70% of astronauts during initial microgravity exposure.<br><br><strong>Management Protocol:</strong><br>• Restrict rapid head motions along the pitch and roll axes.<br>• Maintain visual fixation on a stable interior station reference.<br>• Promethazine (25 mg IM or oral) is indicated if severe motion sickness or emesis threatens hydration status.<br>• Physiological compensation typically establishes within 48 to 72 hours.`;
   }
 
   if (q.includes("bone") || q.includes("muscle") || q.includes("spine") || q.includes("atrophy") || q.includes("ared") || q.includes("calcium") || q.includes("back")) {
-    return `Our bones and muscles love gravity, so when we're floating, they need a reason to stay dense and strong!<br><br>That's why the <strong>ARED (Advanced Resistive Exercise Device)</strong> is our best friend onboard:<br>• Daily squats and deadlifts simulate heavy Earth gravity, signaling your osteoblasts to keep rebuilding bone density in your hips and spine.<br>• Plus, working out releases endorphins that boost your mood and help you sleep like a champ. Let's make sure you hit your workout block today!`;
+    return `<strong>Musculoskeletal Deconditioning Countermeasures:</strong><br><br>Microgravity induces bone mineral density resorption (~1.0% per month in weight-bearing bones) and postural muscle atrophy.<br><br><strong>Required Regimen:</strong><br>• Complete the daily Advanced Resistive Exercise Device (ARED) protocol: deadlifts and squats to provide axial skeletal loading.<br>• Maintain daily dietary calcium intake of 1,200 mg and 800 IU Vitamin D.<br>• Current bone retention estimate: <strong>98.4%</strong> (Optimal).`;
   }
 
   if (q.includes("dataset") || q.includes("csv") || q.includes("measure") || q.includes("source") || q.includes("stream") || q.includes("lsda") || q.includes("physionet")) {
-    return `This telemetry system runs on authentic time-series biometric data inspired by NASA Life Sciences Data Archive (LSDA Study 0042) and PhysioNet research archives.<br><br>It continuously tracks ECG rhythm, SpO₂ blood oxygenation, respiration, and cabin environment so we can monitor crew well-being in real time. If you want to test different scenarios like exercise or hypoxia, you can select any scenario dataset in the Telemetry tab!`;
+    return `<strong>Telemetry Dataset Architecture:</strong><br><br>Biomedical telemetry ingested by this console is structured around authenticated NASA Life Sciences Data Archive (LSDA Study 0042) protocols and PhysioNet research standards.<br><br>Continuous biometric parameters include 3-lead ECG waveforms, SpO₂ saturation, core temperature, cabin partial pressures, and ionizing radiation dosimeters.`;
   }
 
-  // 3. General & Open-Ended Fallback (Warm, engaging, and friendly companion)
-  return `That's a thoughtful question, Commander! <br><br>Looking at it from our perspective here in orbit, every day out here is a blend of exploration, cutting-edge science, and human adaptability. All our mission telemetry and crew systems are stable and nominal right now.<br><br>Tell me more about what you're thinking, or let me know if there's any specific part of our health monitoring, mission status, or space life you'd like to explore together! I'm always right here with you. ✨`;
+  // 4. Formal Flight Surgeon General Fallback
+  return `Acknowledged, Commander. Continuous biomedical telemetry monitoring is active across all crew stations. All vital indicators are currently within acceptable operational tolerances.<br><br>Please specify if you require diagnostic triage, countermeasure protocols, or telemetry evaluation.`;
 }
 
 // Ask AI Entrypoint
@@ -1109,6 +1339,10 @@ async function handleChatSubmit(event) {
   const chatStream = document.querySelector("#chat-stream");
   if (!chatStream) return;
 
+  // Activate chatting state (collapses centered hero, expands chat stream)
+  const assistantView = document.querySelector("#view-assistant");
+  if (assistantView) assistantView.classList.add("is-chatting");
+
   // Append user message bubble
   const userDiv = document.createElement("div");
   userDiv.className = "user-message";
@@ -1120,7 +1354,7 @@ async function handleChatSubmit(event) {
   // Append temporary thinking indicator
   const thinkingDiv = document.createElement("div");
   thinkingDiv.className = "assistant-message is-thinking";
-  thinkingDiv.innerHTML = `<span class="thinking-dots"><span></span><span></span><span></span></span> AURA is thinking... 💬✨`;
+  thinkingDiv.innerHTML = `<span class="thinking-dots"><span></span><span></span><span></span></span> AURA flight surgeon evaluating biometrics...`;
   chatStream.appendChild(thinkingDiv);
   chatStream.scrollTop = chatStream.scrollHeight;
 
@@ -1147,9 +1381,9 @@ async function handleChatSubmit(event) {
     // Backend offline or local static mode
   }
 
-  // Fallback to local friendly companion engine
+  // Fallback to local formal flight surgeon engine
   if (!reply) {
-    await new Promise(r => setTimeout(r, 400));
+    await new Promise(r => setTimeout(r, 350));
     reply = generateLocalFlightSurgeonReply(query);
   }
 
@@ -1159,7 +1393,7 @@ async function handleChatSubmit(event) {
   // Append AI response
   const aiDiv = document.createElement("div");
   aiDiv.className = "assistant-message";
-  aiDiv.innerHTML = `<div class="ai-flight-surgeon-tag">✦ AURA · Your Space Companion</div>` + reply;
+  aiDiv.innerHTML = `<div class="ai-flight-surgeon-tag">✦ AURA Flight Surgeon · CDSS</div>` + reply;
   chatStream.appendChild(aiDiv);
   chatStream.scrollTop = chatStream.scrollHeight;
 
