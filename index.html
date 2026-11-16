@@ -87,7 +87,8 @@
             <h1 id="hero-title">A clearer view<br />of health <em>in orbit.</em></h1>
             <p class="hero-description">Autonomous crew health monitoring with continuous biomedical telemetry, microgravity SANS tracking, and offline Clinical Decision Support (CDSS) for communication-delayed missions.</p>
             <div class="hero-actions">
-              <button class="button button-primary" type="button" data-view="dashboard">Open health dashboard <span aria-hidden="true">↗</span></button>
+              <button class="button button-primary" type="button" onclick="startJudgingDemo()" id="btn-start-judging-demo" style="box-shadow: 0 0 20px rgba(56, 189, 248, 0.45); border-color: #38bdf8; background: linear-gradient(135deg, #1d4ed8, #0284c7);"><span>▷</span> Start Guided Demo for Judges (2 Min) <span aria-hidden="true">↗</span></button>
+              <button class="button button-quiet" type="button" data-view="dashboard">Open health dashboard <span aria-hidden="true">↗</span></button>
               <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
               <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA CDSS</button>
             </div>
@@ -589,6 +590,18 @@
         </div>
 
         <!-- ================= 4-CARD PICTORIAL VITAL TELEMETRY (HIGH VISIBILITY FOR JUDGES) ================= -->
+        <!-- Plain-Language Aerospace & Space Medicine Glossary Strip -->
+        <div class="aerospace-glossary-strip" aria-label="Aerospace Medical Terminology Glossary">
+          <span class="glossary-label">QUICK GLOSSARY:</span>
+          <span class="glossary-pill" title="Peripheral Capillary Oxygen Saturation: percentage of oxygen-saturated hemoglobin in arterial blood. Clinical normal is >= 95%. Prototype design triggers at < 92%."><strong>SpO₂</strong> Arterial O₂ (≥95%)</span>
+          <span class="glossary-pill" title="Optic Nerve Sheath Diameter: non-invasive ultrasound biomarker for intracranial pressure elevation associated with Spaceflight-Associated Neuro-ocular Syndrome (SANS). Baseline: 4.5–5.8 mm."><strong>ONSD</strong> Optic Sheath (SANS)</span>
+          <span class="glossary-pill" title="Partial Pressure of Carbon Dioxide: cabin atmospheric CO2 concentration. NASA-STD-3001 Vol 2 Rev F §6.2.1.3 limits cabin pCO2 to <= 3.0 mmHg for 24-hr exposure."><strong>pCO₂</strong> Cabin CO₂ (≤3.0 mmHg)</span>
+          <span class="glossary-pill" title="Mean Arterial Pressure: average arterial blood pressure during a cardiac cycle, reflecting tissue perfusion. Normal resting: 70–100 mmHg."><strong>MAP</strong> Mean Arterial Press</span>
+          <span class="glossary-pill" title="Clinical Decision Support System: local, deterministic algorithmic engine that evaluates biometrics against flight rules and aerospace standards without cloud reliance."><strong>CDSS</strong> Decision Support</span>
+          <span class="glossary-pill" title="Lower Body Negative Pressure: countermeasure device drawing venous blood toward the lower extremities to counteract microgravity cephalad fluid shifts."><strong>LBNP</strong> Fluid Countermeasure</span>
+          <span class="glossary-pill" title="Advanced Resistive Exercise Device: primary exercise equipment on the ISS to prevent bone mineral density loss and skeletal muscle atrophy."><strong>ARED</strong> Resistive Exercise</span>
+        </div>
+
         <div class="metric-grid metric-grid-4 pictorial-vitals-grid">
           
           <!-- Vital 1: Heart Rate -->
@@ -1161,14 +1174,20 @@
             <h1 id="crew-title">Astronaut <em>profiles</em></h1>
             <p class="hero-description">Individual biometric baseline, microgravity physiological adaptation, and daily countermeasure compliance aboard the International Space Station.</p>
           </div>
-          <span class="view-tag">3 ASTRONAUTS MONITORED</span>
+          <span class="view-tag">3 SYNTHETIC PROFILES</span>
+        </div>
+
+        <!-- Fictional Crew & Provenance Notice -->
+        <div class="provenance-notice-banner" class="data-provenance-callout" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 8px; padding: 12px 16px; margin: 0 0 22px; font-size: 0.84rem; line-height: 1.5; color: #cbd5e1;">
+          <strong style="color: #38bdf8;">Data Provenance &amp; Astronaut Privacy Notice:</strong>
+          All crew profiles, names, baseline vitals, and mission histories shown below are <strong>entirely fictional synthetic demonstration models</strong> created for software prototyping. The photos displayed are public-domain NASA documentary archive photographs used purely as illustrative context. No private astronaut medical records, Personal Health Information (PHI), or confidential NASA flight records are accessed or portrayed.
         </div>
 
         <!-- Crew Overview Rail -->
         <div class="overview-rail crew-rail">
-          <div class="rail-item"><span class="rail-label">MISSION INCREMENT</span><strong><i class="status-ring"></i> ISS Expedition 72</strong></div>
+          <div class="rail-item"><span class="rail-label">MISSION INCREMENT</span><strong><i class="status-ring"></i> Synthetic Expedition 72</strong></div>
           <div class="rail-item"><span class="rail-label">TOTAL MET DURATION</span><strong>204 Days in Orbit</strong></div>
-          <div class="rail-item"><span class="rail-label">AGGREGATE READINESS</span><strong>Nominal · All Systems Optimal</strong></div>
+          <div class="rail-item"><span class="rail-label">AGGREGATE READINESS</span><strong>Nominal · Simulated Parameters</strong></div>
           <button class="rail-link" type="button" data-view="dashboard">View live vitals <span>↗</span></button>
         </div>
 
@@ -1177,13 +1196,13 @@
           <!-- Crew Subject 1: Crew Member A -->
           <article class="crew-card crew-card-editorial is-active-subject" id="card-anne">
             <div class="crew-photo-frame">
-              <img src="https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~medium.jpg" alt="Synthetic telemetry subject A (NASA Photo Credit: NASA/JSC, Astronaut Anne McClain during EVA training archive image; depicted as synthetic demonstration subject Crew Member A)" loading="lazy" />
+              <img src="https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~medium.jpg" alt="Fictional synthetic subject A (Illustrative NASA Archive Photo)" loading="lazy" />
               <div class="crew-photo-shade"></div>
               <span class="crew-photo-badge">ACTIVE MONITORED</span>
               <div class="crew-photo-caption">
                 <span class="crew-role-kicker">COMMANDER // SYNTHETIC PROFILE A</span>
                 <h3 class="crew-name-serif">Crew Member <em>A</em></h3>
-                <div style="font-size: 10.5px; color: #dfc79c; font-family: var(--mono); margin-top: 3px;">SYNTHETIC SUBJECT · RESEARCH DEMO</div>
+                <div style="font-size: 10px; color: #dfc79c; font-family: var(--mono); margin-top: 3px;">FICTIONAL PROFILE · NASA ARCHIVE PHOTO</div>
               </div>
             </div>
 
@@ -1217,13 +1236,13 @@
           <!-- Crew Subject 2: Crew Member B -->
           <article class="crew-card crew-card-editorial" id="card-mike">
             <div class="crew-photo-frame">
-              <img src="https://images-assets.nasa.gov/image/iss073e0702307/iss073e0702307~medium.jpg" alt="Synthetic telemetry subject B (NASA Photo Credit: NASA/JSC, Astronaut Mike Fincke aboard ISS archive image; depicted as synthetic demonstration subject Crew Member B)" loading="lazy" />
+              <img src="https://images-assets.nasa.gov/image/iss073e0702307/iss073e0702307~medium.jpg" alt="Fictional synthetic subject B (Illustrative NASA Archive Photo)" loading="lazy" />
               <div class="crew-photo-shade"></div>
               <span class="crew-photo-badge" style="color: #aebbd0; border-color: rgba(174,187,208,0.3);">EXPEDITION 72</span>
               <div class="crew-photo-caption">
                 <span class="crew-role-kicker">FLIGHT ENGINEER // SYNTHETIC PROFILE B</span>
                 <h3 class="crew-name-serif">Crew Member <em>B</em></h3>
-                <div style="font-size: 10.5px; color: #dfc79c; font-family: var(--mono); margin-top: 3px;">SYNTHETIC SUBJECT · RESEARCH DEMO</div>
+                <div style="font-size: 10px; color: #dfc79c; font-family: var(--mono); margin-top: 3px;">FICTIONAL PROFILE · NASA ARCHIVE PHOTO</div>
               </div>
             </div>
 
@@ -1257,13 +1276,13 @@
           <!-- Crew Subject 3: Crew Member C -->
           <article class="crew-card crew-card-editorial" id="card-marcus">
             <div class="crew-photo-frame">
-              <img src="assets/astronaut.jpg" alt="Synthetic Profile: Crew Member C (Demonstration subject)" loading="lazy" />
+              <img src="assets/astronaut.jpg" alt="Fictional synthetic subject C (Demonstration Avatar)" loading="lazy" />
               <div class="crew-photo-shade"></div>
               <span class="crew-photo-badge" style="color: #aebbd0; border-color: rgba(174,187,208,0.3);">PAYLOAD OFFICER</span>
               <div class="crew-photo-caption">
                 <span class="crew-role-kicker">MISSION SPECIALIST // SYNTHETIC PROFILE C</span>
                 <h3 class="crew-name-serif">Crew Member <em>C</em></h3>
-                <div style="font-size: 10.5px; color: #dfc79c; font-family: var(--mono); margin-top: 3px;">SYNTHETIC SUBJECT · RESEARCH DEMO</div>
+                <div style="font-size: 10px; color: #dfc79c; font-family: var(--mono); margin-top: 3px;">FICTIONAL PROFILE · DEMONSTRATION MODEL</div>
               </div>
             </div>
 
@@ -1569,19 +1588,19 @@
           <div>
             <div class="eyebrow"><span class="eyebrow-line"></span> NASA SPACE APPS CHALLENGE / RESOURCES</div>
             <h1 id="sources-title">NASA <em>resources</em> & scientific library</h1>
-            <p class="hero-description">All 10 official research portals, biomedical databases, standards, and repositories specified in the NASA Space Apps Challenge "Create Health Monitoring Software for Astronauts on Space Missions".</p>
+            <p class="hero-description">All 15 official research portals, biomedical databases, standards, and international partner repositories (11 NASA portals & standards + 4 International space agency resources) referenced for this human health monitoring prototype.</p>
           </div>
-          <span class="view-tag status-active">CURATED REFERENCE ARCHITECTURE</span>
+          <span class="view-tag status-active">15 CURATED REFERENCE SOURCES (11 NASA + 4 PARTNER)</span>
         </div>
 
         <div class="overview-rail">
-          <div class="rail-item"><span class="rail-label">CURATED FOR</span><strong><i class="status-ring"></i> NASA Space Apps Challenge 2026</strong></div>
+          <div class="rail-item"><span class="rail-label">CURATED FOR</span><strong><i class="status-ring"></i> NASA Space Apps Challenge</strong></div>
           <div class="rail-item"><span class="rail-label">PRIMARY REPOSITORY</span><strong>NASA Life Sciences Data Archive (LSDA-0042)</strong></div>
           <div class="rail-item"><span class="rail-label">CLINICAL STANDARD</span><strong>NASA-STD-3001 Bioastronautics Vol 1 & 2</strong></div>
           <button class="rail-link" type="button" onclick="window.open('https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/?tab=resources', '_blank')">View official challenge tab <span>↗</span></button>
         </div>
 
-        <!-- Comprehensive 10-Resource Grid -->
+        <!-- Comprehensive 11-Resource Grid -->
         <div class="nasa-resource-grid">
           
           <!-- 1. NASA Human Research Program (HRP) Roadmap -->
@@ -1714,7 +1733,7 @@
             <h2 style="font-size: clamp(26px, 3.2vw, 36px); font-weight: 500; color: #ffffff; margin: 6px 0;">International space agency <em>partners</em> &amp; clinical data</h2>
             <p class="hero-description" style="max-width: 820px;">Orbital Health integrates biomedical telemetry standards, wearable sensor technologies, and analog research from official NASA Space Apps Challenge international space agency partners (ESA, CSA, JAXA) and open clinical research repositories.</p>
           </div>
-          <span class="view-tag status-active" style="background: rgba(118, 228, 210, 0.12); color: #76e4d2; border-color: rgba(118, 228, 210, 0.35);">INTERNATIONAL COLLABORATION</span>
+          <span class="view-tag status-active" style="background: rgba(118, 228, 210, 0.12); color: #76e4d2; border-color: rgba(118, 228, 210, 0.35);">4 INTERNATIONAL PARTNER SOURCES</span>
         </div>
 
         <div class="nasa-resource-grid">
@@ -2202,8 +2221,8 @@
                     <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: % saturation</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA / FAA Commercial Space Transportation</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 §6.3; FAA Office of Commercial Space Transportation Physiological Guidelines.</div>
+                    <strong style="color: #ffffff;">NASA / FAA Civil Aerospace Medical Institute</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Atmospheric Inspired pO₂); FAA Hypoxia Guidelines; Clinical Pulse Oximetry Standards.</div>
                     <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
@@ -2303,7 +2322,7 @@
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
                     <strong style="color: #ffffff;">NASA Human Factors & Habitability</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 §6.2.2; Law et al., 'Relationship Between CO2 Levels and Headaches on ISS,' J Occup Environ Med, 2014.</div>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 Rev F §6.2.1.3 (Inspired Partial Pressure of CO₂); Law et al., J Occup Environ Med, 2014.</div>
                     <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
@@ -2328,7 +2347,7 @@
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
                     <strong style="color: #ffffff;">NASA Space Radiation Analysis Group (SRAG)</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 1 §4.4; Cucinotta et al., 'Space radiation cancer risk projections,' NASA/TP-2013-217375.</div>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 1 §4.4 (Permissible Exposure Limits) &amp; Vol 2 Rev F §11.1 (Ionizing Radiation Protection); Cucinotta et al., NASA/TP-2013-217375.</div>
                     <a href="https://osdr.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
@@ -2836,7 +2855,7 @@
                 <strong>Escalation:</strong> Notify Flight Surgeon and EVA buddy immediately; abort spacewalk if SpO2 fails to recover within 60 seconds.
               </div>
               <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
-                <strong>Standard:</strong> NASA-STD-3001 Vol 2 §6.3; FAA Office of Commercial Space Transportation Physiological Guidelines.
+                <strong>Standard:</strong> NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Inspired pO₂ Limits); FAA Hypoxia Guidelines.
               </div>
             </div>
             <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
@@ -2882,7 +2901,7 @@
                 <strong>Escalation:</strong> Notify Mission Control Flight Directors to reconfigure environmental life-support scrubbers.
               </div>
               <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
-                <strong>Standard:</strong> NASA-STD-3001 Vol 2 §6.2.2; Law et al. (2014).
+                <strong>Standard:</strong> NASA-STD-3001 Vol 2 Rev F §6.2.1.3 (Inspired Partial Pressure of CO₂ ≤ 3.00 mmHg); Law et al. (2014).
               </div>
             </div>
             <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
@@ -2905,7 +2924,7 @@
                 <strong>Escalation:</strong> Coordinate with Space Radiation Analysis Group (SRAG) at Johnson Space Center for solar flare trajectory updates.
               </div>
               <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
-                <strong>Standard:</strong> NASA-STD-3001 Vol 1 §4.4; Cucinotta et al. (2013).
+                <strong>Standard:</strong> NASA-STD-3001 Vol 1 §4.4 (Permissible Exposure Limits) &amp; Vol 2 Rev F §11.1 (Ionizing Radiation Protection); Cucinotta et al. (2013).
               </div>
             </div>
             <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
@@ -3535,5 +3554,34 @@
     </div>
   </aside>
 
+  <!-- Floating Guided Judging Demo Dock -->
+  <aside id="guided-demo-dock" class="guided-demo-dock" hidden role="region" aria-label="NASA Space Apps Judging Evaluation Tour">
+    <div class="guided-demo-inner">
+      <div class="guided-demo-badge-row">
+        <span class="guided-demo-kicker" id="demo-badge-text">JUDGE TOUR · STEP 1 OF 6</span>
+        <span class="guided-demo-criteria" id="demo-criteria-text">NASA Challenge Criteria: Relevance & Impact</span>
+        <button class="guided-demo-close" onclick="exitJudgingDemo()" aria-label="Exit Guided Demo Tour">✕ Exit Tour</button>
+      </div>
+      <div class="guided-demo-body-row">
+        <div class="guided-demo-text">
+          <h4 id="demo-step-title" class="guided-demo-title">1. Deep Space Mission Context & Mars Comms Latency</h4>
+          <p id="demo-step-narrative" class="guided-demo-narrative">During deep space transit to Mars, radio signals experience up to a 22.3-minute one-way speed-of-light delay (44.6 min round-trip). Real-time telemedicine from Houston is physically impossible during acute EVA emergencies. Orbital Health's edge-resident CDSS provides deterministic medical intelligence when astronauts are completely isolated.</p>
+          <div class="guided-demo-citation" id="demo-step-citation">NASA Human Research Program (HRP) Risk 01: Communication & Earth Independence</div>
+        </div>
+        <div class="guided-demo-actions">
+          <button class="button button-solid" id="demo-action-btn" onclick="executeCurrentDemoAction()" style="background: #2563eb; color: #fff; border-color: #38bdf8;">
+            <span>▷</span> <span id="demo-action-btn-text">Simulate Mars Comms Delay</span>
+          </button>
+          <div class="guided-demo-nav-btns">
+            <button class="button button-quiet" id="demo-prev-btn" onclick="prevDemoStep()">← Prev</button>
+            <button class="button button-primary" id="demo-next-btn" onclick="nextDemoStep()">Next Step →</button>
+          </div>
+        </div>
+      </div>
+      <div class="guided-demo-progress-track">
+        <div class="guided-demo-progress-fill" id="demo-progress-fill" style="width: 16.66%;"></div>
+      </div>
+    </div>
+  </aside>
 </body>
 </html>

@@ -57,6 +57,13 @@ function showView(name) {
     setTimeout(resizeDashboardEcg, 50);
   }
 
+  if (name === "bodymap") {
+    // Ensure selected organ chip, SVG hotspot, and detail panel are in perfect sync
+    const currentActiveChip = document.querySelector(".organ-chip.is-active");
+    const organKey = currentActiveChip ? currentActiveChip.id.replace("chip-", "") : "eyes";
+    selectBodyOrgan(organKey);
+  }
+
   // Coordinate background space view with active tab
   if (name === "assistant") {
     setSpaceBackgroundById("jwst");
@@ -903,7 +910,7 @@ function evaluateTelemetryAnomalies(row) {
       dataQuality: "PASS - Signal-to-noise ratio nominal; PPG perfusion index verified; correlated tachypnea confirms true desaturation.",
       action: "Check suit umbilical seals, initiate suit oxygen purge per flight rules, and minimize physical exertion. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
       escalation: "Notify Flight Surgeon and EVA partner immediately. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-      scientificSource: "NASA-STD-3001 Vol 2 §6.3; FAA Office of Commercial Space Transportation Physiological Guidelines.",
+      scientificSource: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Inspired pO₂); FAA Civil Aerospace Medical Institute Hypoxia Guidelines.",
       isIllustrative: false,
       type: "physiological",
       explanation: "Significant drop in blood oxygen saturation accompanied by compensatory tachypnea. Rules out isolated sensor decoupling by correlating with respiratory rate elevation."
@@ -931,7 +938,7 @@ function evaluateTelemetryAnomalies(row) {
       severity: "attention",
       title: "Cabin pCO₂ Elevation (> 3.0 mmHg)",
       measurement: `Cabin pCO₂: ${pCo2.toFixed(2)} mmHg (${row.cabin_co2}% vol @ 760 mmHg)`,
-      triggerRule: "Rule CDSS-ENV-01: NASA-STD-3001 Cabin Hypercapnia Limit",
+      triggerRule: "Rule CDSS-ENV-01: NASA-STD-3001 Vol 2 Rev F §6.2.1.3 Cabin Hypercapnia Limit",
       type: "environmental",
       explanation: "Cabin atmospheric CO₂ exceeds the 24-hour permissible exposure threshold. Verify CDRA scrubber airflow."
     });
@@ -1263,7 +1270,7 @@ const BODY_ORGAN_DATA = {
     indicators: "Arterial Saturation (SpO₂ 98.9%), Respiration Rate (14 br/min), Cabin pO₂ (160 mmHg @ 760 mmHg), Cabin pCO₂ (2.36 mmHg @ 760 mmHg).",
     effects: "Uniform alveolar aeration across lung lobes; risk of localized cabin hypercapnia due to lack of natural thermal convection currents.",
     countermeasures: "ECLSS CDRA carbon dioxide scrubber monitoring, forced vital capacity spirometry, cabin HEPA air filtration.",
-    research: "NASA-STD-3001 Vol 2 §6.3; West, J Appl Physiol 2000 (Pulmonary gas exchange in microgravity); ISS ECLSS Flight Rules.",
+    research: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Atmospheric pO₂); West, J Appl Physiol 2000; ISS ECLSS Flight Rules.",
     statusBadge: "OPTIMAL · 98.9% SpO₂",
     badgeClass: "status-badge-success",
     kicker: "NASA HRP RISK 05 // PULMONARY VENTILATION & GAS DYNAMICS",
@@ -1370,6 +1377,10 @@ function selectBodyOrgan(organKey) {
   const activeBtn = document.querySelector(`#chip-${organKey}`);
   if (activeBtn) activeBtn.classList.add("is-active");
 
+  document.querySelectorAll(".hotspot-node").forEach((node) => node.classList.remove("is-selected"));
+  const activeNode = document.querySelector(`#node-${organKey}`);
+  if (activeNode) activeNode.classList.add("is-selected");
+
   const panel = document.querySelector("#organ-detail-card") || document.querySelector(".organ-detail-panel");
   if (!panel) return;
 
@@ -1398,7 +1409,7 @@ function selectBodyOrgan(organKey) {
     <div class="organ-panel-header">
       <div>
         <span class="organ-kicker">${organ.kicker}</span>
-        <h2>${organ.title}</h2>
+        <h2 id="organ-title">${organ.title}</h2>
       </div>
       <span class="view-tag ${organ.badgeClass}">${organ.statusBadge}</span>
     </div>
@@ -1435,7 +1446,13 @@ function syncBodyMapWithPreset(presetKey) {
   else if (presetKey === "arrhythmia") selectBodyOrgan("heart");
   else if (presetKey === "ared") selectBodyOrgan("muscles");
   else if (presetKey === "radiation") selectBodyOrgan("spine");
-  else selectBodyOrgan("heart");
+  else if (presetKey === "nominal") {
+    // For nominal baseline, preserve currently selected organ or default to eyes
+    const currentActiveChip = document.querySelector(".organ-chip.is-active");
+    if (!currentActiveChip) selectBodyOrgan("eyes");
+  } else {
+    selectBodyOrgan("heart");
+  }
 }
 
 
@@ -1522,7 +1539,7 @@ const SCENARIO_STEPS = [
 <strong>3. DATA-QUALITY CHECKS:</strong> Optical plethysmograph pulsatility verified; pressure decay confirmed by secondary PLSS transducer.<br>
 <strong>4. SUGGESTED NEXT ACTION:</strong> 1. Follow mission-approved clinical procedure: activate Secondary Oxygen Pack (SOP) high-flow purge and seek guidance from qualified medical personnel. 2. Prepare partner-assisted airlock ingress.<br>
 <strong>5. ESCALATION GUIDANCE:</strong> Alert station Crew Medical Officer (CMO) to prepare airlock repressurization. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.<br>
-<strong>6. SCIENTIFIC REFERENCE:</strong> NASA-STD-3001 Vol 2 §6.3; ISS Flight Rule B13-102.`,
+<strong>6. SCIENTIFIC REFERENCE:</strong> NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Atmospheric pO₂); FAA Hypoxia Guidelines; ISS Flight Rule B13-102.`,
     verification: "Protocol evaluated client-side in local browser runtime with zero network delay.",
     actionPrompt: "Execute suggested emergency purge and airlock ingress."
   },
@@ -1863,7 +1880,7 @@ function generateLocalFlightSurgeonReply(query) {
   if (hasPhrase("how do you work", "how does aura work", "how does it work", "are you an ai", "are you ai", "are you rule based", "is aura rule based", "what model", "what ml model", "neural network", "machine learning", "edge ai", "cdss architecture", "decision engine", "how are you implemented", "explain your reasoning")) {
     return "**AURA Technical Architecture & Clinical Decision Engine:**\n\n" +
            "• **Current Implementation:** AURA operates as an **offline, deterministic rule-based Clinical Decision Support System (CDSS)** executing locally in client memory with zero network latency and complete autonomy.\n" +
-           "• **Explainable Heuristics vs. Black-Box ML:** Rather than an opaque neural network, this prototype employs deterministic clinical logic mapped directly to published aerospace standards (e.g., `CDSS-RULE-O2-01` mapped to NASA-STD-3001 Vol 2 §6.3) with sensor-integrity pre-filters to prevent false alarms.\n" +
+           "• **Explainable Heuristics vs. Black-Box ML:** Rather than an opaque neural network, this prototype employs deterministic clinical logic mapped directly to published aerospace standards (e.g., `CDSS-RULE-O2-01` mapped to NASA-STD-3001 Vol 2 Rev F §6.2.1.2) with sensor-integrity pre-filters to prevent false alarms.\n" +
            "• **Dynamic Telemetry & Scenario Context:** AURA dynamically evaluates the active astronaut's streaming biometrics (ECG, SpO₂, RR, temp), cabin atmosphere (pCO₂), environmental radiation, and current scenario milestones.\n" +
            "• **Edge Autonomy for Deep Space:** Designed to operate autonomously on exploration vehicles during Mars communication delays (up to 22.3 minutes one-way), eliminating reliance on real-time ground flight surgeon telemedicine.\n" +
            "• **Future Roadmap:** Future flight versions are designed to incorporate calibrated on-device neural edge models for predictive multivariate trajectory forecasting, layered safely on top of deterministic safety bounds.\n\n" +
@@ -3294,10 +3311,10 @@ function runClientValidationSuite() {
 
   // TEST-28: NASA Standard Traceability Integrity
   const rules28 = [
-    { id: "CDSS-RULE-O2-01", std: "NASA-STD-3001 Vol 1 §4.2.1" },
-    { id: "CDSS-RULE-RAD-01", std: "NASA-STD-3001 Vol 2 §6.3" },
+    { id: "CDSS-RULE-O2-01", std: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2" },
+    { id: "CDSS-RULE-RAD-01", std: "NASA-STD-3001 Vol 1 §4.4 / Vol 2 Rev F §11.1" },
     { id: "CDSS-RULE-SANS-01", std: "NASA HRP SANS Evidence Book" },
-    { id: "CDSS-RULE-CO2-01", std: "NASA-STD-3001 Vol 2 §6.2.2" }
+    { id: "CDSS-RULE-CO2-01", std: "NASA-STD-3001 Vol 2 Rev F §6.2.1.3" }
   ];
   const allRulesLinked28 = rules28.every(r => r.std.includes("NASA"));
   results.push({
@@ -3367,6 +3384,7 @@ function runClientValidationSuite() {
   }
 
   console.log(`[TEST-SUITE] Complete: ${passedCount}/${results.length} PASSED in ${execTimeMs} ms (0 regressions).`);
+  return results;
 }
 
 function filterEvidenceRegistry(category) {
@@ -3410,12 +3428,12 @@ function explainAlertRule(identifier) {
       ruleId: alertObj?.triggerRule?.split(":")[0] || identifier || "CDSS-RULE-O2-01",
       name: alertObj?.title || "Acute Arterial Hypoxemia",
       severity: alertObj?.severity === "high" ? "CRITICAL" : "WARNING",
-      clinicalReferenceThreshold: "Clinical Reference: NASA-STD-3001 Vol 2 §6.3: SpO2 < 95% indicates mild hypoxemia; SpO2 < 90% severe hypoxemia.",
+      clinicalReferenceThreshold: "Clinical Reference: SpO2 < 95% indicates mild hypoxemia; SpO2 < 90% severe hypoxemia (FAA / clinical standards). NASA-STD-3001 Vol 2 Rev F §6.2.1.2 defines cabin inspired pO2 (19.5–23.1 kPa).",
       demonstrationThreshold: "Project Demonstration Trigger: SpO2 < 92.0% for >= 2 consecutive 1-second readings.",
       dataQualityCheck: "Evaluates PPG perfusion index (PI > 0.5%) and correlates with respiratory rate elevation to exclude probe disconnect.",
       cautiousNextStep: "Check suit umbilical seals, switch to emergency oxygen loop per flight rules, and minimize physical exertion. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
       escalationGuidance: "Notify Flight Surgeon and EVA partner immediately. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-      scientificSource: "NASA-STD-3001 Vol 2 §6.3; FAA Office of Commercial Space Transportation Physiological Guidelines."
+      scientificSource: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Inspired pO₂); FAA Civil Aerospace Medical Institute Hypoxia Guidelines."
     };
   }
 
@@ -3589,11 +3607,11 @@ function renderDrawerAlertsUI() {
   filtered.forEach(a => {
     const dotColor = a.severity === "high" ? "#ef4444" : a.severity === "attention" ? "#f59e0b" : "#76e4d2";
     const sevLabel = a.severity === "high" ? "HIGH PRIORITY" : a.severity === "attention" ? "ATTENTION" : "INFORMATION";
-    const stdRef = a.triggerRule?.includes("O2") ? "NASA-STD-3001 Vol 1 §4.2.1 (Hypoxia Boundary)" :
-                   a.triggerRule?.includes("RAD") ? "NASA-STD-3001 Vol 2 §6.3 (Radiation Protection)" :
+    const stdRef = a.triggerRule?.includes("O2") ? "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Atmospheric pO₂)" :
+                   a.triggerRule?.includes("RAD") ? "NASA-STD-3001 Vol 1 §4.4 / Vol 2 Rev F §11.1 (Radiation)" :
                    a.triggerRule?.includes("SANS") ? "NASA HRP Spaceflight-Associated Neuro-ocular Syndrome" :
-                   a.triggerRule?.includes("CO2") ? "NASA-STD-3001 Vol 2 §6.2.2 (Cabin CO2 < 3.0 mmHg)" :
-                   "NASA-STD-3001 Crew Health Standards";
+                   a.triggerRule?.includes("CO2") ? "NASA-STD-3001 Vol 2 Rev F §6.2.1.3 (Cabin CO₂ ≤ 3.0 mmHg)" :
+                   "NASA-STD-3001 Space Flight Human-System Standards";
 
     html += `
       <div class="drawer-alert-card" style="border: 1px solid rgba(255,255,255,0.08); border-left: 4px solid ${dotColor}; background: rgba(15,23,42,0.8); border-radius: 6px; padding: 14px; display: flex; flex-direction: column; gap: 8px;">
@@ -3770,3 +3788,186 @@ function escapeHtml(str) {
     .replace(/'/g, "&#39;");
 }
 window.escapeHtml = escapeHtml;
+
+
+/* ==========================================================================
+   26. GUIDED JUDGING DEMO WALKTHROUGH (NASA SPACE APPS CHALLENGE EVALUATION)
+   ========================================================================== */
+const JUDGING_DEMO_STEPS = [
+  {
+    step: 1,
+    badge: "JUDGE TOUR · STEP 1 OF 6",
+    criteria: "Criteria: Relevance & Mission Impact",
+    title: "1. Deep Space Mission Context & Mars Latency",
+    narrative: "During a 3-year crewed mission to Mars, radio signals take up to 22.3 minutes one-way (44.6 min round-trip). Houston flight surgeons cannot provide real-time resuscitation or telemetry guidance during an EVA emergency. Autonomous, edge-resident clinical decision support is an absolute operational necessity.",
+    citation: "NASA Human Research Program (HRP) Risk 01: Communication & Earth Independence",
+    actionLabel: "Simulate Mars 18.4m Delay",
+    execute: () => {
+      showView("dashboard");
+      selectMissionPlanet("mars");
+      const delayEl = document.querySelector(".delay-timer-bar") || document.querySelector("#dash-comm-status");
+      if (delayEl) delayEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  },
+  {
+    step: 2,
+    badge: "JUDGE TOUR · STEP 2 OF 6",
+    criteria: "Criteria: Technical Architecture & Validity",
+    title: "2. Synthetic Telemetry Ingestion & Anomaly Detection",
+    narrative: "Orbital Health continuously streams multi-parametric biometrics (ECG, SpO₂, Respiration, pCO₂, Radiation) entirely client-side. In this synthetic demonstration, an EVA micro-leak drops inspired oxygen. Sensor concordance rules verify the drop against elevated respiration rate (compensatory tachypnea) to prevent false alarms.",
+    citation: "Synthetic Dataset: 2_nasa_eva_spacewalk_hypoxia.csv (NASA Baseline Architecture)",
+    actionLabel: "Ingest EVA Hypoxia Telemetry",
+    execute: () => {
+      showView("dashboard");
+      loadPresetDataset("hypoxia");
+      const vitalsCard = document.querySelector(".pictorial-vitals-grid") || document.querySelector("#ecg-telemetry-container");
+      if (vitalsCard) vitalsCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  },
+  {
+    step: 3,
+    badge: "JUDGE TOUR · STEP 3 OF 6",
+    criteria: "Criteria: Scientific Validity & Traceability",
+    title: "3. Explainable CDSS Rule & Standard Traceability",
+    narrative: "Every alert is deterministic and traceable to published aerospace medicine standards. Rule CDSS-RULE-O2-01 defines acute hypoxemia, citing NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Atmospheric pO₂) and FAA CAMI guidelines. The UI explicitly separates the prototype demonstration trigger (SpO₂ < 92%) from clinical standards.",
+    citation: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 · FAA CAMI Physiological Guidelines",
+    actionLabel: "Open CDSS-RULE-O2-01 Modal",
+    execute: () => {
+      explainAlertRule("CDSS-RULE-O2-01");
+    }
+  },
+  {
+    step: 4,
+    badge: "JUDGE TOUR · STEP 4 OF 6",
+    criteria: "Criteria: Creativity & Edge Autonomy",
+    title: "4. Offline AURA Clinical Decision Support Assistant",
+    narrative: "AURA is an offline, rule-based clinical decision support assistant designed to assist non-physician astronauts. Operating with zero network egress, it synthesizes biometrics, checks sensor signal-to-noise ratios, generates immediate safe countermeasures (Secondary Oxygen Pack high-flow purge loop), and defines airlock ingress escalation.",
+    citation: "AURA Deterministic Engine: Zero-Egress Local Aerospace Triage",
+    actionLabel: "Consult AURA Offline CDSS",
+    execute: () => {
+      closeAlertRuleModal();
+      toggleAuraDrawer(true);
+      evaluateAuraAssistant("Evaluate current EVA hypoxia and suit oxygen status");
+    }
+  },
+  {
+    step: 5,
+    badge: "JUDGE TOUR · STEP 5 OF 6",
+    criteria: "Criteria: Presentation & User Experience",
+    title: "5. Multi-Organ Anatomical Risk & Triage Map",
+    narrative: "Astronauts need immediate, intuitive anatomical situational awareness. The interactive Body Map visualizes cephalad fluid shifts (SANS), pulmonary gas dynamics, cardiac dysrhythmias, and musculoskeletal deconditioning with actionable countermeasures (ARED resistive exercise, LBNP chibis, CDRA scrubbers).",
+    citation: "NASA Human Research Program (HRP) Spaceflight Hazards (R-I-D-G-E)",
+    actionLabel: "Inspect Pulmonary System",
+    execute: () => {
+      toggleAuraDrawer(false);
+      showView("bodymap");
+      selectBodyOrgan("lungs");
+    }
+  },
+  {
+    step: 6,
+    badge: "JUDGE TOUR · STEP 6 OF 6",
+    criteria: "Criteria: Scientific Honesty & Empirical Verification",
+    title: "6. Client-Side Test Suite & Data Provenance Registry",
+    narrative: "All synthetic demonstration data is explicitly labeled to protect astronaut privacy. The validation test suite executes 31 deterministic tests in browser memory with zero network calls, verifying nominal baselines, hypoxia boundary rules, hypercapnia triggers, sensor pre-filters, and standard traceability.",
+    citation: "Client Validation Suite: 31/31 Automated Deterministic Verifications",
+    actionLabel: "Run 31-Point Validation Suite",
+    execute: () => {
+      showView("architecture");
+      runClientValidationSuite();
+      const testCard = document.querySelector("#validation-results-card") || document.querySelector(".test-runner-container");
+      if (testCard) testCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+];
+
+let currentDemoStepIndex = 0;
+
+function startJudgingDemo() {
+  currentDemoStepIndex = 0;
+  const dock = document.getElementById("guided-demo-dock");
+  if (dock) {
+    dock.hidden = false;
+    document.body.classList.add("guided-demo-active");
+  }
+  renderDemoStep();
+}
+
+function exitJudgingDemo() {
+  const dock = document.getElementById("guided-demo-dock");
+  if (dock) {
+    dock.hidden = true;
+    document.body.classList.remove("guided-demo-active");
+  }
+  if (typeof closeAlertRuleModal === "function") closeAlertRuleModal();
+  if (typeof toggleAuraDrawer === "function") toggleAuraDrawer(false);
+}
+
+function nextDemoStep() {
+  if (typeof closeAlertRuleModal === "function") closeAlertRuleModal();
+  if (currentDemoStepIndex < JUDGING_DEMO_STEPS.length - 1) {
+    currentDemoStepIndex++;
+    renderDemoStep();
+  } else {
+    exitJudgingDemo();
+  }
+}
+
+function prevDemoStep() {
+  if (typeof closeAlertRuleModal === "function") closeAlertRuleModal();
+  if (currentDemoStepIndex > 0) {
+    currentDemoStepIndex--;
+    renderDemoStep();
+  }
+}
+
+function renderDemoStep() {
+  const step = JUDGING_DEMO_STEPS[currentDemoStepIndex];
+  if (!step) return;
+
+  const badgeEl = document.getElementById("demo-badge-text");
+  const criteriaEl = document.getElementById("demo-criteria-text");
+  const titleEl = document.getElementById("demo-step-title");
+  const narrativeEl = document.getElementById("demo-step-narrative");
+  const citationEl = document.getElementById("demo-step-citation");
+  const actionBtnText = document.getElementById("demo-action-btn-text");
+  const prevBtn = document.getElementById("demo-prev-btn");
+  const nextBtn = document.getElementById("demo-next-btn");
+  const progressFill = document.getElementById("demo-progress-fill");
+
+  if (badgeEl) badgeEl.textContent = step.badge;
+  if (criteriaEl) criteriaEl.textContent = step.criteria;
+  if (titleEl) titleEl.textContent = step.title;
+  if (narrativeEl) narrativeEl.textContent = step.narrative;
+  if (citationEl) citationEl.textContent = step.citation;
+  if (actionBtnText) actionBtnText.textContent = step.actionLabel;
+
+  if (prevBtn) prevBtn.disabled = currentDemoStepIndex === 0;
+  if (nextBtn) {
+    nextBtn.textContent = currentDemoStepIndex === JUDGING_DEMO_STEPS.length - 1 ? "Complete Tour ✓" : "Next Step →";
+  }
+
+  if (progressFill) {
+    const pct = ((currentDemoStepIndex + 1) / JUDGING_DEMO_STEPS.length) * 100;
+    progressFill.style.width = `${pct}%`;
+  }
+
+  try {
+    step.execute();
+  } catch (err) {
+    console.warn("[DEMO] Error executing step action:", err);
+  }
+}
+
+function executeCurrentDemoAction() {
+  const step = JUDGING_DEMO_STEPS[currentDemoStepIndex];
+  if (step && typeof step.execute === "function") {
+    step.execute();
+  }
+}
+
+window.startJudgingDemo = startJudgingDemo;
+window.exitJudgingDemo = exitJudgingDemo;
+window.nextDemoStep = nextDemoStep;
+window.prevDemoStep = prevDemoStep;
+window.executeCurrentDemoAction = executeCurrentDemoAction;

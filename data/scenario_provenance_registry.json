@@ -38,7 +38,7 @@
     "playbackTrajectory": "At t=00:06, SpO2 drops sharply from 99.2% to 86.4%. Compensatory HR climbs to 118 bpm; RR elevates to 24 br/min.",
     "units": "bpm, %, br/min, \u00b0C, % vol / mmHg, mSv/day",
     "rationale": "Arterial desaturation stimulates peripheral carotid chemoreceptors, triggering autonomic tachycardia and compensatory hyperventilation.",
-    "scientificReferences": "NASA-STD-3001 Vol 2 \u00a76.3; FAA Office of Commercial Space Transportation Physiological Guidelines; Guyton & Hall Medical Physiology \u00a741.",
+    "scientificReferences": "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Inspired pO2 Limits); FAA Civil Aerospace Medical Institute Hypoxia Guidelines; Guyton & Hall Medical Physiology §41.",
     "rulesTriggered": "Rule CDSS-O2-01: Acute Arterial Hypoxemia (SpO2 < 92%); Rule CDSS-HR-01: Compensatory Tachycardia (HR > 115 bpm).",
     "expectedResult": "Immediate CRITICAL alert banner, automated suit oxygen purge guidance, EVA abort recommendation.",
     "actualResult": "PASSED - Alerts fire reliably at t=00:06 with full explainability trace and protocolized next steps."

@@ -29,7 +29,26 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--bg); }
-body { margin: 0; min-width: 320px; background: #050811; color: var(--text); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+html {
+  overflow-x: clip !important;
+  max-width: 100vw;
+  width: 100%;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  max-width: 100vw;
+  width: 100%;
+  overflow-x: clip !important;
+  background: #050811;
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
 button, a { font: inherit; }
 button { color: inherit; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--blue-light); outline-offset: 4px; }
@@ -1680,9 +1699,13 @@ button:not(:disabled):active { scale: .97; }
 .space-background-system {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: -2;
   pointer-events: none;
   overflow: hidden;
+  contain: strict;
+  clip-path: inset(0);
   background-color: #08101d;
 }
 
@@ -1975,7 +1998,11 @@ button:not(:disabled):active { scale: .97; }
 /* Hotspot interaction */
 .hotspot-node {
   cursor: pointer;
+  pointer-events: all;
   transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.hotspot-node * {
+  pointer-events: all;
 }
 .hotspot-node:hover {
   transform: scale(1.15);
@@ -6348,11 +6375,15 @@ button, .button, a, .nav-link, .dock-link, .app-dock-item, .chip, .preset-chip, 
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s;
   box-sizing: border-box;
 }
 .slide-drawer.is-open {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .drawer-header {
@@ -6427,4 +6458,205 @@ button, .button, a, .nav-link, .dock-link, .app-dock-item, .chip, .preset-chip, 
   border-color: #76e4d2 !important;
   color: #76e4d2 !important;
   font-weight: 700;
+}
+
+
+/* ==========================================================================
+   GUIDED JUDGING DEMO DOCK & AEROSPACE GLOSSARY
+   ========================================================================== */
+.guided-demo-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(960px, calc(100vw - 32px));
+  z-index: 20000 !important;
+  background: rgba(9, 15, 30, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(75, 133, 255, 0.4);
+  border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 24px rgba(75, 133, 255, 0.2);
+  padding: 16px 20px;
+  box-sizing: border-box;
+  animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.guided-demo-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.guided-demo-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
+.guided-demo-criteria {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.guided-demo-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.guided-demo-close:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.guided-demo-body-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .guided-demo-body-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.guided-demo-text {
+  flex: 1;
+}
+
+.guided-demo-title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.guided-demo-narrative {
+  margin: 0 0 8px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #cbd5e1;
+}
+
+.guided-demo-citation {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: #76e4d2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(118, 228, 210, 0.08);
+  border: 1px solid rgba(118, 228, 210, 0.2);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
+.guided-demo-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .guided-demo-actions {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.guided-demo-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guided-demo-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin-top: 14px;
+  overflow: hidden;
+}
+
+.guided-demo-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #76e4d2);
+  transition: width 0.3s ease;
+}
+
+/* Aerospace Medical Glossary Strip */
+.aerospace-glossary-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 16px 0 20px;
+  padding: 10px 14px;
+  background: rgba(14, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+}
+
+.glossary-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.glossary-pill {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #cbd5e1;
+  cursor: help;
+  transition: all 0.2s;
+}
+
+.glossary-pill:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+
+.glossary-pill strong {
+  color: #38bdf8;
 }
