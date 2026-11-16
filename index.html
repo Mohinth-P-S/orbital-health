@@ -85,7 +85,7 @@
           <div class="hero-copy">
             <div class="eyebrow"><span class="eyebrow-line"></span> MISSION HEALTH / 01</div>
             <h1 id="hero-title">A clearer view<br />of health <em>in orbit.</em></h1>
-            <p class="hero-description">Autonomous crew health monitoring with continuous biomedical telemetry, microgravity SANS tracking, and edge AI medical intelligence.</p>
+            <p class="hero-description">Autonomous crew health monitoring with continuous biomedical telemetry, microgravity SANS tracking, and offline Clinical Decision Support (CDSS) for communication-delayed missions.</p>
             <div class="hero-actions">
               <button class="button button-primary" type="button" data-view="dashboard">Open health dashboard <span aria-hidden="true">↗</span></button>
               <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
@@ -125,16 +125,16 @@
 
         <!-- SECTION 1: ARCHITECTURE & TECH STACK -->
 
-          <!-- 5-STEP MISSION WORKFLOW (CHALLENGE RELEVANCE: MONITOR -> INTERPRET -> VERIFY -> ACT -> ESCALATE) -->
+          <!-- 6-STAGE OPERATIONAL CLINICAL WORKFLOW (MONITOR -> INTERPRET -> VERIFY -> EXPLAIN -> ACT -> ESCALATE) -->
           <div class="mission-workflow-panel" style="margin: 28px 0; padding: 22px 24px; border-radius: 14px; background: rgba(11, 18, 34, 0.88); border: 1px solid rgba(223, 199, 156, 0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
               <div>
                 <span class="panel-kicker" style="color: #dfc79c; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;">NASA SPACE APPS 2026 // OPERATIONAL CLINICAL WORKFLOW</span>
-                <h3 style="margin: 4px 0 0; font-size: 18px; color: #ffffff;">5-Step Autonomous Crew Health System</h3>
+                <h3 style="margin: 4px 0 0; font-size: 18px; color: #ffffff;">6-Stage Autonomous Crew Health Workflow</h3>
               </div>
               <span style="font-family: var(--mono); font-size: 11px; color: #76e4d2; background: rgba(118,228,210,0.12); padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(118,228,210,0.3); font-weight: 700;">AUTONOMOUS DEEP-SPACE SUPPORT</span>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
               <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #38bdf8;">
                 <small style="color: #38bdf8; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 01</small>
                 <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">1. MONITOR</h4>
@@ -150,14 +150,19 @@
                 <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">3. VERIFY</h4>
                 <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Explainable sensor continuity tests, signal-to-noise filters, and probe alignment checks to eliminate false alarms.</p>
               </div>
+              <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #ef4444;">
+                <small style="color: #ef4444; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 04</small>
+                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">4. EXPLAIN</h4>
+                <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Deterministic biomedical reasoning mapping observed telemetry deviations to pathophysiological mechanisms and CDSS rule triggers.</p>
+              </div>
               <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #dfc79c;">
-                <small style="color: #dfc79c; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 04</small>
-                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">4. ACT</h4>
+                <small style="color: #dfc79c; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 05</small>
+                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">5. ACT</h4>
                 <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Non-prescriptive evidence-aware guidance (LBNP session, exercise modulation, electrolyte/fluid loading protocols).</p>
               </div>
-              <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #f43f5e;">
-                <small style="color: #f43f5e; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 05</small>
-                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">5. ESCALATE</h4>
+              <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #a855f7;">
+                <small style="color: #a855f7; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 06</small>
+                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">6. ESCALATE</h4>
                 <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Protocolized escalation: CMO alert, emergency EVA repressurization, and delay-tolerant packet transmission to Earth.</p>
               </div>
             </div>
@@ -426,15 +431,15 @@
             </button>
             <button class="delay-chip" id="delay-btn-moon" type="button" onclick="setMissionDelay('moon')">
               <span class="delay-thumb" style="background-image: url('assets/moon.jpg');"></span>
-              <span>Moon Artemis (1.3s)</span>
+              <span>Moon Artemis (1.28s)</span>
             </button>
             <button class="delay-chip" id="delay-btn-mars-min" type="button" onclick="setMissionDelay('mars-min')">
               <span class="delay-thumb" style="background-image: url('assets/mars.jpg');"></span>
-              <span>Mars Near (4.2m)</span>
+              <span>Mars Near (3.0m)</span>
             </button>
             <button class="delay-chip" id="delay-btn-mars-max" type="button" onclick="setMissionDelay('mars-max')">
               <span class="delay-thumb" style="background-image: url('assets/mars.jpg');"></span>
-              <span>Mars Far (22m)</span>
+              <span>Mars Far (22.3m)</span>
             </button>
           </div>
           <div class="delay-status-badge" id="delay-telemed-badge">
@@ -1315,17 +1320,17 @@
             <button class="gemini-planet-pill" type="button" onclick="setAssistantPlanet('moon')" data-planet="moon" title="The Moon (Artemis) - 1.28s delay">
               <span class="gemini-pill-thumb" style="background-image: url('assets/moon.jpg');"></span>
               <span class="gemini-pill-name">Moon</span>
-              <span class="gemini-pill-delay">1.3s</span>
+              <span class="gemini-pill-delay">1.28s</span>
             </button>
-            <button class="gemini-planet-pill" type="button" onclick="setAssistantPlanet('mars')" data-planet="mars" title="Mars Transit Crew - 14.2 min delay">
+            <button class="gemini-planet-pill" type="button" onclick="setAssistantPlanet('mars')" data-planet="mars" title="Mars Transit Crew (Sol 142) - 18.4 min delay">
               <span class="gemini-pill-thumb" style="background-image: url('assets/mars.jpg');"></span>
               <span class="gemini-pill-name">Mars</span>
-              <span class="gemini-pill-delay">14m</span>
+              <span class="gemini-pill-delay">18.4m</span>
             </button>
-            <button class="gemini-planet-pill" type="button" onclick="setAssistantPlanet('europa')" data-planet="europa" title="Europa Ocean Lab - 42.5 min delay">
+            <button class="gemini-planet-pill" type="button" onclick="setAssistantPlanet('europa')" data-planet="europa" title="Europa Ocean Lab - 52.0 min delay">
               <span class="gemini-pill-thumb" style="background-image: url('assets/europa.jpg');"></span>
               <span class="gemini-pill-name">Europa</span>
-              <span class="gemini-pill-delay">42m</span>
+              <span class="gemini-pill-delay">52m</span>
             </button>
           </div>
 
@@ -1533,8 +1538,8 @@
               <span class="ridge-letter">D</span>
               <span class="panel-kicker">HAZARD 03 // AUTONOMY</span>
               <h3>Distance from Earth</h3>
-              <p>Up to 22.4-minute one-way comms delay to Mars. Real-time ground telemedicine is impossible. Demands autonomous on-board Clinical Decision Support Systems (ExMC CDSS) like AURA.</p>
-              <div class="ridge-metric-tag">AUTONOMY: 0ms EDGE AI INFERENCE</div>
+              <p>Up to 22.3-minute one-way comms delay to Mars. Real-time ground telemedicine is impossible. Demands autonomous on-board Clinical Decision Support Systems (ExMC CDSS) like AURA.</p>
+              <div class="ridge-metric-tag">AUTONOMY: LOCAL DETERMINISTIC CDSS (&lt; 2ms IN-MEMORY EXECUTION)</div>
             </div>
 
             <!-- G: Gravity Fields -->
@@ -1626,11 +1631,11 @@
           <!-- 5. Exploration Medical Capability (ExMC) -->
           <a class="nasa-resource-card" href="https://www.nasa.gov/human-research-program/" target="_blank" rel="noreferrer">
             <div class="nasa-resource-top">
-              <span class="nasa-resource-kicker">05 // AUTONOMOUS AI / CDSS</span>
+              <span class="nasa-resource-kicker">05 // AUTONOMOUS CDSS MEDICINE</span>
               <span class="nasa-resource-badge">AUTONOMOUS MEDICINE</span>
             </div>
             <h3>Exploration Medical Capability (ExMC)</h3>
-            <p>NASA HRP element tasked with developing autonomous medical diagnostic and treatment systems, Clinical Decision Support Systems (CDSS), and edge AI decision engines for Mars missions where Houston communication lag exceeds 20 minutes.</p>
+            <p>NASA HRP element tasked with developing autonomous medical diagnostic and treatment systems, Clinical Decision Support Systems (CDSS), and offline deterministic decision engines for Mars missions where Houston communication lag exceeds 20 minutes.</p>
             <span class="nasa-resource-link">nasa.gov/human-research-program ↗</span>
           </a>
 
@@ -2761,11 +2766,11 @@
             Orbital Health replaces opaque black-box alerts with deterministic, explainable rule triggers. Each alert contains full medical reasoning, sensor quality verification, and cautious escalation protocols.
           </p>
 
-          <!-- 6-Step Operational Demonstration Flow: EVA Hypoxia -->
+          <!-- 6-Stage Operational Demonstration Flow: EVA Hypoxia -->
           <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
-              <h3 style="margin: 0; font-size: 1.1rem; color: #ffffff;">5-Step Operational Demonstration Flow: EVA Spacewalk Hypoxia Leak (Rule CDSS-O2-01)</h3>
-              <span class="badge" style="border-color: #ef4444; color: #ef4444; font-family: var(--mono); font-size: 0.78rem;">5-STAGE CLINICAL PIPELINE</span>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #ffffff;">6-Stage Operational Clinical Pipeline: EVA Spacewalk Hypoxia Leak (Rule CDSS-O2-01)</h3>
+              <span class="badge" style="border-color: #ef4444; color: #ef4444; font-family: var(--mono); font-size: 0.78rem;">6-STAGE CLINICAL PIPELINE</span>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
@@ -3015,8 +3020,8 @@
 
             <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 6px; padding: 14px;">
               <span style="font-family: var(--mono); font-size: 0.75rem; color: #38bdf8;">EXECUTION STATUS</span>
-              <div style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-top: 6px;" id="test-summary-status">VERIFIED (17/17 PASS)</div>
-              <small style="color: var(--muted); font-size: 0.74rem;" id="test-summary-time">Client Memory Benchmark</small>
+              <div style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-top: 6px;" id="test-summary-status">VERIFIED (31/31 PASS)</div>
+              <small style="color: var(--muted); font-size: 0.74rem;" id="test-summary-time">Deterministic In-Memory Benchmark</small>
             </div>
           </div>
 
