@@ -5393,11 +5393,27 @@ body {
 }
 
 /* 5. BIG BOLD PICTORIAL VITAL TELEMETRY CARDS (JUDGE VISIBILITY) */
+/* 5. BIG BOLD PICTORIAL VITAL TELEMETRY CARDS (JUDGE VISIBILITY - 2x2 GRID) */
 .pictorial-vitals-grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-  gap: 16px !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 18px !important;
   margin-bottom: 24px !important;
+}
+
+@media (max-width: 768px) {
+  .pictorial-vitals-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.vital-badges-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  flex-shrink: 0 !important;
 }
 
 .vital-card-pictorial {
@@ -6028,17 +6044,20 @@ button, .button, a, .nav-link, .dock-link, .app-dock-item, .chip, .preset-chip, 
 
 /* Data Provenance Badge on Metric Cards */
 .data-provenance-tag {
-  display: inline-block;
-  font-family: var(--mono, monospace);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  padding: 2px 7px;
-  border-radius: 4px;
-  border: 1px solid rgba(223, 199, 156, 0.4);
-  color: #dfc79c;
-  background: rgba(0, 0, 0, 0.35);
-  margin-top: 4px;
-  text-transform: uppercase;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-family: var(--mono, monospace) !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.06em !important;
+  padding: 3px 8px !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(223, 199, 156, 0.4) !important;
+  color: #dfc79c !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  margin-top: 0 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
 }
 
 /* Scenario Step Pills */
