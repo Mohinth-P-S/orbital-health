@@ -1184,7 +1184,7 @@ const BODY_ORGAN_DATA = {
     concern: "NASA HRP Risk 03: Spaceflight-Associated Neuro-ocular Syndrome (SANS). Chronic cephalad fluid shift elevates retrobulbar venous pressure, inducing optic disc edema and posterior globe flattening.",
     indicators: "Optic Nerve Sheath Diameter (ONSD: 5.1 mm), Intraocular Pressure (IOP: 16.2 mmHg), Retinal Nerve Fiber Layer (RNFL) thickness, Visual Acuity (20/20).",
     effects: "Posterior globe flattening, hyperopic visual shifts, choroidal folds, optic nerve sheath enlargement.",
-    countermeasures: "Lower Body Negative Pressure (LBNP: 30 min at -25 mmHg), dietary sodium restriction (< 2,000 mg/day), swimming goggles counterpressure protocols.",
+    countermeasures: "Operational research countermeasures evaluating Lower Body Negative Pressure (LBNP: typically -25 to -30 mmHg for caudal fluid translocation), dietary sodium management, and periodic ocular ultrasound/OCT monitoring.",
     research: "NASA HRP SANS Evidence Report; Lee et al., NPJ Microgravity 2020; ESA EAC Space Medicine Guidelines.",
     statusBadge: "GRADE 0 · OBSERVATION",
     badgeClass: "status-badge-warning",
@@ -1198,9 +1198,9 @@ const BODY_ORGAN_DATA = {
       { kicker: "VISUAL ACUITY", val: "20/20", baseline: "Snellen Target: 100% Correct" }
     ],
     steps: [
-      { num: "STEP 1", text: "<strong>Lower Body Negative Pressure (LBNP):</strong> Don the Russian Chibis / NASA LBNP suit for 30 minutes at -25 mmHg to draw ~1.0–1.2 L of venous fluid back into the lower extremities." },
-      { num: "STEP 2", text: "<strong>Optical Coherence Tomography (OCT):</strong> Perform automated near-infrared low-coherence interferometry scan of retinal layers and optic nerve head (ONH) in the Columbus / HRF rack." },
-      { num: "STEP 3", text: "<strong>Dietary Sodium Constraint:</strong> Ensure daily sodium intake is restricted under 2,000 mg to prevent additional intracranial interstitial fluid pressure spikes." }
+      { num: "STEP 1", text: "<strong>Lower Body Negative Pressure (LBNP):</strong> Research protocol applying negative pressure (-25 mmHg) to lower extremities to evaluate caudal venous fluid redistribution." },
+      { num: "STEP 2", text: "<strong>Optical Coherence Tomography (OCT):</strong> Perform near-infrared retinal and optic nerve head (ONH) scans in the European Columbus or NASA HRF rack to track RNFL thickness." },
+      { num: "STEP 3", text: "<strong>Dietary Sodium Management:</strong> Research suggests moderating daily sodium to reduce interstitial fluid retention." }
     ],
     query: "Explain SANS optic nerve sheath diameter (ONSD) changes, OCT optical imaging, and Lower Body Negative Pressure (LBNP) countermeasures."
   },
@@ -1210,7 +1210,7 @@ const BODY_ORGAN_DATA = {
     concern: "NASA HRP Risk 01: Cardiovascular Deconditioning and Microgravity Orthostatic Intolerance.",
     indicators: "Resting Heart Rate (72 bpm), Blood Pressure (118/76 mmHg), Heart Rate Variability (RMSSD 48 ms), Cardiac Output (5.4 L/min).",
     effects: "Loss of hydrostatic pressure gradient triggers 10–15% plasma volume contraction, left ventricular mass remodeling, and post-flight orthostatic intolerance.",
-    countermeasures: "CEVIS cycle ergometer high-intensity interval training (30 min @ 185W), pre-re-entry oral saline fluid loading (1g NaCl / 125 mL water).",
+    countermeasures: "High-intensity aerobic cycle ergometer exercise (CEVIS) and operational pre-reentry oral fluid/electrolyte loading to counter post-flight orthostatic intolerance.",
     research: "NASA-STD-3001 Vol 1 §4.1; Hughson et al., J Appl Physiol 2018; CSA Astroskin Wearable Cardiovascular Monitoring.",
     statusBadge: "OPTIMAL · SINUS RHYTHM",
     badgeClass: "status-badge-success",
@@ -1224,9 +1224,9 @@ const BODY_ORGAN_DATA = {
       { kicker: "CARDIAC OUTPUT", val: "5.4 L/min", baseline: "Target Range: 4.8 - 6.2 L/min" }
     ],
     steps: [
-      { num: "STEP 1", text: "<strong>CEVIS Cycle Ergometer:</strong> Execute 30-minute aerobic interval session at 185 Watts to maintain stroke volume." },
-      { num: "STEP 2", text: "<strong>Pre-Reentry Fluid Loading:</strong> Ingest 1 liter of 0.9% isotonic saline solution with electrolyte tablets prior to gravitational transitions." },
-      { num: "STEP 3", text: "<strong>Continuous Holter Lead-II:</strong> Verify Lead-II ECG rhythm continuity to guard against microgravity-induced ectopic depolarizations." }
+      { num: "STEP 1", text: "<strong>Aerobic Conditioning (CEVIS):</strong> Execute interval aerobic session on the cycle ergometer to maintain cardiac stroke volume." },
+      { num: "STEP 2", text: "<strong>Pre-Reentry Fluid Loading:</strong> Follow mission-approved oral fluid and electrolyte rehydration protocols prior to gravitational transitions." },
+      { num: "STEP 3", text: "<strong>Continuous Lead-II Telemetry:</strong> Monitor continuous Lead-II ECG vector to detect exertional or microgravity-related rhythm variations." }
     ],
     query: "Evaluate cardiovascular telemetry drift, stroke volume adaptation, and exercise countermeasure compliance."
   },
@@ -1236,7 +1236,7 @@ const BODY_ORGAN_DATA = {
     concern: "NASA HRP Risk 02: Space Adaptation Syndrome (SAS) & Venous Stasis. Neurovestibular sensory conflict between otoliths and semicircular canals.",
     indicators: "Estimated ICP (14.8 mmHg), Cognitive Speed (PVT 218 ms), Internal Jugular Vein Velocity (24 cm/s forward flow), Sleep Quality (92%).",
     effects: "Cephalad fluid pooling causes internal jugular vein engorgement, altered venous velocity, sleep fragmentation across 16 sunrises/day, and motion sickness during Flight Days 1–3.",
-    countermeasures: "Circadian lighting modulation (2700K amber SSLA lighting before sleep), Jugular Doppler ultrasound flow surveillance, oral promethazine for severe SAS.",
+    countermeasures: "Circadian lighting spectrum scheduling (2700K amber SSLA lighting before sleep), Jugular Doppler ultrasound surveillance, and operational Space Adaptation Syndrome protocols under flight surgeon guidance.",
     research: "NASA HRP Vestibular Evidence Report; Marshall-Goebel et al., JAMA Network Open 2019; NASA-STD-3001 §4.4.",
     statusBadge: "OPTIMAL · COGNITIVE INDEX 96%",
     badgeClass: "status-badge-success",
@@ -1250,9 +1250,9 @@ const BODY_ORGAN_DATA = {
       { kicker: "SLEEP ARCHITECTURE", val: "92% Quality", baseline: "Deep NREM Cycle Restored" }
     ],
     steps: [
-      { num: "STEP 1", text: "<strong>Circadian Light Modulation:</strong> Shift cabin LED spectrum to 2700K warm blue-depleted light 90 minutes before scheduled sleep." },
-      { num: "STEP 2", text: "<strong>Jugular Doppler Assessment:</strong> Perform ultrasound of the internal jugular vein to rule out flow stasis or retrograde thrombosis." },
-      { num: "STEP 3", text: "<strong>Ventilation Verification:</strong> Confirm cabin pCO₂ remains below 2.5 mmHg to eliminate CO₂-mediated cerebral vasodilation." }
+      { num: "STEP 1", text: "<strong>Circadian Light Modulation:</strong> Shift cabin LED spectrum to 2700K warm blue-depleted light before scheduled sleep." },
+      { num: "STEP 2", text: "<strong>Jugular Doppler Assessment:</strong> Perform ultrasound of the internal jugular vein to monitor venous flow dynamics and rule out stasis." },
+      { num: "STEP 3", text: "<strong>Ventilation Verification:</strong> Confirm cabin pCO₂ remains within ECLSS limits (< 3.0 mmHg) to prevent hypercapnic cerebral vasodilation." }
     ],
     query: "Assess intracranial pressure, cerebral venous drainage, and neurovestibular adaptation in microgravity."
   },
@@ -1288,7 +1288,7 @@ const BODY_ORGAN_DATA = {
     concern: "NASA HRP Risk 04: Skeletal Demineralization & Intervertebral Disc Expansion.",
     indicators: "Spinal Elongation (+4.2 cm), Bone Mineral Retention (98.4%), Daily Urine Calcium (220 mg/day), Lumbar Stress Index (0.22 Low).",
     effects: "Loss of axial compression causes disc hydration and spinal lengthening (+4 to 6 cm), paraspinal muscular spasms, and osteoclastic bone resorption (~1.0%/month without countermeasures).",
-    countermeasures: "ARED axial loading (deadlifts and squats with 350+ lbs equivalent), 800 IU Vitamin D3, bisphosphonate pharmacotherapy, neutral body sleep posture.",
+    countermeasures: "Operational research countermeasures evaluating ARED axial loading (deadlifts, squats), nutritional calcium/Vitamin D supplementation protocols, bisphosphonate research therapies under medical directorate oversight, and neutral body sleep posture.",
     research: "NASA HRP Bone Evidence Report; Sibonga et al., J Bone Miner Res 2017; NASA-STD-3001 §4.5.",
     statusBadge: "DECOMPRESSED · +4.2 CM",
     badgeClass: "status-badge-warning",
@@ -1302,9 +1302,9 @@ const BODY_ORGAN_DATA = {
       { kicker: "LUMBAR STRESS INDEX", val: "0.22 (Low)", baseline: "Spinal Muscle Tone Protected" }
     ],
     steps: [
-      { num: "STEP 1", text: "<strong>ARED Axial Loading:</strong> Perform daily heavy deadlifts and squats with 350+ lbs equivalent force to stimulate osteoblasts." },
-      { num: "STEP 2", text: "<strong>Nutritional Supplementation:</strong> Ingest 800 IU Vitamin D3 and bisphosphonate regimen as prescribed by flight surgeon." },
-      { num: "STEP 3", text: "<strong>Spinal Neutral Posture:</strong> Sleep in tethered sack with knees slightly elevated to avoid paraspinal muscular spasms." }
+      { num: "STEP 1", text: "<strong>ARED Axial Resistance:</strong> Perform scheduled axial loading sessions on ARED (deadlifts/squats) to mechanically stimulate osteoblast bone formation." },
+      { num: "STEP 2", text: "<strong>Nutritional & Pharmacological Protocol:</strong> Follow mission-approved Vitamin D and antiresorptive protocols supervised by flight medicine." },
+      { num: "STEP 3", text: "<strong>Spinal Neutral Posture:</strong> Sleep in tethered crew quarters with knees slightly elevated to reduce paraspinal muscular spasms." }
     ],
     query: "Evaluate spinal decompression, lumbar comfort, and ARED bone density preservation."
   },
@@ -1314,7 +1314,7 @@ const BODY_ORGAN_DATA = {
     concern: "NASA HRP Risk 06: Microgravity Fluid Redistribution and Cranial Venous Engorgement.",
     indicators: "Cephalad Translocation (1.8 L), Calf Circumference Loss (-14%), Facial Edema Index (Moderate), Total Body Water (42.1 L).",
     effects: "Loss of 1g gravity column shifts 1.5–2.0 L of blood and interstitial fluid headward, creating facial puffiness, nasal congestion, and 'bird legs' appearance.",
-    countermeasures: "Lower Body Negative Pressure (LBNP) suit (-25 to -30 mmHg), dietary sodium restriction (< 2,000 mg/day), active electrolyte hydration protocols.",
+    countermeasures: "Operational research countermeasures evaluating Lower Body Negative Pressure (LBNP) protocols (-25 to -30 mmHg), dietary sodium management, and planned fluid/electrolyte hydration.",
     research: "NASA HRP Fluid Shift Study (Hargens & Richardson, J Appl Physiol 2009); ESA EAC Bed Rest Studies.",
     statusBadge: "TRANSFUSED · 1.8 L SHIFT",
     badgeClass: "status-badge-warning",
@@ -1328,9 +1328,9 @@ const BODY_ORGAN_DATA = {
       { kicker: "TOTAL BODY WATER", val: "42.1 L", baseline: "Hydration Status: Balanced" }
     ],
     steps: [
-      { num: "STEP 1", text: "<strong>Chibis LBNP Countermeasure:</strong> Apply -25 to -30 mmHg negative pressure to lower body for 30–40 minutes daily." },
-      { num: "STEP 2", text: "<strong>Dietary Sodium Constraint:</strong> Limit daily salt intake under 2,000 mg to prevent additional interstitial cranial fluid retention." },
-      { num: "STEP 3", text: "<strong>Active Hydration Management:</strong> Maintain 2,500 mL daily fluid intake with electrolyte supplementation." }
+      { num: "STEP 1", text: "<strong>LBNP Protocol:</strong> Apply negative pressure (-25 to -30 mmHg) to lower extremities for 30–40 minutes to study fluid redistribution." },
+      { num: "STEP 2", text: "<strong>Dietary Sodium Management:</strong> Moderate dietary sodium intake under medical guidance to prevent excessive fluid retention." },
+      { num: "STEP 3", text: "<strong>Active Hydration Management:</strong> Follow mission hydration schedule with balanced electrolyte solutions." }
     ],
     query: "Assess cephalad fluid redistribution, lower body volume loss, and LBNP countermeasure protocol."
   },
@@ -1340,7 +1340,7 @@ const BODY_ORGAN_DATA = {
     concern: "NASA HRP Risk 07: Skeletal Muscle Atrophy and Postural Motor Control Deconditioning.",
     indicators: "Calf Muscle Volume (96.8% retention), ARED Force Output (380 lbs eq), CEVIS Workload (185 Watts), Creatine Kinase (140 U/L).",
     effects: "Weight-bearing anti-gravity slow-twitch type I fibers (soleus, gastrocnemius) undergo fast-to-slow phenotypic shift and accelerated protein degradation without load.",
-    countermeasures: "High-resistance ARED loading (squats, calf raises), T2 treadmill running with bungee harness (75% body weight), dietary protein (1.2–1.5 g/kg/day).",
+    countermeasures: "High-resistance ARED loading (squats, heel raises), motorized treadmill running (T2) with vibration isolation, and targeted protein nutrition (1.2–1.5 g/kg/day).",
     research: "NASA HRP Muscle Evidence Report; Fitts et al., J Physiol 2010; JAXA Kibo Muscle Preservation Studies.",
     statusBadge: "OPTIMAL · 96.8% MASS",
     badgeClass: "status-badge-success",
@@ -1354,9 +1354,9 @@ const BODY_ORGAN_DATA = {
       { kicker: "CREATINE KINASE", val: "140 U/L", baseline: "Muscle Integrity Nominal" }
     ],
     steps: [
-      { num: "STEP 1", text: "<strong>High-Resistance Loading:</strong> Complete 4 sets of 10 repetitions on ARED heel raises and leg presses." },
-      { num: "STEP 2", text: "<strong>Protein Intake Timing:</strong> Ingest 25g whey protein blend within 45 minutes of completing resistive exercise." },
-      { num: "STEP 3", text: "<strong>Neuromuscular Stimulation:</strong> Calibrate T2 treadmill bungee harness to 75% body weight for running intervals." }
+      { num: "STEP 1", text: "<strong>Resistance Exercise (ARED):</strong> Complete prescribed resistance sets on ARED targeting soleus, gastrocnemius, and quadriceps muscle groups." },
+      { num: "STEP 2", text: "<strong>Nutritional Timing:</strong> Consume protein-rich nutrition following high-load resistive exercise to support muscle protein synthesis." },
+      { num: "STEP 3", text: "<strong>Aerobic Conditioning (T2 Treadmill):</strong> Execute treadmill running intervals with bungee harness loading to sustain neuromuscular activation." }
     ],
     query: "Report muscle mass retention, soleus atrophy mitigation, and exercise protocol efficiency."
   }
@@ -1415,12 +1415,15 @@ function selectBodyOrgan(organKey) {
 
     <div class="organ-countermeasures">
       <h3>Evidence-Based Countermeasure Protocol</h3>
+      <div class="clinical-disclaimer-callout" style="font-size: 0.78rem; color: #dfc79c; background: rgba(223, 199, 156, 0.08); border-left: 3px solid #dfc79c; padding: 6px 10px; margin-bottom: 12px; border-radius: 4px;">
+        <strong>CLINICAL DISCLAIMER:</strong> Prototype educational decision-support demonstration based on NASA Human Research Program protocols. Not approved for autonomous clinical intervention.
+      </div>
       <div class="countermeasure-steps">${stepsHtml}</div>
     </div>
 
     <div class="organ-panel-footer">
       <button class="button button-solid" type="button" onclick="askAi('${organ.query}')">
-        <span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA Flight Surgeon on ${organ.name}
+        <span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA CDSS on ${organ.name}
       </button>
     </div>
   `;
@@ -1511,7 +1514,7 @@ const SCENARIO_STEPS = [
     astronaut: "Crew Member C",
     phase: "Autonomous Decision Support Output",
     telemetry: { hr: 108.0, spo2: 88.4, resp: 23.5, temp: 37.3, co2: 0.35, rad: 0.47 },
-    system: "AURA Flight Surgeon CDSS",
+    system: "AURA Rule-Based CDSS Prototype",
     statusBadge: "CDSS PROTOCOL GENERATED",
     badgeColor: "#f59e0b",
     narrative: `<strong>1. OBSERVATION:</strong> SpO₂ 88.4%, Heart Rate 108 bpm, Respiration 23.5 br/min, Suit pressure 4.12 psid (-0.08 psi/min decay).<br>
@@ -1831,7 +1834,7 @@ function generateLocalFlightSurgeonReply(query) {
   // 1. GREETINGS, CASUAL CHAT & COMPANION DEMEANOR
   // -------------------------------------------------------------------------
   if (/^(hi|hello|hey|greetings|good morning|good evening|good afternoon|howdy)(\b|\s|!|$)/i.test(q) || q === "hi" || q === "hello") {
-    return "Hello, Commander! I am **AURA**, your AI flight surgeon and biomedical companion. All crew vitals are streaming nominally. How can I help you today — whether with health, space medicine, general science, or any mission question?";
+    return "Hello, Commander! I am **AURA**, your offline clinical decision support system (CDSS) prototype and biomedical telemetry companion. All crew vitals are streaming nominally. How can I assist your health monitoring, space medicine inquiries, or mission questions today?";
   }
 
   if (hasPhrase("how are you", "how are you doing", "how r u", "how do you feel")) {
@@ -1852,14 +1855,14 @@ function generateLocalFlightSurgeonReply(query) {
            "• **Biomedical Monitoring:** Track continuous Lead-II ECG, SpO₂, respiration, core temp, and cabin atmosphere.\n" +
            "• **Deterministic CDSS Logic:** Evaluate telemetry against calibrated space medicine rules (NASA-STD-3001) to provide explainable decision support.\n" +
            "• **Space Medicine Expertise:** Detect and explain risks like SANS cephalad fluid shifts, bone demineralization, and space radiation.\n" +
-           "• **Deep-Space Autonomy:** Operate completely offline in local memory (< 2 ms execution latency), providing clinical support when Mars comms lag exceeds 20 minutes.\n" +
+           "• **Deep-Space Autonomy:** Operate completely offline in local memory (deterministic client evaluation), providing clinical decision support when Mars communication latency exceeds 20 minutes.\n" +
            "• **General Intelligence:** Answer questions on science, astronomy, technology, physics, coding, and general knowledge.\n\n" +
            "*(Clinical Note: AURA is an illustrative CDSS decision-support prototype, not a certified diagnostic device).*";
   }
 
   if (hasPhrase("how do you work", "how does aura work", "how does it work", "are you an ai", "are you ai", "are you rule based", "is aura rule based", "what model", "what ml model", "neural network", "machine learning", "edge ai", "cdss architecture", "decision engine", "how are you implemented", "explain your reasoning")) {
     return "**AURA Technical Architecture & Clinical Decision Engine:**\n\n" +
-           "• **Current Implementation:** AURA operates as a **deterministic, rule-based Clinical Decision Support System (CDSS)** executing locally in client memory with sub-millisecond execution latency (< 2 ms).\n" +
+           "• **Current Implementation:** AURA operates as an **offline, deterministic rule-based Clinical Decision Support System (CDSS)** executing locally in client memory with zero network latency and complete autonomy.\n" +
            "• **Explainable Heuristics vs. Black-Box ML:** Rather than an opaque neural network, this prototype employs deterministic clinical logic mapped directly to published aerospace standards (e.g., `CDSS-RULE-O2-01` mapped to NASA-STD-3001 Vol 2 §6.3) with sensor-integrity pre-filters to prevent false alarms.\n" +
            "• **Dynamic Telemetry & Scenario Context:** AURA dynamically evaluates the active astronaut's streaming biometrics (ECG, SpO₂, RR, temp), cabin atmosphere (pCO₂), environmental radiation, and current scenario milestones.\n" +
            "• **Edge Autonomy for Deep Space:** Designed to operate autonomously on exploration vehicles during Mars communication delays (up to 22.3 minutes one-way), eliminating reliance on real-time ground flight surgeon telemedicine.\n" +
@@ -2152,7 +2155,7 @@ function generateLocalFlightSurgeonReply(query) {
            `• **Ionizing Radiation:** ${currentRad} mSv/day (Cumulative ALARA baseline)\n` +
            `• **Mission Readiness:** ${currentReadiness}% (${parseFloat(currentReadiness) >= 90 ? "Optimal Flight Readiness" : "Clinical Caution"})\n` +
            `• **Operational Sector:** ${activePlanetMeta.name} (${activePlanetMeta.delayText})\n\n` +
-           `*Clinical Decision Support Note:* Telemetry evaluated via deterministic inference rules referencing NASA-STD-3001 Vol 1 §4.2 and Vol 2 §6.2. Non-diagnostic prototype demonstration.`;
+           `*Clinical Decision Support Note:* Telemetry evaluated via deterministic threshold rules referencing NASA-STD-3001 Vol 1 §4.2 and Vol 2 §6.2. Non-diagnostic prototype demonstration.`;
   }
 
   // B. Active Alerts / Anomaly Reasoning / Explainability
@@ -2170,7 +2173,7 @@ function generateLocalFlightSurgeonReply(query) {
                  `   • **Physiological Cause:** ${a.explanation}\n` +
                  `   • **Status:** ${a.acknowledged ? "✓ Acknowledged (" + (a.acknowledgedAt || "Logged") + ")" : "⚠ Action Required (Unacknowledged)"}\n\n`;
     });
-    summary += `*Flight Surgeon Recommendation:* To acknowledge or filter alerts, open the **Alerts Drawer** via the top navigation or click the bell icon. All recommendations are deterministic CDSS decision-support demonstrations.`;
+    summary += `*Operational Clinical Directive:* To acknowledge or filter alerts, open the **Alerts Drawer** via the top navigation or click the bell icon. All recommendations are deterministic CDSS decision-support demonstrations.`;
     return summary;
   }
 
@@ -2239,7 +2242,7 @@ function generateLocalFlightSurgeonReply(query) {
   const cleaned = query.replace(/[?.,!#*()]/g, "").trim();
   return "That's a thoughtful question regarding **" + cleaned + "**!\n\n" +
          "From an analytical perspective, exploring concepts like this involves understanding the core mechanisms, balance of variables, and practical outcomes. Whether investigating science, technology, human health, or everyday life, clear data and reasoned principles provide meaningful answers.\n\n" +
-         "As an AI flight surgeon and biomedical companion, I can also explore how this intersects with human physiology, astronaut performance, or aerospace technology — feel free to ask follow-up questions on any topic!";
+         "As an offline biomedical clinical decision support companion, I can also explore how this intersects with human spaceflight physiology, astronaut health risks, or life-support engineering — feel free to ask follow-up questions on any topic!";
 }
 
 function askAi(promptText) {
@@ -2307,7 +2310,7 @@ async function handleChatSubmit(event) {
 
   const aiDiv = document.createElement("div");
   aiDiv.className = "assistant-message";
-  aiDiv.innerHTML = `<div class="ai-flight-surgeon-tag">✦ AURA Flight Surgeon · CDSS (NASA-STD-3001)</div>` + reply;
+  aiDiv.innerHTML = `<div class="ai-flight-surgeon-tag">✦ AURA CDSS · Rule-Based Prototype (NASA-STD-3001)</div>` + reply;
   chatStream.appendChild(aiDiv);
   chatStream.scrollTop = chatStream.scrollHeight;
 
@@ -2319,7 +2322,7 @@ function clearChatStream() {
   if (chatStream) {
     chatStream.innerHTML = `
       <div class="assistant-message">
-        <div class="ai-flight-surgeon-tag">✦ AURA Flight Surgeon · CDSS (NASA-STD-3001)</div>
+        <div class="ai-flight-surgeon-tag">✦ AURA CDSS · Rule-Based Prototype (NASA-STD-3001)</div>
         Hello, Commander. I am standing by on continuous biomedical telemetry watch. All physiological channels are active and nominal. How may I assist your mission today?
       </div>
     `;
@@ -3688,7 +3691,7 @@ function handleDrawerChatSubmit(event) {
   const userMsg = document.createElement("div");
   userMsg.className = "chat-message user-message";
   userMsg.style.cssText = "background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 10px; font-size: 0.84rem; align-self: flex-end; color: #fff; max-width: 90%;";
-  userMsg.innerHTML = `<div style="font-size: 0.68rem; color: #38bdf8; font-weight: 700; font-family: var(--mono); margin-bottom: 4px;">FLIGHT SURGEON</div><div>${escapeHtml(text)}</div>`;
+  userMsg.innerHTML = `<div style="font-size: 0.68rem; color: #38bdf8; font-weight: 700; font-family: var(--mono); margin-bottom: 4px;">OPERATOR / CMO</div><div>${escapeHtml(text)}</div>`;
   stream.appendChild(userMsg);
   stream.scrollTop = stream.scrollHeight;
 
@@ -3705,7 +3708,7 @@ function handleDrawerChatSubmit(event) {
     auraMsg.style.cssText = "background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(118, 228, 210, 0.3); border-radius: 8px; padding: 12px; font-size: 0.84rem; line-height: 1.5; color: #e2e8f0;";
     auraMsg.innerHTML = `
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-        <span style="color: #76e4d2; font-weight: 700; font-family: var(--mono); font-size: 0.74rem;">AURA FLIGHT SURGEON</span>
+        <span style="color: #76e4d2; font-weight: 700; font-family: var(--mono); font-size: 0.74rem;">AURA CDSS PROTOTYPE</span>
         <span style="color: var(--muted); font-size: 0.68rem; font-family: var(--mono);">CDSS VERIFIED</span>
       </div>
       <div>${reply}</div>

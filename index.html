@@ -89,7 +89,7 @@
             <div class="hero-actions">
               <button class="button button-primary" type="button" data-view="dashboard">Open health dashboard <span aria-hidden="true">↗</span></button>
               <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
-              <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA AI</button>
+              <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA CDSS</button>
             </div>
             <div class="data-caption"><span class="caption-icon">i</span><span><strong>Research-Informed Demonstration Stream</strong> · Baseline calibrated against NASA LSDA & Bioastronautics literature (Simulated Demo Prototype)</span></div>
           </div>
@@ -1144,7 +1144,7 @@
 
               <div style="margin-top: 18px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
                 <button class="button button-primary" type="button" onclick="consultAiForOrgan()" style="padding: 12px 22px; font-size: 14px; font-weight: 700;">
-                  <span>Ask AURA AI About This Organ ↗</span>
+                  <span>Consult AURA CDSS About This System ↗</span>
                 </button>
                 <span style="font: 12.5px var(--mono); font-weight: 700; color: #dfc79c;">NASA HRP STUDY: SANS-01 / NASA-STD-3001</span>
               </div>
@@ -1305,8 +1305,8 @@
           <div class="gemini-top-left">
             <span class="gemini-brand-spark">✳</span>
             <div class="gemini-brand-text">
-              <strong>AURA Flight Surgeon</strong>
-              <span class="gemini-status-pill"><i class="gemini-pulse-dot"></i> <span id="chat-online-text">Rule-Based CDSS (Offline Prototype)</span></span>
+              <strong>AURA Decision Support (CDSS)</strong>
+              <span class="gemini-status-pill"><i class="gemini-pulse-dot"></i> <span id="chat-online-text">Offline Rule-Based Prototype</span></span>
             </div>
           </div>
 
@@ -1410,7 +1410,7 @@
                   id="chat-input-field" 
                   placeholder="Ask about vitals, space medicine, flight protocols, or how you feel..." 
                   autocomplete="off" 
-                  aria-label="Ask AURA Flight Surgeon"
+                  aria-label="Consult AURA CDSS Prototype"
                 />
                 <button class="gemini-send-btn" id="gemini-send-btn" type="submit" aria-label="Send message">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1498,20 +1498,20 @@
         <div style="margin-top: 45px;">
           <div class="inner-heading" style="margin-bottom: 18px;">
             <div>
-              <span class="panel-kicker">NASA HUMAN RESEARCH PROGRAM (HRP) FRAMEWORK</span>
+              <span class="panel-kicker">NASA HUMAN RESEARCH PROGRAM (HRP) HAZARDS</span>
               <h2 style="font-family: Georgia, serif; font-size: 26px; font-weight: 400; color: #f5f3ed; margin: 6px 0 0;">
-                The 5 Hazards of <em>Human Spaceflight</em> (R-I-D-G-E Memory Aid)
+                NASA's 5 Spaceflight Hazards &amp; the <em>R-I-D-G-E</em> Educational Mnemonic
               </h2>
               <p style="font-size: 15px; color: #cbd5e1; margin-top: 6px; line-height: 1.6; font-weight: 500;">
-                NASA's official clinical risk categorization for long-duration deep-space missions to the Moon and Mars.
+                NASA officially classifies human spaceflight risks into five core hazards: <strong>Space Radiation</strong>, <strong>Isolation and Confinement</strong>, <strong>Distance from Earth</strong>, <strong>Gravity Fields</strong>, and <strong>Hostile/Closed Environments</strong>.
               </p>
             </div>
             <span class="view-tag status-active">NASA HRP EVIDENCE BASE</span>
           </div>
 
           <div class="science-qualification-callout" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 12px 16px; margin: 0 0 20px; font-size: 0.84rem; line-height: 1.5; color: #cbd5e1;">
-            <strong style="color: #38bdf8;">Scientific Architecture Context:</strong>
-            The <strong>R-I-D-G-E</strong> mnemonic (Space Radiation, Isolation &amp; Confinement, Distance from Earth, Altered Gravity, Hostile/Closed Environments) is an educational organizing framework summarizing the five official spaceflight hazard categories codified in the <em>NASA Human Research Program (HRP) Roadmap</em>. All telemetry thresholds (NASA-STD-3001 Vol 1 §4.2), physiological models, and simulation algorithms in this prototype serve as <strong>Clinical Decision Support System (CDSS) demonstrations</strong> for astronaut autonomy and do not substitute for certified clinical diagnoses or NASA mission operations flight rules.
+            <strong style="color: #38bdf8;">Scientific Attribution &amp; Framework Clarification:</strong>
+            NASA officially categorizes human spaceflight risk into five established hazards: <em>1. Space Radiation</em>, <em>2. Isolation and Confinement</em>, <em>3. Distance from Earth</em>, <em>4. Gravity Fields (Altered Gravity)</em>, and <em>5. Hostile/Closed Environments</em> (NASA Human Research Program). <strong>R-I-D-G-E is an educational mnemonic created for this project</strong> to help students and judges easily remember these five hazards. <strong>R-I-D-G-E is not an official NASA acronym or framework.</strong> All physiological thresholds and decision rules in this software prototype serve as illustrative <strong>Clinical Decision Support System (CDSS) demonstrations</strong> and do not substitute for certified clinical diagnoses or NASA mission flight rules.
           </div>
 
           <div class="ridge-matrix">
@@ -1539,7 +1539,7 @@
               <span class="panel-kicker">HAZARD 03 // AUTONOMY</span>
               <h3>Distance from Earth</h3>
               <p>Up to 22.3-minute one-way comms delay to Mars. Real-time ground telemedicine is impossible. Demands autonomous on-board Clinical Decision Support Systems (ExMC CDSS) like AURA.</p>
-              <div class="ridge-metric-tag">AUTONOMY: LOCAL DETERMINISTIC CDSS (&lt; 2ms IN-MEMORY EXECUTION)</div>
+              <div class="ridge-metric-tag">AUTONOMY: OFFLINE DETERMINISTIC CDSS (LOCAL MEMORY EVALUATION)</div>
             </div>
 
             <!-- G: Gravity Fields -->
@@ -1990,7 +1990,7 @@
                 All bio-harness sensors synchronized; baseline impedance within calibration limits.
               </div>
 
-              <span class="panel-kicker" style="color: #f59e0b;">ACTION PROMPT / FLIGHT SURGEON DIRECTIVE</span>
+              <span class="panel-kicker" style="color: #f59e0b;">ACTION PROMPT / OPERATIONAL CLINICAL DIRECTIVE</span>
               <div id="scenario-action-prompt" style="margin: 8px 0 16px; font-size: 0.95rem; font-weight: 500; color: #ffffff; background: rgba(245, 158, 11, 0.08); padding: 14px; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">
                 Begin scheduled routine Extravehicular Activity (EVA) maintenance protocol.
               </div>
@@ -2069,7 +2069,7 @@
 
           <!-- Card 3: AURA Decision Engine Implementation -->
           <div class="panel" style="padding: 20px;">
-            <span class="panel-kicker" style="color: #dfc79c;">AURA AI ARCHITECTURE</span>
+            <span class="panel-kicker" style="color: #dfc79c;">AURA CDSS ARCHITECTURE</span>
             <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">6-Part Structured CDSS</h3>
             <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
               AURA serves as an onboard Clinical Decision Support System (CDSS) for non-physician crew. To guarantee clinical rigor, every evaluation outputs six structured dimensions:
@@ -2363,7 +2363,7 @@
                     Body Map ocular node, Scenario 5 playback, Rule CDSS-SANS-01.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
-                    Illustrative ultrasound measurement; ultrasound probe angle variability requires trained sonographer technique.
+                    Illustrative ultrasound research threshold. In terrestrial medicine ONSD > 5.8 mm indicates elevated ICP; in spaceflight SANS, retrobulbar sheath distension reflects cephalad venous stasis and localized orbital CSF compartmentation without systemic malignant intracranial hypertension.
                   </td>
                 </tr>
                 <tr class="evidence-row" data-category="sans" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
@@ -2449,7 +2449,7 @@
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>Target: > 95.0% baseline retention; Unmitigated spaceflight loss rate: ~1.0-1.5% per month</strong>
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: % baseline mineral retention / mg force</div>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: % baseline retention (% loss/month)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
                     <strong style="color: #ffffff;">NASA HRP Bone Discipline</strong>
@@ -3414,10 +3414,10 @@
 
 
   <!-- Global Floating AI Shortcut (Accessible on Every Tab) -->
-  <button class="global-ai-fab" id="global-ai-fab" type="button" onclick="toggleAuraDrawer(true)" title="Open AURA Flight Surgeon AI" aria-label="Consult AURA AI Assistant">
+  <button class="global-ai-fab" id="global-ai-fab" type="button" onclick="toggleAuraDrawer(true)" title="Open AURA Decision Support (CDSS)" aria-label="Consult AURA CDSS Prototype">
     <span class="ai-fab-glow"></span>
     <span class="ai-fab-icon">✳</span>
-    <span class="ai-fab-label">Consult AI</span>
+    <span class="ai-fab-label">AURA CDSS</span>
   </button>
 
 
@@ -3474,8 +3474,8 @@
       <div style="display: flex; align-items: center; gap: 10px;">
         <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.95rem;">✳</span>
         <div>
-          <h2 id="aura-drawer-title" style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #ffffff;">AURA Clinical Copilot</h2>
-          <small style="color: #76e4d2; font-size: 0.72rem; font-family: var(--mono);">AUTONOMOUS FLIGHT SURGEON AI</small>
+          <h2 id="aura-drawer-title" style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #ffffff;">AURA Clinical Decision Support</h2>
+          <small style="color: #76e4d2; font-size: 0.72rem; font-family: var(--mono);">OFFLINE RULE-BASED CDSS PROTOTYPE</small>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 8px;">
@@ -3516,10 +3516,10 @@
       <div class="drawer-chat-stream" id="drawer-chat-stream">
         <div class="chat-message assistant-message" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(118, 228, 210, 0.25); border-radius: 8px; padding: 12px; font-size: 0.84rem; line-height: 1.5;">
           <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
-            <span style="color: #76e4d2; font-weight: 700; font-family: var(--mono); font-size: 0.76rem;">AURA FLIGHT SURGEON</span>
-            <span style="color: var(--muted); font-size: 0.68rem; font-family: var(--mono);">AUTONOMOUS CDS</span>
+            <span style="color: #76e4d2; font-weight: 700; font-family: var(--mono); font-size: 0.76rem;">AURA CDSS PROTOTYPE</span>
+            <span style="color: var(--muted); font-size: 0.68rem; font-family: var(--mono);">RULE-BASED CDSS</span>
           </div>
-          <p style="margin: 0; color: #e2e8f0;">Greetings Flight Surgeon. I am monitoring live crew biometrics. Ask any clinical question, or open the <strong>Full Console</strong> for deep telemetry investigations and guideline references.</p>
+          <p style="margin: 0; color: #e2e8f0;">Greetings. I am evaluating incoming crew biometrics against deterministic clinical rules. Ask any physiological question, or open the <strong>Full Console</strong> for deep telemetry investigations and guideline references.</p>
         </div>
       </div>
     </div>
@@ -3530,7 +3530,7 @@
         <button class="button button-solid" type="submit" style="padding: 8px 14px; font-size: 0.82rem; white-space: nowrap;">Send</button>
       </form>
       <div style="font-size: 0.68rem; color: var(--muted); text-align: center; font-style: italic;">
-        NASA HRP Decision Support • Calibrated to NASA-STD-3001 Vol 1 &amp; 2
+        Offline Decision Support Prototype • Calibrated to NASA-STD-3001 Vol 1 &amp; 2 (Non-Diagnostic)
       </div>
     </div>
   </aside>

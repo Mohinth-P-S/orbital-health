@@ -114,7 +114,7 @@
     "sourceUrl": "https://humanresearchroadmap.nasa.gov/",
     "evidenceType": "Research Evidence Threshold",
     "appImplementation": "Body Map ocular node, Scenario 5 playback, Rule CDSS-SANS-01.",
-    "limitations": "Illustrative ultrasound measurement; ultrasound probe angle variability requires trained sonographer technique."
+    "limitations": "Illustrative ultrasound research threshold. In terrestrial medicine ONSD > 5.8 mm indicates elevated ICP; in spaceflight SANS, retrobulbar sheath distension reflects cephalad venous stasis and localized orbital CSF compartmentation without systemic malignant intracranial hypertension."
   },
   {
     "id": "EV-10",
@@ -159,7 +159,7 @@
     "id": "EV-13",
     "concept": "Bone Mineral Retention & Resistive Loading",
     "definition": "Preservation of bone mineral density in weight-bearing skeleton (lumbar spine, femoral neck) countering microgravity osteopenia.",
-    "unit": "% baseline mineral retention / mg force",
+    "unit": "% baseline retention (% loss/month)",
     "nominalRange": "Target: > 95.0% baseline retention; Unmitigated spaceflight loss rate: ~1.0-1.5% per month",
     "sourceOrg": "NASA HRP Bone Discipline",
     "citation": "Sibonga et al., 'Recovery of bone density after long-duration spaceflight,' J Bone Miner Res, 2017.",
