@@ -38,9 +38,9 @@
     "playbackTrajectory": "At t=00:06, SpO2 drops sharply from 99.2% to 86.4%. Compensatory HR climbs to 118 bpm; RR elevates to 24 br/min.",
     "units": "bpm, %, br/min, \u00b0C, % vol / mmHg, mSv/day",
     "rationale": "Arterial desaturation stimulates peripheral carotid chemoreceptors, triggering autonomic tachycardia and compensatory hyperventilation.",
-    "scientificReferences": "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Inspired pO2 Limits); FAA Civil Aerospace Medical Institute Hypoxia Guidelines; Guyton & Hall Medical Physiology §41.",
+    "scientificReferences": "NASA-STD-3001 Vol 2 Rev F \u00a76.2.1.2 (Ambient Inspired pO2 limits: 19.5\u201323.1 kPa); FAA Civil Aerospace Medical Institute Hypoxia Training Concepts (general physiology context); Guyton & Hall Medical Physiology \u00a741.",
     "rulesTriggered": "Rule CDSS-O2-01: Acute Arterial Hypoxemia (SpO2 < 92%); Rule CDSS-HR-01: Compensatory Tachycardia (HR > 115 bpm).",
-    "expectedResult": "Immediate CRITICAL alert banner, automated suit oxygen purge guidance, EVA abort recommendation.",
+    "expectedResult": "Immediate CRITICAL alert banner with prototype EVA hypoxia alert, illustrative suit oxygen check steps, and cautious escalation guidance to verify sensors and notify flight surgeons per mission flight rules.",
     "actualResult": "PASSED - Alerts fire reliably at t=00:06 with full explainability trace and protocolized next steps."
   },
   {
@@ -84,7 +84,7 @@
     "rationale": "High-Z and solar energetic proton flux threatens acute radiation syndrome; requires prompt relocation to polyethylene storm shelter.",
     "scientificReferences": "NASA-STD-3001 Vol 1 \u00a74.4; Cucinotta et al., 'Space radiation cancer risk projections,' NASA/TP-2013-217375.",
     "rulesTriggered": "Rule CDSS-RAD-01: Critical Cosmic Radiation Flux (> 5.0 mSv/day).",
-    "expectedResult": "CRITICAL alert, storm shelter retreat instruction, radiation dosimeter log update.",
+    "expectedResult": "CRITICAL alert, illustrative storm shelter guidance per mission flight rules, and radiation dosimeter log update.",
     "actualResult": "PASSED - Solar storm flare alert triggers at threshold with protocolized shielding guidance."
   },
   {
@@ -128,7 +128,7 @@
     "rationale": "Validates CDSS rhythm detection: distinguishes non-exertional sudden tachycardia with distorted QRS from physical exercise.",
     "scientificReferences": "PhysioNet MIT-BIH Arrhythmia Database (#208 research reference); NASA-STD-3001 Vol 1 \u00a74.1; Hughson et al. (2018).",
     "rulesTriggered": "Rule CDSS-CARD-02: Paroxysmal Ventricular Tachyarrhythmia / QRS Morphology Abnormality.",
-    "expectedResult": "Immediate CRITICAL alert, emergency AED standby notification, flight surgeon telemetry packet transmission.",
+    "expectedResult": "Immediate CRITICAL alert, illustrative cardiac monitoring checklist, and telemetry priority packet transmission to flight surgeons.",
     "actualResult": "PASSED - Arrhythmia event triggers instant critical warning with ECG vector annotation."
   }
 ]

@@ -1543,12 +1543,12 @@ const SCENARIO_STEPS = [
     system: "AURA Rule-Based CDSS Prototype",
     statusBadge: "CDSS PROTOCOL GENERATED",
     badgeColor: "#f59e0b",
-    narrative: `<strong>1. OBSERVATION:</strong> SpO₂ 88.4%, Heart Rate 108 bpm, Respiration 23.5 br/min, Suit pressure 4.12 psid (-0.08 psi/min decay).<br>
-<strong>2. POSSIBLE SIGNIFICANCE:</strong> Acute suit micro-leak causing cabin hypobaric hypoxemia; risk of cognitive impairment within 3 minutes.<br>
+    narrative: `<strong>1. OBSERVATION:</strong> SpO₂ 88.4%, Heart Rate 108 bpm, Respiration 23.5 br/min, Suit pressure 4.12 psid (-0.08 psi/min modeled decay).<br>
+<strong>2. POSSIBLE SIGNIFICANCE:</strong> Simulated suit pressure decay and exertional hypoxemia modeled for demonstration.<br>
 <strong>3. DATA-QUALITY CHECKS:</strong> Optical plethysmograph pulsatility verified; pressure decay confirmed by secondary PLSS transducer.<br>
-<strong>4. SUGGESTED NEXT ACTION:</strong> 1. Follow mission-approved clinical procedure: activate Secondary Oxygen Pack (SOP) high-flow purge and seek guidance from qualified medical personnel. 2. Prepare partner-assisted airlock ingress.<br>
-<strong>5. ESCALATION GUIDANCE:</strong> Alert station Crew Medical Officer (CMO) to prepare airlock repressurization. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.<br>
-<strong>6. SCIENTIFIC REFERENCE:</strong> NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Atmospheric pO₂); FAA Hypoxia Guidelines; ISS Flight Rule B13-102.`,
+<strong>4. SUGGESTED NEXT ACTION:</strong> 1. Follow mission-approved clinical procedure: verify suit seals, review oxygen supply telemetry, and seek guidance from qualified medical personnel. 2. Prepare partner-assisted airlock ingress per flight rules.<br>
+<strong>5. ESCALATION GUIDANCE:</strong> Alert station Crew Medical Officer (CMO) to prepare airlock repressurization. Follow mission-approved clinical procedures and seek guidance from qualified flight surgeons.<br>
+<strong>6. SCIENTIFIC REFERENCE:</strong> NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Ambient Inspired pO₂ limits: 19.5–23.1 kPa); SpO₂ < 92% is an illustrative prototype demonstration trigger informed by FAA CAMI hypoxia physiology training concepts; illustrative flight rule scenario.`,
     verification: "Protocol evaluated client-side in local browser runtime with zero network delay.",
     actionPrompt: "Execute suggested emergency purge and airlock ingress."
   },
@@ -1601,7 +1601,7 @@ const SCENARIO_STEPS = [
     statusBadge: "MISSION CLEARANCE GRANTED · FLIGHT READY",
     badgeColor: "#76e4d2",
     narrative: "Comprehensive clinical return-to-duty evaluation completed per NASA-STD-3001 Vol 1 §4.2. Astronaut demonstrates 100% physiological recovery, zero residual hypoxia biomarkers, normalized cognitive Psychomotor Vigilance Task (PVT) speed, and nominal composite Mission Readiness score (93.8%). Formal clearance issued for resumption of scheduled orbital duties.",
-    verification: "Multi-parameter clinical decision support audit validated: all 10 operational lifecycle steps successfully executed and cryptographically signed in mission logs.",
+    verification: "Demonstration audit complete: all 10 operational simulation steps verified and logged in client-side demonstration state.",
     actionPrompt: "Scenario complete. Astronaut returned to full nominal flight status."
   }
 ];
@@ -2174,7 +2174,7 @@ function generateLocalFlightSurgeonReply(query) {
     return `**Real-Time Biomedical Status Assessment · ${currentSubjectName}:**\n\n` +
            `• **Monitored Subject:** ${currentSubjectName}\n` +
            `• **Heart Rate / Rhythm:** ${currentHr} BPM (Lead-II ECG Sinus Rhythm)\n` +
-           `• **Pulse Oximetry (SpO₂):** ${currentSpo2}% (NASA Baseline > 95.0% · Critical < 92.0%)\n` +
+           `• **Pulse Oximetry (SpO₂):** ${currentSpo2}% (Clinical Reference: ≥ 95.0% · Demo Alert Trigger: < 92.0%)\n` +
            `• **Respiration Rate:** ${currentResp} breaths/min (Eupneic range 12–20)\n` +
            `• **Core Body Temperature:** ${currentTemp} °C (Normothermic 36.5–37.5 °C)\n` +
            `• **Cabin Atmosphere:** pCO₂ ${currentCo2} mmHg (ECLSS limit < 3.0 mmHg)\n` +
@@ -2427,12 +2427,16 @@ function setSubject(key) {
   const activeCard = document.querySelector(`#card-${key}`);
   if (activeCard) activeCard.classList.add("is-active-subject");
 
+  let nameStr = "Crew Member A (Commander · Synthetic)";
+  if (key === "anne") nameStr = "Crew Member A (Commander · Synthetic)";
+  else if (key === "mike") nameStr = "Crew Member B (Flight Engineer · Synthetic)";
+  else if (key === "marcus") nameStr = "Crew Member C (Science Officer · Synthetic)";
+
   const subjectDisplay = document.querySelector("#dash-subject-display");
-  if (subjectDisplay) {
-    if (key === "anne") subjectDisplay.textContent = "Crew Member A (Commander · Synthetic)";
-    else if (key === "mike") subjectDisplay.textContent = "Crew Member B (Flight Engineer · Synthetic)";
-    else if (key === "marcus") subjectDisplay.textContent = "Crew Member C (Science Officer · Synthetic)";
-  }
+  if (subjectDisplay) subjectDisplay.textContent = nameStr;
+
+  const bodySubjectDisplay = document.querySelector("#body-subject-display");
+  if (bodySubjectDisplay) bodySubjectDisplay.textContent = nameStr;
 }
 
 
@@ -3837,7 +3841,7 @@ const JUDGING_DEMO_STEPS = [
     criteria: "Criteria: Technical Architecture & Validity",
     title: "2. Synthetic Telemetry Ingestion & Anomaly Detection",
     narrative: "Orbital Health continuously streams multi-parametric biometrics (ECG, SpO₂, Respiration, pCO₂, Radiation) entirely client-side. In this synthetic demonstration, an EVA micro-leak drops inspired oxygen. Sensor concordance rules verify the drop against elevated respiration rate (compensatory tachypnea) to prevent false alarms.",
-    citation: "Synthetic Dataset: 2_nasa_eva_spacewalk_hypoxia.csv (NASA Baseline Architecture)",
+    citation: "Synthetic Dataset: 2_nasa_eva_spacewalk_hypoxia.csv (Research-Informed Simulation Architecture)",
     actionLabel: "Ingest EVA Hypoxia Telemetry",
     execute: () => {
       showView("dashboard");

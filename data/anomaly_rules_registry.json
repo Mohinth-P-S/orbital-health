@@ -11,13 +11,13 @@
     "condition": "spo2 < 92.0% for >= 2 consecutive 1-second readings",
     "window": "2 seconds",
     "clinicalReferenceThreshold": "Clinical Reference: Normal arterial blood oxygen saturation is >= 95%; clinical hypoxemia is defined as SpO2 < 90% (aerospace clinical medicine guidelines). NASA-STD-3001 Vol 2 Rev F \u00a76.2.1.2 defines inspired ambient oxygen partial pressure (pO2: 19.5\u201323.1 kPa), not blood SpO2.",
-    "demonstrationThreshold": "Project Prototype Design Choice: SpO2 < 92.0% for >= 2 consecutive readings is an engineering demonstration alert trigger, not an official NASA standard threshold.",
+    "demonstrationThreshold": "Project Prototype Design Choice: SpO2 < 92.0% for >= 2 consecutive readings is an illustrative engineering demonstration alert trigger, not an official NASA or FAA standard threshold, nor a clinical diagnosis or validated flight rule.",
     "missingDataBehavior": "If SpO2 is missing or non-numeric, flags INSUFFICIENT_DATA and suppresses rule evaluation.",
     "dataQualityCheck": "Evaluates PPG perfusion index (PI > 0.5%) and correlates with respiratory rate elevation to exclude probe disconnect.",
     "rationale": "Arterial oxygen desaturation indicates compromised suit/cabin oxygen supply, gas contamination, or impaired pulmonary ventilation.",
-    "cautiousNextStep": "Check suit umbilical seals, switch to emergency oxygen loop per flight rules, and minimize physical exertion. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-    "escalationGuidance": "Notify Flight Surgeon and EVA partner immediately. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-    "scientificSource": "NASA-STD-3001 Vol 2 Rev F \u00a76.2.1.2 (Ambient Inspired pO2 limits); FAA Civil Aerospace Medical Institute Hypoxia Training Concepts; Standard Clinical Pulse Oximetry Guidelines.",
+    "cautiousNextStep": "Illustrative Demo Checklist: Verify pulse oximeter fit and suit umbilical connection. Do not rely on software alerts for clinical diagnosis; consult Crew Medical Officer and follow mission-approved checklist.",
+    "escalationGuidance": "Illustrative Escalation: Alert Flight Surgeon and EVA buddy per mission flight rules for medical evaluation.",
+    "scientificSource": "NASA-STD-3001 Vol 2 Rev F \u00a76.2.1.2 (Ambient Inspired pO2 limits: 19.5\u201323.1 kPa); FAA Civil Aerospace Medical Institute Hypoxia Training Concepts (general physiology context); Standard Clinical Pulse Oximetry Guidelines.",
     "isIllustrative": false
   },
   {
@@ -36,8 +36,8 @@
     "missingDataBehavior": "If HR is null, flags 'Sensor Disconnected / Reposition Lead-II Electrode'.",
     "dataQualityCheck": "Inspects Lead-II R-R interval consistency to differentiate true sinus tachycardia from muscle EMG motion artifact.",
     "rationale": "Non-exertional tachycardia in microgravity may signify hypovolemia, autonomic dysregulation, thermal strain, or infection.",
-    "cautiousNextStep": "Assume comfortable resting posture, hydrate according to flight guidelines, and practice slow paced breathing. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-    "escalationGuidance": "Alert Crew Medical Officer if resting heart rate remains elevated. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+    "cautiousNextStep": "Illustrative Demo Checklist: Cease high-exertion activity, verify bioharness contact, rehydrate according to mission plan, and follow clinical rest protocols.",
+    "escalationGuidance": "Illustrative Escalation: Notify Crew Medical Officer if resting heart rate remains elevated.",
     "scientificSource": "NASA-STD-3001 Vol 1 \u00a74.1; Hughson et al. (2018).",
     "isIllustrative": false
   },
@@ -57,8 +57,8 @@
     "missingDataBehavior": "Defaults cabin pressure to 760 mmHg with an explicit baseline assumption note.",
     "dataQualityCheck": "Cross-verifies primary and redundant non-dispersive infrared (NDIR) carbon dioxide sensors.",
     "rationale": "Elevated CO2 in microgravity induces cerebral vasodilation, cephalic congestion, headaches, and visual discomfort.",
-    "cautiousNextStep": "Verify cabin ventilation in occupied compartments and inspect scrubber cycle telemetry. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-    "escalationGuidance": "Notify Mission Control to evaluate environmental life-support scrubbers. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+    "cautiousNextStep": "Illustrative Demo Checklist: Inspect compartment ventilation and verify environmental life-support telemetry per standard operating procedures.",
+    "escalationGuidance": "Illustrative Escalation: Coordinate with Mission Control flight controllers to evaluate scrubber performance.",
     "scientificSource": "NASA-STD-3001 Vol 2 Rev F \u00a76.2.1.3 (Inspired Partial Pressure of CO2); Law et al. (2014).",
     "isIllustrative": false
   },
@@ -77,8 +77,8 @@
     "missingDataBehavior": "Flags sensor blackout, alerts crew to inspect physical dosimeters.",
     "dataQualityCheck": "Correlates silicon detector rates with external solar particle event magnetometer channels.",
     "rationale": "Solar Particle Events generate fluxes of energetic protons, risking acute radiation syndrome and hematopoietic suppression.",
-    "cautiousNextStep": "Relocate crew to designated shielded storm shelter compartment per mission flight rules. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-    "escalationGuidance": "Coordinate with Space Radiation Analysis Group (SRAG) for trajectory and dose projections. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+    "cautiousNextStep": "Illustrative Demo Checklist: Prepare to muster in shielded storm shelter compartment according to flight rules and verify dosimeter readings.",
+    "escalationGuidance": "Illustrative Escalation: Consult Space Radiation Analysis Group (SRAG) for trajectory projections and biodosimetry guidance.",
     "scientificSource": "NASA-STD-3001 Vol 1 \u00a74.4 & Vol 2 Rev F \u00a711.1; Cucinotta et al. (2013).",
     "isIllustrative": false
   },
@@ -98,8 +98,8 @@
     "missingDataBehavior": "Classified as NOT_MEASURED; no speculative alert generated.",
     "dataQualityCheck": "Requires verification that ultrasound probe is perpendicular to optic nerve axis 3 mm behind retina.",
     "rationale": "Cephalad fluid redistribution elevates retrobulbar venous pressure, contributing to disc edema and hyperopic shifts.",
-    "cautiousNextStep": "Conduct ocular ultrasound exam per standard imaging checklist. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-    "escalationGuidance": "Transmit raw OCT and ultrasound images to ground Flight Surgeon telemedicine queue for expert evaluation. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+    "cautiousNextStep": "Illustrative Demo Checklist: Perform scheduled research ophthalmic ultrasound checklist; consider mission-approved LBNP research session if indicated by flight surgeons.",
+    "escalationGuidance": "Illustrative Escalation: Transmit ocular ultrasound and OCT scans to flight surgeon telemedicine queue.",
     "scientificSource": "NASA Human Research Program SANS Evidence Report; Lee et al. (2020).",
     "isIllustrative": true
   },
@@ -120,8 +120,8 @@
     "missingDataBehavior": "Requires at least 3 consecutive anomalous QRS complexes before critical trigger.",
     "dataQualityCheck": "Analyzes Lead-II baseline noise; confirms absence of preceding exertional work telemetry.",
     "rationale": "Ventricular tachyarrhythmia diminishes stroke volume and organ perfusion; requires prompt clinical response.",
-    "cautiousNextStep": "Assume safe reclined posture, attach continuous 12-lead monitor, and ready emergency medical equipment. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-    "escalationGuidance": "Immediate urgent alert to Crew Medical Officer and high-priority packet transmission to flight surgeons. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+    "cautiousNextStep": "Illustrative Demo Checklist: Assist subject into a safe rest position, verify lead attachments, and initiate standard cardiac monitoring protocol.",
+    "escalationGuidance": "Illustrative Escalation: Immediate urgent notification to Crew Medical Officer and flight surgeons.",
     "scientificSource": "Synthetic arrhythmia-inspired demonstration using morphological principles from PhysioNet MIT-BIH research waveforms (#208); NASA-STD-3001 Vol 1 \u00a74.1.",
     "isIllustrative": true
   },
@@ -141,8 +141,8 @@
     "missingDataBehavior": "Marks data status as 'INSUFFICIENT_DATA_FOR_INTERPRETATION' and halts clinical scoring.",
     "dataQualityCheck": "Continuous row-level integrity validator.",
     "rationale": "Clinical decision algorithms must not generate confident diagnostic conclusions from corrupt, truncated, or noisy telemetry.",
-    "cautiousNextStep": "Inspect sensor placement, verify electrode adhesion, and check telemetry cable connectors. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-    "escalationGuidance": "If sensor malfunction persists, switch to secondary redundant biomedical sensor harness. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+    "cautiousNextStep": "Illustrative Demo Checklist: Inspect sensor placement, verify electrode adhesion, and re-seat telemetry harness connections.",
+    "escalationGuidance": "Illustrative Escalation: Switch to secondary redundant biomedical sensor harness if data corruption persists.",
     "scientificSource": "Good Machine Learning Practice (GMLP) & FDA Guidance for Clinical Decision Support Software.",
     "isIllustrative": false
   }

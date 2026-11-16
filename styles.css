@@ -51,7 +51,10 @@ body {
 }
 button, a { font: inherit; }
 button { color: inherit; }
-button:focus-visible, a:focus-visible { outline: 2px solid var(--blue-light); outline-offset: 4px; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid #38bdf8 !important;
+  outline-offset: 3px !important;
+}
 .space-wash { position: fixed; z-index: -1; inset: 0; pointer-events: none; opacity: .5; background-image: radial-gradient(1px 1px at 14% 18%, #b6c8ea 45%, transparent 100%), radial-gradient(1px 1px at 63% 26%, #94afff 45%, transparent 100%), radial-gradient(1px 1px at 88% 73%, #fff 45%, transparent 100%), radial-gradient(1px 1px at 35% 78%, #9f9bdb 45%, transparent 100%), radial-gradient(1px 1px at 80% 15%, #fff 45%, transparent 100%); }
 
 .topbar { height: 78px; padding: 0 clamp(22px, 5.2vw, 86px); display: flex; align-items: center; gap: clamp(22px, 4vw, 70px); border-bottom: 1px solid rgba(207, 220, 242, .08); background: rgba(5, 9, 20, .68); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 30; }
@@ -6659,4 +6662,24 @@ button, .button, a, .nav-link, .dock-link, .app-dock-item, .chip, .preset-chip, 
 
 .glossary-pill strong {
   color: #38bdf8;
+}
+
+/* Accessible scrollbar styling for keyboard-focusable table containers */
+div[role="region"][tabindex="0"] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.4) rgba(8, 14, 26, 0.6);
+}
+div[role="region"][tabindex="0"]::-webkit-scrollbar {
+  height: 6px;
+}
+div[role="region"][tabindex="0"]::-webkit-scrollbar-track {
+  background: rgba(8, 14, 26, 0.6);
+  border-radius: 4px;
+}
+div[role="region"][tabindex="0"]::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.45);
+  border-radius: 4px;
+}
+div[role="region"][tabindex="0"]::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
 }

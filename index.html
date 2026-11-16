@@ -771,6 +771,10 @@
 
             <div class="ecg-container">
               <canvas id="dashboardEcgCanvas" class="ecg-canvas"></canvas>
+              <div class="ecg-provenance-note" style="font-size: 0.73rem; color: var(--muted); font-family: var(--mono); padding: 5px 12px; background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
+                <span><strong style="color: #38bdf8;">WAVEFORM PROVENANCE:</strong> Visual Lead-II oscilloscope renders an interpolated ~250 Hz visual sweep from 1 Hz telemetry and synthetic PhysioNet-inspired waveform templates. Does not represent continuous 250 Hz biometric hardware streaming.</span>
+                <span class="data-provenance-tag">SYNTHETIC INTERPOLATION</span>
+              </div>
               <div class="ecg-overlay-stats pictorial-ecg-overlay">
                 <span>SWEEP: <b>25 mm/s</b></span>
                 <span>GAIN: <b>10 mm/mV</b></span>
@@ -1699,18 +1703,18 @@
             </div>
             <h3>NASA-STD-3001 Space Flight Human-System Standard</h3>
             <p>Vol 1 (Crew Health) and Vol 2 Rev F (Human Factors, Habitability, and Environmental Health). Active NASA Technical Standard (baseline reference tailored by mission programs; formal NASA mandatory designation: No). Cites inspired pO₂ limits (§6.2.1.2) and cabin CO₂ levels (§6.2.1.3, &lt;3 mmHg).</p>
-            <span class="nasa-resource-link">standards.nasa.gov ↗</span>
+            <span class="nasa-resource-link">standards.nasa.gov/standard/NASA/NASA-STD-3001_VOL_2 ↗</span>
           </a>
 
           <!-- 10. PhysioNet MIT-BIH & BIDMC Biomedical Waveforms -->
-          <a class="nasa-resource-card" href="https://physionet.org/about/database/" target="_blank" rel="noreferrer">
+          <a class="nasa-resource-card" href="https://physionet.org/content/mitdb/1.0.0/" target="_blank" rel="noreferrer">
             <div class="nasa-resource-top">
               <span class="nasa-resource-kicker">10 // HIGH-FIDELITY ECG WAVEFORMS</span>
               <span class="nasa-resource-badge">MIT / HARVARD</span>
             </div>
             <h3>PhysioNet Biomedical Research Waveforms</h3>
-            <p>Gold-standard open access clinical database providing the high-resolution 250 Hz Lead-II cardiac waveforms, ventricular arrhythmias, and respiratory signals feeding our real-time ECG oscilloscope canvas.</p>
-            <span class="nasa-resource-link">physionet.org ↗</span>
+            <p>Gold-standard open access clinical database providing high-resolution Lead-II cardiac waveforms, ventricular arrhythmias, and respiratory signals feeding our real-time simulated ECG oscilloscope canvas.</p>
+            <span class="nasa-resource-link">physionet.org/content/mitdb ↗</span>
           </a>
 
           <!-- 11. NASA Image and Video Library API -->
@@ -2091,7 +2095,7 @@
             <span class="panel-kicker" style="color: #dfc79c;">AURA CDSS ARCHITECTURE</span>
             <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">6-Part Structured CDSS</h3>
             <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
-              AURA serves as an onboard Clinical Decision Support System (CDSS) for non-physician crew. To guarantee clinical rigor, every evaluation outputs six structured dimensions:
+              AURA serves as an onboard Clinical Decision Support System (CDSS) for non-physician crew. To provide transparent and explainable decision support, every evaluation outputs six structured dimensions:
             </p>
             <ol style="font-size: 0.84rem; color: var(--text); padding-left: 18px; margin: 10px 0; line-height: 1.6;">
               <li><strong>Observation:</strong> Objective telemetry readings and reported symptoms.</li>
@@ -2111,9 +2115,9 @@
               Separating current demonstration capabilities from operational spacecraft flight certification:
             </p>
             <ul style="font-size: 0.84rem; color: var(--text); padding-left: 18px; margin: 10px 0; line-height: 1.6;">
-              <li><strong>Current Status (TRL 4):</strong> Component and functional validation in simulated browser environment.</li>
+              <li><strong>Current Status:</strong> Software demonstration prototype operating in a web browser sandbox. Note: NASA Technology Readiness Levels (TRL) require formal mission qualification testing; current demonstration is an exploratory engineering prototype.</li>
               <li><strong>Simulation Transparency:</strong> Telemetry streams are research-informed synthetic demonstration benchmarks modeled from published NASA LSDA literature, not live physical spacecraft telemetry sockets.</li>
-              <li><strong>Roadmap to TRL 7:</strong> Integration with physical Astroskin / Bio-Harness BLE hardware, edge micro-controller encryption, and formal clinical flight qualification.</li>
+              <li><strong>Future Engineering Roadmap:</strong> Exploring potential integration with physical Astroskin/Bio-Harness hardware protocols, edge micro-controller execution, and flight surgeon validation review.</li>
             </ul>
           </div>
 
@@ -2145,7 +2149,7 @@
           </div>
 
           <!-- Evidence Table Container -->
-          <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+          <div tabindex="0" role="region" aria-label="Scientific Evidence Registry Table (Scrollable)" style="overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
             <table class="evidence-registry-table" style="width: 100%; border-collapse: collapse; font-size: 0.84rem; text-align: left;">
               <thead>
                 <tr style="background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid rgba(56, 189, 248, 0.3); color: #7dd3fc; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase;">
@@ -2159,27 +2163,26 @@
                 </tr>
               </thead>
               <tbody id="evidence-table-body">
-
                 <tr class="evidence-row" data-category="cardio" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-01</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Heart Rate (HR) & Chronotropic Regulation
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Frequency of cardiac ventricular contractions measured per minute via Lead-II electrocardiogram vector or optical photoplethysmography.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Continuous sinus rhythm frequency measured in beats per minute (bpm).</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>60.0 – 85.0 bpm (resting adult astronaut)</strong>
                     <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: beats per minute (bpm)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA Johnson Space Center / HRP</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 1 §4.1; Hughson et al., 'Cardiovascular regulation in microgravity,' J Appl Physiol, 2018.</div>
-                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA Flight Medicine / ESA Space Medicine</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 1 §4.1 (Crew Physical Health); Hughson et al., 'Cardiovascular regulation in microgravity,' J Appl Physiol, 2018 (PMID: 29351474).</div>
+                    <a href="https://standards.nasa.gov/standard/NASA/NASA-STD-3001_VOL_1" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">NASA Standard Record ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Clinical Spaceflight Standard</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">NASA technical standard</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Continuous 1 Hz streaming on Dashboard, animated cardiac ticker, interactive telemetry table.
+                    Primary vital card #01, Lead-II oscilloscope canvas, Rule CDSS-HR-01 trigger.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Prototype displays simulated 1 Hz telemetry; does not substitute for real-time 12-lead diagnostic telemetry.
@@ -2189,22 +2192,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-02</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Heart Rate Variability (HRV / RMSSD)
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Root mean square of successive differences between normal heartbeat intervals, reflecting autonomic parasympathetic tone.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Root Mean Square of Successive Differences (RMSSD) between adjacent R-R intervals reflecting parasympathetic autonomic tone.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>25.0 – 65.0 ms (normative rest)</strong>
                     <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: milliseconds (ms)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA Life Sciences Data Archive / Russian IBMP</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Baevsky et al., 'Autonomic cardiovascular regulation in spaceflight,' Acta Astronautica, 2011; LSDA-0042.</div>
-                    <a href="https://lsda.jsc.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA Life Sciences Data Archive (LSDA)</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Baevsky et al., 'Autonomic cardiovascular regulation in spaceflight,' Acta Astronautica, 2011 (PMID: 21802909); NASA LSDA-0042 Research Archive.</div>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/21802909/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">PubMed / DOI Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Research Finding</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #dfc79c; color: #dfc79c; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-reviewed research</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Computed R-R interval analysis, autonomic balance indicator in Cardiovascular panel.
+                    Sub-metric in Cardiovascular card, recovery marker post-exercise.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Estimated from simulated interbeat intervals; cannot establish clinical arrhythmia diagnosis.
@@ -2217,29 +2220,29 @@
                     <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Percentage of arterial hemoglobin oxygenation measured non-invasively via dual-wavelength optical pulse oximetry.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
-                    <strong>96.0% – 100.0% (Nominal); Alert threshold < 92.0%</strong>
+                    <strong>Clinical reference: 96.0% – 100.0% (Nominal); Prototype demonstration trigger: < 92.0%</strong>
                     <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: % saturation</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA / FAA Civil Aerospace Medical Institute</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Atmospheric Inspired pO₂); FAA Hypoxia Guidelines; Clinical Pulse Oximetry Standards.</div>
-                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA / FAA Civil Aerospace Medical Institute / Clinical Guidelines</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 Rev F §6.2.1.2 defines inspired ambient pO2 (19.5–23.1 kPa); FAA CAMI Hypoxia Training Concepts (general physiology context); WHO/AHA Clinical Pulse Oximetry Guidelines.</div>
+                    <a href="https://standards.nasa.gov/standard/NASA/NASA-STD-3001_VOL_2" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">NASA Standard Record ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Aerospace Clinical Reference</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #c084fc; color: #c084fc; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Clinical reference</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
                     Primary vital card #02, Rule CDSS-O2-01 trigger, EVA Hypoxia scenario playback.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
-                    Simulated pulse oximetry stream; in real flight, cold peripheral vasoconstriction or motion artifact can cause false drops.
+                    Prototype design assumption: SpO2 < 92.0% is an illustrative demonstration trigger adopted for this software prototype. NASA-STD-3001 Vol 2 Rev F §6.2.1.2 establishes ambient inspired pO2 limits (19.5–23.1 kPa / 146–173 mmHg) rather than an arterial blood SpO2 threshold. The 92% setting is not an official NASA or FAA standard, nor a clinical diagnosis or validated flight rule. In flight, cold vasoconstriction or sensor motion can cause false drops.
                   </td>
                 </tr>
                 <tr class="evidence-row" data-category="respiratory" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-04</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Respiratory Rate (RR) & Ventilation
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Number of respiratory cycles per minute, monitored via chest bio-impedance or photoplethysmographic respiration modulation.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Continuous breathing frequency per minute derived from chest impedance plethysmography.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>12.0 – 18.0 br/min (Resting); > 20.0 br/min (Tachypnea)</strong>
@@ -2247,14 +2250,14 @@
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
                     <strong style="color: #ffffff;">Canadian Space Agency (CSA) / Astroskin</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">CSA Bio-Monitor Astroskin Flight Validation, Expedition 58/59; NPJ Microgravity, 2021.</div>
-                    <a href="https://www.asc-csa.gc.ca/eng/sciences/bio-monitor.asp" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Canadian Space Agency (CSA) Bio-Monitor Astroskin Flight Validation, ISS Expedition 58/59; NPJ Microgravity, 2021.</div>
+                    <a href="https://www.asc-csa.gc.ca/eng/iss/bio-monitor.asp" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">CSA Bio-Monitor ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Flown Spaceflight Sensor Baseline</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Agency guidance</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Vital card #03, respiratory waveform interpolation, concordance cross-check with SpO₂.
+                    Primary vital card #03, Respiratory waveform interpolation, concordance cross-check with SpO₂.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Synthetically interpolated from 1 Hz CSV data; physical speech or swallowing artifacts are not simulated.
@@ -2264,22 +2267,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-05</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Systemic Blood Pressure & Mean Arterial Pressure (MAP)
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Hydrostatic pressure exerted by blood on arterial vessel walls. MAP = DBP + 1/3(SBP - DBP).</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Hydrostatic pressure exerted by circulating blood upon systemic arterial walls. MAP = DBP + 1/3(SBP - DBP).</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>MAP: 75.0 – 100.0 mmHg (SBP 110-130 / DBP 70-85 mmHg)</strong>
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg</div>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: millimeters of mercury (mmHg)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA Cardiovascular Laboratory / ESA</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Norsk et al., 'Fluid shifts and cardiovascular regulation in spaceflight,' Physiol Rep, 2015.</div>
-                    <a href="https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">European Space Agency (ESA) Space Medicine</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Norsk et al., 'Fluid shifts and cardiovascular regulation in spaceflight,' Physiol Rep, 2015 (PMID: 25895781).</div>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/25895781/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">PubMed / DOI Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Research Finding</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #dfc79c; color: #dfc79c; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-reviewed research</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Calculated indicator in Cardiovascular modal, correlated with cephalad fluid shift.
+                    Cardiovascular detail card, fluid shift model in Body Map.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Indirectly estimated from baseline parameters; true continuous arterial pressure requires continuous finger-cuff photoplethysmography.
@@ -2289,22 +2292,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-06</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Core Body Temperature ('Space Fever')
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Internal hypothalamic thermal equilibrium. Microgravity impairs convective and evaporative heat dissipation, raising baseline core temperature by ~1.0°C.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Continuous deep body temperature exhibiting a chronic ~1.0°C upward shift during long-duration microgravity.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>36.8°C – 37.4°C (Normal spaceflight resting baseline); > 38.0°C (Pyrexia)</strong>
                     <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: degrees Celsius (°C)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">Charité Berlin / ESA / DLR</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Stahn et al., 'Increased core body temperature in astronauts during long-duration space missions,' Sci Rep, 2017.</div>
-                    <a href="https://www.nature.com/articles/s41598-017-15560-0" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">Charité Berlin / DLR / ESA Space Medicine</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Stahn et al., 'Increased core body temperature in astronauts during long-duration space missions,' Sci Rep, 2017 (DOI: 10.1038/s41598-017-15560-0).</div>
+                    <a href="https://www.nature.com/articles/s41598-017-15560-0" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">Nature / npj Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Research Finding</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #dfc79c; color: #dfc79c; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-reviewed research</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Vital card #04, thermal trend tracking, environmental heat-load alert.
+                    Primary vital card #04, exertional workout thermal tracking.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Simulated telemetry; operational spaceflight measurement requires double-sensor heat-flux forehead probes.
@@ -2317,16 +2320,16 @@
                     <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Atmospheric CO₂ partial pressure and concentration inside spacecraft pressurized volume. At 760 mmHg, 0.31% vol corresponds to 2.36 mmHg.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
-                    <strong>Nominal: < 2.50 mmHg (0.33% @ 760 mmHg); 24-hr PEL: < 3.00 mmHg (NASA-STD-3001)</strong>
+                    <strong>Nominal: < 2.50 mmHg (0.33% @ 760 mmHg); 24-hr PEL: <= 3.00 mmHg (NASA-STD-3001)</strong>
                     <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg partial pressure (% volume fraction)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
                     <strong style="color: #ffffff;">NASA Human Factors & Habitability</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 Rev F §6.2.1.3 (Inspired Partial Pressure of CO₂); Law et al., J Occup Environ Med, 2014.</div>
-                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 Rev F §6.2.1.3 (Inspired Partial Pressure of CO2); Law et al., 'Relationship Between CO2 Levels and Headaches on ISS,' J Occup Environ Med, 2014 (PMID: 24806723).</div>
+                    <a href="https://standards.nasa.gov/standard/NASA/NASA-STD-3001_VOL_2" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">NASA Standard Record ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">NASA Technical Standard (Vol 2)</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">NASA technical standard</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
                     Vital card #04 badge, Rule CDSS-ENV-01, Environmental telemetry monitor.
@@ -2347,11 +2350,11 @@
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
                     <strong style="color: #ffffff;">NASA Space Radiation Analysis Group (SRAG)</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 1 §4.4 (Permissible Exposure Limits) &amp; Vol 2 Rev F §11.1 (Ionizing Radiation Protection); Cucinotta et al., NASA/TP-2013-217375.</div>
-                    <a href="https://osdr.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 1 §4.4 (Permissible Exposure Limits) & Vol 2 Rev F §11.1 (Ionizing Radiation Protection); Cucinotta et al., NASA/TP-2013-217375.</div>
+                    <a href="https://ntrs.nasa.gov/citations/20130013954" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">NASA NTRS Report ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">NASA Technical Standard (Vol 1 &amp; 2)</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">NASA technical standard</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
                     Environmental badge, Scenario 4 (Solar Storm Flare) playback, storm shelter alert.
@@ -2364,22 +2367,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-09</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Optic Nerve Sheath Diameter (ONSD) & SANS
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Retrobulbar optic nerve sheath diameter measured 3 mm behind the globe via high-frequency B-mode ocular ultrasound.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Ultrasonographic retrobulbar subarachnoid sheath width reflecting cephalad fluid shift and orbital compartmentalization.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
-                    <strong>Nominal: 4.5 – 5.5 mm; Elevated threshold: > 5.8 mm</strong>
+                    <strong>Nominal: 4.5 – 5.5 mm; Elevated research threshold: > 5.8 mm</strong>
                     <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: millimeters (mm)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA Human Research Program (HRP)</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Lee et al., 'Spaceflight-associated neuro-ocular syndrome,' NPJ Microgravity, 2020; NASA HRP SANS Evidence Report.</div>
-                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA Human Research Program (HRP) SANS Element</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Lee et al., 'Spaceflight-associated neuro-ocular syndrome,' NPJ Microgravity, 2020 (DOI: 10.1038/s41526-020-00115-z); NASA HRP SANS Evidence Report.</div>
+                    <a href="https://www.nature.com/articles/s41526-020-00115-z" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">Nature / npj Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Research Evidence Threshold</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #dfc79c; color: #dfc79c; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-reviewed research</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Body Map ocular node, Scenario 5 playback, Rule CDSS-SANS-01.
+                    Body Map (Eyes / SANS), Rule CDSS-SANS-01, Ophthalmic inspection modal.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Illustrative ultrasound research threshold. In terrestrial medicine ONSD > 5.8 mm indicates elevated ICP; in spaceflight SANS, retrobulbar sheath distension reflects cephalad venous stasis and localized orbital CSF compartmentation without systemic malignant intracranial hypertension.
@@ -2389,22 +2392,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-10</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Intraocular Pressure (IOP)
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Fluid pressure within the anterior chamber of the eye measured via rebound or applanation tonometry.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Fluid pressure of aqueous humor within the globe measured via tonometry.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>12.0 – 21.0 mmHg (Normative terrestrial and spaceflight baseline)</strong>
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg</div>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: millimeters of mercury (mmHg)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA HRP / Wyle Laboratories</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Mader et al., 'Optic disc edema, globe flattening, and hyperopic shifts in astronauts,' Ophthalmology, 2011.</div>
-                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA HRP / Ophthalmology Clinical Working Group</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Mader et al., 'Optic disc edema, globe flattening, and hyperopic shifts in astronauts,' Ophthalmology, 2011 (PMID: 21849212).</div>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/21849212/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">PubMed / DOI Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Spaceflight Study</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #dfc79c; color: #dfc79c; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-reviewed research</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Ocular biometric panel, correlated with cephalad fluid shift.
+                    Body Map (Eyes stat #02), SANS progression score.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Single-point values; does not capture circadian IOP fluctuation or trabecular outflow resistance.
@@ -2414,22 +2417,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-11</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Optical Coherence Tomography (OCT)
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Near-infrared low-coherence interferometric cross-sectional scanning measuring peripapillary Retinal Nerve Fiber Layer (RNFL) thickness.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Near-infrared interferometric optical cross-sections measuring Retinal Nerve Fiber Layer (RNFL) thickness.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>Total average RNFL thickness: 85 – 110 µm; Papilledema alert: > 125 µm</strong>
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: micrometers (µm)</div>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: microns / micrometers (µm)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA HRP / Columbus Module ISS Facility</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Patel et al., 'OCT imaging of optic disc edema in astronauts,' JAMA Ophthalmol, 2018.</div>
-                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA HRP / Houston Methodist Eye Center</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Patel et al., 'OCT imaging of optic disc edema in astronauts,' JAMA Ophthalmol, 2018 (PMID: 29327058).</div>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/29327058/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">PubMed / DOI Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Clinical Protocol</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #c084fc; color: #c084fc; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Clinical reference</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Body Map ophthalmic diagnostic card, SANS progression tracker.
+                    Body Map (Eyes stat #03), SANS structural evaluation card.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Digital visualization of clinical findings; software does not process raw OCT B-scan raw raster interferometry files.
@@ -2439,22 +2442,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-12</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Circadian Entrainment & SSLA Lighting
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Synchronization of endogenous 24-hr suprachiasmatic circadian rhythm using Solid-State Light Assemblies (SSLA) to counter 16 sunrises/day.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Dynamic correlated color temperature (CCT) and photopic lux protocols via Solid-State Light Assemblies.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>Wake: 6500K blue-enriched (> 400 lx); Pre-sleep: 2700K warm amber (< 100 lx)</strong>
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: Kelvin (color temperature) / Lux (illuminance)</div>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: Kelvin (K) / Lux (lx)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA Human Factors / Thomas Jefferson University</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Brainard et al., 'Solid-state light assemblies on the ISS for circadian entrainment,' Curr Biol, 2016.</div>
-                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA Human Factors & Habitability / Thomas Jefferson University</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Brainard et al., 'Solid-state light assemblies on the ISS for circadian entrainment,' Curr Biol, 2016 (PMID: 27889264); NASA-STD-3001 Vol 2 §8.8.</div>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/27889264/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">PubMed / DOI Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Operational Engineering Standard</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">NASA technical standard</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Rule CDSS-ENV-04, environmental lighting schedule, Circadian sleep staging.
+                    Habitability panel, Crew sleep schedule optimizer.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Illustrative schedule; does not measure biological melatonin or dim-light melatonin onset (DLMO).
@@ -2464,22 +2467,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-13</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Bone Mineral Retention & Resistive Loading
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Preservation of bone mineral density in weight-bearing skeleton (lumbar spine, femoral neck) countering microgravity osteopenia.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Areal Bone Mineral Density (aBMD) preservation rate in weight-bearing skeletal regions under heavy loading.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>Target: > 95.0% baseline retention; Unmitigated spaceflight loss rate: ~1.0-1.5% per month</strong>
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: % baseline retention (% loss/month)</div>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: % baseline retention</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA HRP Bone Discipline</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Sibonga et al., 'Recovery of bone density after long-duration spaceflight,' J Bone Miner Res, 2017.</div>
-                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA Bone Discipline / JSC Human Adaptation & Countermeasures</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Sibonga et al., 'Recovery of bone density after long-duration spaceflight,' J Bone Miner Res, 2017 (PMID: 28556391).</div>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/28556391/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">PubMed / DOI Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Research Finding</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #dfc79c; color: #dfc79c; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-reviewed research</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Mission Readiness Pillar #6 (weight 10%, score 98%), ARED workout telemetry.
+                    Body Map (Spine & Bone), Mission Readiness Pillar #1.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Mathematical model of bone loading; actual BMD assessment requires dual-energy X-ray absorptiometry (DXA) pre/post flight.
@@ -2489,22 +2492,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-14</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Cognitive Alertness (PVT Latency)
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Psychomotor Vigilance Task (PVT) assessing sustained behavioral alertness, sleep debt, and psychomotor speed.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">10-minute visual Psychomotor Vigilance Task measuring sustained attention and behavioral alertness.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>Mean reaction time: < 250 ms (Optimal); Lapses (> 500 ms): <= 2 per 3-min session</strong>
                     <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: milliseconds (ms)</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">University of Pennsylvania / NASA Behavioral Health</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Basner et al., 'Psychomotor vigilance testing on the International Space Station,' Aerosp Med Hum Perform, 2015.</div>
-                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">University of Pennsylvania / NASA Behavioral Health & Performance</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Basner et al., 'Psychomotor vigilance testing on the International Space Station,' Aerosp Med Hum Perform, 2015 (PMID: 26099342).</div>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/26099342/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">PubMed / DOI Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Operational Cognitive Benchmark</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Agency guidance</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Mission Readiness Pillar #4 (weight 15%, score 95%), Neuro-cognitive status card.
+                    Body Map (Brain stat #01), Mission Readiness Pillar #2, Neurocognitive status.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Static test indicator; does not administer an active millisecond-accurate user reaction test in browser.
@@ -2514,22 +2517,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-15</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Exercise Countermeasures (ARED & CEVIS)
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Daily 2.0–2.5 hour operational exercise countermeasure combining resistive loading (ARED) and cycle ergometry (CEVIS).</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Daily prescribed mechanical load to attenuate microgravity-induced musculoskeletal and cardiovascular deconditioning.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>ARED: up to 600 lbs simulated load; CEVIS: 150 – 220 Watts at 75–85% VO2 peak</strong>
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: watts (aerobic) / lbs force (resistive)</div>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: lbs load / Watts / minutes</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA Astronaut Strength, Conditioning & Rehabilitation</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">English et al., 'High-intensity resistive and aerobic exercise preserves muscle mass in spaceflight,' NPJ Microgravity, 2020.</div>
-                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">NASA Astronaut Strength, Conditioning & Rehabilitation (ASCR)</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">English et al., 'High-intensity resistive and aerobic exercise preserves muscle mass in spaceflight,' NPJ Microgravity, 2020 (DOI: 10.1038/s41526-020-00110-4).</div>
+                    <a href="https://www.nature.com/articles/s41526-020-00110-4" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">Nature / npj Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Prescribed Operational Protocol</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Agency guidance</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Mission Readiness Pillar #1 (weight 25%, score 96%), Scenario 3 playback.
+                    Scenario 3 (ARED Workout) playback, Musculoskeletal countermeasure steps.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Simulated workout data; does not log physical load cell telemetry from actual gym hardware.
@@ -2539,22 +2542,22 @@
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-16</td>
                   <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
                     Lower Body Negative Pressure (LBNP)
-                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Operational countermeasure applying negative pressure (-20 to -35 mmHg) to lower extremities to pull cephalad venous fluid caudal.</div>
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">External subatmospheric pressure applied to caudal body segments to induce footward venous fluid redistribution.</div>
                   </td>
                   <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
                     <strong>Protocol: -20 to -35 mmHg for 30–60 minutes daily</strong>
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg negative pressure</div>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg negative differential</div>
                   </td>
                   <td style="padding: 12px 14px; color: #cbd5e1;">
-                    <strong style="color: #ffffff;">NASA / Russian Roscosmos / JAXA</strong>
-                    <div style="font-size: 0.78rem; margin-top: 2px;">Hargens et al., 'Lower body negative pressure as a countermeasure for spaceflight deconditioning,' Front Physiol, 2021.</div>
-                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                    <strong style="color: #ffffff;">UC San Diego / NASA HRP / ESA Space Medicine</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Hargens et al., 'Lower body negative pressure as a countermeasure for spaceflight deconditioning,' Front Physiol, 2021 (DOI: 10.3389/fphys.2021.722359).</div>
+                    <a href="https://www.frontiersin.org/articles/10.3389/fphys.2021.722359/full" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">Frontiers Paper ↗</a>
                   </td>
                   <td style="padding: 12px 14px;">
-                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Countermeasure Protocol</span>
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #dfc79c; color: #dfc79c; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-reviewed research</span>
                   </td>
                   <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
-                    Scenario 5 recovery step, SANS fluid shift protocol, Quest interaction.
+                    Body Map (Fluid Shift countermeasure), Scenario 5 recovery phase.
                   </td>
                   <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
                     Simulated countermeasure efficacy; individual cardiovascular tolerance and presyncopal risk vary.
@@ -2819,14 +2822,14 @@
 
               <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 12px; border-top: 3px solid #dfc79c;">
                 <span style="font-family: var(--mono); font-size: 0.75rem; color: #dfc79c; font-weight: 700;">5. ACT</span>
-                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">Emergency O₂ Purge</div>
-                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Switch suit umbilical to 100% O₂, check helmet latch, minimize exertion.</div>
+                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">Illustrative Demo Checklist</div>
+                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Verify suit umbilical connection, confirm oximeter probe fit, and follow approved flight checklist.</div>
               </div>
 
               <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 12px; border-top: 3px solid #a855f7;">
                 <span style="font-family: var(--mono); font-size: 0.75rem; color: #a855f7; font-weight: 700;">6. ESCALATE</span>
-                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">EVA Abort Protocol</div>
-                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Notify Flight Surgeon &amp; EVA buddy; abort spacewalk if unrecovered in 60s.</div>
+                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">Clinical Escalation</div>
+                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Alert Flight Surgeon &amp; EVA partner per mission flight rules for clinical guidance.</div>
               </div>
             </div>
           </div>
@@ -2849,13 +2852,13 @@
                 <strong>Quality Check:</strong> Evaluates PPG perfusion index (PI > 0.5%) and correlates with respiratory rate elevation to exclude probe disconnect.
               </div>
               <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
-                <strong>Action:</strong> Check suit umbilical seals, switch to emergency 100% O2 purge loop, remain calm to reduce oxygen consumption.
+                <strong>Illustrative Demo Action (Simulation Only):</strong> Verify pulse oximeter fit and suit umbilical connection. Do not rely on software alerts for clinical diagnosis; consult Crew Medical Officer and follow mission-approved checklist.
               </div>
               <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
-                <strong>Escalation:</strong> Notify Flight Surgeon and EVA buddy immediately; abort spacewalk if SpO2 fails to recover within 60 seconds.
+                <strong>Illustrative Escalation:</strong> Alert Flight Surgeon and EVA buddy per mission flight rules for medical evaluation.
               </div>
               <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
-                <strong>Standard:</strong> NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Inspired pO₂ Limits); FAA Hypoxia Guidelines.
+                <strong>Standard &amp; Context:</strong> NASA-STD-3001 Vol 2 Rev F §6.2.1.2 specifies ambient inspired pO₂ (19.5–23.1 kPa); SpO₂ &lt; 92% is an illustrative demonstration trigger informed by FAA CAMI hypoxia training concepts.
               </div>
             </div>
             <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
@@ -2872,10 +2875,10 @@
                 <strong>Quality Check:</strong> Inspects Lead-II R-R interval consistency to differentiate true sinus tachycardia from muscle EMG motion artifact.
               </div>
               <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
-                <strong>Action:</strong> Sit upright or strap into sleep station, hydrate with 500 mL electrolyte solution, practice paced slow breathing.
+                <strong>Illustrative Demo Action (Simulation Only):</strong> Cease high-exertion activity, verify bioharness contact, rehydrate according to mission plan, and follow clinical rest protocols.
               </div>
               <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
-                <strong>Escalation:</strong> Alert Crew Medical Officer if resting heart rate remains > 115 bpm after 10 minutes of complete physical rest.
+                <strong>Illustrative Escalation:</strong> Notify Crew Medical Officer if resting heart rate remains elevated.
               </div>
               <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
                 <strong>Standard:</strong> NASA-STD-3001 Vol 1 §4.1; Hughson et al. (2018).
@@ -2895,10 +2898,10 @@
                 <strong>Quality Check:</strong> Cross-verifies primary and redundant non-dispersive infrared (NDIR) carbon dioxide sensors.
               </div>
               <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
-                <strong>Action:</strong> Increase cabin ventilation fans in sleeping quarters, verify Carbon Dioxide Removal Assembly (CDRA) scrubber bed cycle.
+                <strong>Illustrative Demo Action (Simulation Only):</strong> Inspect compartment ventilation and verify environmental life-support telemetry per standard operating procedures.
               </div>
               <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
-                <strong>Escalation:</strong> Notify Mission Control Flight Directors to reconfigure environmental life-support scrubbers.
+                <strong>Illustrative Escalation:</strong> Coordinate with Mission Control flight controllers to evaluate scrubber performance.
               </div>
               <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
                 <strong>Standard:</strong> NASA-STD-3001 Vol 2 Rev F §6.2.1.3 (Inspired Partial Pressure of CO₂ ≤ 3.00 mmHg); Law et al. (2014).
@@ -2941,10 +2944,10 @@
                 <strong>Quality Check:</strong> Requires verification that ultrasound probe is perpendicular to optic nerve axis 3 mm behind retina.
               </div>
               <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
-                <strong>Action:</strong> Initiate 30–60 minute session of Lower Body Negative Pressure (LBNP) at -25 mmHg; maintain dietary sodium restriction < 2,000 mg/day.
+                <strong>Illustrative Demo Action (Simulation Only):</strong> Perform scheduled research ophthalmic ultrasound checklist; consider mission-approved LBNP research session if indicated by flight surgeons.
               </div>
               <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
-                <strong>Escalation:</strong> Transmit raw OCT and ultrasound images to ground Flight Surgeon telemedicine queue for expert review.
+                <strong>Illustrative Escalation:</strong> Transmit ocular ultrasound and OCT scans to flight surgeon telemedicine queue.
               </div>
               <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
                 <strong>Standard:</strong> NASA Human Research Program SANS Evidence Report; Lee et al. (2020).
@@ -2964,10 +2967,10 @@
                 <strong>Quality Check:</strong> Analyzes Lead-II baseline noise; confirms absence of preceding exertional work telemetry.
               </div>
               <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
-                <strong>Action:</strong> Direct astronaut to assume safe reclined posture, attach continuous 12-lead monitoring, ready Automated External Defibrillator (AED).
+                <strong>Illustrative Demo Action (Simulation Only):</strong> Assist subject into a safe rest position, verify lead attachments, and initiate standard cardiac monitoring protocol.
               </div>
               <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
-                <strong>Escalation:</strong> Immediate urgent alert to Crew Medical Officer and emergency telemetry priority packet to ground flight surgeons.
+                <strong>Illustrative Escalation:</strong> Immediate urgent notification to Crew Medical Officer and flight surgeons.
               </div>
               <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
                 <strong>Standard:</strong> PhysioNet MIT-BIH Arrhythmia Database (#208); NASA-STD-3001 Vol 1 §4.1.
@@ -3045,7 +3048,7 @@
           </div>
 
           <!-- Test Cases Table -->
-          <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+          <div tabindex="0" role="region" aria-label="Automated Software Regression Test Suite Table (Scrollable)" style="overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left;">
               <thead>
                 <tr style="background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid rgba(118, 228, 210, 0.3); color: #76e4d2; font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.05em; text-transform: uppercase;">
