@@ -1381,6 +1381,15 @@ function selectBodyOrgan(organKey) {
   const activeNode = document.querySelector(`#node-${organKey}`);
   if (activeNode) activeNode.classList.add("is-selected");
 
+  // Keep Body Map Overview Rail in sync with active anatomical selection
+  const systemNameEl = document.querySelector("#body-system-name");
+  if (systemNameEl) systemNameEl.textContent = organ.name;
+
+  const systemStatusEl = document.querySelector("#body-system-status");
+  if (systemStatusEl) {
+    systemStatusEl.innerHTML = `<span class="${organ.badgeClass}">${organ.statusBadge}</span>`;
+  }
+
   const panel = document.querySelector("#organ-detail-card") || document.querySelector(".organ-detail-panel");
   if (!panel) return;
 
@@ -3428,12 +3437,12 @@ function explainAlertRule(identifier) {
       ruleId: alertObj?.triggerRule?.split(":")[0] || identifier || "CDSS-RULE-O2-01",
       name: alertObj?.title || "Acute Arterial Hypoxemia",
       severity: alertObj?.severity === "high" ? "CRITICAL" : "WARNING",
-      clinicalReferenceThreshold: "Clinical Reference: SpO2 < 95% indicates mild hypoxemia; SpO2 < 90% severe hypoxemia (FAA / clinical standards). NASA-STD-3001 Vol 2 Rev F §6.2.1.2 defines cabin inspired pO2 (19.5–23.1 kPa).",
-      demonstrationThreshold: "Project Demonstration Trigger: SpO2 < 92.0% for >= 2 consecutive 1-second readings.",
+      clinicalReferenceThreshold: "Clinical Reference: Normal arterial blood oxygen saturation is >= 95%; clinical hypoxemia is defined as SpO2 < 90% (aerospace clinical guidelines). NASA-STD-3001 Vol 2 Rev F §6.2.1.2 defines inspired ambient oxygen partial pressure (pO2: 19.5–23.1 kPa), not blood SpO2.",
+      demonstrationThreshold: "Project Prototype Design Choice: SpO2 < 92.0% for >= 2 consecutive readings is an engineering demonstration alert trigger, not an official NASA standard threshold.",
       dataQualityCheck: "Evaluates PPG perfusion index (PI > 0.5%) and correlates with respiratory rate elevation to exclude probe disconnect.",
       cautiousNextStep: "Check suit umbilical seals, switch to emergency oxygen loop per flight rules, and minimize physical exertion. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
       escalationGuidance: "Notify Flight Surgeon and EVA partner immediately. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
-      scientificSource: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Inspired pO₂); FAA Civil Aerospace Medical Institute Hypoxia Guidelines."
+      scientificSource: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Ambient Inspired pO₂ limits); FAA Civil Aerospace Medical Institute Hypoxia Training Concepts; Standard Clinical Pulse Oximetry Guidelines."
     };
   }
 
@@ -3514,6 +3523,19 @@ function closeRuleModal() {
   if (modal) modal.style.display = "none";
 }
 window.closeRuleModal = closeRuleModal;
+window.closeAlertRuleModal = closeRuleModal;
+function closeAlertRuleModal() {
+  closeRuleModal();
+}
+
+function evaluateAuraAssistant(promptText) {
+  if (typeof askAiDrawer === "function") {
+    askAiDrawer(promptText);
+  } else if (typeof askAi === "function") {
+    askAi(promptText);
+  }
+}
+window.evaluateAuraAssistant = evaluateAuraAssistant;
 
 function consultAuraForRule(ruleId, ruleName) {
   closeRuleModal();
@@ -3829,8 +3851,8 @@ const JUDGING_DEMO_STEPS = [
     badge: "JUDGE TOUR · STEP 3 OF 6",
     criteria: "Criteria: Scientific Validity & Traceability",
     title: "3. Explainable CDSS Rule & Standard Traceability",
-    narrative: "Every alert is deterministic and traceable to published aerospace medicine standards. Rule CDSS-RULE-O2-01 defines acute hypoxemia, citing NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Atmospheric pO₂) and FAA CAMI guidelines. The UI explicitly separates the prototype demonstration trigger (SpO₂ < 92%) from clinical standards.",
-    citation: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 · FAA CAMI Physiological Guidelines",
+    narrative: "Every alert is deterministic and transparently traceable. NASA-STD-3001 Vol 2 Rev F §6.2.1.2 defines inspired ambient pO₂ (19.5–23.1 kPa), not arterial blood SpO₂; Rule CDSS-RULE-O2-01 explicitly identifies SpO₂ < 92% as a prototype engineering demonstration trigger, informed by FAA CAMI hypoxia physiology training concepts and clinical pulse oximetry references.",
+    citation: "NASA-STD-3001 Vol 2 Rev F §6.2.1.2 (Ambient pO₂) · FAA CAMI Hypoxia Training · Clinical Pulse Oximetry",
     actionLabel: "Open CDSS-RULE-O2-01 Modal",
     execute: () => {
       explainAlertRule("CDSS-RULE-O2-01");
@@ -3841,8 +3863,8 @@ const JUDGING_DEMO_STEPS = [
     badge: "JUDGE TOUR · STEP 4 OF 6",
     criteria: "Criteria: Creativity & Edge Autonomy",
     title: "4. Offline AURA Clinical Decision Support Assistant",
-    narrative: "AURA is an offline, rule-based clinical decision support assistant designed to assist non-physician astronauts. Operating with zero network egress, it synthesizes biometrics, checks sensor signal-to-noise ratios, generates immediate safe countermeasures (Secondary Oxygen Pack high-flow purge loop), and defines airlock ingress escalation.",
-    citation: "AURA Deterministic Engine: Zero-Egress Local Aerospace Triage",
+    narrative: "AURA is an offline, rule-based clinical decision support assistant designed to assist non-physician astronauts. By default, it operates completely offline in browser memory with zero network egress, synthesizing biometrics, verifying sensor concordance, and generating deterministic countermeasures. When an optional Gemini endpoint is configured in deployment settings, crew can optionally escalate complex queries for supplemental cloud inference.",
+    citation: "AURA Deterministic Rule Engine: Default Offline Local Aerospace Triage (Optional Gemini Cloud Escalation)",
     actionLabel: "Consult AURA Offline CDSS",
     execute: () => {
       closeAlertRuleModal();
@@ -3855,7 +3877,7 @@ const JUDGING_DEMO_STEPS = [
     badge: "JUDGE TOUR · STEP 5 OF 6",
     criteria: "Criteria: Presentation & User Experience",
     title: "5. Multi-Organ Anatomical Risk & Triage Map",
-    narrative: "Astronauts need immediate, intuitive anatomical situational awareness. The interactive Body Map visualizes cephalad fluid shifts (SANS), pulmonary gas dynamics, cardiac dysrhythmias, and musculoskeletal deconditioning with actionable countermeasures (ARED resistive exercise, LBNP chibis, CDRA scrubbers).",
+    narrative: "Astronauts need immediate, intuitive anatomical situational awareness. The interactive Body Map visualizes cephalad fluid shifts (SANS), pulmonary gas dynamics, cardiac dysrhythmias, and musculoskeletal deconditioning with actionable countermeasures (Lower Body Negative Pressure [LBNP suit], ARED resistive exercise, and CDRA scrubbers).",
     citation: "NASA Human Research Program (HRP) Spaceflight Hazards (R-I-D-G-E)",
     actionLabel: "Inspect Pulmonary System",
     execute: () => {
