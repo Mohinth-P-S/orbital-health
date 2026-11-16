@@ -48,9 +48,10 @@
         <button class="nav-link is-active" type="button" data-view="overview">Overview</button>
         <button class="nav-link" type="button" data-view="dashboard">Dashboard</button>
         <button class="nav-link" type="button" data-view="bodymap">Body map <span class="nav-dot" style="background: #76e4d2;"></span></button>
+        <button class="nav-link" type="button" data-view="scenario">Scenario <span class="nav-dot" style="background: #f59e0b;"></span></button>
         <button class="nav-link" type="button" data-view="crew">Crew</button>
         <button class="nav-link" type="button" data-view="assistant">AI assistant <span class="nav-dot"></span></button>
-        <button class="nav-link" type="button" data-view="insights">Insights</button>
+        <button class="nav-link" type="button" data-view="architecture">Architecture</button>
         <button class="nav-link nav-more" type="button" data-view="sources">Resources</button>
         <span class="nav-orbit-trail" aria-hidden="true"></span>
       </nav>
@@ -67,7 +68,7 @@
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           <span>Install App</span>
         </button>
-        <span class="demo-state"><i class="status-live"></i> LIVE</span>
+        <span class="demo-state" title="Calibrated demonstration stream based on NASA LSDA research"><i class="status-live"></i> SIMULATED DEMO</span>
         <button class="alert-button" type="button" data-view="alerts" aria-label="Open alerts">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
           <span>Alerts</span>
@@ -90,7 +91,7 @@
               <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
               <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA AI</button>
             </div>
-            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Active telemetry stream</strong> · NASA LSDA-0042 & ISS Expedition 72 Bio-Harness</span></div>
+            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Demonstration Telemetry Stream</strong> · Calibrated to NASA LSDA-0042 & Bioastronautics Standards (Simulated Prototype)</span></div>
           </div>
 
           <figure class="nasa-hero">
@@ -323,7 +324,7 @@
           </div>
           <div class="story-footnote">
             <span>IMAGES VIA NASA IMAGE AND VIDEO LIBRARY API</span>
-            <span>Real-time biometrics connected via NASA LSDA-0042 stream.</span>
+            <span>Simulated demonstration biometrics calibrated against NASA LSDA-0042 and published human spaceflight analogues.</span>
           </div>
         </section>
       </section>
@@ -336,7 +337,7 @@
             <h1 id="dashboard-title">Health <em>Dashboard</em></h1>
           </div>
           <div class="dash-header-badges">
-            <span class="view-tag status-active"><i class="status-live"></i> 250 Hz LIVE STREAM</span>
+            <span class="view-tag status-active"><i class="status-live"></i> 1 Hz TELEMETRY / 250 Hz OSCILLOSCOPE</span>
             <span class="view-tag" style="border-color: rgba(223,199,156,0.35); color: #dfc79c;">EXPEDITION 72</span>
           </div>
         </div>
@@ -354,7 +355,7 @@
             <span class="rail-icon-lead">🫀</span>
             <div>
               <span class="rail-label">CARDIAC TELEMETRY</span>
-              <strong>Lead-II ECG (250 Hz Stream)</strong>
+              <strong>Lead-II Vector (250 Hz Simulated Oscilloscope)</strong>
             </div>
           </div>
           <div class="rail-item">
@@ -539,7 +540,7 @@
                   <h3 class="vital-label">Heart Rate</h3>
                 </div>
               </div>
-              <span class="vital-status-pill status-nominal">✓ NOMINAL SINUS</span>
+              <span class="vital-status-pill status-nominal">✓ NOMINAL</span><span class="data-provenance-tag">SIMULATED DEMO DATA</span>
             </div>
             
             <div class="vital-display-row">
@@ -572,7 +573,7 @@
                   <h3 class="vital-label">SpO₂ Arterial</h3>
                 </div>
               </div>
-              <span class="vital-status-pill status-optimal">✓ OPTIMAL O₂</span>
+              <span class="vital-status-pill status-optimal">✓ OPTIMAL O₂</span><span class="data-provenance-tag">SIMULATED DEMO DATA</span>
             </div>
             
             <div class="vital-display-row">
@@ -606,7 +607,7 @@
                   <h3 class="vital-label">Respiratory Rate</h3>
                 </div>
               </div>
-              <span class="vital-status-pill status-nominal">✓ REGULAR TIDAL</span>
+              <span class="vital-status-pill status-nominal">✓ REGULAR TIDAL</span><span class="data-provenance-tag">SIMULATED DEMO DATA</span>
             </div>
             
             <div class="vital-display-row">
@@ -639,7 +640,7 @@
                   <h3 class="vital-label">Cabin &amp; Shielding</h3>
                 </div>
               </div>
-              <span class="vital-status-pill status-shielded">✓ SHIELDED</span>
+              <span class="vital-status-pill status-shielded">✓ SHIELDED</span><span class="data-provenance-tag">SIMULATED DEMO DATA</span>
             </div>
             
             <div class="vital-display-row">
@@ -673,7 +674,7 @@
                 <h2>Lead-II Cardiac <em>Waveform</em></h2>
               </div>
               <div class="ecg-status-controls">
-                <span class="ecg-live-badge"><i class="status-live"></i> 250 Hz</span>
+                <span class="ecg-live-badge"><i class="status-live"></i> 250 Hz OSCILLOSCOPE (SIMULATED)</span>
                 <div class="timeframe-group">
                   <button class="timeframe-btn is-active" type="button" onclick="setTimeframe('live')">LIVE</button>
                   <button class="timeframe-btn" type="button" onclick="setTimeframe('1h')">1 HR</button>
@@ -726,87 +727,116 @@
 
         </div>
 
-        <!-- ================= GAMIFIED COUNTERMEASURE ADHERENCE & QUESTS ================= -->
-        <article class="quest-panel pictorial-quest-panel">
-          <div class="quest-top">
+        <!-- ================= PROTOTYPE MISSION READINESS INDICATOR (SECTION 8) ================= -->
+        <article class="quest-panel pictorial-quest-panel" style="border: 1px solid rgba(118, 228, 210, 0.25); background: rgba(7, 12, 22, 0.75);">
+          <div class="quest-top" style="align-items: flex-start;">
             <div>
-              <span class="panel-kicker">NASA HRP COUNTERMEASURE ADHERENCE</span>
-              <h2 style="font-family: Georgia, serif; font-size: 22px; font-weight: 400; margin: 4px 0 0; color: #f5f3ed;">
-                Daily Countermeasure <em>Quests</em>
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
+                <span class="panel-kicker">SCIENTIFIC DECISION SUPPORT // SECTION 8</span>
+                <span style="font-size: 10.5px; font-family: var(--mono); color: #dfc79c; background: rgba(223, 199, 156, 0.12); border: 1px solid rgba(223, 199, 156, 0.3); border-radius: 999px; padding: 2px 8px; letter-spacing: .06em;">PROTOTYPE MISSION READINESS INDICATOR</span>
+              </div>
+              <h2 style="font-family: Georgia, serif; font-size: 24px; font-weight: 400; margin: 4px 0 0; color: #f5f3ed;">
+                Mission Readiness <em>Indicator</em>
               </h2>
+              <p style="margin: 6px 0 0; font-size: 0.85rem; color: var(--muted); max-width: 680px;">
+                Weighted multi-pillar physiological indicator combining daily exercise countermeasure quotas, hydration status, circadian sleep architecture, neurocognitive vigilance, and autonomic cardiovascular stability.
+              </p>
             </div>
-            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-              <span class="quest-streak-badge">
-                <span style="color: #dfc79c;">★</span> 204 DAYS STREAK
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <span style="font-size: 2.2rem; font-weight: 700; color: #76e4d2; font-family: var(--mono);" id="readiness-composite-score">94.2%</span>
+                <small style="color: var(--muted); font-size: 0.8rem;">COMPOSITE INDEX</small>
+              </div>
+              <span class="quest-streak-badge" id="readiness-composite-badge" style="border-color: #76e4d2; color: #76e4d2;">
+                NOMINAL MISSION READINESS
               </span>
-              <span class="quest-streak-badge" style="border-color: #76e4d2; color: #76e4d2;">
-                LEVEL 12 COMMANDER (4,850 / 5,000 XP)
-              </span>
-              <button class="button button-quiet" type="button" data-view="bodymap" style="font-size: 13px; color: #38bdf8;">
-                Body Map ↗
-              </button>
             </div>
           </div>
 
-          <div class="quest-grid pictorial-quest-grid">
-            <!-- Quest 1: ARED Heavy Resistance -->
-            <div class="quest-item is-completed" onclick="toggleQuest(1, this)">
+          <!-- 6-Pillar Contributing Factors Breakdown Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin: 20px 0;">
+            
+            <!-- Pillar 1: Exercise Countermeasures (25% Weight) -->
+            <div class="quest-item is-completed" style="cursor: pointer;" onclick="toggleQuest(1, this)">
               <div class="quest-item-header">
-                <span class="quest-title">🏋️ ARED Heavy Resistance</span>
-                <span class="quest-xp">+150 XP ✓</span>
+                <span class="quest-title">🏋️ Exercise Countermeasures (ARED + CEVIS)</span>
+                <span class="quest-xp" id="readiness-val-exercise">96%</span>
               </div>
-              <div class="quest-desc">380 lbs force equivalent logged on femoral neck. Target met.</div>
+              <div class="quest-desc">Weight: <strong>25%</strong> · 380 lbs deadlift force + 30 min 185W cycle ergometer.</div>
               <div class="quest-progress-track">
-                <div class="quest-progress-fill" style="width: 100%;"></div>
+                <div class="quest-progress-fill fill-pink" id="readiness-fill-exercise" style="width: 96%;"></div>
               </div>
             </div>
 
-            <!-- Quest 2: CEVIS Cardio Intervals -->
-            <div class="quest-item is-completed" onclick="toggleQuest(2, this)">
+            <!-- Pillar 2: Hydration & Electrolytes (15% Weight) -->
+            <div class="quest-item" id="quest-hydration" style="cursor: pointer;" onclick="toggleQuest(3, this)">
               <div class="quest-item-header">
-                <span class="quest-title">🚴 CEVIS Cycle Ergometer</span>
-                <span class="quest-xp">+100 XP ✓</span>
+                <span class="quest-title">💧 Hydration &amp; Electrolytes</span>
+                <span class="quest-xp" id="readiness-val-hydration">88%</span>
               </div>
-              <div class="quest-desc">30 min aerobic interval at 185 Watts. Target met.</div>
+              <div class="quest-desc">Weight: <strong>15%</strong> · 2,200 mL of 2,500 mL logged · Sodium &lt; 2,000 mg/d.</div>
               <div class="quest-progress-track">
-                <div class="quest-progress-fill" style="width: 100%;"></div>
+                <div class="quest-progress-fill fill-cyan" id="readiness-fill-hydration" style="width: 88%;"></div>
               </div>
             </div>
 
-            <!-- Quest 3: Fluid & Electrolyte Intake -->
-            <div class="quest-item" id="quest-hydration" onclick="toggleQuest(3, this)">
+            <!-- Pillar 3: Sleep Architecture & Circadian Entrainment (20% Weight) -->
+            <div class="quest-item is-completed" style="cursor: pointer;" onclick="toggleQuest(2, this)">
               <div class="quest-item-header">
-                <span class="quest-title">💧 Electrolyte Hydration</span>
-                <span class="quest-xp" id="quest-hydration-xp">+75 XP (88%)</span>
+                <span class="quest-title">🌙 Sleep &amp; Circadian Entrainment</span>
+                <span class="quest-xp" id="readiness-val-sleep">92%</span>
               </div>
-              <div class="quest-desc">2,200 mL of 2,500 mL logged. 1 pack remaining before rest.</div>
+              <div class="quest-desc">Weight: <strong>20%</strong> · 8.0 hr scheduled rest · 2700K warm SSLA phototherapy active.</div>
               <div class="quest-progress-track">
-                <div class="quest-progress-fill" id="quest-hydration-bar" style="width: 88%;"></div>
+                <div class="quest-progress-fill fill-gold" id="readiness-fill-sleep" style="width: 92%;"></div>
               </div>
             </div>
 
-            <!-- Quest 4: Psychomotor Vigilance Task -->
-            <div class="quest-item is-completed" onclick="toggleQuest(4, this)">
+            <!-- Pillar 4: Cognitive Alertness / PVT (15% Weight) -->
+            <div class="quest-item is-completed" style="cursor: pointer;" onclick="toggleQuest(4, this)">
               <div class="quest-item-header">
-                <span class="quest-title">🧠 PVT Cognitive Alertness</span>
-                <span class="quest-xp">+120 XP ✓</span>
+                <span class="quest-title">🧠 Cognitive Alertness (PVT Reaction)</span>
+                <span class="quest-xp" id="readiness-val-cognitive">95%</span>
               </div>
-              <div class="quest-desc">3-min reaction test passed. Mean latency: 218 ms (Optimal).</div>
+              <div class="quest-desc">Weight: <strong>15%</strong> · Mean PVT reaction latency: 218 ms (Optimal baseline &lt; 250 ms).</div>
               <div class="quest-progress-track">
-                <div class="quest-progress-fill" style="width: 100%;"></div>
+                <div class="quest-progress-fill fill-cyan" id="readiness-fill-cognitive" style="width: 95%;"></div>
               </div>
             </div>
 
-            <!-- Quest 5: Chibis LBNP Countermeasure -->
-            <div class="quest-item" id="quest-lbnp" onclick="toggleQuest(5, this)">
+            <!-- Pillar 5: Cardiovascular Stability (15% Weight) -->
+            <div class="quest-item" id="quest-lbnp" style="cursor: pointer;" onclick="toggleQuest(5, this)">
               <div class="quest-item-header">
-                <span class="quest-title">🩳 Chibis LBNP Negative Pressure</span>
-                <span class="quest-xp">+100 XP (Pending)</span>
+                <span class="quest-title">🫀 Cardiovascular Stability</span>
+                <span class="quest-xp" id="readiness-val-cardio">94%</span>
               </div>
-              <div class="quest-desc">Lower Body Negative Pressure scheduled for 19:30 UTC.</div>
+              <div class="quest-desc">Weight: <strong>15%</strong> · Sinus rhythm nominal · RMSSD 48 ms · LBNP scheduled.</div>
               <div class="quest-progress-track">
-                <div class="quest-progress-fill" id="quest-lbnp-bar" style="width: 25%; background: rgba(208,183,135,0.4);"></div>
+                <div class="quest-progress-fill fill-pink" id="readiness-fill-cardio" style="width: 94%;"></div>
               </div>
+            </div>
+
+            <!-- Pillar 6: Musculoskeletal Loading (10% Weight) -->
+            <div class="quest-item is-completed" style="cursor: pointer;">
+              <div class="quest-item-header">
+                <span class="quest-title">🦴 Musculoskeletal Bone Retention</span>
+                <span class="quest-xp" id="readiness-val-musculoskeletal">98%</span>
+              </div>
+              <div class="quest-desc">Weight: <strong>10%</strong> · Bone retention index 98.4% · Axial spinal elongation +4.2 cm.</div>
+              <div class="quest-progress-track">
+                <div class="quest-progress-fill fill-gold" id="readiness-fill-musculoskeletal" style="width: 98%;"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Formula & Disclaimer Note -->
+          <div style="padding: 12px 16px; border-radius: 6px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); font-size: 0.78rem; color: var(--muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <strong style="color: #dfc79c;">SCIENTIFIC SCORING FORMULA:</strong> Composite = 0.25·Exercise + 0.15·Hydration + 0.20·Sleep + 0.15·Cognitive + 0.15·Cardio + 0.10·Bone
+            </div>
+            <div style="font-style: italic; color: #76e4d2;">
+              * Prototype demonstration algorithm based on NASA-STD-3001 & HRP Gaps. Not an official NASA flight score.
             </div>
           </div>
         </article>
@@ -1025,7 +1055,7 @@
                 <div class="countermeasure-step">
                   <span class="countermeasure-step-num">STEP 2</span>
                   <div>
-                    <strong>Optical Coherence Tomography (OCT):</strong> Perform automated retinal ultrasound and fundus imaging scan in the Columbus module at next rest cycle.
+                    <strong>Optical Coherence Tomography (OCT):</strong> Perform automated near-infrared low-coherence interferometry scan of retinal layers, retinal nerve fiber layer (RNFL) thickness, and optic nerve head (ONH) in the Columbus / HRF rack.
                   </div>
                 </div>
                 <div class="countermeasure-step">
@@ -1457,7 +1487,7 @@
             <h1 id="sources-title">NASA <em>resources</em> & scientific library</h1>
             <p class="hero-description">All 10 official research portals, biomedical databases, standards, and repositories specified in the NASA Space Apps Challenge "Create Health Monitoring Software for Astronauts on Space Missions".</p>
           </div>
-          <span class="view-tag status-active">100% CHALLENGE RESOURCES INTEGRATED</span>
+          <span class="view-tag status-active">CURATED REFERENCE ARCHITECTURE</span>
         </div>
 
         <div class="overview-rail">
@@ -1485,10 +1515,10 @@
           <a class="nasa-resource-card" href="https://lsda.jsc.nasa.gov/" target="_blank" rel="noreferrer">
             <div class="nasa-resource-top">
               <span class="nasa-resource-kicker">02 // PHYSIOLOGICAL DATA</span>
-              <span class="nasa-resource-badge">TELEMETRY INGESTED</span>
+              <span class="nasa-resource-badge">BENCHMARK DATASET</span>
             </div>
             <h3>NASA Life Sciences Data Archive (LSDA)</h3>
-            <p>JSC repository housing astronaut physiological telemetry, cardiovascular measurements, and sensor logs from Apollo, Skylab, Space Shuttle, and ISS Expeditions (including our LSDA-0042 baseline stream).</p>
+            <p>JSC repository housing astronaut physiological telemetry, cardiovascular measurements, and sensor logs from Apollo, Skylab, Space Shuttle, and ISS Expeditions (serving as the scientific reference for our demonstration baseline parameters).</p>
             <span class="nasa-resource-link">lsda.jsc.nasa.gov ↗</span>
           </a>
 
@@ -1665,33 +1695,261 @@
           <span class="view-tag">SYSTEM LOG</span>
         </div>
 
+        <!-- Alert Filter Bar & Bulk Actions -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 16px 0 14px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button class="button button-quiet alert-filter-btn is-active" data-filter="all" type="button" onclick="filterAlerts('all')">All Alerts</button>
+            <button class="button button-quiet alert-filter-btn" data-filter="high" type="button" onclick="filterAlerts('high')">High Priority</button>
+            <button class="button button-quiet alert-filter-btn" data-filter="attention" type="button" onclick="filterAlerts('attention')">Attention</button>
+            <button class="button button-quiet alert-filter-btn" data-filter="info" type="button" onclick="filterAlerts('info')">Information</button>
+            <button class="button button-quiet alert-filter-btn" data-filter="unack" type="button" onclick="filterAlerts('unack')">Unacknowledged</button>
+          </div>
+          <button class="button button-solid" type="button" onclick="acknowledgeAllAlerts()" style="padding: 4px 12px; font-size: 0.8rem;">
+            ✓ Acknowledge All
+          </button>
+        </div>
+
         <div class="alert-feed" id="full-alerts-list" style="margin-top: 10px;">
-          <div class="alert-item alert-item-warning">
-            <span class="alert-dot dot-amber"></span>
-            <div class="alert-content">
-              <strong>CIRCADIAN PHASE REGULATION // SCHEDULED REST</strong>
-              <p>Crew rest window begins at 22:00 UTC. Cabin light spectrum blue-attenuated to trigger endogenous melatonin production.</p>
+          <!-- Dynamically hydrated by renderAlertsUI() -->
+        </div>
+      </section>
+
+    
+      <!-- ================= 8. VIEW: INTERACTIVE MISSION SCENARIO (SECTION 9) ================= -->
+      <section class="view inner-view" id="view-scenario" aria-labelledby="scenario-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap;">
+              <div class="eyebrow"><span class="eyebrow-line"></span> INTERACTIVE MISSION SCENARIO // SECTION 9</div>
+              <span class="view-tag status-active" style="border-color: #f59e0b; color: #f59e0b;">LONG-DURATION MARS TRANSIT</span>
             </div>
-            <span class="alert-time">21:15 UTC · LSDA-C01</span>
+            <h1 id="scenario-title">Long-Duration Mission: <em>Astronaut Health Anomaly</em></h1>
+            <p class="hero-description">An interactive 9-step simulation demonstrating autonomous clinical decision support, explainable anomaly detection, and protocolized escalation during deep-space Earth communication blackout delays.</p>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <button class="button button-solid" id="scenario-play-btn" type="button" onclick="startScenario()">
+              ▶ Play Scenario Walkthrough
+            </button>
+            <button class="button button-quiet" type="button" onclick="resetScenario()">
+              ↺ Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Scenario Mission Context Banner -->
+        <div class="overview-rail" style="margin-bottom: 20px;">
+          <div class="rail-item">
+            <span class="rail-label">MISSION CONTEXT</span>
+            <strong id="scenario-phase-name">Mars Transit · Sol 142 · Distance: 184 Million km</strong>
+          </div>
+          <div class="rail-item">
+            <span class="rail-label">ASTRONAUT SUBJECT</span>
+            <strong id="scenario-astronaut-name">Dr. Marcus Chen (Mission Specialist)</strong>
+          </div>
+          <div class="rail-item">
+            <span class="rail-label">COMMUNICATION DELAY</span>
+            <strong>18 min 24 sec (One-Way) · Autonomous Edge Required</strong>
+          </div>
+          <div class="rail-item">
+            <span class="rail-label">SYSTEM STATE</span>
+            <strong id="scenario-step-badge" style="color: #76e4d2; border: 1px solid #76e4d2; padding: 2px 8px; border-radius: 4px;">MISSION BASELINE · NOMINAL</strong>
+          </div>
+        </div>
+
+        <!-- 9-Step Interactive Timeline Scrubber -->
+        <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <span style="font-size: 0.78rem; font-family: var(--mono); color: #dfc79c; letter-spacing: 0.08em;" id="scenario-step-counter">STEP 1 OF 9</span>
+            <div style="display: flex; gap: 6px;">
+              <button class="button button-quiet" type="button" style="padding: 4px 10px; font-size: 0.75rem;" onclick="prevScenarioStep()">⏮ Previous Step</button>
+              <button class="button button-quiet" type="button" style="padding: 4px 10px; font-size: 0.75rem;" onclick="nextScenarioStep()">Next Step ⏭</button>
+            </div>
+          </div>
+          
+          <!-- Progress bar -->
+          <div style="height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 14px; overflow: hidden;">
+            <div id="scenario-progress-bar" style="height: 100%; width: 11%; background: #76e4d2; transition: width 0.3s ease;"></div>
           </div>
 
-          <div class="alert-item">
-            <span class="alert-dot dot-mint"></span>
-            <div class="alert-content">
-              <strong>RESISTIVE EXERCISE CYCLE COMPLETE // ANNE MCCLAIN</strong>
-              <p>ARED session 45 minutes completed. Total work: 320 kJ. Bone mineral loading threshold achieved.</p>
+          <!-- Step Selection Pills -->
+          <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px;">
+            <button class="scenario-step-pill is-active" type="button" onclick="renderScenarioStep(0)">1. Baseline</button>
+            <button class="scenario-step-pill" type="button" onclick="renderScenarioStep(1)">2. Telemetry</button>
+            <button class="scenario-step-pill" type="button" onclick="renderScenarioStep(2)">3. Anomaly</button>
+            <button class="scenario-step-pill" type="button" onclick="renderScenarioStep(3)">4. Alert</button>
+            <button class="scenario-step-pill" type="button" onclick="renderScenarioStep(4)">5. System</button>
+            <button class="scenario-step-pill" type="button" onclick="renderScenarioStep(5)">6. AURA CDSS</button>
+            <button class="scenario-step-pill" type="button" onclick="renderScenarioStep(6)">7. Verification</button>
+            <button class="scenario-step-pill" type="button" onclick="renderScenarioStep(7)">8. Escalation</button>
+            <button class="scenario-step-pill" type="button" onclick="renderScenarioStep(8)">9. Logged</button>
+          </div>
+        </div>
+
+        <!-- Step Dual-Column Content Console -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px;">
+          
+          <!-- Left Column: Step Narrative & Telemetry State -->
+          <div style="background: rgba(9, 14, 24, 0.75); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 22px;">
+            <span class="panel-kicker" style="color: #dfc79c;">PHASE NARRATIVE</span>
+            <h2 id="scenario-step-title" style="margin: 6px 0 14px; font-size: 1.35rem; font-family: Georgia, serif; color: #ffffff;">
+              1. Long-Duration Mission Context
+            </h2>
+            <div id="scenario-step-narrative" style="font-size: 0.92rem; line-height: 1.6; color: var(--text); margin-bottom: 20px;">
+              During Sol 142 of Mars Transit, the crew is 184 million km from Earth with a one-way communications latency of 18 minutes 24 seconds. Real-time ground telemedicine is physically impossible. Onboard autonomous health monitoring and clinical decision support systems are operational.
             </div>
-            <span class="alert-time">14:30 UTC · HRP-EX04</span>
+
+            <!-- Telemetry Snapshot Grid -->
+            <span class="panel-kicker" style="color: #76e4d2;">REAL-TIME TELEMETRY SNAPSHOT</span>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 8px;">
+              <div style="background: rgba(0,0,0,0.3); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <small style="color: var(--muted); font-size: 0.72rem; text-transform: uppercase;">HEART RATE</small>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #f43f5e; font-family: var(--mono);" id="scen-tel-hr">72.0 bpm</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.3); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <small style="color: var(--muted); font-size: 0.72rem; text-transform: uppercase;">SPO₂ ARTERIAL</small>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #38bdf8; font-family: var(--mono);" id="scen-tel-spo2">99.0%</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.3); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <small style="color: var(--muted); font-size: 0.72rem; text-transform: uppercase;">RESPIRATION</small>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #76e4d2; font-family: var(--mono);" id="scen-tel-resp">14.0 br/min</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.3); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+                <small style="color: var(--muted); font-size: 0.72rem; text-transform: uppercase;">CABIN PCO₂</small>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #dfc79c; font-family: var(--mono);" id="scen-tel-co2">2.36 mmHg</div>
+              </div>
+            </div>
+
+            <!-- Target Physiological System -->
+            <div style="margin-top: 18px; padding: 12px; border-radius: 6px; background: rgba(118, 228, 210, 0.05); border: 1px solid rgba(118, 228, 210, 0.2);">
+              <small style="color: #76e4d2; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">ISOLATED PHYSIOLOGICAL SYSTEM</small>
+              <div style="font-size: 0.95rem; font-weight: 600; color: #ffffff; margin-top: 3px;" id="scenario-system-name">
+                Central Nervous System & Circadian Rhythm
+              </div>
+            </div>
           </div>
 
-          <div class="alert-item">
-            <span class="alert-dot dot-mint"></span>
-            <div class="alert-content">
-              <strong>CABIN ATMOSPHERIC SCRUBBER CYCLE // NOMINAL</strong>
-              <p>Carbon dioxide scrub rate 99.2%. Ambient pCO₂ reading steady at 0.31 mmHg. Normal margin.</p>
+          <!-- Right Column: Verification, Escalation & Autonomous Protocol -->
+          <div style="background: rgba(9, 14, 24, 0.75); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="panel-kicker" style="color: #dfc79c;">DATA-QUALITY &amp; SENSOR VERIFICATION</span>
+              <div id="scenario-verification-note" style="margin: 8px 0 16px; font-size: 0.88rem; color: var(--muted); background: rgba(0,0,0,0.25); padding: 12px; border-radius: 6px; border-left: 3px solid #76e4d2;">
+                All bio-harness sensors synchronized; baseline impedance within calibration limits.
+              </div>
+
+              <span class="panel-kicker" style="color: #f59e0b;">ACTION PROMPT / FLIGHT SURGEON DIRECTIVE</span>
+              <div id="scenario-action-prompt" style="margin: 8px 0 16px; font-size: 0.95rem; font-weight: 500; color: #ffffff; background: rgba(245, 158, 11, 0.08); padding: 14px; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                Begin scheduled routine Extravehicular Activity (EVA) maintenance protocol.
+              </div>
+
+              <!-- Deep-Space Delay Simulation Callout -->
+              <div style="padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; color: var(--muted);">
+                <strong style="color: #dfc79c;">WHY AUTONOMOUS CDSS MATTERS:</strong>
+                At 18.4 minutes one-way latency, emergency advice from Earth requires at least 37 minutes to round-trip. Autonomous local decision support enables the crew to immediately isolate sensor artifacts, purge suits, and initiate resuscitation without ground control waiting times.
+              </div>
             </div>
-            <span class="alert-time">10:00 UTC · ECLSS-01</span>
+
+            <!-- Footer Buttons -->
+            <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
+              <button class="button button-solid" type="button" onclick="nextScenarioStep()">Advance Scenario Step →</button>
+              <button class="button button-quiet" type="button" data-view="assistant" onclick="askAi('Explain how autonomous medical monitoring operates during long-duration Mars transit with 18-minute communication delays.')">
+                Ask AURA about Comms Delay
+              </button>
+            </div>
           </div>
+
+        </div>
+      </section>
+
+      <!-- ================= 9. VIEW: TECHNICAL ARCHITECTURE & SCIENTIFIC VALIDATION (SECTION 10) ================= -->
+      <section class="view inner-view" id="view-architecture" aria-labelledby="arch-title" hidden>
+        <div class="inner-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> NASA SPACE APPS CHALLENGE // SECTION 10</div>
+            <h1 id="arch-title">Technical Architecture &amp; <em>Scientific Validation</em></h1>
+            <p class="hero-description">Comprehensive engineering architecture, data pipeline, heuristic anomaly rules, and scientific validation methodology developed for NASA Space Apps Challenge 2026.</p>
+          </div>
+          <span class="view-tag status-active">NASA-STD-3001 ALIGNED</span>
+        </div>
+
+        <!-- Architecture Overview Rail -->
+        <div class="overview-rail" style="margin-bottom: 24px;">
+          <div class="rail-item"><span class="rail-label">CLIENT STACK</span><strong>Vanilla ES6+ · Canvas API · Web Audio · PWA</strong></div>
+          <div class="rail-item"><span class="rail-label">SERVERLESS API</span><strong>Vercel Edge Serverless (Node.js runtime)</strong></div>
+          <div class="rail-item"><span class="rail-label">DATA PIPELINE</span><strong>Client-Side CSV Ingestion · In-Memory Stream</strong></div>
+          <div class="rail-item"><span class="rail-label">DECISION ENGINE</span><strong>6-Part Explainable Aerospace CDSS</strong></div>
+        </div>
+
+        <!-- 4-Card Technical Dimension Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 24px;">
+          
+          <!-- Card 1: Data Flow & Ingestion Engine -->
+          <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 20px;">
+            <span class="panel-kicker" style="color: #76e4d2;">DATA PIPELINE &amp; CSV PARSING</span>
+            <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">Client-Side Telemetry Streamer</h3>
+            <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
+              The platform implements an in-browser time-series streaming engine that accepts standard CSV files with flexible synonym mapping (e.g. <code>heart_rate</code>, <code>pulse</code>, <code>bpm</code>). 
+            </p>
+            <ul style="font-size: 0.84rem; color: var(--text); padding-left: 18px; margin: 10px 0; line-height: 1.6;">
+              <li><strong>Sampling Frequency:</strong> 1 Hz vital telemetry streams driving an interpolated 250 Hz visual cardiac oscilloscope canvas.</li>
+              <li><strong>Validation:</strong> Type checking, numeric sanitization, missing column warnings, and row-level error reporting.</li>
+              <li><strong>Zero Cloud Egress:</strong> 100% of telemetry data is parsed and evaluated locally in browser memory for astronaut data privacy.</li>
+            </ul>
+          </div>
+
+          <!-- Card 2: Explainable Anomaly Detection Rules -->
+          <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 20px;">
+            <span class="panel-kicker" style="color: #f59e0b;">HEURISTIC MONITORING LOGIC</span>
+            <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">Explainable Clinical Rules</h3>
+            <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
+              Instead of opaque black-box models, anomaly detection operates on transparent, verifiable clinical threshold heuristics derived from NASA-STD-3001 Bioastronautics Standards:
+            </p>
+            <ul style="font-size: 0.84rem; color: var(--text); padding-left: 18px; margin: 10px 0; line-height: 1.6;">
+              <li><strong>Rule CDSS-O2-01:</strong> Acute Arterial Hypoxemia (SpO₂ &lt; 92.0% for &gt; 15s).</li>
+              <li><strong>Rule CDSS-HR-01:</strong> Sustained Exertional/Compensatory Tachycardia (HR &gt; 115 bpm).</li>
+              <li><strong>Rule CDSS-ENV-01:</strong> Cabin Hypercapnia Limit (pCO₂ &gt; 3.0 mmHg @ 760 mmHg).</li>
+              <li><strong>Concordance Check:</strong> Distinguishes sensor decoupling from real pathology by cross-correlating SpO₂ with respiration and heart rate.</li>
+            </ul>
+          </div>
+
+          <!-- Card 3: AURA Decision Engine Implementation -->
+          <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 20px;">
+            <span class="panel-kicker" style="color: #dfc79c;">AURA AI ARCHITECTURE</span>
+            <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">6-Part Structured CDSS</h3>
+            <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
+              AURA serves as an onboard Clinical Decision Support System (CDSS) for non-physician crew. To guarantee clinical rigor, every evaluation outputs six structured dimensions:
+            </p>
+            <ol style="font-size: 0.84rem; color: var(--text); padding-left: 18px; margin: 10px 0; line-height: 1.6;">
+              <li><strong>Observation:</strong> Objective telemetry readings and reported symptoms.</li>
+              <li><strong>Possible Significance:</strong> Underlying spaceflight physiological mechanism.</li>
+              <li><strong>Data-Quality Checks:</strong> Motion artifact and sensor decoupling verification.</li>
+              <li><strong>Suggested Next Action:</strong> Protocolized, non-prescriptive countermeasures.</li>
+              <li><strong>Escalation Guidance:</strong> Criteria for alerting the Crew Medical Officer (CMO).</li>
+              <li><strong>Scientific Reference:</strong> Authoritative NASA/ESA standards citations.</li>
+            </ol>
+          </div>
+
+          <!-- Card 4: Prototype Limitations & Future Roadmap -->
+          <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 20px;">
+            <span class="panel-kicker" style="color: #38bdf8;">VALIDATION &amp; ROADMAP</span>
+            <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">Limitations &amp; Future Plans</h3>
+            <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
+              Separating current demonstration capabilities from operational spacecraft flight certification:
+            </p>
+            <ul style="font-size: 0.84rem; color: var(--text); padding-left: 18px; margin: 10px 0; line-height: 1.6;">
+              <li><strong>Current Status (TRL 4):</strong> Component and functional validation in laboratory / simulated browser environment.</li>
+              <li><strong>Simulation Transparency:</strong> Telemetry streams are demonstration benchmarks calibrated to NASA LSDA ranges, not live hardware spacecraft sockets.</li>
+              <li><strong>Roadmap to TRL 7:</strong> Integration with physical Astroskin / Bio-Harness BLE hardware, edge micro-controller (ESP32) encryption, and formal clinical flight qualification.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Privacy & Security Callout -->
+        <div style="padding: 18px 22px; border-radius: 8px; background: rgba(118, 228, 210, 0.05); border: 1px solid rgba(118, 228, 210, 0.2); margin-top: 10px;">
+          <h4 style="margin: 0 0 6px; color: #76e4d2; font-size: 1.05rem;">🔒 Astronaut Data Governance &amp; Local Privacy</h4>
+          <p style="margin: 0; font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
+            In full compliance with medical data confidentiality and deep-space mission operational security, Orbital Health processes all vital telemetry entirely inside the browser's local sandbox memory. No crew biometric logs or custom CSV records are transmitted to third-party cloud servers.
+          </p>
         </div>
       </section>
 
@@ -1708,6 +1966,7 @@
       <button class="dock-link is-active" type="button" data-view="overview"><span>⌂</span><small>Home</small></button>
       <button class="dock-link" type="button" data-view="dashboard"><span>◉</span><small>Health</small></button>
       <button class="dock-link" type="button" data-view="bodymap"><span>⚲</span><small>Body</small></button>
+      <button class="dock-link" type="button" data-view="scenario"><span>▷</span><small>Scenario</small></button>
       <button class="dock-link" type="button" data-view="crew"><span>◎</span><small>Crew</small></button>
       <button class="dock-link" type="button" data-view="assistant"><span>✳</span><small>AI</small></button>
       <button class="dock-link" type="button" data-view="sources"><span>⋯</span><small>NASA</small></button>
@@ -1736,6 +1995,12 @@
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"></circle><path d="M6 21v-2a6 6 0 0 1 12 0v2"></path></svg>
       </span>
       <span class="app-dock-label">Body</span>
+    </button>
+    <button class="app-dock-item" type="button" data-view="scenario" aria-label="Scenario">
+      <span class="app-dock-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </span>
+      <span class="app-dock-label">Scenario</span>
     </button>
     <button class="app-dock-item" type="button" data-view="crew" aria-label="Crew">
       <span class="app-dock-icon">
