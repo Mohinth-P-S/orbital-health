@@ -2048,9 +2048,21 @@ if (pwaInstallBtn) {
       const { outcome } = await deferredPrompt.userChoice;
       console.log('[PWA] Install prompt outcome:', outcome);
       deferredPrompt = null;
-      pwaInstallBtn.style.display = 'none';
+    } else {
+      alert("Orbital Crew Health — Standalone App Installation\n\n• On Chrome/Edge (Desktop): Click the install icon (⊕) in the browser address bar, or click Menu (⋮) → 'Install Orbital Crew Health'.\n• On iOS (Safari): Tap the Share icon (⎋) and select 'Add to Home Screen'.\n• On Android: Tap Menu (⋮) → 'Install app' or 'Add to Home Screen'.\n\nOnce installed, Orbital Health runs in full-screen standalone mode with offline telemetry caching!");
     }
   });
+}
+
+// Enable smooth horizontal wheel scroll on topbar for laptop & desktop trackpads/mice
+const topbarNavEl = document.querySelector('.topbar');
+if (topbarNavEl) {
+  topbarNavEl.addEventListener('wheel', (e) => {
+    if (e.deltaY !== 0 && topbarNavEl.scrollWidth > topbarNavEl.clientWidth) {
+      topbarNavEl.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }
+  }, { passive: false });
 }
 
 window.addEventListener('appinstalled', () => {
@@ -2065,25 +2077,25 @@ window.addEventListener('appinstalled', () => {
 const NASA_BACKGROUNDS = [
   {
     id: "airglow",
-    name: "ISS Earth Airglow & Milky Way",
+    name: "Airglow & Milky Way",
     image: "assets/nasa-earth-airglow-milkyway.jpg",
     credit: "NASA/JSC ISS Expedition 74 · Atmospheric Airglow & Milky Way"
   },
   {
     id: "jwst",
-    name: "JWST Carina Cosmic Cliffs",
+    name: "JWST Carina Nebula",
     image: "assets/nasa-jwst-carina-nebula.jpg",
     credit: "NASA/ESA/CSA JWST · NIRCam Cosmic Cliffs in Carina Nebula"
   },
   {
     id: "aurora",
-    name: "ISS Aurora Australis & Horizon",
+    name: "Aurora Australis",
     image: "assets/nasa-aurora-earth-limb.jpg",
     credit: "NASA/JSC Expedition 30 · Polar Aurora Australis over Earth Limb"
   },
   {
     id: "earth",
-    name: "Whole Earth Blue Marble",
+    name: "Earth Blue Marble",
     image: "assets/earth.jpg",
     credit: "NASA Earth Observatory · High-Resolution Orbital Disk"
   }

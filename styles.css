@@ -1853,7 +1853,7 @@ button:not(:disabled):active { scale: .97; }
   .bg-theme-pill .bg-pill-label { display: none; }
 }
 @media (max-width: 780px) {
-  .bg-theme-pill { display: none; }
+  /* .bg-theme-pill visible */
 }
 
 /* Footer Background Credit Line */
@@ -4435,98 +4435,206 @@ body.is-app-mode .global-ai-fab {
   display: none !important;
 }
 
-/* 2. Topbar Layout: Strictly Fit Inside Viewport with Zero Overflow */
+/* 2. Topbar Layout: Horizontally Scrollable Navbar (Zero Truncation, Smooth Wheel/Touch Scroll) */
 .topbar {
   height: 68px !important;
-  padding: 0 clamp(16px, 2.5vw, 36px) !important;
+  padding: 0 clamp(12px, 1.5vw, 24px) !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
-  gap: clamp(8px, 1.5vw, 24px) !important;
+  justify-content: flex-start !important;
+  gap: clamp(8px, 1.2vw, 16px) !important;
   width: 100% !important;
   max-width: 100vw !important;
   box-sizing: border-box !important;
-  overflow: hidden !important;
-  background: rgba(8, 14, 26, 0.92) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-behavior: smooth !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(56, 189, 248, 0.5) rgba(8, 14, 26, 0.8) !important;
+  background: rgba(8, 14, 26, 0.94) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+}
+
+.topbar::-webkit-scrollbar {
+  height: 4px !important;
+}
+
+.topbar::-webkit-scrollbar-track {
+  background: rgba(8, 14, 26, 0.8) !important;
+}
+
+.topbar::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.55) !important;
+  border-radius: 999px !important;
+}
+
+.topbar::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8 !important;
 }
 
 .brand {
   flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
 }
 
 .brand-copy strong {
   font-size: 14px !important;
   letter-spacing: .08em !important;
+  color: #ffffff !important;
 }
 
 .brand-copy small {
   font-size: 10px !important;
   letter-spacing: .12em !important;
+  color: #38bdf8 !important;
 }
 
 .primary-nav {
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  gap: clamp(4px, 0.9vw, 12px) !important;
-  flex: 0 1 auto !important;
-  margin: 0 auto !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
 }
 
 .nav-link {
-  padding: 6px clamp(6px, 0.8vw, 12px) !important;
-  font-size: clamp(12px, 0.92vw, 13.5px) !important;
+  padding: 5px 8px !important;
+  font-size: 12.5px !important;
   white-space: nowrap !important;
   letter-spacing: 0.01em !important;
+  flex-shrink: 0 !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
 }
 
 .topbar-end {
   display: flex !important;
   align-items: center !important;
-  gap: clamp(6px, 1vw, 12px) !important;
+  gap: 8px !important;
   flex-shrink: 0 !important;
+  margin-left: auto !important;
 }
 
+/* NASA Space Background Switcher Pill in Topbar */
 .bg-theme-pill {
-  padding: 6px 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 5px 11px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(223, 199, 156, 0.6) !important;
+  background: rgba(223, 199, 156, 0.16) !important;
+  color: #dfc79c !important;
+  font-family: var(--mono) !important;
   font-size: 11.5px !important;
-  gap: 6px !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.03em !important;
   white-space: nowrap !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  transition: all 0.22s ease !important;
+}
+
+.bg-theme-pill:hover {
+  background: #dfc79c !important;
+  color: #040812 !important;
+  border-color: #dfc79c !important;
+  box-shadow: 0 0 14px rgba(223, 199, 156, 0.65) !important;
+  transform: translateY(-1px) !important;
+}
+
+.bg-theme-pill strong {
+  color: inherit !important;
+  font-weight: 750 !important;
+}
+
+.bg-orbit-glyph {
+  color: inherit !important;
+  font-size: 12px !important;
+}
+
+.bg-pill-label {
+  color: inherit !important;
+  opacity: 0.85 !important;
+}
+
+.bg-cycle-icon {
+  color: inherit !important;
+  font-size: 11px !important;
+  margin-left: 2px !important;
+  transition: transform 0.35s ease !important;
+}
+
+.bg-theme-pill:hover .bg-cycle-icon {
+  transform: rotate(180deg) !important;
+}
+
+/* Install App Button */
+.install-app-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(56, 189, 248, 0.6) !important;
+  background: rgba(56, 189, 248, 0.18) !important;
+  color: #38bdf8 !important;
+  font-family: var(--mono) !important;
+  font-size: 11.5px !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.03em !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  transition: all 0.22s ease !important;
+}
+
+.install-app-btn:hover {
+  background: #38bdf8 !important;
+  color: #040812 !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.7) !important;
+  transform: translateY(-1px) !important;
+}
+
+.install-app-btn svg {
+  stroke: currentColor !important;
   flex-shrink: 0 !important;
 }
 
 .demo-state {
   white-space: nowrap !important;
-  font-size: 11px !important;
-  letter-spacing: 0.08em !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.06em !important;
   flex-shrink: 0 !important;
+  padding: 3px 7px !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(223, 199, 156, 0.3) !important;
+  border-radius: 6px !important;
 }
 
 .alert-button {
-  padding: 6px 10px !important;
+  padding: 5px 10px !important;
+  font-size: 12px !important;
   flex-shrink: 0 !important;
+  white-space: nowrap !important;
 }
 
-/* Responsive collapse on intermediate desktop & laptop widths */
-@media (max-width: 1340px) {
-  .demo-state {
-    display: none !important;
-  }
+/* Mobile toggle only appears on very narrow mobile screens (<768px), on all larger screens topbar smoothly scrolls */
+.menu-toggle {
+  display: none !important;
 }
 
-@media (max-width: 1160px) {
-  .bg-theme-pill .bg-pill-label {
-    display: none !important;
-  }
-}
-
-@media (max-width: 1080px) {
-  .primary-nav {
-    display: none !important;
-  }
+@media (max-width: 768px) {
   .menu-toggle {
     display: grid !important;
     width: 36px !important;
@@ -4538,6 +4646,7 @@ body.is-app-mode .global-ai-fab {
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 8px !important;
     cursor: pointer !important;
+    flex-shrink: 0 !important;
   }
   .menu-toggle span {
     display: block !important;
@@ -5046,20 +5155,22 @@ body {
   line-height: 1.6 !important;
 }
 
-/* Primary Navigation (Bold, Clear, Readable from distance) */
+/* Primary Navigation (Refined, Space Mission High-Legibility) */
 .nav-link {
-  font-size: 15px !important;
-  font-weight: 700 !important;
-  letter-spacing: .02em !important;
-  padding: 10px 18px !important;
+  font-size: 12.5px !important;
+  font-weight: 650 !important;
+  letter-spacing: .015em !important;
+  padding: 5px 9px !important;
 }
 
 .brand-copy strong {
-  font-size: 21px !important;
+  font-size: 15px !important;
+  letter-spacing: .08em !important;
 }
 
 .brand-copy small {
-  font-size: 13px !important;
+  font-size: 10.5px !important;
+  letter-spacing: .12em !important;
 }
 
 /* View Headings & Eyebrows */
