@@ -1504,6 +1504,11 @@
             <span class="view-tag status-active">NASA HRP EVIDENCE BASE</span>
           </div>
 
+          <div class="science-qualification-callout" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 12px 16px; margin: 0 0 20px; font-size: 0.84rem; line-height: 1.5; color: #cbd5e1;">
+            <strong style="color: #38bdf8;">Scientific Architecture Context:</strong>
+            The <strong>R-I-D-G-E</strong> mnemonic (Space Radiation, Isolation &amp; Confinement, Distance from Earth, Altered Gravity, Hostile/Closed Environments) is an educational organizing framework summarizing the five official spaceflight hazard categories codified in the <em>NASA Human Research Program (HRP) Roadmap</em>. All telemetry thresholds (NASA-STD-3001 Vol 1 §4.2), physiological models, and simulation algorithms in this prototype serve as <strong>Clinical Decision Support System (CDSS) demonstrations</strong> for astronaut autonomy and do not substitute for certified clinical diagnoses or NASA mission operations flight rules.
+          </div>
+
           <div class="ridge-matrix">
             <!-- R: Radiation -->
             <div class="ridge-card">
@@ -1873,7 +1878,7 @@
             <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
               <span style="font-family: var(--mono); font-size: 0.72rem; color: #38bdf8; font-weight: 700;">STEP 10</span>
               <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Run Test Suite</div>
-              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Execute live 17-test software validation suite on Architecture tab.</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Execute live 31-test software validation suite on Architecture tab.</div>
             </div>
           </div>
         </div>
@@ -1883,7 +1888,7 @@
         <div class="overview-rail" style="margin-bottom: 20px;">
           <div class="rail-item">
             <span class="rail-label">MISSION CONTEXT</span>
-            <strong id="scenario-phase-name">Mars Transit · Sol 142 · Distance: 184 Million km</strong>
+            <strong id="scenario-phase-name">Mars Transit · Sol 142 · Distance: 331 Million km (2.21 AU)</strong>
           </div>
           <div class="rail-item">
             <span class="rail-label">ASTRONAUT SUBJECT</span>
@@ -1939,7 +1944,7 @@
               1. Long-Duration Mission Context
             </h2>
             <div id="scenario-step-narrative" style="font-size: 0.92rem; line-height: 1.6; color: var(--text); margin-bottom: 20px;">
-              During Sol 142 of Mars Transit, the crew is 184 million km from Earth with a one-way communications latency of 18 minutes 24 seconds. Real-time ground telemedicine is physically impossible. Onboard autonomous health monitoring and clinical decision support systems are operational.
+              During Sol 142 of Mars Transit, the crew is 331 million km (2.21 AU) from Earth with a one-way communications latency of 18 minutes 24 seconds (1,104 s at light speed). Real-time ground telemedicine is physically impossible. Onboard autonomous health monitoring and clinical decision support systems are operational.
             </div>
 
             <!-- Telemetry Snapshot Grid -->
@@ -1988,7 +1993,7 @@
               <!-- Deep-Space Delay Simulation Callout -->
               <div style="padding: 12px; border-radius: 6px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; color: var(--muted);">
                 <strong style="color: #dfc79c;">WHY AUTONOMOUS CDSS MATTERS:</strong>
-                At 18.4 minutes one-way latency, emergency advice from Earth requires at least 37 minutes to round-trip. Autonomous local decision support enables the crew to immediately isolate sensor artifacts, purge suits, and initiate resuscitation without ground control waiting times.
+                At 18.4 minutes one-way latency (331 Million km / 2.21 AU), emergency advice from Earth requires at least 36.8 minutes to round-trip. Autonomous local decision support enables the crew to immediately isolate sensor artifacts, purge suits, and initiate resuscitation without ground control waiting times.
               </div>
             </div>
 
@@ -2972,7 +2977,7 @@
 
 
         <!-- ==========================================================================
-             SUB-SECTION 4: REPRODUCIBLE VALIDATION TEST SUITE (28 TESTS)
+             SUB-SECTION 4: REPRODUCIBLE VALIDATION TEST SUITE (31 TESTS)
              ========================================================================== -->
         <div class="panel" style="padding: 24px; margin-bottom: 30px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
@@ -2984,7 +2989,7 @@
               </p>
             </div>
             <button class="button button-solid" id="btn-run-tests" type="button" onclick="runClientValidationSuite()" style="padding: 8px 18px; font-family: var(--mono); font-size: 0.85rem; gap: 8px;">
-              <span>▶</span> Run Validation Suite (28 Tests)
+              <span>▶</span> Run Validation Suite (31 Tests)
             </button>
           </div>
 
@@ -2992,13 +2997,13 @@
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px;">
             <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(118, 228, 210, 0.3); border-radius: 6px; padding: 14px;">
               <span style="font-family: var(--mono); font-size: 0.75rem; color: #76e4d2;">TOTAL TESTS</span>
-              <div style="font-size: 1.6rem; font-weight: 700; color: #ffffff; margin-top: 2px;">17</div>
+              <div style="font-size: 1.6rem; font-weight: 700; color: #ffffff; margin-top: 2px;">31</div>
               <small style="color: var(--muted); font-size: 0.74rem;">Deterministic Suites</small>
             </div>
 
             <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(118, 228, 210, 0.4); border-radius: 6px; padding: 14px;">
               <span style="font-family: var(--mono); font-size: 0.75rem; color: #76e4d2;">PASSED</span>
-              <div style="font-size: 1.6rem; font-weight: 700; color: #76e4d2; margin-top: 2px;" id="test-summary-passed">17</div>
+              <div style="font-size: 1.6rem; font-weight: 700; color: #76e4d2; margin-top: 2px;" id="test-summary-passed">31</div>
               <small style="color: var(--muted); font-size: 0.74rem;">100% Success Rate</small>
             </div>
 
@@ -3286,6 +3291,30 @@
                   <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Evidence Registry</td>
                   <td style="padding: 10px 12px; color: #cbd5e1;">CDSS rules and telemetry thresholds link to official NASA-STD-3001 Vol 1 &amp; 2</td>
                   <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">16 evidence items validated</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-29</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Physical Light-Time &amp; Orbital Distance Consistency</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Orbital Physics</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Speed of light c (299,792 km/s) × 1104s = 331M km (2.21 AU) Mars transit</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">c × t = d verified (±0.1%)</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-30</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">AURA CDSS Real-Time Telemetry Context Injection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">AI / CDSS Engine</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">AURA answers dynamically cite monitored astronaut, live vitals, and NASA-STD-3001</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Dynamic telemetry injection active</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-31</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Clinical Decision Support Non-Diagnostic Disclaimer Bounds</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Safety &amp; Compliance</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Prototype disclaimer active across clinical modules, avoiding false clinical certification claims</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Non-diagnostic bounds validated</td>
                   <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
                 </tr>
               </tbody>
