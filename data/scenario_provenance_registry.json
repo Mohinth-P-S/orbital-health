@@ -2,9 +2,9 @@
   {
     "id": "SCEN-01",
     "name": "Nominal Baseline (ISS Cupola Rest)",
-    "file": "1_nasa_iss_cupola_nominal.csv",
+    "file": "synthetic_iss_nominal.csv",
     "purpose": "Establish normative resting physiological telemetry during calm Earth observation in the ISS Cupola module.",
-    "dataStatus": "Research-informed synthetic demonstration data (modeled from NASA LSDA-0042 resting astronaut baseline).",
+    "dataStatus": "Synthetic demonstration dataset informed by published aerospace medicine literature (NASA-STD-3001 Vol 1 \u00a74.1; Hughson et al. 2018). No raw LSDA-0042 records are imported into this prototype.",
     "initialValues": {
       "heart_rate": "71.1 bpm",
       "spo2": "99.0%",
@@ -16,7 +16,7 @@
     "playbackTrajectory": "Micro-fluctuations within healthy resting autonomic bounds (HR 70-74 bpm, SpO2 98.9-99.1%).",
     "units": "bpm, %, br/min, \u00b0C, % vol / mmHg, mSv/day",
     "rationale": "Serves as the scientific control state. Proves that anomaly detectors remain silent during healthy baseline telemetry.",
-    "scientificReferences": "NASA-STD-3001 Vol 1 \u00a74.1; NASA LSDA-0042; Hughson et al. (2018).",
+    "scientificReferences": "NASA-STD-3001 Vol 1 \u00a74.1; Hughson et al. (2018).",
     "rulesTriggered": "None (0 active alerts).",
     "expectedResult": "All status indicators display NOMINAL, OPTIMAL, and REGULAR. Zero false-positive alerts.",
     "actualResult": "PASSED - Verified clean nominal baseline across 60 rows with 0 triggered alerts."
@@ -24,9 +24,9 @@
   {
     "id": "SCEN-02",
     "name": "EVA Spacewalk Hypoxia Leak",
-    "file": "2_nasa_eva_spacewalk_hypoxia.csv",
+    "file": "synthetic_eva_hypoxia.csv",
     "purpose": "Simulate life-support breathing gas failure or micro-puncture during Extravehicular Activity.",
-    "dataStatus": "Research-informed synthetic scenario modeled from NASA EVA Flight Surgeon Hypoxia Emergency Protocols.",
+    "dataStatus": "Synthetic demonstration dataset modeling suit breathing gas micro-puncture informed by NASA EVA flight surgeon emergency protocols. No raw flight incident records are imported.",
     "initialValues": {
       "heart_rate": "74.9 bpm",
       "spo2": "99.2%",
@@ -46,9 +46,9 @@
   {
     "id": "SCEN-03",
     "name": "ARED Heavy Resistive Workout",
-    "file": "3_nasa_ared_heavy_exercise.csv",
+    "file": "synthetic_ared_exercise.csv",
     "purpose": "Demonstrate physiological response to 380 lbs resistive loading on the Advanced Resistive Exercise Device.",
-    "dataStatus": "Research-informed synthetic scenario modeled from NASA ASCR ARED flight telemetry standards.",
+    "dataStatus": "Synthetic demonstration dataset modeling physiological resistive workout response informed by published ASCR ARED exercise studies (English et al. 2020).",
     "initialValues": {
       "heart_rate": "77.4 bpm",
       "spo2": "98.4%",
@@ -68,9 +68,9 @@
   {
     "id": "SCEN-04",
     "name": "Deep Space Solar Radiation Flare (SPE)",
-    "file": "4_mars_solar_radiation_flare.csv",
+    "file": "synthetic_mars_radiation.csv",
     "purpose": "Simulate acute high-energy proton flux from a coronal mass ejection during Mars transit.",
-    "dataStatus": "Research-informed synthetic scenario modeled from NASA SRAG and MSL-RAD deep space measurements.",
+    "dataStatus": "Synthetic demonstration dataset modeling solar particle event radiation flux informed by NASA SRAG and MSL-RAD published measurements (Cucinotta et al. 2013).",
     "initialValues": {
       "heart_rate": "72.0 bpm",
       "spo2": "98.9%",
@@ -90,9 +90,9 @@
   {
     "id": "SCEN-05",
     "name": "SANS Cephalad Fluid Shift & LBNP Recovery",
-    "file": "5_microgravity_sans_fluid_shift.csv",
+    "file": "synthetic_sans_fluid_shift.csv",
     "purpose": "Model spaceflight-associated ocular changes caused by sustained microgravity venous engorgement.",
-    "dataStatus": "Research-informed synthetic scenario modeled from NASA HRP SANS Evidence Report and Columbus module sonography.",
+    "dataStatus": "Synthetic demonstration dataset modeling spaceflight cephalad fluid redistribution and optic nerve sheath diameter changes informed by NASA HRP SANS evidence reports and Lee et al. (2020).",
     "initialValues": {
       "heart_rate": "68.0 bpm",
       "spo2": "99.1%",
@@ -106,15 +106,15 @@
     "rationale": "Absence of hydrostatic column moves ~1.5-2.0 L of venous fluid cranial, expanding retrobulbar optic nerve sheath.",
     "scientificReferences": "Lee et al., 'Spaceflight-associated neuro-ocular syndrome,' NPJ Microgravity, 2020; Hargens et al., Front Physiol, 2021.",
     "rulesTriggered": "Rule CDSS-SANS-01: Microgravity Cephalad Redistribution / ONSD Expansion (> 5.8 mm).",
-    "expectedResult": "WARNING alert, protocolized 30-min LBNP (-25 mmHg) recommendation, ophthalmic monitoring checklist.",
+    "expectedResult": "WARNING alert, protocolized LBNP countermeasure guidance, ophthalmic monitoring checklist.",
     "actualResult": "PASSED - Ocular warning alerts fire and successfully link to LBNP countermeasure guidance."
   },
   {
     "id": "SCEN-06",
-    "name": "PhysioNet Cardiac Arrhythmia (Paroxysmal VT)",
-    "file": "6_physionet_ventricular_arrhythmia.csv",
+    "name": "Synthetic Cardiac Arrhythmia Example (Paroxysmal VT)",
+    "file": "synthetic_arrhythmia_example.csv",
     "purpose": "Simulate acute cardiac conduction disturbance (paroxysmal ventricular tachycardia) during spaceflight.",
-    "dataStatus": "Waveform morphological structure adapted from PhysioNet MIT-BIH Arrhythmia Database (#208) with synthetic telemetry time-series.",
+    "dataStatus": "Synthetic arrhythmia-inspired demonstration dataset modeling paroxysmal ventricular tachycardia inspired by morphological principles in PhysioNet MIT-BIH research waveforms (#208). No raw MIT-BIH files are imported into this prototype.",
     "initialValues": {
       "heart_rate": "72.5 bpm",
       "spo2": "99.0%",
@@ -126,7 +126,7 @@
     "playbackTrajectory": "At t=00:07, sudden burst of wide-complex ventricular tachycardia drives instantaneous HR to 168 bpm, SpO2 dips to 94.1%.",
     "units": "bpm, %, br/min, ms (R-R / QRS)",
     "rationale": "Validates CDSS rhythm detection: distinguishes non-exertional sudden tachycardia with distorted QRS from physical exercise.",
-    "scientificReferences": "PhysioNet MIT-BIH Arrhythmia Database; NASA-STD-3001 Vol 1 \u00a74.1; Hughson et al. (2018).",
+    "scientificReferences": "PhysioNet MIT-BIH Arrhythmia Database (#208 research reference); NASA-STD-3001 Vol 1 \u00a74.1; Hughson et al. (2018).",
     "rulesTriggered": "Rule CDSS-CARD-02: Paroxysmal Ventricular Tachyarrhythmia / QRS Morphology Abnormality.",
     "expectedResult": "Immediate CRITICAL alert, emergency AED standby notification, flight surgeon telemetry packet transmission.",
     "actualResult": "PASSED - Arrhythmia event triggers instant critical warning with ECG vector annotation."

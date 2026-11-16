@@ -1,10 +1,10 @@
 /* ==========================================================================
    ORBITAL HEALTH — AUTONOMOUS MISSION SERVICE WORKER (OFFLINE SPACEFLIGHT MODE)
-   Caches all telemetry CSVs, ECG waveforms, and medical AI models so the
-   application operates with 0ms latency even in deep space or offline environments.
+   Pre-caches application shell, synthetic telemetry datasets, and clinical
+   guidelines so the platform remains accessible offline during communication delays.
    ========================================================================== */
 
-const CACHE_NAME = "orbital-health-cache-v6";
+const CACHE_NAME = "orbital-health-cache-v7";
 const STATIC_ASSETS = [
   "./",
   "./index.html",
@@ -26,12 +26,22 @@ const STATIC_ASSETS = [
   "./assets/nasa-earth-airglow-milkyway.jpg",
   "./assets/nasa-jwst-carina-nebula.jpg",
   "./assets/nasa-aurora-earth-limb.jpg",
+  "./data/synthetic_iss_nominal.csv",
+  "./data/synthetic_eva_hypoxia.csv",
+  "./data/synthetic_ared_exercise.csv",
+  "./data/synthetic_mars_radiation.csv",
+  "./data/synthetic_sans_fluid_shift.csv",
+  "./data/synthetic_arrhythmia_example.csv",
   "./data/1_nasa_iss_cupola_nominal.csv",
   "./data/2_nasa_eva_spacewalk_hypoxia.csv",
   "./data/3_nasa_ared_heavy_exercise.csv",
   "./data/4_mars_solar_radiation_flare.csv",
   "./data/5_microgravity_sans_fluid_shift.csv",
-  "./data/6_physionet_ventricular_arrhythmia.csv"
+  "./data/6_physionet_ventricular_arrhythmia.csv",
+  "./data/anomaly_rules_registry.json",
+  "./data/scenario_provenance_registry.json",
+  "./data/scientific_evidence_registry.json",
+  "./data/validation_test_results.json"
 ];
 
 // Install event — precache all telemetry & core assets

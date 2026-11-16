@@ -1,0 +1,121 @@
+timestamp,heart_rate,spo2,respiration,core_temp,cabin_co2,radiation,anomaly_type,notes
+00:01,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:02,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:03,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:04,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:05,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:06,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:07,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:08,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:09,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:10,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:11,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:12,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:13,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:14,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:15,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:16,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:17,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:18,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:19,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:20,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:21,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:22,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:23,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:24,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:25,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:26,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:27,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:28,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:29,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:30,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:31,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:32,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:33,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:34,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:35,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:36,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:37,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:38,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:39,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:40,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:41,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:42,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:43,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:44,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:45,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:46,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:47,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:48,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:49,68.0,99.1,13.5,36.8,0.3,0.42,CEPHALAD_FLUID_ENGORGEMENT,Microgravity cephalic venous engorgement / ONSD 5.7mm
+00:50,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:51,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:52,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:53,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:54,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:55,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:56,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:57,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:58,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+00:59,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:00,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:01,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:02,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:03,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:04,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:05,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:06,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:07,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:08,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:09,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:10,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:11,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:12,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:13,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:14,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:15,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:16,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:17,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:18,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:19,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:20,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:21,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:22,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:23,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:24,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:25,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:26,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:27,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:28,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:29,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:30,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:31,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:32,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:33,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:34,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:35,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:36,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:37,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:38,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:39,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:40,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:41,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:42,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:43,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:44,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:45,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:46,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:47,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:48,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:49,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:50,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:51,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:52,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:53,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:54,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:55,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:56,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:57,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:58,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+01:59,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored
+02:00,74.0,99.1,13.5,36.8,0.3,0.42,LBNP_CHAMBER_DECOMPRESS,Lower Body Negative Pressure -35 mmHg applied - Fluid restored

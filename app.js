@@ -239,45 +239,45 @@ let playbackSpeed = 1;
 let playbackIntervalId = null;
 let currentEcgRate = 72.4;
 let currentDataSourceType = "PRESET"; // "PRESET", "CUSTOM_CSV", "SCENARIO"
-let currentDatasetName = "NASA LSDA-0042 NOMINAL BASELINE (SIMULATED)";
+let currentDatasetName = "SYNTHETIC ISS NOMINAL BASELINE";
 
 // Preset verified CSV datasets map (calibrated demonstration benchmarks)
 const PRESET_DATASETS = {
   nominal: {
-    file: "data/1_nasa_iss_cupola_nominal.csv",
-    name: "NASA LSDA-0042 NOMINAL BASELINE (SIMULATED)",
-    type: "PRESET BENCHMARK",
-    description: "Expedition 72 resting biometrics calibrated against NASA LSDA-0042 published physiological ranges."
+    file: "data/synthetic_iss_nominal.csv",
+    name: "SYNTHETIC ISS NOMINAL BASELINE",
+    type: "SYNTHETIC DEMO",
+    description: "Resting astronaut physiological telemetry modeled from published aerospace medicine ranges (NASA-STD-3001 Vol 1 §4.1; Hughson et al. 2018). No raw LSDA-0042 records imported."
   },
   hypoxia: {
-    file: "data/2_nasa_eva_spacewalk_hypoxia.csv",
+    file: "data/synthetic_eva_hypoxia.csv",
     name: "EVA SUIT HYPOXIA SIMULATION",
     type: "SIMULATED ANOMALY",
     description: "Simulated micro-puncture oxygen drop during Extravehicular Activity."
   },
   ared: {
-    file: "data/3_nasa_ared_heavy_exercise.csv",
+    file: "data/synthetic_ared_exercise.csv",
     name: "ARED HEAVY RESISTIVE EXERCISE",
-    type: "PRESET BENCHMARK",
+    type: "SYNTHETIC DEMO",
     description: "High-load biomechanical resistance countermeasure session."
   },
   radiation: {
-    file: "data/4_mars_solar_radiation_flare.csv",
+    file: "data/synthetic_mars_radiation.csv",
     name: "MARS TRANSIT SOLAR FLARE (SPE)",
     type: "SIMULATED HAZARD",
     description: "Deep space coronal mass ejection solar particle event."
   },
   sans: {
-    file: "data/5_microgravity_sans_fluid_shift.csv",
+    file: "data/synthetic_sans_fluid_shift.csv",
     name: "SANS CEPHALAD FLUID SHIFT",
-    type: "PRESET BENCHMARK",
+    type: "SYNTHETIC DEMO",
     description: "Long-duration microgravity intracranial fluid migration."
   },
   arrhythmia: {
-    file: "data/6_physionet_ventricular_arrhythmia.csv",
+    file: "data/synthetic_arrhythmia_example.csv",
     name: "PHYSIONET VENTRICULAR ARRHYTHMIA BENCHMARK",
-    type: "RESEARCH BENCHMARK",
-    description: "Clinical arrhythmia waveform benchmark derived from PhysioNet MIT-BIH records."
+    type: "SYNTHETIC DEMO",
+    description: "Synthetic arrhythmia-inspired demonstration dataset using morphological principles from PhysioNet MIT-BIH research waveforms (#208). No raw MIT-BIH files imported."
   }
 };
 
@@ -785,8 +785,8 @@ function evaluateTelemetryAnomalies(row) {
       condition: "SpO₂ < 92.0% for >= 2 consecutive 1s readings",
       window: "2 seconds",
       dataQuality: "PASS - Signal-to-noise ratio nominal; PPG perfusion index verified; correlated tachypnea confirms true desaturation.",
-      action: "Check suit umbilical seals, switch to emergency 100% O2 purge loop, remain calm to reduce oxygen consumption.",
-      escalation: "Notify Flight Surgeon and EVA buddy immediately; abort spacewalk if SpO2 fails to recover within 60 seconds.",
+      action: "Check suit umbilical seals, initiate suit oxygen purge per flight rules, and minimize physical exertion. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+      escalation: "Notify Flight Surgeon and EVA partner immediately. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
       scientificSource: "NASA-STD-3001 Vol 2 §6.3; FAA Office of Commercial Space Transportation Physiological Guidelines.",
       isIllustrative: false,
       type: "physiological",
@@ -961,6 +961,7 @@ function renderAlertsUI() {
               ${a.acknowledged ? ` · <span style="font-size: 0.75rem; color: #76e4d2;">Acknowledged at ${a.acknowledgedAt}</span>` : ""}
             </div>
             <div style="display: flex; gap: 8px;">
+              <button class="button button-outline" type="button" style="padding: 4px 10px; font-size: 0.78rem; border-color: rgba(118,228,210,0.5); color: #76e4d2;" onclick="explainAlertRule('${a.id}')">✦ Explain Rule</button>
               <button class="button button-quiet" type="button" style="padding: 4px 10px; font-size: 0.78rem;" onclick="askAi('Explain alert: ${a.title}. What countermeasures should the crew take?')">Consult AURA</button>
               ${!a.acknowledged ? `<button class="button button-solid" type="button" style="padding: 4px 12px; font-size: 0.78rem;" onclick="acknowledgeAlert('${a.id}')">Acknowledge</button>` : `<span style="color: #76e4d2; font-size: 0.8rem; padding: 4px 8px;">✓ Acknowledged</span>`}
             </div>
@@ -1324,7 +1325,7 @@ const SCENARIO_STEPS = [
   {
     stepNum: 1,
     title: "1. Long-Duration Mission Context",
-    astronaut: "Dr. Marcus Chen (Mission Specialist)",
+    astronaut: "Crew Member C (Science Officer)",
     phase: "Mars Transit · Sol 142 · Distance: 184 Million km",
     telemetry: { hr: 72.0, spo2: 99.0, resp: 14.0, temp: 36.9, co2: 0.31, rad: 0.42 },
     system: "Central Nervous System & Circadian Rhythm",
@@ -1337,7 +1338,7 @@ const SCENARIO_STEPS = [
   {
     stepNum: 2,
     title: "2. Simulated Health Measurement Stream",
-    astronaut: "Dr. Marcus Chen",
+    astronaut: "Crew Member C",
     phase: "Extravehicular Activity (EVA) Airlock Egress · MET 04:12:00",
     telemetry: { hr: 78.5, spo2: 98.4, resp: 16.0, temp: 37.0, co2: 0.32, rad: 0.45 },
     system: "Cardiovascular & Pulmonary Dynamics",
@@ -1350,7 +1351,7 @@ const SCENARIO_STEPS = [
   {
     stepNum: 3,
     title: "3. Detection of an Unusual Reading",
-    astronaut: "Dr. Marcus Chen",
+    astronaut: "Crew Member C",
     phase: "Truss Translation · MET 04:38:15",
     telemetry: { hr: 98.2, spo2: 91.8, resp: 21.0, temp: 37.2, co2: 0.34, rad: 0.46 },
     system: "Pulmonary Gas Exchange & Arterial Oxygenation",
@@ -1363,7 +1364,7 @@ const SCENARIO_STEPS = [
   {
     stepNum: 4,
     title: "4. An Understandable Clinical Alert",
-    astronaut: "Dr. Marcus Chen",
+    astronaut: "Crew Member C",
     phase: "Alert Raised · MET 04:39:45",
     telemetry: { hr: 108.0, spo2: 88.4, resp: 23.5, temp: 37.3, co2: 0.35, rad: 0.47 },
     system: "Pulmonary & Cardiovascular Subsystems",
@@ -1376,7 +1377,7 @@ const SCENARIO_STEPS = [
   {
     stepNum: 5,
     title: "5. Identification of Relevant Physiological System",
-    astronaut: "Dr. Marcus Chen",
+    astronaut: "Crew Member C",
     phase: "Anatomical System Isolation",
     telemetry: { hr: 108.0, spo2: 88.4, resp: 23.5, temp: 37.3, co2: 0.35, rad: 0.47 },
     system: "Pulmonary Dynamics (Primary) & Cardiovascular Autonomics (Secondary)",
@@ -1389,7 +1390,7 @@ const SCENARIO_STEPS = [
   {
     stepNum: 6,
     title: "6. AURA Clinical Explanation & Decision Support",
-    astronaut: "Dr. Marcus Chen",
+    astronaut: "Crew Member C",
     phase: "Autonomous Decision Support Output",
     telemetry: { hr: 108.0, spo2: 88.4, resp: 23.5, temp: 37.3, co2: 0.35, rad: 0.47 },
     system: "AURA Flight Surgeon CDSS",
@@ -1398,29 +1399,29 @@ const SCENARIO_STEPS = [
     narrative: `<strong>1. OBSERVATION:</strong> SpO₂ 88.4%, Heart Rate 108 bpm, Respiration 23.5 br/min, Suit pressure 4.12 psid (-0.08 psi/min decay).<br>
 <strong>2. POSSIBLE SIGNIFICANCE:</strong> Acute suit micro-leak causing cabin hypobaric hypoxemia; risk of cognitive impairment within 3 minutes.<br>
 <strong>3. DATA-QUALITY CHECKS:</strong> Optical plethysmograph pulsatility verified; pressure decay confirmed by secondary PLSS transducer.<br>
-<strong>4. SUGGESTED NEXT ACTION:</strong> 1. Activate Secondary Oxygen Pack (SOP) High-Flow Purge (100% O₂). 2. Abort EVA immediately. 3. Partner tether assist for airlock ingress.<br>
-<strong>5. ESCALATION GUIDANCE:</strong> Alert station Crew Medical Officer (CMO) to prep airlock hyperbaric repressurization to 14.7 psi.<br>
+<strong>4. SUGGESTED NEXT ACTION:</strong> 1. Follow mission-approved clinical procedure: activate Secondary Oxygen Pack (SOP) high-flow purge and seek guidance from qualified medical personnel. 2. Prepare partner-assisted airlock ingress.<br>
+<strong>5. ESCALATION GUIDANCE:</strong> Alert station Crew Medical Officer (CMO) to prepare airlock repressurization. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.<br>
 <strong>6. SCIENTIFIC REFERENCE:</strong> NASA-STD-3001 Vol 2 §6.3; ISS Flight Rule B13-102.`,
-    verification: "Protocol generated strictly on local edge processor with 0.0s latency.",
+    verification: "Protocol evaluated client-side in local browser runtime with zero network delay.",
     actionPrompt: "Execute suggested emergency purge and airlock ingress."
   },
   {
     stepNum: 7,
     title: "7. Data-Quality Verification Steps",
-    astronaut: "Dr. Marcus Chen & Commander Anne McClain (EVA Partner)",
+    astronaut: "Crew Member C & Crew Member A (EVA Partner)",
     phase: "Verification & Purge Activation · MET 04:41:00",
     telemetry: { hr: 102.0, spo2: 93.8, resp: 20.0, temp: 37.2, co2: 0.34, rad: 0.46 },
     system: "Suit PLSS Life Support & Sensors",
     statusBadge: "PURGE ENGAGED · O2 RECOVERY",
     badgeColor: "#f59e0b",
-    narrative: "Commander activates manual PLSS High-Flow Purge valve. Pure 100% O₂ flushes the suit helmet. Pulse oximeter confirms arterial saturation recovery from 88.4% to 93.8% within 45 seconds.",
+    narrative: "Crew Member A activates manual PLSS High-Flow Purge valve. Pure 100% O₂ flushes the suit helmet. Pulse oximeter confirms arterial saturation recovery from 88.4% to 93.8% within 45 seconds.",
     verification: "Sensor verification checklist completed: Optical sensor re-seated, finger perfusion index adequate, suit pressure stabilized by SOP accumulator.",
     actionPrompt: "Complete airlock ingress and outer hatch closure."
   },
   {
     stepNum: 8,
     title: "8. Appropriate Escalation Guidance",
-    astronaut: "Dr. Marcus Chen",
+    astronaut: "Crew Member C",
     phase: "Airlock Ingress & Station Escalation · MET 04:44:30",
     telemetry: { hr: 88.0, spo2: 97.4, resp: 16.5, temp: 37.1, co2: 0.33, rad: 0.44 },
     system: "Crew Medical Officer (CMO) & Ground Telemetry Queue",
@@ -1433,7 +1434,7 @@ const SCENARIO_STEPS = [
   {
     stepNum: 9,
     title: "9. Recording Event & Clinical Resolution",
-    astronaut: "Dr. Marcus Chen",
+    astronaut: "Crew Member C",
     phase: "Post-Event Medical Audit & Resolution · MET 05:15:00",
     telemetry: { hr: 72.5, spo2: 99.0, resp: 14.0, temp: 36.9, co2: 0.31, rad: 0.42 },
     system: "Electronic Health Record & Station Safety Registry",
@@ -2006,25 +2007,25 @@ function setMissionDelay(destKey) {
     leo: {
       dest: "ISS Low Earth Orbit (262 mi)",
       delay: "0.28 sec Delay",
-      status: "TELEMEDICINE: NEAR-REALTIME (0.28s)",
+      status: "SIMULATED COMM: NEAR-REALTIME (0.28s)",
       color: "#6ee7b7"
     },
     moon: {
       dest: "Moon Artemis Base Camp (238,900 mi)",
       delay: "1.3 sec Delay",
-      status: "TELEMEDICINE: DELAYED (1.3s)",
+      status: "SIMULATED COMM: MODELED DELAY (1.3s)",
       color: "#f5e6c8"
     },
     "mars-min": {
       dest: "Mars Perihelion Alignment (33.9M mi)",
       delay: "4.2 min Delay",
-      status: "TELEMEDICINE: DELAYED / AUTONOMOUS (4.2m)",
+      status: "SIMULATED COMM: MODELED DELAY / AUTONOMOUS (4.2m)",
       color: "#f59e0b"
     },
     "mars-max": {
       dest: "Mars Interplanetary Opposition (140M mi)",
       delay: "22.0 min Delay",
-      status: "TELEMEDICINE: BLACKOUT / FULL AUTONOMY (22m)",
+      status: "SIMULATED COMM: BLACKOUT / AUTONOMOUS (22m)",
       color: "#f43f5e"
     }
   };
@@ -2038,6 +2039,8 @@ function setMissionDelay(destKey) {
   }
 }
 window.setMissionDelay = setMissionDelay;
+window.showView = showView;
+window.switchView = showView;
 
 function setSubject(key) {
   document.querySelectorAll(".crew-card, .crew-card-editorial").forEach((card) => {
@@ -2048,9 +2051,9 @@ function setSubject(key) {
 
   const subjectDisplay = document.querySelector("#dash-subject-display");
   if (subjectDisplay) {
-    if (key === "anne") subjectDisplay.textContent = "Commander Anne McClain";
-    else if (key === "mike") subjectDisplay.textContent = "Flight Engineer Mike Fincke";
-    else if (key === "marcus") subjectDisplay.textContent = "Dr. Marcus Chen (Specialist)";
+    if (key === "anne") subjectDisplay.textContent = "Crew Member A (Commander · Synthetic)";
+    else if (key === "mike") subjectDisplay.textContent = "Crew Member B (Flight Engineer · Synthetic)";
+    else if (key === "marcus") subjectDisplay.textContent = "Crew Member C (Science Officer · Synthetic)";
   }
 }
 
@@ -2849,3 +2852,128 @@ function filterEvidenceRegistry(category) {
     }
   });
 }
+
+
+/* ==========================================================================
+   EXPLAINABLE CDSS RULE MODAL & CLINICAL TRACEABILITY ENGINE
+   ========================================================================== */
+function explainAlertRule(identifier) {
+  let alertObj = (typeof ALERTS_STORE !== 'undefined') ? ALERTS_STORE.find(a => a.id === identifier) : null;
+  let ruleObj = null;
+
+  if (window.ANOMALY_RULES && window.ANOMALY_RULES.length > 0) {
+    if (alertObj) {
+      const tr = (alertObj.triggerRule || "").toUpperCase();
+      if (tr.includes("O2") || tr.includes("HYPOX")) ruleObj = window.ANOMALY_RULES.find(r => r.ruleId === "CDSS-RULE-O2-01");
+      else if (tr.includes("HR") || tr.includes("TACHY")) ruleObj = window.ANOMALY_RULES.find(r => r.ruleId === "CDSS-RULE-HR-01");
+      else if (tr.includes("ENV") || tr.includes("CO2")) ruleObj = window.ANOMALY_RULES.find(r => r.ruleId === "CDSS-RULE-ENV-01");
+      else if (tr.includes("RAD")) ruleObj = window.ANOMALY_RULES.find(r => r.ruleId === "CDSS-RULE-RAD-01");
+      else if (tr.includes("SANS")) ruleObj = window.ANOMALY_RULES.find(r => r.ruleId === "CDSS-RULE-SANS-01");
+      else if (tr.includes("CARD") || tr.includes("ARRHYTH")) ruleObj = window.ANOMALY_RULES.find(r => r.ruleId === "CDSS-RULE-CARD-02");
+    } else {
+      ruleObj = window.ANOMALY_RULES.find(r => r.ruleId === identifier || r.ruleId.replace("RULE-", "") === identifier);
+    }
+  }
+
+  // Fallback if rule not in memory
+  if (!ruleObj) {
+    ruleObj = {
+      ruleId: alertObj?.triggerRule?.split(":")[0] || identifier || "CDSS-RULE-O2-01",
+      name: alertObj?.title || "Acute Arterial Hypoxemia",
+      severity: alertObj?.severity === "high" ? "CRITICAL" : "WARNING",
+      clinicalReferenceThreshold: "Clinical Reference: NASA-STD-3001 Vol 2 §6.3: SpO2 < 95% indicates mild hypoxemia; SpO2 < 90% severe hypoxemia.",
+      demonstrationThreshold: "Project Demonstration Trigger: SpO2 < 92.0% for >= 2 consecutive 1-second readings.",
+      dataQualityCheck: "Evaluates PPG perfusion index (PI > 0.5%) and correlates with respiratory rate elevation to exclude probe disconnect.",
+      cautiousNextStep: "Check suit umbilical seals, switch to emergency oxygen loop per flight rules, and minimize physical exertion. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+      escalationGuidance: "Notify Flight Surgeon and EVA partner immediately. Follow the mission-approved clinical procedure and seek guidance from qualified medical personnel.",
+      scientificSource: "NASA-STD-3001 Vol 2 §6.3; FAA Office of Commercial Space Transportation Physiological Guidelines."
+    };
+  }
+
+  renderRuleModal(ruleObj, alertObj);
+}
+window.explainAlertRule = explainAlertRule;
+
+function renderRuleModal(ruleObj, alertObj) {
+  let modal = document.querySelector("#explain-rule-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "explain-rule-modal";
+    modal.className = "rule-modal-backdrop";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", "rule-modal-title");
+    document.body.appendChild(modal);
+  }
+
+  const sevColor = ruleObj.severity === "CRITICAL" ? "#ef4444" : ruleObj.severity === "WARNING" ? "#f59e0b" : "#76e4d2";
+
+  modal.innerHTML = `
+    <div class="rule-modal-dialog" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 14px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="border: 1px solid ${sevColor}; color: ${sevColor}; font-family: var(--mono); font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; font-weight: 700;">${ruleObj.severity}</span>
+          <h3 id="rule-modal-title" style="margin: 0; font-size: 1.15rem; color: #ffffff;">${ruleObj.ruleId}: ${ruleObj.name}</h3>
+        </div>
+        <button type="button" onclick="closeRuleModal()" style="background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer; padding: 4px 8px;" aria-label="Close modal">✕</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem;">
+        <div style="background: rgba(15,23,42,0.65); border: 1px solid rgba(118,228,210,0.2); border-radius: 6px; padding: 12px;">
+          <span style="font-family: var(--mono); font-size: 0.72rem; color: #76e4d2; text-transform: uppercase; font-weight: 700;">1. Clinical Reference Threshold</span>
+          <p style="margin: 4px 0 0; color: #f8fafc; line-height: 1.5;">${ruleObj.clinicalReferenceThreshold || ruleObj.scientificSource}</p>
+        </div>
+
+        <div style="background: rgba(15,23,42,0.65); border: 1px solid rgba(245,158,11,0.25); border-radius: 6px; padding: 12px;">
+          <span style="font-family: var(--mono); font-size: 0.72rem; color: #f59e0b; text-transform: uppercase; font-weight: 700;">2. Project Demonstration Threshold</span>
+          <p style="margin: 4px 0 0; color: #f8fafc; line-height: 1.5;">${ruleObj.demonstrationThreshold || ruleObj.condition || alertObj?.measurement || 'Demonstration threshold reached'}</p>
+        </div>
+
+        <div style="background: rgba(15,23,42,0.65); border: 1px solid rgba(56,189,248,0.25); border-radius: 6px; padding: 12px;">
+          <span style="font-family: var(--mono); font-size: 0.72rem; color: #38bdf8; text-transform: uppercase; font-weight: 700;">3. Sensor & Telemetry Data Quality Verification</span>
+          <p style="margin: 4px 0 0; color: #cbd5e1; line-height: 1.5;">${ruleObj.dataQualityCheck || 'Evaluates signal continuity, perfusion index, and motion artifact cross-correlation.'}</p>
+        </div>
+
+        <div style="background: rgba(15,23,42,0.65); border: 1px solid rgba(239,68,68,0.25); border-radius: 6px; padding: 12px;">
+          <span style="font-family: var(--mono); font-size: 0.72rem; color: #ef4444; text-transform: uppercase; font-weight: 700;">4. Clinical Operational Guidance</span>
+          <p style="margin: 4px 0 0; color: #cbd5e1; line-height: 1.5;">${ruleObj.cautiousNextStep || 'Follow mission-approved clinical procedure.'}</p>
+          <div style="margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.06); color: #dfc79c; font-size: 0.82rem;">
+            <strong>Escalation:</strong> ${ruleObj.escalationGuidance || 'Notify ground flight surgeons.'}
+          </div>
+        </div>
+
+        <div style="background: rgba(15,23,42,0.65); border: 1px solid rgba(168,85,247,0.25); border-radius: 6px; padding: 12px;">
+          <span style="font-family: var(--mono); font-size: 0.72rem; color: #c084fc; text-transform: uppercase; font-weight: 700;">5. Scientific Evidence Citation</span>
+          <p style="margin: 4px 0 0; color: #94a3b8; font-size: 0.82rem; line-height: 1.5;">${ruleObj.scientificSource || 'NASA-STD-3001 Bioastronautics Standards'}</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px;">
+        <button class="button button-quiet" type="button" onclick="closeRuleModal()">Close</button>
+        <button class="button button-solid" type="button" onclick="consultAuraForRule('${ruleObj.ruleId}', '${ruleObj.name}')" style="gap: 6px;">
+          <span>✦</span> Consult AURA CDSS
+        </button>
+      </div>
+    </div>
+  `;
+
+  modal.style.display = "flex";
+  modal.onclick = closeRuleModal;
+}
+window.renderRuleModal = renderRuleModal;
+
+function closeRuleModal() {
+  const modal = document.querySelector("#explain-rule-modal");
+  if (modal) modal.style.display = "none";
+}
+window.closeRuleModal = closeRuleModal;
+
+function consultAuraForRule(ruleId, ruleName) {
+  closeRuleModal();
+  if (typeof showView === 'function') showView('ai'); else if (typeof switchView === 'function') switchView('ai');
+  const query = `Explain CDSS Rule ${ruleId} (${ruleName}): What are the physiological mechanisms, sensor verification steps, and mission-approved clinical actions?`;
+  if (typeof askAi === 'function') {
+    setTimeout(() => askAi(query), 200);
+  }
+}
+window.consultAuraForRule = consultAuraForRule;

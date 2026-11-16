@@ -41,12 +41,12 @@ All physiological baselines, waveforms, and operational protocols correlate with
 ├── styles.css              # Custom responsive dark-space design system
 ├── app.js                  # Routing, CSV streaming engine, ECG canvas, and AI logic
 ├── data/                   # Bundled telemetry CSV datasets
-│   ├── 1_nasa_iss_cupola_nominal.csv
-│   ├── 2_nasa_eva_spacewalk_hypoxia.csv
-│   ├── 3_nasa_ared_heavy_exercise.csv
-│   ├── 4_mars_solar_radiation_flare.csv
-│   ├── 5_microgravity_sans_fluid_shift.csv
-│   └── 6_physionet_ventricular_arrhythmia.csv
+│   ├── synthetic_iss_nominal.csv
+│   ├── synthetic_eva_hypoxia.csv
+│   ├── synthetic_ared_exercise.csv
+│   ├── synthetic_mars_radiation.csv
+│   ├── synthetic_sans_fluid_shift.csv
+│   └── synthetic_arrhythmia_example.csv
 └── README.md               # Project documentation
 ```
 
@@ -74,7 +74,7 @@ Orbital Health is implemented as an installable application across mobile, deskt
 
 ### 1. Progressive Web App (PWA) — Mobile & Desktop
 - **Live Production URL:** [https://orbital-health.vercel.app](https://orbital-health.vercel.app)
-- **Offline Spaceflight Mode:** Powered by `sw.js` (Service Worker) which pre-caches all telemetry datasets, waveforms, and clinical guidelines for 0ms latency offline operation during deep-space Earth blackout windows.
+- **Offline Spaceflight Mode:** Powered by `sw.js` (Service Worker) which pre-caches all telemetry datasets, waveforms, and clinical guidelines for offline operation during deep-space Earth communication delay windows.
 - **Mobile Installation (iOS / Android):** Open the live URL on any mobile device and tap "Add to Home Screen" or "Install App" to run in standalone full-screen mode with custom app icons.
 - **Desktop Installation (Windows / macOS / Chrome / Edge):** Click the "Install App" button in the topbar or address bar to install as a standalone desktop app.
 
