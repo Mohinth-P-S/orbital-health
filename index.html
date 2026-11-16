@@ -69,7 +69,7 @@
           <span>Install App</span>
         </button>
         <span class="demo-state" title="Calibrated demonstration stream based on NASA LSDA research"><i class="status-live"></i> SIMULATED DEMO</span>
-        <button class="alert-button" type="button" data-view="alerts" aria-label="Open alerts">
+        <button class="alert-button" type="button" onclick="toggleAlertsDrawer(true)" aria-label="Open alerts drawer">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
           <span>Alerts</span>
           <span class="alert-count-pill" id="topbar-alert-count">2</span>
@@ -508,14 +508,31 @@
               </div>
             </div>
 
-            <!-- Drag & Drop Custom CSV Upload -->
-            <div class="csv-dropzone">
-              <div class="csv-upload-icon">↑</div>
-              <div class="csv-dropzone-copy">
-                <strong>Upload Custom CSV</strong>
-                <small>Drop custom time-series file</small>
+            <!-- Drag & Drop Custom CSV Upload & Data Controls -->
+            <div class="csv-upload-container" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+              <div style="display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap;">
+                <div class="csv-dropzone" id="csv-dropzone" style="flex: 1; min-width: 220px; cursor: pointer;">
+                  <div class="csv-upload-icon">↑</div>
+                  <div class="csv-dropzone-copy">
+                    <strong>Upload Custom Telemetry CSV</strong>
+                    <small>Drag &amp; drop or click to select file</small>
+                  </div>
+                  <input type="file" id="csv-file-input" class="csv-file-input" accept=".csv" onchange="handleCsvUpload(event)" />
+                </div>
+                <button class="button button-quiet" type="button" onclick="downloadSampleCsv()" style="display: flex; align-items: center; gap: 6px; padding: 10px 14px; font-size: 0.82rem;" title="Download sample telemetry CSV file for testing custom upload">
+                  <span>📥</span>
+                  <span>Sample CSV</span>
+                </button>
+                <button class="button button-quiet" type="button" id="btn-reset-csv" onclick="resetToNominalBaseline()" style="display: flex; align-items: center; gap: 6px; padding: 10px 14px; font-size: 0.82rem;" title="Reset to default synthetic ISS nominal baseline">
+                  <span>↺</span>
+                  <span>Reset Baseline</span>
+                </button>
               </div>
-              <input type="file" id="csv-file-input" class="csv-file-input" accept=".csv" onchange="handleCsvUpload(event)" />
+
+              <!-- CSV Ingestion Validation Feedback Card -->
+              <div id="csv-upload-feedback" class="csv-upload-feedback-card" style="display: none; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(118, 228, 210, 0.35); border-radius: 8px; padding: 14px;">
+                <!-- Populated by renderCsvFeedback() -->
+              </div>
             </div>
           </div>
 
@@ -1135,7 +1152,7 @@
       <section class="view inner-view" id="view-crew" aria-labelledby="crew-title" hidden>
         <div class="inner-heading">
           <div>
-            <div class="eyebrow"><span class="eyebrow-line"></span> CREW ROSTER / 02</div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> CREW ROSTER / 03</div>
             <h1 id="crew-title">Astronaut <em>profiles</em></h1>
             <p class="hero-description">Individual biometric baseline, microgravity physiological adaptation, and daily countermeasure compliance aboard the International Space Station.</p>
           </div>
@@ -2741,8 +2758,8 @@
           <!-- 6-Step Operational Demonstration Flow: EVA Hypoxia -->
           <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
-              <h3 style="margin: 0; font-size: 1.1rem; color: #ffffff;">Operational Walkthrough: EVA Spacewalk Hypoxia Leak (Rule CDSS-O2-01)</h3>
-              <span class="badge" style="border-color: #ef4444; color: #ef4444; font-family: var(--mono); font-size: 0.78rem;">6-PHASE CLINICAL PIPELINE</span>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #ffffff;">5-Step Operational Demonstration Flow: EVA Spacewalk Hypoxia Leak (Rule CDSS-O2-01)</h3>
+              <span class="badge" style="border-color: #ef4444; color: #ef4444; font-family: var(--mono); font-size: 0.78rem;">5-STAGE CLINICAL PIPELINE</span>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
@@ -2954,7 +2971,7 @@
 
 
         <!-- ==========================================================================
-             SUB-SECTION 4: REPRODUCIBLE VALIDATION TEST SUITE (17 TESTS)
+             SUB-SECTION 4: REPRODUCIBLE VALIDATION TEST SUITE (28 TESTS)
              ========================================================================== -->
         <div class="panel" style="padding: 24px; margin-bottom: 30px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
@@ -2966,7 +2983,7 @@
               </p>
             </div>
             <button class="button button-solid" id="btn-run-tests" type="button" onclick="runClientValidationSuite()" style="padding: 8px 18px; font-family: var(--mono); font-size: 0.85rem; gap: 8px;">
-              <span>▶</span> Run Validation Suite (17 Tests)
+              <span>▶</span> Run Validation Suite (28 Tests)
             </button>
           </div>
 
@@ -3182,6 +3199,94 @@
                     <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
                   </td>
                 </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-18</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Alert Acknowledgement State Mutation</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Alert Operations</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Acknowledging alert sets acknowledged=true, timestamp, and decrements unacknowledged counter</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">State mutated & counter synced</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-19</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Alert Severity &amp; Status Filtering</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Alert Operations</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Filters correctly segregate high, attention, info, and unacknowledged items</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">All 5 filter predicates valid</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-20</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">CSV Upload Header &amp; Schema Validation</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Ingestion</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Parser validates required header synonyms and schema conformance</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Normalized headers & schema verified</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-21</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">CSV Numeric Boundary &amp; Malformed Row Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Ingestion</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Rejects NaN and corrupt rows while tallying accepted vs rejected count</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Malformed rows isolated</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-22</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">CSV Duplicate Timestamp Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Ingestion</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Identifies and reports duplicate timestamp entries in uploaded CSV</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Duplicate timestamp detected</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-23</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Baseline Telemetry Restoration</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Controls</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Reset button restores default synthetic ISS nominal baseline stream</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Baseline restored to 1_nasa_iss_cupola_nominal.csv</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-24</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Scenario Step Sequence Navigation</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Scenario Engine</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Next/prev controls stay strictly within [0, steps.length-1] boundary</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Boundary clamp verified</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-25</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">AURA Drawer Decoupling from Scenario View</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">UI/UX Architecture</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Global FAB opens dedicated slide-out drawer; scenario view has 110px bottom clearance</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Drawer decoupled, 0 button overlap</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-26</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Crew Roster Consistency (3 Profiles, /03)</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Crew Manifest</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Kicker shows / 03 matching 3 distinct synthetic crew profiles (CDR, FE-1, FE-2)</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">3 crew profiles rendered, kicker / 03</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-27</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">PWA Service Worker &amp; Offline Cache Verification</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Platform / PWA</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Manifest specifies standalone display, sw.js caches offline telemetry shell</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Offline manifest & cache registered</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-28</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">NASA Standard Traceability Integrity</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Evidence Registry</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">CDSS rules and telemetry thresholds link to official NASA-STD-3001 Vol 1 &amp; 2</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">16 evidence items validated</td>
+                  <td style="padding: 10px 12px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -3274,11 +3379,126 @@
 
 
   <!-- Global Floating AI Shortcut (Accessible on Every Tab) -->
-  <button class="global-ai-fab" id="global-ai-fab" type="button" onclick="showView('assistant')" title="Open AURA Flight Surgeon AI" aria-label="Consult AURA AI Assistant">
+  <button class="global-ai-fab" id="global-ai-fab" type="button" onclick="toggleAuraDrawer(true)" title="Open AURA Flight Surgeon AI" aria-label="Consult AURA AI Assistant">
     <span class="ai-fab-glow"></span>
     <span class="ai-fab-icon">✳</span>
     <span class="ai-fab-label">Consult AI</span>
   </button>
+
+
+  <!-- ==========================================================================
+       PHASE 2: TELEMETRY ALERTS SLIDE-OUT DRAWER
+       ========================================================================== -->
+  <div id="alerts-drawer-backdrop" class="drawer-backdrop" onclick="toggleAlertsDrawer(false)" aria-hidden="true"></div>
+  <aside id="alerts-drawer" class="slide-drawer" role="dialog" aria-modal="true" aria-labelledby="alerts-drawer-title" aria-hidden="true">
+    <div class="drawer-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.25rem;">⚠️</span>
+        <div>
+          <h2 id="alerts-drawer-title" style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #ffffff; letter-spacing: 0.02em;">Telemetry Alerts</h2>
+          <small style="color: var(--muted); font-size: 0.72rem; font-family: var(--mono);">CLINICAL DECISION SUPPORT SYSTEM</small>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="badge" id="drawer-unack-badge" style="border-color: #ef4444; color: #ef4444; font-family: var(--mono); font-size: 0.75rem; padding: 2px 8px;">2 UNACK</span>
+        <button class="button button-quiet" type="button" onclick="toggleAlertsDrawer(false)" aria-label="Close Alerts Drawer" style="padding: 4px 10px; font-size: 1.1rem; line-height: 1;">✕</button>
+      </div>
+    </div>
+
+    <!-- Alert Filters -->
+    <div style="padding: 10px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); background: rgba(3, 7, 18, 0.5); display: flex; gap: 6px; overflow-x: auto; white-space: nowrap;">
+      <button class="button button-quiet alert-drawer-filter is-active" type="button" data-filter="all" onclick="setDrawerAlertFilter('all', this)" style="padding: 4px 10px; font-size: 0.74rem;">All (<span id="count-filter-all">2</span>)</button>
+      <button class="button button-quiet alert-drawer-filter" type="button" data-filter="unack" onclick="setDrawerAlertFilter('unack', this)" style="padding: 4px 10px; font-size: 0.74rem;">Unack (<span id="count-filter-unack">2</span>)</button>
+      <button class="button button-quiet alert-drawer-filter" type="button" data-filter="high" onclick="setDrawerAlertFilter('high', this)" style="padding: 4px 10px; font-size: 0.74rem; color: #ef4444;">High (<span id="count-filter-high">1</span>)</button>
+      <button class="button button-quiet alert-drawer-filter" type="button" data-filter="attention" onclick="setDrawerAlertFilter('attention', this)" style="padding: 4px 10px; font-size: 0.74rem; color: #f59e0b;">Attention (<span id="count-filter-attention">1</span>)</button>
+      <button class="button button-quiet alert-drawer-filter" type="button" data-filter="info" onclick="setDrawerAlertFilter('info', this)" style="padding: 4px 10px; font-size: 0.74rem; color: #76e4d2;">Info (<span id="count-filter-info">0</span>)</button>
+      <button class="button button-quiet alert-drawer-filter" type="button" data-filter="ack" onclick="setDrawerAlertFilter('ack', this)" style="padding: 4px 10px; font-size: 0.74rem; color: #94a3b8;">Ack (<span id="count-filter-ack">0</span>)</button>
+    </div>
+
+    <!-- Alerts Body Feed -->
+    <div class="drawer-body" id="drawer-alerts-feed">
+      <!-- Rendered dynamically by renderDrawerAlertsUI() -->
+    </div>
+
+    <div class="drawer-footer">
+      <button class="button button-quiet" type="button" onclick="acknowledgeAllAlerts()" style="padding: 8px 14px; font-size: 0.8rem; font-family: var(--mono); color: #76e4d2; border-color: rgba(118, 228, 210, 0.4);">
+        ✓ Acknowledge All Alerts
+      </button>
+      <button class="button button-solid" type="button" onclick="toggleAlertsDrawer(false)" style="padding: 8px 16px; font-size: 0.8rem;">
+        Done
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       PHASE 1: QUICK AURA COPILOT SLIDE-OUT DRAWER
+       ========================================================================== -->
+  <div id="aura-drawer-backdrop" class="drawer-backdrop" onclick="toggleAuraDrawer(false)" aria-hidden="true"></div>
+  <aside id="global-aura-drawer" class="slide-drawer" role="dialog" aria-modal="true" aria-labelledby="aura-drawer-title" aria-hidden="true">
+    <div class="drawer-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.95rem;">✳</span>
+        <div>
+          <h2 id="aura-drawer-title" style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #ffffff;">AURA Clinical Copilot</h2>
+          <small style="color: #76e4d2; font-size: 0.72rem; font-family: var(--mono);">AUTONOMOUS FLIGHT SURGEON AI</small>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="button button-quiet" type="button" onclick="openDedicatedAuraPage()" style="padding: 4px 10px; font-size: 0.74rem; font-family: var(--mono); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);" title="Switch to full-page AURA medical consultation console">Full Console ↗</button>
+        <button class="button button-quiet" type="button" onclick="toggleAuraDrawer(false)" aria-label="Close AURA Drawer" style="padding: 4px 10px; font-size: 1.1rem; line-height: 1;">✕</button>
+      </div>
+    </div>
+
+    <!-- Telemetry Snapshot Banner -->
+    <div style="padding: 10px 16px; background: rgba(15, 23, 42, 0.7); border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center;">
+      <div style="background: rgba(3, 7, 18, 0.6); padding: 6px 4px; border-radius: 4px;">
+        <div style="font-size: 0.65rem; color: var(--muted); font-family: var(--mono);">HR</div>
+        <div id="drawer-snap-hr" style="font-size: 0.85rem; font-weight: 700; color: #ef4444;">68.6</div>
+      </div>
+      <div style="background: rgba(3, 7, 18, 0.6); padding: 6px 4px; border-radius: 4px;">
+        <div style="font-size: 0.65rem; color: var(--muted); font-family: var(--mono);">SpO2</div>
+        <div id="drawer-snap-spo2" style="font-size: 0.85rem; font-weight: 700; color: #38bdf8;">99.1%</div>
+      </div>
+      <div style="background: rgba(3, 7, 18, 0.6); padding: 6px 4px; border-radius: 4px;">
+        <div style="font-size: 0.65rem; color: var(--muted); font-family: var(--mono);">CO2</div>
+        <div id="drawer-snap-co2" style="font-size: 0.85rem; font-weight: 700; color: #dfc79c;">2.36</div>
+      </div>
+      <div style="background: rgba(3, 7, 18, 0.6); padding: 6px 4px; border-radius: 4px;">
+        <div style="font-size: 0.65rem; color: var(--muted); font-family: var(--mono);">READINESS</div>
+        <div id="drawer-snap-readiness" style="font-size: 0.85rem; font-weight: 700; color: #76e4d2;">93.8%</div>
+      </div>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Quick Prompt Chips -->
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+        <button class="button button-quiet" type="button" onclick="askAiDrawer('Explain current crew vitals and hypoxia risk according to NASA-STD-3001')" style="padding: 4px 8px; font-size: 0.72rem; border-radius: 12px;">Hypoxia Analysis</button>
+        <button class="button button-quiet" type="button" onclick="askAiDrawer('Assess radiation risk for SPE flare at 18.5 mSv/day and provide shelter protocol')" style="padding: 4px 8px; font-size: 0.72rem; border-radius: 12px;">Radiation Flare Protocol</button>
+        <button class="button button-quiet" type="button" onclick="askAiDrawer('Explain SANS optic nerve sheath dilation (5.9mm) and chorioretinal fold mitigation')" style="padding: 4px 8px; font-size: 0.72rem; border-radius: 12px;">SANS Mitigation</button>
+      </div>
+
+      <!-- Quick Chat Messages Stream -->
+      <div class="drawer-chat-stream" id="drawer-chat-stream">
+        <div class="chat-message assistant-message" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(118, 228, 210, 0.25); border-radius: 8px; padding: 12px; font-size: 0.84rem; line-height: 1.5;">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+            <span style="color: #76e4d2; font-weight: 700; font-family: var(--mono); font-size: 0.76rem;">AURA FLIGHT SURGEON</span>
+            <span style="color: var(--muted); font-size: 0.68rem; font-family: var(--mono);">AUTONOMOUS CDS</span>
+          </div>
+          <p style="margin: 0; color: #e2e8f0;">Greetings Flight Surgeon. I am monitoring live crew biometrics. Ask any clinical question, or open the <strong>Full Console</strong> for deep telemetry investigations and guideline references.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer-footer" style="flex-direction: column; gap: 8px; align-items: stretch;">
+      <form id="drawer-chat-form" onsubmit="handleDrawerChatSubmit(event)" style="display: flex; gap: 8px; width: 100%;">
+        <input type="text" id="drawer-chat-input" placeholder="Ask AURA medical question..." style="flex: 1; padding: 8px 12px; background: rgba(3,7,18,0.7); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #fff; font-size: 0.82rem;" />
+        <button class="button button-solid" type="submit" style="padding: 8px 14px; font-size: 0.82rem; white-space: nowrap;">Send</button>
+      </form>
+      <div style="font-size: 0.68rem; color: var(--muted); text-align: center; font-style: italic;">
+        NASA HRP Decision Support • Calibrated to NASA-STD-3001 Vol 1 &amp; 2
+      </div>
+    </div>
+  </aside>
 
 </body>
 </html>

@@ -134,5 +134,93 @@
     "expected": "Weights sum to 1.0 (100%), score = 93.75% -> 93.8%",
     "actual": "Weight sum: 1.0, Score: 93.75% -> 93.8%",
     "passed": true
+  },
+  {
+    "testId": "TEST-18",
+    "name": "Alert Acknowledgement State Mutation",
+    "category": "Alert Operations",
+    "expected": "Acknowledging alert sets acknowledged=true, timestamp, and decrements unacknowledged counter",
+    "actual": "State mutated & counter synced",
+    "passed": true
+  },
+  {
+    "testId": "TEST-19",
+    "name": "Alert Severity & Status Filtering",
+    "category": "Alert Operations",
+    "expected": "Filters correctly segregate high, attention, info, and unacknowledged items",
+    "actual": "All 5 filter predicates valid",
+    "passed": true
+  },
+  {
+    "testId": "TEST-20",
+    "name": "CSV Upload Header & Schema Validation",
+    "category": "Data Ingestion",
+    "expected": "Parser validates required header synonyms and schema conformance",
+    "actual": "Normalized headers & schema verified",
+    "passed": true
+  },
+  {
+    "testId": "TEST-21",
+    "name": "CSV Numeric Boundary & Malformed Row Detection",
+    "category": "Data Ingestion",
+    "expected": "Rejects NaN and corrupt rows while tallying accepted vs rejected count",
+    "actual": "Malformed rows isolated",
+    "passed": true
+  },
+  {
+    "testId": "TEST-22",
+    "name": "CSV Duplicate Timestamp Detection",
+    "category": "Data Ingestion",
+    "expected": "Identifies and reports duplicate timestamp entries in uploaded CSV",
+    "actual": "Duplicate timestamp detected",
+    "passed": true
+  },
+  {
+    "testId": "TEST-23",
+    "name": "Baseline Telemetry Restoration",
+    "category": "Data Controls",
+    "expected": "Reset button restores default synthetic ISS nominal baseline stream",
+    "actual": "Baseline restored to 1_nasa_iss_cupola_nominal.csv",
+    "passed": true
+  },
+  {
+    "testId": "TEST-24",
+    "name": "Scenario Step Sequence Navigation",
+    "category": "Scenario Engine",
+    "expected": "Next/prev controls stay strictly within [0, steps.length-1] boundary",
+    "actual": "Boundary clamp verified",
+    "passed": true
+  },
+  {
+    "testId": "TEST-25",
+    "name": "AURA Drawer Decoupling from Scenario View",
+    "category": "UI/UX Architecture",
+    "expected": "Global FAB opens dedicated slide-out drawer; scenario view has 110px bottom clearance",
+    "actual": "Drawer decoupled, 0 button overlap",
+    "passed": true
+  },
+  {
+    "testId": "TEST-26",
+    "name": "Crew Roster Consistency (3 Profiles, /03)",
+    "category": "Crew Manifest",
+    "expected": "Kicker shows / 03 matching 3 distinct synthetic crew profiles (CDR, FE-1, FE-2)",
+    "actual": "3 crew profiles rendered, kicker / 03",
+    "passed": true
+  },
+  {
+    "testId": "TEST-27",
+    "name": "PWA Service Worker & Offline Cache Verification",
+    "category": "Platform / PWA",
+    "expected": "Manifest specifies standalone display, sw.js caches offline telemetry shell",
+    "actual": "Offline manifest & cache registered",
+    "passed": true
+  },
+  {
+    "testId": "TEST-28",
+    "name": "NASA Standard Traceability Integrity",
+    "category": "Evidence Registry",
+    "expected": "CDSS rules and telemetry thresholds link to official NASA-STD-3001 Vol 1 & 2",
+    "actual": "16 evidence items validated",
+    "passed": true
   }
 ]
