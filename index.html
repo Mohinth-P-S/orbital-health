@@ -91,7 +91,7 @@
               <button class="button button-quiet" type="button" data-view="bodymap"><span class="assistant-orbit" style="border-color: rgba(118,228,210,0.5); color: #76e4d2;" aria-hidden="true">⚲</span> Interactive body map</button>
               <button class="button button-quiet" type="button" data-view="assistant"><span class="assistant-orbit" aria-hidden="true">✳</span> Consult AURA AI</button>
             </div>
-            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Demonstration Telemetry Stream</strong> · Calibrated to NASA LSDA-0042 & Bioastronautics Standards (Simulated Prototype)</span></div>
+            <div class="data-caption"><span class="caption-icon">i</span><span><strong>Research-Informed Demonstration Stream</strong> · Baseline calibrated against NASA LSDA & Bioastronautics literature (Simulated Demo Prototype)</span></div>
           </div>
 
           <figure class="nasa-hero">
@@ -113,9 +113,9 @@
         </div>
 
         <div class="overview-rail">
-          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring"></i> NASA LSDA Stream Active</strong></div>
+          <div class="rail-item"><span class="rail-label">DATA STATUS</span><strong><i class="status-ring" style="background: #dfc79c; box-shadow: 0 0 8px rgba(223,199,156,0.5);"></i> SIMULATED DEMO STREAM</strong></div>
           <div class="rail-item"><span class="rail-label">MONITORING</span><strong>Bio-Harness + SANS Model</strong></div>
-          <div class="rail-item"><span class="rail-label">ASSISTANT</span><strong>AURA Medical AI (Online) <span class="tiny-arrow">↗</span></strong></div>
+          <div class="rail-item"><span class="rail-label">ASSISTANT</span><strong>AURA Decision Support (Local Prototype) <span class="tiny-arrow">↗</span></strong></div>
           <button class="rail-link" type="button" data-view="sources">Explore data sources <span>↗</span></button>
         </div>
 
@@ -124,6 +124,45 @@
              =================================================================== -->
 
         <!-- SECTION 1: ARCHITECTURE & TECH STACK -->
+
+          <!-- 5-STEP MISSION WORKFLOW (CHALLENGE RELEVANCE: MONITOR -> INTERPRET -> VERIFY -> ACT -> ESCALATE) -->
+          <div class="mission-workflow-panel" style="margin: 28px 0; padding: 22px 24px; border-radius: 14px; background: rgba(11, 18, 34, 0.88); border: 1px solid rgba(223, 199, 156, 0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <span class="panel-kicker" style="color: #dfc79c; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;">NASA SPACE APPS 2026 // OPERATIONAL CLINICAL WORKFLOW</span>
+                <h3 style="margin: 4px 0 0; font-size: 18px; color: #ffffff;">5-Step Autonomous Crew Health System</h3>
+              </div>
+              <span style="font-family: var(--mono); font-size: 11px; color: #76e4d2; background: rgba(118,228,210,0.12); padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(118,228,210,0.3); font-weight: 700;">AUTONOMOUS DEEP-SPACE SUPPORT</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+              <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #38bdf8;">
+                <small style="color: #38bdf8; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 01</small>
+                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">1. MONITOR</h4>
+                <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Continuous biometric stream: ECG rhythm, SpO₂, respiration rate, cabin pCO₂, core temp, and dosimetry.</p>
+              </div>
+              <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #76e4d2;">
+                <small style="color: #76e4d2; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 02</small>
+                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">2. INTERPRET</h4>
+                <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Multi-system trend analysis calibrated against NASA-STD-3001 Bioastronautics thresholds and historical analogs.</p>
+              </div>
+              <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #f59e0b;">
+                <small style="color: #f59e0b; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 03</small>
+                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">3. VERIFY</h4>
+                <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Explainable sensor continuity tests, signal-to-noise filters, and probe alignment checks to eliminate false alarms.</p>
+              </div>
+              <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #dfc79c;">
+                <small style="color: #dfc79c; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 04</small>
+                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">4. ACT</h4>
+                <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Non-prescriptive evidence-aware guidance (LBNP session, exercise modulation, electrolyte/fluid loading protocols).</p>
+              </div>
+              <div style="padding: 14px; background: rgba(0,0,0,0.35); border-radius: 10px; border-top: 3px solid #f43f5e;">
+                <small style="color: #f43f5e; font-family: var(--mono); font-weight: 750; font-size: 10.5px;">STAGE 05</small>
+                <h4 style="margin: 4px 0 6px; font-size: 15px; color: #fff;">5. ESCALATE</h4>
+                <p style="margin: 0; font-size: 12.5px; color: #94a3b8; line-height: 1.45;">Protocolized escalation: CMO alert, emergency EVA repressurization, and delay-tolerant packet transmission to Earth.</p>
+              </div>
+            </div>
+          </div>
+
         <section class="home-content-block architecture-block" aria-labelledby="arch-heading">
           <div class="block-header">
             <div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM ARCHITECTURE & DATA ENGINE / 02</div>
@@ -348,7 +387,7 @@
             <span class="rail-avatar-thumb" style="background-image: url('https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~medium.jpg');"></span>
             <div>
               <span class="rail-label">ACTIVE SUBJECT</span>
-              <strong><i class="status-ring"></i> <span id="dash-subject-display">Commander Anne McClain</span></strong>
+              <strong><i class="status-ring"></i> <span id="dash-subject-display">Crew Member A (Commander · Synthetic)</span></strong>
             </div>
           </div>
           <div class="rail-item">
@@ -869,7 +908,7 @@
         <div class="overview-rail">
           <div class="rail-item">
             <span class="rail-label">ACTIVE SUBJECT</span>
-            <strong><i class="status-ring"></i> <span id="body-subject-display">Commander Anne McClain</span></strong>
+            <strong><i class="status-ring"></i> <span id="body-subject-display">Crew Member A (Commander · Synthetic)</span></strong>
           </div>
           <div class="rail-item">
             <span class="rail-label">SELECTED ANATOMICAL SYSTEM</span>
@@ -1113,7 +1152,7 @@
           <!-- Astronaut 1: Anne McClain -->
           <article class="crew-card crew-card-editorial is-active-subject" id="card-anne">
             <div class="crew-photo-frame">
-              <img src="https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~medium.jpg" alt="NASA Astronaut Anne McClain" loading="lazy" />
+              <img src="https://images-assets.nasa.gov/image/iss057e134112/iss057e134112~medium.jpg" alt="Synthetic Profile (Photo depicts NASA Astronaut Anne McClain aboard ISS; displayed biometrics are synthetic demo values)" loading="lazy" />
               <div class="crew-photo-shade"></div>
               <span class="crew-photo-badge">ACTIVE MONITORED</span>
               <div class="crew-photo-caption">
@@ -1152,12 +1191,12 @@
           <!-- Astronaut 2: Mike Fincke -->
           <article class="crew-card crew-card-editorial" id="card-mike">
             <div class="crew-photo-frame">
-              <img src="https://images-assets.nasa.gov/image/iss073e0702307/iss073e0702307~medium.jpg" alt="NASA Astronaut Mike Fincke" loading="lazy" />
+              <img src="https://images-assets.nasa.gov/image/iss073e0702307/iss073e0702307~medium.jpg" alt="Synthetic Profile (Photo depicts NASA Astronaut Mike Fincke aboard ISS; displayed biometrics are synthetic demo values)" loading="lazy" />
               <div class="crew-photo-shade"></div>
               <span class="crew-photo-badge" style="color: #aebbd0; border-color: rgba(174,187,208,0.3);">EXPEDITION 72</span>
               <div class="crew-photo-caption">
-                <span class="crew-role-kicker">FLIGHT ENGINEER // LONG DURATION</span>
-                <h3 class="crew-name-serif">Mike <em>Fincke</em></h3>
+                <span class="crew-role-kicker">FLIGHT ENGINEER // LONG DURATION (SYNTHETIC PROFILE)</span>
+                <h3 class="crew-name-serif">Crew Member <em>B</em></h3>
               </div>
             </div>
 
@@ -1239,7 +1278,7 @@
             <span class="gemini-brand-spark">✳</span>
             <div class="gemini-brand-text">
               <strong>AURA Flight Surgeon</strong>
-              <span class="gemini-status-pill"><i class="gemini-pulse-dot"></i> <span id="chat-online-text">Ready · 0s Delay</span></span>
+              <span class="gemini-status-pill"><i class="gemini-pulse-dot"></i> <span id="chat-online-text">Rule-Based CDSS (Offline Prototype)</span></span>
             </div>
           </div>
 
@@ -1433,7 +1472,7 @@
             <div>
               <span class="panel-kicker">NASA HUMAN RESEARCH PROGRAM (HRP) FRAMEWORK</span>
               <h2 style="font-family: Georgia, serif; font-size: 26px; font-weight: 400; color: #f5f3ed; margin: 6px 0 0;">
-                The 5 Hazards of <em>Human Spaceflight</em> (R-I-D-G-E)
+                The 5 Hazards of <em>Human Spaceflight</em> (R-I-D-G-E Memory Aid)
               </h2>
               <p style="font-size: 15px; color: #cbd5e1; margin-top: 6px; line-height: 1.6; font-weight: 500;">
                 NASA's official clinical risk categorization for long-duration deep-space missions to the Moon and Mars.
@@ -1485,7 +1524,7 @@
               <span class="panel-kicker">HAZARD 05 // ECLSS LIFE SUPPORT</span>
               <h3>Hostile Environments</h3>
               <p>Closed atmospheric loop inside spacecraft. Carbon dioxide accumulation (&gt;3.0 mmHg) triggers hypercapnia and cognitive decline. Toxic trace contaminants scrubbed continuously.</p>
-              <div class="ridge-metric-tag">CABIN pCO₂: 0.31 mmHg (SAFE)</div>
+              <div class="ridge-metric-tag">CABIN pCO₂: 2.36 mmHg (0.31% @ 760 mmHg) · NOMINAL</div>
             </div>
           </div>
         </div>

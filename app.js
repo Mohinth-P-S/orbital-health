@@ -1950,6 +1950,57 @@ function clearChatStream() {
 /* ==========================================================================
    11. CREW MANIFEST & SUBJECT SELECTION
    ========================================================================== */
+
+/* ==========================================================================
+   MISSION DISTANCE & COMM LATENCY SIMULATOR
+   ========================================================================== */
+function setMissionDelay(destKey) {
+  document.querySelectorAll(".delay-chip").forEach((btn) => btn.classList.remove("is-active"));
+  const activeBtn = document.querySelector(`#delay-btn-${destKey}`);
+  if (activeBtn) activeBtn.classList.add("is-active");
+
+  const destEl = document.querySelector("#current-mission-dest");
+  const delayEl = document.querySelector("#current-delay-time");
+  const telemedText = document.querySelector("#delay-telemed-text");
+  const telemedBadge = document.querySelector("#delay-telemed-badge");
+
+  const configs = {
+    leo: {
+      dest: "ISS Low Earth Orbit (262 mi)",
+      delay: "0.28 sec Delay",
+      status: "TELEMEDICINE: NEAR-REALTIME (0.28s)",
+      color: "#6ee7b7"
+    },
+    moon: {
+      dest: "Moon Artemis Base Camp (238,900 mi)",
+      delay: "1.3 sec Delay",
+      status: "TELEMEDICINE: DELAYED (1.3s)",
+      color: "#f5e6c8"
+    },
+    "mars-min": {
+      dest: "Mars Perihelion Alignment (33.9M mi)",
+      delay: "4.2 min Delay",
+      status: "TELEMEDICINE: DELAYED / AUTONOMOUS (4.2m)",
+      color: "#f59e0b"
+    },
+    "mars-max": {
+      dest: "Mars Interplanetary Opposition (140M mi)",
+      delay: "22.0 min Delay",
+      status: "TELEMEDICINE: BLACKOUT / FULL AUTONOMY (22m)",
+      color: "#f43f5e"
+    }
+  };
+
+  const cfg = configs[destKey] || configs.leo;
+  if (destEl) destEl.textContent = cfg.dest;
+  if (delayEl) delayEl.textContent = cfg.delay;
+  if (telemedText) {
+    telemedText.textContent = cfg.status;
+    if (telemedBadge) telemedBadge.style.borderColor = cfg.color;
+  }
+}
+window.setMissionDelay = setMissionDelay;
+
 function setSubject(key) {
   document.querySelectorAll(".crew-card, .crew-card-editorial").forEach((card) => {
     card.classList.remove("is-active-subject");
@@ -2009,94 +2060,494 @@ window.addEventListener('appinstalled', () => {
 
 
 /* ==========================================================================
-   13. NASA PHOTOGRAPHIC SPACE BACKGROUND SWITCHER
+   9. NASA PHOTOGRAPHIC SPACE BACKGROUND SWITCHER
    ========================================================================== */
-const SPACE_THEMES = [
-  { id: "airglow", name: "ISS Earth Airglow", file: "assets/nasa-earth-airglow-milkyway.jpg" },
-  { id: "aurora", name: "Earth Aurora Limb", file: "assets/nasa-aurora-earth-limb.jpg" },
-  { id: "jwst", name: "Carina Nebula (JWST)", file: "assets/nasa-jwst-carina-nebula.jpg" },
-  { id: "earth", name: "Orbital Blue Marble", file: "assets/earth.jpg" }
+const NASA_BACKGROUNDS = [
+  {
+    id: "airglow",
+    name: "ISS Earth Airglow & Milky Way",
+    image: "assets/nasa-earth-airglow-milkyway.jpg",
+    credit: "NASA/JSC ISS Expedition 74 · Atmospheric Airglow & Milky Way"
+  },
+  {
+    id: "jwst",
+    name: "JWST Carina Cosmic Cliffs",
+    image: "assets/nasa-jwst-carina-nebula.jpg",
+    credit: "NASA/ESA/CSA JWST · NIRCam Cosmic Cliffs in Carina Nebula"
+  },
+  {
+    id: "aurora",
+    name: "ISS Aurora Australis & Horizon",
+    image: "assets/nasa-aurora-earth-limb.jpg",
+    credit: "NASA/JSC Expedition 30 · Polar Aurora Australis over Earth Limb"
+  },
+  {
+    id: "earth",
+    name: "Whole Earth Blue Marble",
+    image: "assets/earth.jpg",
+    credit: "NASA Earth Observatory · High-Resolution Orbital Disk"
+  }
 ];
-let currentThemeIndex = 0;
 
-function setSpaceBackgroundById(themeId) {
-  const index = SPACE_THEMES.findIndex(t => t.id === themeId);
-  if (index !== -1) {
-    currentThemeIndex = index;
-    applySpaceBackground();
+let currentBgIndex = 0;
+let isLayerAPrimary = true;
+
+function setSpaceBackground(index) {
+  currentBgIndex = (index + NASA_BACKGROUNDS.length) % NASA_BACKGROUNDS.length;
+  const bg = NASA_BACKGROUNDS[currentBgIndex];
+
+  const layerA = document.querySelector("#space-bg-primary");
+  const layerB = document.querySelector("#space-bg-secondary");
+  const nameEl = document.querySelector("#bg-theme-name");
+  const creditEl = document.querySelector("#footer-credit-text");
+
+  if (layerA && layerB) {
+    if (isLayerAPrimary) {
+      layerB.style.backgroundImage = `url('${bg.image}')`;
+      layerB.style.opacity = "0.68";
+      layerA.style.opacity = "0";
+      isLayerAPrimary = false;
+    } else {
+      layerA.style.backgroundImage = `url('${bg.image}')`;
+      layerA.style.opacity = "0.68";
+      layerB.style.opacity = "0";
+      isLayerAPrimary = true;
+    }
+  }
+
+  if (nameEl) nameEl.textContent = bg.name;
+  if (creditEl) creditEl.textContent = bg.credit;
+}
+
+function setSpaceBackgroundById(id) {
+  const idx = NASA_BACKGROUNDS.findIndex((b) => b.id === id);
+  if (idx !== -1 && idx !== currentBgIndex) {
+    setSpaceBackground(idx);
   }
 }
+
+
+// Global window hooks for inline HTML onclick handlers
+window.cycleSpaceBackground = cycleSpaceBackground;
+window.setSpaceBackgroundById = setSpaceBackgroundById;
+window.setSpaceBackground = setSpaceBackground;
 
 function cycleSpaceBackground() {
-  currentThemeIndex = (currentThemeIndex + 1) % SPACE_THEMES.length;
-  applySpaceBackground();
-}
-
-function applySpaceBackground() {
-  const theme = SPACE_THEMES[currentThemeIndex];
-  const bgImg = document.querySelector("#nasa-backdrop-img");
-  const label = document.querySelector("#bg-theme-name");
-
-  if (bgImg && theme) {
-    bgImg.style.opacity = "0.2";
-    setTimeout(() => {
-      bgImg.src = theme.file;
-      bgImg.style.opacity = "1";
-    }, 150);
-  }
-  if (label && theme) {
-    label.textContent = theme.name;
-  }
+  setSpaceBackground(currentBgIndex + 1);
 }
 
 
 /* ==========================================================================
-   14. HIGHLY ANIMATIVE INTERACTIVE COSMIC CANVAS ENGINE
+   10. HIGHLY ANIMATIVE INTERACTIVE COSMIC CANVAS ENGINE
+   Deep space nebular clouds, living starfield with JWST diffraction spikes,
+   interactive stardust cursor trail, shooting stars, and ISS orbit beacon
    ========================================================================== */
 (function initCosmicCanvas() {
-  const canvas = document.querySelector("#cosmicCanvas");
+  const canvas = document.querySelector("#space-canvas");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
-  let w, h;
-  let stars = [];
-  const STAR_COUNT = 85;
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let dpr = window.devicePixelRatio || 1;
 
   function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+    initStars();
+    initStardust();
+  }
+
+  // 1. Drifting Nebular Cosmic Glow Clouds
+  const nebulae = [
+    { xRatio: 0.20, yRatio: 0.28, baseR: 0.38, color1: "rgba(56, 189, 248, 0.12)", color2: "rgba(14, 116, 144, 0)", speed: 0.00028, phase: 0 },
+    { xRatio: 0.76, yRatio: 0.32, baseR: 0.44, color1: "rgba(223, 199, 156, 0.10)", color2: "rgba(180, 83, 9, 0)", speed: 0.00032, phase: 1.8 },
+    { xRatio: 0.48, yRatio: 0.82, baseR: 0.42, color1: "rgba(118, 228, 210, 0.10)", color2: "rgba(13, 148, 136, 0)", speed: 0.00022, phase: 3.4 },
+    { xRatio: 0.85, yRatio: 0.78, baseR: 0.36, color1: "rgba(129, 140, 248, 0.09)", color2: "rgba(67, 56, 202, 0)", speed: 0.00025, phase: 4.9 }
+  ];
+
+  // 2. Multi-layered Stars with Twinkle & Diffraction Spikes
+  const stars = [];
+  const STAR_COLORS = ["#ffffff", "#f8fafc", "#e0edff", "#c1dcfa", "#7dd3fc", "#38bdf8", "#dfc79c", "#76e4d2"];
+
+  function initStars() {
+    stars.length = 0;
+    const starCount = Math.min(260, Math.floor((width * height) / 6500));
+    for (let i = 0; i < starCount; i++) {
       stars.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        radius: Math.random() * 1.5 + 0.4,
-        alpha: Math.random() * 0.7 + 0.2,
-        speed: Math.random() * 0.25 + 0.05
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.6 + 0.6,
+        color: STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)],
+        alpha: Math.random() * 0.75 + 0.25,
+        twinkleSpeed: Math.random() * 0.025 + 0.01,
+        twinklePhase: Math.random() * Math.PI * 2,
+        vx: (Math.random() - 0.5) * 0.09,
+        vy: (Math.random() - 0.5) * 0.09,
+        layer: Math.random() > 0.80 ? "foreground" : "background",
+        hasSpikes: Math.random() > 0.88
       });
     }
   }
 
-  window.addEventListener("resize", resize);
-  resize();
+  // 3. Floating Zero-G Micro Stardust Embers
+  const stardust = [];
+  function initStardust() {
+    stardust.length = 0;
+    const dustCount = Math.min(65, Math.floor(width / 24));
+    for (let i = 0; i < dustCount; i++) {
+      stardust.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 1.8 + 0.6,
+        alpha: Math.random() * 0.6 + 0.2,
+        vy: -(Math.random() * 0.22 + 0.08),
+        vx: (Math.random() - 0.5) * 0.06,
+        color: Math.random() > 0.5 ? "rgba(223, 199, 156," : "rgba(118, 228, 210,"
+      });
+    }
+  }
 
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    for (let i = 0; i < stars.length; i++) {
-      const s = stars[i];
-      s.y -= s.speed;
-      if (s.y < 0) {
-        s.y = h;
-        s.x = Math.random() * w;
+  // 4. Interactive Stardust Cursor Particles (Leaves a trail on movement)
+  const cursorTrail = [];
+  let mouseX = -1000;
+  let mouseY = -1000;
+  let lastSpawnTime = 0;
+
+  window.addEventListener("pointermove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    const now = Date.now();
+    if (now - lastSpawnTime > 32) {
+      lastSpawnTime = now;
+      for (let i = 0; i < 2; i++) {
+        cursorTrail.push({
+          x: e.clientX + (Math.random() - 0.5) * 14,
+          y: e.clientY + (Math.random() - 0.5) * 14,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8 - 0.3,
+          size: Math.random() * 2.4 + 1.0,
+          alpha: 0.9,
+          decay: Math.random() * 0.022 + 0.016,
+          color: Math.random() > 0.5 ? "#dfc79c" : "#76e4d2"
+        });
       }
+    }
+  });
+
+  // 5. Meteors / Shooting Stars
+  const meteors = [];
+
+  function spawnMeteor(forcedX, forcedY) {
+    const startX = forcedX !== undefined ? forcedX : Math.random() * width * 0.9;
+    const startY = forcedY !== undefined ? forcedY : Math.random() * (height * 0.45);
+    const angle = (Math.PI / 180) * (Math.random() * 20 + 35);
+    const speed = Math.random() * 10 + 17;
+    const length = Math.random() * 100 + 120;
+    const colors = [
+      { head: "#ffffff", tail: "rgba(118, 228, 210, 0.8)" },
+      { head: "#fef3c7", tail: "rgba(223, 199, 156, 0.85)" },
+      { head: "#e0f2fe", tail: "rgba(56, 189, 248, 0.8)" }
+    ];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    meteors.push({
+      x: startX,
+      y: startY,
+      dx: Math.cos(angle) * speed,
+      dy: Math.sin(angle) * speed,
+      length: length,
+      alpha: 1,
+      decay: Math.random() * 0.02 + 0.018,
+      headColor: color.head,
+      tailColor: color.tail
+    });
+  }
+
+  let nextMeteorTime = Date.now() + 1800;
+
+  // 6. Gravitational Ripples on Click
+  const ripples = [];
+  window.addEventListener("pointerdown", (e) => {
+    ripples.push({
+      x: e.clientX,
+      y: e.clientY,
+      radius: 6,
+      maxRadius: Math.min(260, width * 0.35),
+      alpha: 0.75
+    });
+    if (Math.random() > 0.35) {
+      spawnMeteor(e.clientX - 100, Math.max(10, e.clientY - 120));
+    }
+  });
+
+  // 7. ISS Satellite Orbital Tracker
+  let issAngle = 0.2;
+  const ISS_SPEED = 0.00048;
+
+  function drawIssOrbit(time) {
+    const cx = width * 0.52;
+    const cy = height * 0.05;
+    const rx = width * 0.65;
+    const ry = height * 0.42;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, rx, ry, -0.18, Math.PI * 0.15, Math.PI * 0.88);
+    ctx.strokeStyle = "rgba(223, 199, 156, 0.16)";
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 10]);
+    ctx.stroke();
+    ctx.restore();
+
+    issAngle += ISS_SPEED;
+    if (issAngle > Math.PI * 0.88) issAngle = Math.PI * 0.15;
+
+    const rot = -0.18;
+    const px0 = rx * Math.cos(issAngle);
+    const py0 = ry * Math.sin(issAngle);
+    const issX = cx + px0 * Math.cos(rot) - py0 * Math.sin(rot);
+    const issY = cy + px0 * Math.sin(rot) + py0 * Math.cos(rot);
+
+    ctx.save();
+    ctx.translate(issX, issY);
+
+    // Solar panels
+    ctx.fillStyle = "rgba(147, 197, 253, 0.75)";
+    ctx.fillRect(-12, -3, 6, 6);
+    ctx.fillRect(6, -3, 6, 6);
+    // Main module
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(-4, -2, 8, 4);
+
+    // Pulsing Strobe Beacon
+    const pulse = (Math.sin(time * 0.006) + 1) * 0.5;
+    const strobeColor = pulse > 0.5 ? "#76e4d2" : "#dfc79c";
+    ctx.beginPath();
+    ctx.arc(0, 0, 3 + pulse * 1.8, 0, Math.PI * 2);
+    ctx.fillStyle = strobeColor;
+    ctx.shadowColor = strobeColor;
+    ctx.shadowBlur = 10;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // HUD Tag
+    ctx.font = "9px 'JetBrains Mono', Consolas, monospace";
+    ctx.fillStyle = "rgba(226, 232, 240, 0.85)";
+    ctx.fillText("ISS · EXP 72 · 262 MI", 16, 3);
+    ctx.restore();
+  }
+
+  // Main Dynamic Animation Loop
+  function animate(timestamp) {
+    if (document.hidden) {
+      requestAnimationFrame(animate);
+      return;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    // A. Draw Drifting Nebular Clouds
+    for (let i = 0; i < nebulae.length; i++) {
+      const neb = nebulae[i];
+      neb.phase += neb.speed;
+      const nx = (neb.xRatio + Math.sin(neb.phase) * 0.04) * width;
+      const ny = (neb.yRatio + Math.cos(neb.phase * 0.8) * 0.04) * height;
+      const nr = (neb.baseR + Math.sin(neb.phase * 0.5) * 0.05) * Math.max(width, height);
+
+      const grad = ctx.createRadialGradient(nx, ny, 0, nx, ny, nr);
+      grad.addColorStop(0, neb.color1);
+      grad.addColorStop(1, neb.color2);
+
+      ctx.save();
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, width, height);
+      ctx.restore();
+    }
+
+    // B. Draw Gravitational Click Ripples
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const rip = ripples[i];
+      rip.radius += 3.0;
+      rip.alpha -= 0.013;
+      if (rip.alpha <= 0 || rip.radius >= rip.maxRadius) {
+        ripples.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(223, 199, 156, ${s.alpha})`;
+      ctx.arc(rip.x, rip.y, rip.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(223, 199, 156, ${rip.alpha * 0.6})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      if (rip.radius > 20) {
+        ctx.beginPath();
+        ctx.arc(rip.x, rip.y, rip.radius - 18, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(118, 228, 210, ${rip.alpha * 0.35})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // C. Draw Zero-G Floating Stardust Embers
+    for (let i = 0; i < stardust.length; i++) {
+      const d = stardust[i];
+      d.y += d.vy;
+      d.x += d.vx;
+      if (d.y < 0) {
+        d.y = height + 10;
+        d.x = Math.random() * width;
+      }
+      if (d.x < 0) d.x = width;
+      if (d.x > width) d.x = 0;
+
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+      ctx.fillStyle = `${d.color} ${d.alpha})`;
       ctx.fill();
     }
-    requestAnimationFrame(draw);
+
+    // D. Draw Cursor Stardust Trail
+    for (let i = cursorTrail.length - 1; i >= 0; i--) {
+      const p = cursorTrail[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0) {
+        cursorTrail.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // E. Draw Stars & Diffraction Cross Spikes
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+
+      s.twinklePhase += s.twinkleSpeed;
+      const currentAlpha = s.alpha * (0.60 + 0.40 * Math.sin(s.twinklePhase));
+
+      s.x += s.vx;
+      s.y += s.vy;
+      if (s.x < 0) s.x = width;
+      if (s.x > width) s.x = 0;
+      if (s.y < 0) s.y = height;
+      if (s.y > height) s.y = 0;
+
+      // Mouse interactive constellation link
+      const distToMouse = Math.hypot(mouseX - s.x, mouseY - s.y);
+      if (distToMouse < 110) {
+        const lineAlpha = (1 - distToMouse / 110) * 0.35;
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(mouseX, mouseY);
+        ctx.strokeStyle = `rgba(223, 199, 156, ${lineAlpha})`;
+        ctx.lineWidth = 0.9;
+        ctx.stroke();
+      }
+
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = Math.max(0, Math.min(1, currentAlpha));
+      
+      if (s.layer === "foreground") {
+        ctx.shadowColor = s.color;
+        ctx.shadowBlur = 8;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Luminous 4-Point JWST Cross Spikes for Brightest Stars
+      if (s.hasSpikes && currentAlpha > 0.65) {
+        const spikeLen = s.radius * 4.5 * (currentAlpha * 0.8);
+        ctx.strokeStyle = s.color;
+        ctx.lineWidth = 0.6;
+        ctx.beginPath();
+        ctx.moveTo(s.x - spikeLen, s.y);
+        ctx.lineTo(s.x + spikeLen, s.y);
+        ctx.moveTo(s.x, s.y - spikeLen);
+        ctx.lineTo(s.x, s.y + spikeLen);
+        ctx.stroke();
+      }
+
+      ctx.globalAlpha = 1;
+    }
+
+    // F. Draw ISS Orbit & Vehicle
+    drawIssOrbit(timestamp);
+
+    // G. Spawn Frequent Meteors
+    if (Date.now() > nextMeteorTime) {
+      spawnMeteor();
+      nextMeteorTime = Date.now() + Math.random() * 2200 + 2000;
+    }
+
+    // H. Draw Meteors
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      const m = meteors[i];
+      m.x += m.dx;
+      m.y += m.dy;
+      m.alpha -= m.decay;
+
+      if (m.alpha <= 0 || m.x < -100 || m.x > width + 100 || m.y > height + 100) {
+        meteors.splice(i, 1);
+        continue;
+      }
+
+      const tailX = m.x - (m.dx / Math.hypot(m.dx, m.dy)) * m.length;
+      const tailY = m.y - (m.dy / Math.hypot(m.dx, m.dy)) * m.length;
+
+      ctx.save();
+      const grad = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
+      grad.addColorStop(0, "rgba(255, 255, 255, 0)");
+      grad.addColorStop(0.7, m.tailColor);
+      grad.addColorStop(1, m.headColor);
+
+      ctx.beginPath();
+      ctx.moveTo(tailX, tailY);
+      ctx.lineTo(m.x, m.y);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2.4;
+      ctx.globalAlpha = Math.max(0, m.alpha);
+      ctx.shadowColor = m.headColor;
+      ctx.shadowBlur = 12;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, 2.6, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    requestAnimationFrame(animate);
   }
-  requestAnimationFrame(draw);
+
+  window.addEventListener("resize", resize);
+  resize();
+  requestAnimationFrame(animate);
 })();
+
+
 
 
 /* ==========================================================================
@@ -2204,6 +2655,7 @@ function applySpaceBackground() {
    ========================================================================== */
 window.addEventListener("DOMContentLoaded", () => {
   loadPresetDataset("nominal");
+  setSpaceBackground(0);
   selectBodyOrgan("eyes");
   selectMissionPlanet("earth");
   renderScenarioStep(0);
