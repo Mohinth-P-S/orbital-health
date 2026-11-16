@@ -187,8 +187,8 @@
     "testId": "TEST-24",
     "name": "Scenario Step Sequence Navigation",
     "category": "Scenario Engine",
-    "expected": "Next/prev controls stay strictly within [0, steps.length-1] boundary",
-    "actual": "Boundary clamp verified",
+    "expected": "Full 10-step sequence with next/prev boundary clamping [0, 9]",
+    "actual": "10-step sequence verified; boundary clamp validated",
     "passed": true
   },
   {

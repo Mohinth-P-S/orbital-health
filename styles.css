@@ -4679,10 +4679,18 @@ body.is-app-mode .global-ai-fab {
   max-width: 1120px !important;
   margin: 0 auto !important;
   min-height: calc(100vh - 130px) !important;
-  display: flex !important;
+  display: none !important;
   flex-direction: column !important;
   position: relative !important;
   padding-bottom: 24px !important;
+}
+
+.gemini-view-assistant.is-visible {
+  display: flex !important;
+}
+
+.gemini-view-assistant[hidden] {
+  display: none !important;
 }
 
 /* Top Minimal Control Bar */

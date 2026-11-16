@@ -1549,7 +1549,20 @@ const SCENARIO_STEPS = [
     badgeColor: "#76e4d2",
     narrative: "Post-event assessment confirms full recovery: SpO₂ 99.0%, HR 72.5 bpm, neurocognitive PVT score 216 ms. Suit micro-puncture isolated to left forearm beta-cloth layer. Incident officially recorded in the mission Autonomous Electronic Health Record (EHR). Ground medical team notified via next communications pass.",
     verification: "Full telemetry time-series, decision-tree execution logs, and astronaut vital recovery curves preserved in tamper-evident mission medical archive.",
-    actionPrompt: "Scenario complete. Astronaut restored to nominal flight status."
+    actionPrompt: "Complete clinical audit and proceed to final return-to-duty clearance."
+  },
+  {
+    stepNum: 10,
+    title: "10. Longitudinal Audit & Return-to-Duty Clearance",
+    astronaut: "Crew Member C & Crew Medical Officer",
+    phase: "Clinical Return-to-Duty Protocol · MET 06:00:00",
+    telemetry: { hr: 70.0, spo2: 99.2, resp: 13.8, temp: 36.8, co2: 0.31, rad: 0.42 },
+    system: "Mission Operations Directorate & Space Medicine Clearance",
+    statusBadge: "MISSION CLEARANCE GRANTED · FLIGHT READY",
+    badgeColor: "#76e4d2",
+    narrative: "Comprehensive clinical return-to-duty evaluation completed per NASA-STD-3001 Vol 1 §4.2. Astronaut demonstrates 100% physiological recovery, zero residual hypoxia biomarkers, normalized cognitive Psychomotor Vigilance Task (PVT) speed, and nominal composite Mission Readiness score (93.8%). Formal clearance issued for resumption of scheduled orbital duties.",
+    verification: "Multi-parameter clinical decision support audit validated: all 10 operational lifecycle steps successfully executed and cryptographically signed in mission logs.",
+    actionPrompt: "Scenario complete. Astronaut returned to full nominal flight status."
   }
 ];
 
@@ -3093,7 +3106,8 @@ function runClientValidationSuite() {
     actual: `Reset baseline target verified: data/${baselineDataset23}`
   });
 
-  // TEST-24: Scenario Step Sequence Navigation
+  // TEST-24: Scenario Step Sequence Navigation (10 Steps Verified)
+  const is10Steps = typeof SCENARIO_STEPS !== "undefined" && SCENARIO_STEPS.length === 10;
   const testSteps24 = [0, 1, 2, 3, 4];
   let curStep24 = 0;
   function navStep24(dir) {
@@ -3104,8 +3118,8 @@ function runClientValidationSuite() {
   results.push({
     id: "TEST-24",
     name: "Scenario Step Sequence Navigation",
-    passed: clampMin24 && clampMax24,
-    actual: `Boundary clamp validated: min clamped to 0, max clamped to 4`
+    passed: clampMin24 && clampMax24 && is10Steps,
+    actual: `10-step sequence verified; boundary clamp validated (min: 0, max: 4)`
   });
 
   // TEST-25: AURA Drawer Decoupling from Scenario View
