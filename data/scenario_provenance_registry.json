@@ -1,0 +1,134 @@
+[
+  {
+    "id": "SCEN-01",
+    "name": "Nominal Baseline (ISS Cupola Rest)",
+    "file": "1_nasa_iss_cupola_nominal.csv",
+    "purpose": "Establish normative resting physiological telemetry during calm Earth observation in the ISS Cupola module.",
+    "dataStatus": "Research-informed synthetic demonstration data (modeled from NASA LSDA-0042 resting astronaut baseline).",
+    "initialValues": {
+      "heart_rate": "71.1 bpm",
+      "spo2": "99.0%",
+      "respiration": "14.0 br/min",
+      "core_temp": "36.9\u00b0C",
+      "cabin_co2": "0.31% vol (2.36 mmHg @ 760 mmHg)",
+      "radiation": "0.42 mSv/day"
+    },
+    "playbackTrajectory": "Micro-fluctuations within healthy resting autonomic bounds (HR 70-74 bpm, SpO2 98.9-99.1%).",
+    "units": "bpm, %, br/min, \u00b0C, % vol / mmHg, mSv/day",
+    "rationale": "Serves as the scientific control state. Proves that anomaly detectors remain silent during healthy baseline telemetry.",
+    "scientificReferences": "NASA-STD-3001 Vol 1 \u00a74.1; NASA LSDA-0042; Hughson et al. (2018).",
+    "rulesTriggered": "None (0 active alerts).",
+    "expectedResult": "All status indicators display NOMINAL, OPTIMAL, and REGULAR. Zero false-positive alerts.",
+    "actualResult": "PASSED - Verified clean nominal baseline across 60 rows with 0 triggered alerts."
+  },
+  {
+    "id": "SCEN-02",
+    "name": "EVA Spacewalk Hypoxia Leak",
+    "file": "2_nasa_eva_spacewalk_hypoxia.csv",
+    "purpose": "Simulate life-support breathing gas failure or micro-puncture during Extravehicular Activity.",
+    "dataStatus": "Research-informed synthetic scenario modeled from NASA EVA Flight Surgeon Hypoxia Emergency Protocols.",
+    "initialValues": {
+      "heart_rate": "74.9 bpm",
+      "spo2": "99.2%",
+      "respiration": "14.0 br/min",
+      "core_temp": "37.0\u00b0C",
+      "cabin_co2": "0.32% vol (2.43 mmHg)",
+      "radiation": "0.45 mSv/day"
+    },
+    "playbackTrajectory": "At t=00:06, SpO2 drops sharply from 99.2% to 86.4%. Compensatory HR climbs to 118 bpm; RR elevates to 24 br/min.",
+    "units": "bpm, %, br/min, \u00b0C, % vol / mmHg, mSv/day",
+    "rationale": "Arterial desaturation stimulates peripheral carotid chemoreceptors, triggering autonomic tachycardia and compensatory hyperventilation.",
+    "scientificReferences": "NASA-STD-3001 Vol 2 \u00a76.3; FAA Office of Commercial Space Transportation Physiological Guidelines; Guyton & Hall Medical Physiology \u00a741.",
+    "rulesTriggered": "Rule CDSS-O2-01: Acute Arterial Hypoxemia (SpO2 < 92%); Rule CDSS-HR-01: Compensatory Tachycardia (HR > 115 bpm).",
+    "expectedResult": "Immediate CRITICAL alert banner, automated suit oxygen purge guidance, EVA abort recommendation.",
+    "actualResult": "PASSED - Alerts fire reliably at t=00:06 with full explainability trace and protocolized next steps."
+  },
+  {
+    "id": "SCEN-03",
+    "name": "ARED Heavy Resistive Workout",
+    "file": "3_nasa_ared_heavy_exercise.csv",
+    "purpose": "Demonstrate physiological response to 380 lbs resistive loading on the Advanced Resistive Exercise Device.",
+    "dataStatus": "Research-informed synthetic scenario modeled from NASA ASCR ARED flight telemetry standards.",
+    "initialValues": {
+      "heart_rate": "77.4 bpm",
+      "spo2": "98.4%",
+      "respiration": "15.0 br/min",
+      "core_temp": "37.0\u00b0C",
+      "cabin_co2": "0.35% vol (2.66 mmHg)",
+      "radiation": "0.42 mSv/day"
+    },
+    "playbackTrajectory": "Heavy loading drives HR progressively to 154 bpm and RR to 32 br/min. SpO2 remains stable (97.8-98.4%); core temp rises to 37.6\u00b0C.",
+    "units": "bpm, %, br/min, \u00b0C, % vol / mmHg, mSv/day",
+    "rationale": "High-workload exertional response. Software must NOT misclassify benign exercise tachycardia as cardiac arrest or pathological hypoxemia.",
+    "scientificReferences": "English et al., 'High-intensity exercise preserves muscle mass in spaceflight,' NPJ Microgravity, 2020; NASA-STD-3001 Vol 1 \u00a74.2.",
+    "rulesTriggered": "Rule CDSS-EXER-01: High-Workload Exertional Tachycardia (Concordant with stable SpO2).",
+    "expectedResult": "Informational status tag; no false critical alarms. Workout logged toward Mission Readiness Pillar #1.",
+    "actualResult": "PASSED - Verified stable aerobic classification without false arrhythmia alarms."
+  },
+  {
+    "id": "SCEN-04",
+    "name": "Deep Space Solar Radiation Flare (SPE)",
+    "file": "4_mars_solar_radiation_flare.csv",
+    "purpose": "Simulate acute high-energy proton flux from a coronal mass ejection during Mars transit.",
+    "dataStatus": "Research-informed synthetic scenario modeled from NASA SRAG and MSL-RAD deep space measurements.",
+    "initialValues": {
+      "heart_rate": "72.0 bpm",
+      "spo2": "98.9%",
+      "respiration": "16.0 br/min",
+      "core_temp": "36.9\u00b0C",
+      "cabin_co2": "0.31% vol (2.36 mmHg)",
+      "radiation": "0.44 mSv/day"
+    },
+    "playbackTrajectory": "At t=00:08, external dosimeter rate spikes from 0.44 mSv/day to 18.5 mSv/day; acute sympathetic anxiety raises HR to 98 bpm.",
+    "units": "mSv/day, bpm, %, br/min, \u00b0C, % vol",
+    "rationale": "High-Z and solar energetic proton flux threatens acute radiation syndrome; requires prompt relocation to polyethylene storm shelter.",
+    "scientificReferences": "NASA-STD-3001 Vol 1 \u00a74.4; Cucinotta et al., 'Space radiation cancer risk projections,' NASA/TP-2013-217375.",
+    "rulesTriggered": "Rule CDSS-RAD-01: Critical Cosmic Radiation Flux (> 5.0 mSv/day).",
+    "expectedResult": "CRITICAL alert, storm shelter retreat instruction, radiation dosimeter log update.",
+    "actualResult": "PASSED - Solar storm flare alert triggers at threshold with protocolized shielding guidance."
+  },
+  {
+    "id": "SCEN-05",
+    "name": "SANS Cephalad Fluid Shift & LBNP Recovery",
+    "file": "5_microgravity_sans_fluid_shift.csv",
+    "purpose": "Model spaceflight-associated ocular changes caused by sustained microgravity venous engorgement.",
+    "dataStatus": "Research-informed synthetic scenario modeled from NASA HRP SANS Evidence Report and Columbus module sonography.",
+    "initialValues": {
+      "heart_rate": "68.0 bpm",
+      "spo2": "99.1%",
+      "respiration": "13.5 br/min",
+      "core_temp": "36.8\u00b0C",
+      "cabin_co2": "0.30% vol (2.28 mmHg)",
+      "radiation": "0.42 mSv/day"
+    },
+    "playbackTrajectory": "Simulated ONSD rises to 5.9 mm (nominal < 5.8 mm). Following simulated LBNP countermeasure initiation, ONSD stabilizes to 5.2 mm.",
+    "units": "mm (ONSD), mmHg, bpm, %, br/min",
+    "rationale": "Absence of hydrostatic column moves ~1.5-2.0 L of venous fluid cranial, expanding retrobulbar optic nerve sheath.",
+    "scientificReferences": "Lee et al., 'Spaceflight-associated neuro-ocular syndrome,' NPJ Microgravity, 2020; Hargens et al., Front Physiol, 2021.",
+    "rulesTriggered": "Rule CDSS-SANS-01: Microgravity Cephalad Redistribution / ONSD Expansion (> 5.8 mm).",
+    "expectedResult": "WARNING alert, protocolized 30-min LBNP (-25 mmHg) recommendation, ophthalmic monitoring checklist.",
+    "actualResult": "PASSED - Ocular warning alerts fire and successfully link to LBNP countermeasure guidance."
+  },
+  {
+    "id": "SCEN-06",
+    "name": "PhysioNet Cardiac Arrhythmia (Paroxysmal VT)",
+    "file": "6_physionet_ventricular_arrhythmia.csv",
+    "purpose": "Simulate acute cardiac conduction disturbance (paroxysmal ventricular tachycardia) during spaceflight.",
+    "dataStatus": "Waveform morphological structure adapted from PhysioNet MIT-BIH Arrhythmia Database (#208) with synthetic telemetry time-series.",
+    "initialValues": {
+      "heart_rate": "72.5 bpm",
+      "spo2": "99.0%",
+      "respiration": "14.0 br/min",
+      "core_temp": "36.8\u00b0C",
+      "cabin_co2": "0.31% vol (2.36 mmHg)",
+      "radiation": "0.42 mSv/day"
+    },
+    "playbackTrajectory": "At t=00:07, sudden burst of wide-complex ventricular tachycardia drives instantaneous HR to 168 bpm, SpO2 dips to 94.1%.",
+    "units": "bpm, %, br/min, ms (R-R / QRS)",
+    "rationale": "Validates CDSS rhythm detection: distinguishes non-exertional sudden tachycardia with distorted QRS from physical exercise.",
+    "scientificReferences": "PhysioNet MIT-BIH Arrhythmia Database; NASA-STD-3001 Vol 1 \u00a74.1; Hughson et al. (2018).",
+    "rulesTriggered": "Rule CDSS-CARD-02: Paroxysmal Ventricular Tachyarrhythmia / QRS Morphology Abnormality.",
+    "expectedResult": "Immediate CRITICAL alert, emergency AED standby notification, flight surgeon telemetry packet transmission.",
+    "actualResult": "PASSED - Arrhythmia event triggers instant critical warning with ECG vector annotation."
+  }
+]

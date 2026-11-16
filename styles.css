@@ -6249,3 +6249,29 @@ button, .button, a, .nav-link, .dock-link, .app-dock-item, .chip, .preset-chip, 
     grid-template-columns: 1fr !important;
   }
 }
+
+
+/* ==========================================================================
+   23. SCIENTIFIC EVIDENCE REGISTRY & VALIDATION SUITE STYLING
+   ========================================================================== */
+.evidence-registry-table th,
+.evidence-registry-table td {
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+.evidence-registry-table tr:hover {
+  background: rgba(56, 189, 248, 0.04) !important;
+}
+
+.judge-step-card {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.judge-step-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.readiness-formula-badge {
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}

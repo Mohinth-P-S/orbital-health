@@ -1,0 +1,138 @@
+[
+  {
+    "testId": "TEST-01",
+    "name": "Nominal Baseline Verification",
+    "category": "Physiological Baseline",
+    "expected": "0 alerts triggered, all vital channels NOMINAL",
+    "actual": "0 alerts triggered",
+    "passed": true
+  },
+  {
+    "testId": "TEST-02",
+    "name": "EVA Hypoxia Detection",
+    "category": "Anomaly Detection",
+    "expected": "Triggers CDSS-RULE-O2-01 (Acute Arterial Hypoxemia)",
+    "actual": "Triggered ['CDSS-RULE-O2-01']",
+    "passed": true
+  },
+  {
+    "testId": "TEST-03",
+    "name": "ARED Heavy Resistive Exercise Discrimination",
+    "category": "Anomaly Detection",
+    "expected": "Classified as benign exertional tachycardia (CDSS-EXER-01), no false alarm",
+    "actual": "Exercise tachycardia detected: True",
+    "passed": true
+  },
+  {
+    "testId": "TEST-04",
+    "name": "Solar Particle Event Flare Detection",
+    "category": "Environmental Anomaly",
+    "expected": "Triggers CDSS-RULE-RAD-01 (> 5.0 mSv/day)",
+    "actual": "Radiation trigger: True (18.5 mSv/day)",
+    "passed": true
+  },
+  {
+    "testId": "TEST-05",
+    "name": "SANS Optic Nerve Sheath Dilation Detection",
+    "category": "Microgravity Adaptation",
+    "expected": "Triggers CDSS-RULE-SANS-01 (ONSD > 5.8 mm)",
+    "actual": "SANS trigger: True (ONSD = 5.9 mm)",
+    "passed": true
+  },
+  {
+    "testId": "TEST-06",
+    "name": "Paroxysmal Tachyarrhythmia Detection",
+    "category": "Cardiac Conduction",
+    "expected": "Triggers CDSS-RULE-CARD-02 (Sudden resting HR > 150 bpm)",
+    "actual": "Arrhythmia trigger: True",
+    "passed": true
+  },
+  {
+    "testId": "TEST-07",
+    "name": "Missing Required CSV Column Detection",
+    "category": "Data Quality & Ingestion",
+    "expected": "Detects missing required column 'spo2' and halts execution",
+    "actual": "Validation passed required check: False",
+    "passed": true
+  },
+  {
+    "testId": "TEST-08",
+    "name": "Invalid Numeric Field Sanitization",
+    "category": "Data Quality & Ingestion",
+    "expected": "Catches non-numeric string and marks row as corrupt",
+    "actual": "Is valid number: False",
+    "passed": true
+  },
+  {
+    "testId": "TEST-09",
+    "name": "Duplicate Timestamp Ingestion Detection",
+    "category": "Data Quality & Ingestion",
+    "expected": "Flags duplicate timestamp '00:02'",
+    "actual": "Duplicate detected: True",
+    "passed": true
+  },
+  {
+    "testId": "TEST-10",
+    "name": "Out-of-Order Timestamp Sequence Detection",
+    "category": "Data Quality & Ingestion",
+    "expected": "Flags disordered time sequence (00:04 precedes 00:02)",
+    "actual": "Sequence is monotonically ordered: False",
+    "passed": true
+  },
+  {
+    "testId": "TEST-11",
+    "name": "Physically Impossible Sensor Value Rejection",
+    "category": "Data Quality & Ingestion",
+    "expected": "Rejects SpO2 > 100% as sensor artifact",
+    "actual": "SpO2 within physical limit [0-100]: False",
+    "passed": true
+  },
+  {
+    "testId": "TEST-12",
+    "name": "Insufficient Data Quality Safeguard",
+    "category": "Clinical Decision Safeguard",
+    "expected": "Displays 'Insufficient data for reliable interpretation' on empty/truncated stream",
+    "actual": "Insufficient data for reliable interpretation",
+    "passed": true
+  },
+  {
+    "testId": "TEST-13",
+    "name": "Mission Telemetry Latency Mode Switching",
+    "category": "Deep-Space Architecture",
+    "expected": "Mars (1200s delay) triggers AUTONOMOUS mode",
+    "actual": "Mode for 1200s: AUTONOMOUS",
+    "passed": true
+  },
+  {
+    "testId": "TEST-14",
+    "name": "Deterministic Playback State Transitions",
+    "category": "Telemetry Playback",
+    "expected": "Correctly transitions play -> advance -> pause -> reset to 0",
+    "actual": "Final index: 0, isPlaying: False",
+    "passed": true
+  },
+  {
+    "testId": "TEST-15",
+    "name": "Interactive Body Map Node Routing",
+    "category": "User Experience & Diagnostics",
+    "expected": "'ocular' maps to valid anatomical organ subsystem",
+    "actual": "Mapped: True",
+    "passed": true
+  },
+  {
+    "testId": "TEST-16",
+    "name": "AURA 6-Part Clinical Explainability Format",
+    "category": "AURA Medical Intelligence",
+    "expected": "Every response outputs all 6 clinical sections",
+    "actual": "Contains all 6 sections: True",
+    "passed": true
+  },
+  {
+    "testId": "TEST-17",
+    "name": "Dynamic Mission Readiness Mathematical Integrity",
+    "category": "Clinical Algorithms",
+    "expected": "Weights sum to 1.0 (100%), score = 93.75% -> 93.8%",
+    "actual": "Weight sum: 1.0, Score: 93.75% -> 93.8%",
+    "passed": true
+  }
+]

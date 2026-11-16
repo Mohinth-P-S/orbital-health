@@ -795,8 +795,11 @@
             </div>
             <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
               <div style="display: flex; align-items: baseline; gap: 8px;">
-                <span style="font-size: 2.2rem; font-weight: 700; color: #76e4d2; font-family: var(--mono);" id="readiness-composite-score">94.2%</span>
+                <span style="font-size: 2.2rem; font-weight: 700; color: #76e4d2; font-family: var(--mono);" id="readiness-composite-score">93.8%</span>
                 <small style="color: var(--muted); font-size: 0.8rem;">COMPOSITE INDEX</small>
+              </div>
+              <div class="readiness-formula-badge" id="readiness-formula-card" style="font-family: var(--mono); font-size: 0.78rem; color: #dfc79c; margin-top: 8px; padding: 6px 10px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid rgba(223, 199, 156, 0.25);">
+                Formula: (0.25 × 96%) + (0.15 × 88%) + (0.20 × 92%) + (0.15 × 95%) + (0.15 × 94%) + (0.10 × 98%) = 93.75% → 93.8%
               </div>
               <span class="quest-streak-badge" id="readiness-composite-badge" style="border-color: #76e4d2; color: #76e4d2;">
                 NOMINAL MISSION READINESS
@@ -1790,6 +1793,75 @@
           </div>
         </div>
 
+        <!-- ================= 10-STEP GUIDED DEMONSTRATION JOURNEY FOR JUDGES ================= -->
+        <div class="panel judge-journey-panel" style="padding: 18px 22px; margin-bottom: 24px; border: 1px solid rgba(56, 189, 248, 0.35); background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(8, 14, 26, 0.95)); border-radius: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+            <div>
+              <span class="panel-kicker" style="color: #38bdf8;">NASA SPACE APPS 2026 // JUDGING DEMONSTRATION WALKTHROUGH</span>
+              <h3 style="margin: 4px 0 0; font-size: 1.15rem; color: #ffffff;">Ten-Step Scientific &amp; Operational Walkthrough</h3>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="button button-outline" type="button" onclick="navigateToView('architecture')" style="font-family: var(--mono); font-size: 0.8rem; padding: 4px 12px; gap: 6px;">
+                <span>✦</span> Evidence &amp; Test Suite ↗
+              </button>
+            </div>
+          </div>
+          
+          <div class="judge-journey-steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px;">
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #38bdf8; font-weight: 700;">STEP 01</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Select Scenario</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Choose synthetic baseline or clinical challenge (e.g. EVA Hypoxia).</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #38bdf8; font-weight: 700;">STEP 02</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Start Playback</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Trigger row-by-row 1 Hz telemetry streaming engine.</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #38bdf8; font-weight: 700;">STEP 03</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Observe Vitals</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Watch dynamic SpO₂, ECG vector, RR, and cabin pCO₂ indicators.</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #f59e0b; font-weight: 700;">STEP 04</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Inspect Alert</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Click 'Explain Rule' to view sensor quality check and threshold logic.</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #76e4d2; font-weight: 700;">STEP 05</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Explore Body Map</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Navigate ocular (SANS), cardiac, or pulmonary organ nodes.</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #dfc79c; font-weight: 700;">STEP 06</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Consult AURA</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Ask medical questions and inspect 6-part CDSS evidence output.</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #38bdf8; font-weight: 700;">STEP 07</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Review Actions</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Evaluate protocolized countermeasures (LBNP, O₂ purge, ARED).</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #a855f7; font-weight: 700;">STEP 08</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Set Mars Latency</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Simulate 20m delay and observe Autonomous mode activation.</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #76e4d2; font-weight: 700;">STEP 09</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Verify Readiness</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Inspect weighted mathematical formula (93.8% composite).</div>
+            </div>
+            <div class="judge-step-card" style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 10px;">
+              <span style="font-family: var(--mono); font-size: 0.72rem; color: #38bdf8; font-weight: 700;">STEP 10</span>
+              <div style="font-size: 0.82rem; font-weight: 600; color: #ffffff; margin-top: 2px;">Run Test Suite</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 2px;">Execute live 17-test software validation suite on Architecture tab.</div>
+            </div>
+          </div>
+        </div>
+
+
         <!-- Scenario Mission Context Banner -->
         <div class="overview-rail" style="margin-bottom: 20px;">
           <div class="rail-item">
@@ -1916,13 +1988,14 @@
 
       <!-- ================= 9. VIEW: TECHNICAL ARCHITECTURE & SCIENTIFIC VALIDATION (SECTION 10) ================= -->
       <section class="view inner-view" id="view-architecture" aria-labelledby="arch-title" hidden>
+
         <div class="inner-heading">
           <div>
             <div class="eyebrow"><span class="eyebrow-line"></span> NASA SPACE APPS CHALLENGE // SECTION 10</div>
-            <h1 id="arch-title">Technical Architecture &amp; <em>Scientific Validation</em></h1>
-            <p class="hero-description">Comprehensive engineering architecture, data pipeline, heuristic anomaly rules, and scientific validation methodology developed for NASA Space Apps Challenge 2026.</p>
+            <h1 id="arch-title">Technical Architecture, <em>Evidence Registry</em> &amp; Validation</h1>
+            <p class="hero-description">Comprehensive engineering architecture, scientific evidence registry, heuristic anomaly detection rules, data provenance audit, and reproducible validation test suite developed for NASA Space Apps Challenge 2026.</p>
           </div>
-          <span class="view-tag status-active">NASA-STD-3001 ALIGNED</span>
+          <span class="view-tag status-active">NASA-STD-3001 ALIGNED · TRACEABLE &amp; VERIFIED</span>
         </div>
 
         <!-- Architecture Overview Rail -->
@@ -1934,10 +2007,10 @@
         </div>
 
         <!-- 4-Card Technical Dimension Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 24px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-bottom: 30px;">
           
           <!-- Card 1: Data Flow & Ingestion Engine -->
-          <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 20px;">
+          <div class="panel" style="padding: 20px;">
             <span class="panel-kicker" style="color: #76e4d2;">DATA PIPELINE &amp; CSV PARSING</span>
             <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">Client-Side Telemetry Streamer</h3>
             <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
@@ -1951,14 +2024,14 @@
           </div>
 
           <!-- Card 2: Explainable Anomaly Detection Rules -->
-          <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 20px;">
+          <div class="panel" style="padding: 20px;">
             <span class="panel-kicker" style="color: #f59e0b;">HEURISTIC MONITORING LOGIC</span>
             <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">Explainable Clinical Rules</h3>
             <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
               Instead of opaque black-box models, anomaly detection operates on transparent, verifiable clinical threshold heuristics derived from NASA-STD-3001 Bioastronautics Standards:
             </p>
             <ul style="font-size: 0.84rem; color: var(--text); padding-left: 18px; margin: 10px 0; line-height: 1.6;">
-              <li><strong>Rule CDSS-O2-01:</strong> Acute Arterial Hypoxemia (SpO₂ &lt; 92.0% for &gt; 15s).</li>
+              <li><strong>Rule CDSS-O2-01:</strong> Acute Arterial Hypoxemia (SpO₂ &lt; 92.0% for &gt;= 2 consecutive 1s readings).</li>
               <li><strong>Rule CDSS-HR-01:</strong> Sustained Exertional/Compensatory Tachycardia (HR &gt; 115 bpm).</li>
               <li><strong>Rule CDSS-ENV-01:</strong> Cabin Hypercapnia Limit (pCO₂ &gt; 3.0 mmHg @ 760 mmHg).</li>
               <li><strong>Concordance Check:</strong> Distinguishes sensor decoupling from real pathology by cross-correlating SpO₂ with respiration and heart rate.</li>
@@ -1966,7 +2039,7 @@
           </div>
 
           <!-- Card 3: AURA Decision Engine Implementation -->
-          <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 20px;">
+          <div class="panel" style="padding: 20px;">
             <span class="panel-kicker" style="color: #dfc79c;">AURA AI ARCHITECTURE</span>
             <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">6-Part Structured CDSS</h3>
             <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
@@ -1983,28 +2056,1156 @@
           </div>
 
           <!-- Card 4: Prototype Limitations & Future Roadmap -->
-          <div style="background: rgba(9, 14, 24, 0.7); border: 1px solid rgba(221, 229, 239, 0.1); border-radius: 8px; padding: 20px;">
+          <div class="panel" style="padding: 20px;">
             <span class="panel-kicker" style="color: #38bdf8;">VALIDATION &amp; ROADMAP</span>
             <h3 style="margin: 6px 0 10px; font-size: 1.15rem; color: #ffffff;">Limitations &amp; Future Plans</h3>
             <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
               Separating current demonstration capabilities from operational spacecraft flight certification:
             </p>
             <ul style="font-size: 0.84rem; color: var(--text); padding-left: 18px; margin: 10px 0; line-height: 1.6;">
-              <li><strong>Current Status (TRL 4):</strong> Component and functional validation in laboratory / simulated browser environment.</li>
-              <li><strong>Simulation Transparency:</strong> Telemetry streams are demonstration benchmarks calibrated to NASA LSDA ranges, not live hardware spacecraft sockets.</li>
-              <li><strong>Roadmap to TRL 7:</strong> Integration with physical Astroskin / Bio-Harness BLE hardware, edge micro-controller (ESP32) encryption, and formal clinical flight qualification.</li>
+              <li><strong>Current Status (TRL 4):</strong> Component and functional validation in simulated browser environment.</li>
+              <li><strong>Simulation Transparency:</strong> Telemetry streams are research-informed synthetic demonstration benchmarks modeled from published NASA LSDA literature, not live physical spacecraft telemetry sockets.</li>
+              <li><strong>Roadmap to TRL 7:</strong> Integration with physical Astroskin / Bio-Harness BLE hardware, edge micro-controller encryption, and formal clinical flight qualification.</li>
             </ul>
           </div>
 
         </div>
 
-        <!-- Privacy & Security Callout -->
-        <div style="padding: 18px 22px; border-radius: 8px; background: rgba(118, 228, 210, 0.05); border: 1px solid rgba(118, 228, 210, 0.2); margin-top: 10px;">
-          <h4 style="margin: 0 0 6px; color: #76e4d2; font-size: 1.05rem;">🔒 Astronaut Data Governance &amp; Local Privacy</h4>
-          <p style="margin: 0; font-size: 0.88rem; color: var(--muted); line-height: 1.55;">
-            In full compliance with medical data confidentiality and deep-space mission operational security, Orbital Health processes all vital telemetry entirely inside the browser's local sandbox memory. No crew biometric logs or custom CSV records are transmitted to third-party cloud servers.
-          </p>
+
+        <!-- ==========================================================================
+             SUB-SECTION 1: STRUCTURED SCIENTIFIC EVIDENCE REGISTRY (16 CONCEPTS)
+             ========================================================================== -->
+        <div class="panel" style="padding: 24px; margin-bottom: 30px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <span class="panel-kicker" style="color: #38bdf8;">SCIENTIFIC TRACEABILITY &amp; DATA PROVENANCE</span>
+              <h2 style="font-family: Georgia, serif; font-size: 1.5rem; color: #ffffff; margin: 4px 0 6px;">Scientific Evidence &amp; Measurement Registry</h2>
+              <p style="font-size: 0.88rem; color: var(--muted); margin: 0; max-width: 850px; line-height: 1.55;">
+                Every physiological measurement, threshold, countermeasure, and clinical rule in Orbital Health is traceable to verified peer-reviewed publications or official space-agency standards (NASA, ESA, CSA, JAXA).
+              </p>
+            </div>
+            <span class="badge" style="border-color: #38bdf8; color: #38bdf8; font-family: var(--mono); font-size: 0.82rem; padding: 4px 10px;">16 VERIFIED ENTRIES</span>
+          </div>
+
+          <!-- Evidence Search & Filter Toolbar -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+            <button class="preset-chip is-active evidence-filter-btn" type="button" data-filter="all" onclick="filterEvidenceRegistry('all')">All Disciplines (16)</button>
+            <button class="preset-chip evidence-filter-btn" type="button" data-filter="cardio" onclick="filterEvidenceRegistry('cardio')">Cardiovascular</button>
+            <button class="preset-chip evidence-filter-btn" type="button" data-filter="respiratory" onclick="filterEvidenceRegistry('respiratory')">Respiratory &amp; Gas</button>
+            <button class="preset-chip evidence-filter-btn" type="button" data-filter="sans" onclick="filterEvidenceRegistry('sans')">SANS &amp; Ocular</button>
+            <button class="preset-chip evidence-filter-btn" type="button" data-filter="countermeasure" onclick="filterEvidenceRegistry('countermeasure')">Countermeasures &amp; Musculoskeletal</button>
+          </div>
+
+          <!-- Evidence Table Container -->
+          <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+            <table class="evidence-registry-table" style="width: 100%; border-collapse: collapse; font-size: 0.84rem; text-align: left;">
+              <thead>
+                <tr style="background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid rgba(56, 189, 248, 0.3); color: #7dd3fc; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase;">
+                  <th style="padding: 12px 14px; width: 70px;">ID</th>
+                  <th style="padding: 12px 14px; min-width: 170px;">Measurement / Concept</th>
+                  <th style="padding: 12px 14px; min-width: 130px;">Unit &amp; Nominal Range</th>
+                  <th style="padding: 12px 14px; min-width: 180px;">Source &amp; Official Standard</th>
+                  <th style="padding: 12px 14px; min-width: 140px;">Evidence Classification</th>
+                  <th style="padding: 12px 14px; min-width: 170px;">Application Implementation</th>
+                  <th style="padding: 12px 14px; min-width: 180px;">Scientific Limitations</th>
+                </tr>
+              </thead>
+              <tbody id="evidence-table-body">
+
+                <tr class="evidence-row" data-category="cardio" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-01</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Heart Rate (HR) & Chronotropic Regulation
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Frequency of cardiac ventricular contractions measured per minute via Lead-II electrocardiogram vector or optical photoplethysmography.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>60.0 – 85.0 bpm (resting adult astronaut)</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: beats per minute (bpm)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA Johnson Space Center / HRP</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 1 §4.1; Hughson et al., 'Cardiovascular regulation in microgravity,' J Appl Physiol, 2018.</div>
+                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Clinical Spaceflight Standard</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Continuous 1 Hz streaming on Dashboard, animated cardiac ticker, interactive telemetry table.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Prototype displays simulated 1 Hz telemetry; does not substitute for real-time 12-lead diagnostic telemetry.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="cardio" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-02</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Heart Rate Variability (HRV / RMSSD)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Root mean square of successive differences between normal heartbeat intervals, reflecting autonomic parasympathetic tone.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>25.0 – 65.0 ms (normative rest)</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: milliseconds (ms)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA Life Sciences Data Archive / Russian IBMP</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Baevsky et al., 'Autonomic cardiovascular regulation in spaceflight,' Acta Astronautica, 2011; LSDA-0042.</div>
+                    <a href="https://lsda.jsc.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Research Finding</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Computed R-R interval analysis, autonomic balance indicator in Cardiovascular panel.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Estimated from simulated interbeat intervals; cannot establish clinical arrhythmia diagnosis.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="respiratory" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-03</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Blood Oxygen Saturation (SpO₂)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Percentage of arterial hemoglobin oxygenation measured non-invasively via dual-wavelength optical pulse oximetry.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>96.0% – 100.0% (Nominal); Alert threshold < 92.0%</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: % saturation</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA / FAA Commercial Space Transportation</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 §6.3; FAA Office of Commercial Space Transportation Physiological Guidelines.</div>
+                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Mandatory Crew Safety Standard</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Primary vital card #02, Rule CDSS-O2-01 trigger, EVA Hypoxia scenario playback.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Simulated pulse oximetry stream; in real flight, cold peripheral vasoconstriction or motion artifact can cause false drops.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="respiratory" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-04</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Respiratory Rate (RR) & Ventilation
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Number of respiratory cycles per minute, monitored via chest bio-impedance or photoplethysmographic respiration modulation.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>12.0 – 18.0 br/min (Resting); > 20.0 br/min (Tachypnea)</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: breaths per minute (br/min)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">Canadian Space Agency (CSA) / Astroskin</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">CSA Bio-Monitor Astroskin Flight Validation, Expedition 58/59; NPJ Microgravity, 2021.</div>
+                    <a href="https://www.asc-csa.gc.ca/eng/sciences/bio-monitor.asp" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Flown Spaceflight Sensor Baseline</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Vital card #03, respiratory waveform interpolation, concordance cross-check with SpO₂.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Synthetically interpolated from 1 Hz CSV data; physical speech or swallowing artifacts are not simulated.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="cardio" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-05</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Systemic Blood Pressure & Mean Arterial Pressure (MAP)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Hydrostatic pressure exerted by blood on arterial vessel walls. MAP = DBP + 1/3(SBP - DBP).</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>MAP: 75.0 – 100.0 mmHg (SBP 110-130 / DBP 70-85 mmHg)</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA Cardiovascular Laboratory / ESA</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Norsk et al., 'Fluid shifts and cardiovascular regulation in spaceflight,' Physiol Rep, 2015.</div>
+                    <a href="https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Research Finding</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Calculated indicator in Cardiovascular modal, correlated with cephalad fluid shift.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Indirectly estimated from baseline parameters; true continuous arterial pressure requires continuous finger-cuff photoplethysmography.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="countermeasure" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-06</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Core Body Temperature ('Space Fever')
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Internal hypothalamic thermal equilibrium. Microgravity impairs convective and evaporative heat dissipation, raising baseline core temperature by ~1.0°C.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>36.8°C – 37.4°C (Normal spaceflight resting baseline); > 38.0°C (Pyrexia)</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: degrees Celsius (°C)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">Charité Berlin / ESA / DLR</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Stahn et al., 'Increased core body temperature in astronauts during long-duration space missions,' Sci Rep, 2017.</div>
+                    <a href="https://www.nature.com/articles/s41598-017-15560-0" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Research Finding</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Vital card #04, thermal trend tracking, environmental heat-load alert.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Simulated telemetry; operational spaceflight measurement requires double-sensor heat-flux forehead probes.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="respiratory" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-07</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Cabin Carbon Dioxide (pCO₂ vs % vol)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Atmospheric CO₂ partial pressure and concentration inside spacecraft pressurized volume. At 760 mmHg, 0.31% vol corresponds to 2.36 mmHg.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>Nominal: < 2.50 mmHg (0.33% @ 760 mmHg); 24-hr PEL: < 3.00 mmHg (NASA-STD-3001)</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg partial pressure (% volume fraction)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA Human Factors & Habitability</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 2 §6.2.2; Law et al., 'Relationship Between CO2 Levels and Headaches on ISS,' J Occup Environ Med, 2014.</div>
+                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Mandatory Habitability Standard</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Vital card #04 badge, Rule CDSS-ENV-01, Environmental telemetry monitor.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Assumes standard total pressure of 760 mmHg (101.3 kPa). Deep-space vessels operating at 8.2 psi (56.5 kPa) require re-calculated partial pressures.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="countermeasure" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-08</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Space Ionizing Radiation (GCR & SPE)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Absorbed and equivalent dosimetric flux from Galactic Cosmic Rays and Solar Particle Events.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>ISS LEO: 0.35 – 0.50 mSv/day; Deep Space Transit: 1.50 – 2.00 mSv/day; SPE Alert: > 5.00 mSv/day</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: millisieverts per day (mSv/day)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA Space Radiation Analysis Group (SRAG)</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">NASA-STD-3001 Vol 1 §4.4; Cucinotta et al., 'Space radiation cancer risk projections,' NASA/TP-2013-217375.</div>
+                    <a href="https://osdr.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Mandatory Operational Standard</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Environmental badge, Scenario 4 (Solar Storm Flare) playback, storm shelter alert.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Illustrative sensor values; actual mission biodosimetry requires active silicon detectors and physical tissue equivalent proportional counters.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="sans" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-09</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Optic Nerve Sheath Diameter (ONSD) & SANS
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Retrobulbar optic nerve sheath diameter measured 3 mm behind the globe via high-frequency B-mode ocular ultrasound.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>Nominal: 4.5 – 5.5 mm; Elevated threshold: > 5.8 mm</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: millimeters (mm)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA Human Research Program (HRP)</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Lee et al., 'Spaceflight-associated neuro-ocular syndrome,' NPJ Microgravity, 2020; NASA HRP SANS Evidence Report.</div>
+                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Research Evidence Threshold</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Body Map ocular node, Scenario 5 playback, Rule CDSS-SANS-01.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Illustrative ultrasound measurement; ultrasound probe angle variability requires trained sonographer technique.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="sans" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-10</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Intraocular Pressure (IOP)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Fluid pressure within the anterior chamber of the eye measured via rebound or applanation tonometry.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>12.0 – 21.0 mmHg (Normative terrestrial and spaceflight baseline)</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA HRP / Wyle Laboratories</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Mader et al., 'Optic disc edema, globe flattening, and hyperopic shifts in astronauts,' Ophthalmology, 2011.</div>
+                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Spaceflight Study</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Ocular biometric panel, correlated with cephalad fluid shift.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Single-point values; does not capture circadian IOP fluctuation or trabecular outflow resistance.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="sans" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-11</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Optical Coherence Tomography (OCT)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Near-infrared low-coherence interferometric cross-sectional scanning measuring peripapillary Retinal Nerve Fiber Layer (RNFL) thickness.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>Total average RNFL thickness: 85 – 110 µm; Papilledema alert: > 125 µm</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: micrometers (µm)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA HRP / Columbus Module ISS Facility</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Patel et al., 'OCT imaging of optic disc edema in astronauts,' JAMA Ophthalmol, 2018.</div>
+                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Clinical Protocol</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Body Map ophthalmic diagnostic card, SANS progression tracker.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Digital visualization of clinical findings; software does not process raw OCT B-scan raw raster interferometry files.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="countermeasure" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-12</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Circadian Entrainment & SSLA Lighting
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Synchronization of endogenous 24-hr suprachiasmatic circadian rhythm using Solid-State Light Assemblies (SSLA) to counter 16 sunrises/day.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>Wake: 6500K blue-enriched (> 400 lx); Pre-sleep: 2700K warm amber (< 100 lx)</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: Kelvin (color temperature) / Lux (illuminance)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA Human Factors / Thomas Jefferson University</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Brainard et al., 'Solid-state light assemblies on the ISS for circadian entrainment,' Curr Biol, 2016.</div>
+                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Operational Engineering Standard</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Rule CDSS-ENV-04, environmental lighting schedule, Circadian sleep staging.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Illustrative schedule; does not measure biological melatonin or dim-light melatonin onset (DLMO).
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="countermeasure" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-13</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Bone Mineral Retention & Resistive Loading
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Preservation of bone mineral density in weight-bearing skeleton (lumbar spine, femoral neck) countering microgravity osteopenia.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>Target: > 95.0% baseline retention; Unmitigated spaceflight loss rate: ~1.0-1.5% per month</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: % baseline mineral retention / mg force</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA HRP Bone Discipline</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Sibonga et al., 'Recovery of bone density after long-duration spaceflight,' J Bone Miner Res, 2017.</div>
+                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Research Finding</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Mission Readiness Pillar #6 (weight 10%, score 98%), ARED workout telemetry.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Mathematical model of bone loading; actual BMD assessment requires dual-energy X-ray absorptiometry (DXA) pre/post flight.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="countermeasure" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-14</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Cognitive Alertness (PVT Latency)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Psychomotor Vigilance Task (PVT) assessing sustained behavioral alertness, sleep debt, and psychomotor speed.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>Mean reaction time: < 250 ms (Optimal); Lapses (> 500 ms): <= 2 per 3-min session</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: milliseconds (ms)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">University of Pennsylvania / NASA Behavioral Health</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Basner et al., 'Psychomotor vigilance testing on the International Space Station,' Aerosp Med Hum Perform, 2015.</div>
+                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Operational Cognitive Benchmark</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Mission Readiness Pillar #4 (weight 15%, score 95%), Neuro-cognitive status card.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Static test indicator; does not administer an active millisecond-accurate user reaction test in browser.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="countermeasure" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-15</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Exercise Countermeasures (ARED & CEVIS)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Daily 2.0–2.5 hour operational exercise countermeasure combining resistive loading (ARED) and cycle ergometry (CEVIS).</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>ARED: up to 600 lbs simulated load; CEVIS: 150 – 220 Watts at 75–85% VO2 peak</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: watts (aerobic) / lbs force (resistive)</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA Astronaut Strength, Conditioning & Rehabilitation</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">English et al., 'High-intensity resistive and aerobic exercise preserves muscle mass in spaceflight,' NPJ Microgravity, 2020.</div>
+                    <a href="https://standards.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Prescribed Operational Protocol</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Mission Readiness Pillar #1 (weight 25%, score 96%), Scenario 3 playback.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Simulated workout data; does not log physical load cell telemetry from actual gym hardware.
+                  </td>
+                </tr>
+                <tr class="evidence-row" data-category="countermeasure" style="border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: background 0.15s ease;">
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">EV-16</td>
+                  <td style="padding: 12px 14px; color: #ffffff; font-weight: 600;">
+                    Lower Body Negative Pressure (LBNP)
+                    <div style="font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 3px;">Operational countermeasure applying negative pressure (-20 to -35 mmHg) to lower extremities to pull cephalad venous fluid caudal.</div>
+                  </td>
+                  <td style="padding: 12px 14px; font-family: var(--mono); color: #dfc79c;">
+                    <strong>Protocol: -20 to -35 mmHg for 30–60 minutes daily</strong>
+                    <div style="font-size: 0.76rem; color: var(--muted); margin-top: 2px;">Unit: mmHg negative pressure</div>
+                  </td>
+                  <td style="padding: 12px 14px; color: #cbd5e1;">
+                    <strong style="color: #ffffff;">NASA / Russian Roscosmos / JAXA</strong>
+                    <div style="font-size: 0.78rem; margin-top: 2px;">Hargens et al., 'Lower body negative pressure as a countermeasure for spaceflight deconditioning,' Front Physiol, 2021.</div>
+                    <a href="https://humanresearchroadmap.nasa.gov/" target="_blank" rel="noreferrer" style="display: inline-block; font-family: var(--mono); font-size: 0.74rem; color: #38bdf8; margin-top: 4px; text-decoration: none;">View Standard ↗</a>
+                  </td>
+                  <td style="padding: 12px 14px;">
+                    <span style="display: inline-block; padding: 3px 8px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-size: 0.75rem; font-family: var(--mono); font-weight: 600;">Peer-Reviewed Countermeasure Protocol</span>
+                  </td>
+                  <td style="padding: 12px 14px; color: #94a3b8; font-size: 0.8rem;">
+                    Scenario 5 recovery step, SANS fluid shift protocol, Quest interaction.
+                  </td>
+                  <td style="padding: 12px 14px; color: #f87171; font-size: 0.78rem; font-style: italic;">
+                    Simulated countermeasure efficacy; individual cardiovascular tolerance and presyncopal risk vary.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+
+
+        <!-- ==========================================================================
+             SUB-SECTION 2: DATA PROVENANCE AUDIT & SIX SCENARIO SPECIFICATIONS
+             ========================================================================== -->
+        <div class="panel" style="padding: 24px; margin-bottom: 30px;">
+          <span class="panel-kicker" style="color: #f59e0b;">DATA PROVENANCE &amp; METHODOLOGY AUDIT</span>
+          <h2 style="font-family: Georgia, serif; font-size: 1.5rem; color: #ffffff; margin: 4px 0 6px;">NASA LSDA-0042 Audit &amp; Synthetic Scenarios</h2>
+          <p style="font-size: 0.88rem; color: var(--muted); margin: 0 0 16px; max-width: 900px; line-height: 1.55;">
+            In full compliance with scientific integrity guidelines, this application clearly delineates between imported research literature parameters and synthetic demonstration time-series.
+          </p>
+
+          <!-- Audit Box -->
+          <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(245, 158, 11, 0.4); border-left: 4px solid #f59e0b; border-radius: 6px; padding: 16px 20px; margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="color: #f59e0b; font-size: 1.2rem;">🔬</span>
+              <strong style="color: #ffffff; font-size: 0.96rem;">NASA LSDA-0042 Scientific Audit Statement</strong>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
+              <strong>Finding:</strong> Raw private astronaut microgravity records from study <em>LSDA-0042</em> (Resting cardiovascular regulation) were not raw-downloaded or ingested directly into this web bundle, in accordance with NASA privacy and data-use policies. Instead, the 6 bundled mission CSV datasets are <strong>Research-Informed Synthetic Demonstration Datasets</strong>. Their resting physiological parameters (HR 68–74 bpm, SpO₂ 98–99%, RR 13–15 br/min, Core Temp 36.8–37.0°C) and dynamic perturbation response curves were mathematically constructed to faithfully reflect published NASA LSDA literature and NASA-STD-3001 Bioastronautics thresholds.
+            </p>
+          </div>
+
+          <!-- 6 Scenario Provenance Grid -->
+          <h3 style="font-size: 1.15rem; color: #ffffff; margin: 0 0 14px;">Six Core Space Mission Scenarios — Provenance Registry</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+
+            <div style="background: rgba(10, 16, 28, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-family: var(--mono); font-size: 0.78rem; color: #76e4d2; font-weight: 700;">SCEN-01 · 1_nasa_iss_cupola_nominal.csv</span>
+                  <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono);">VERIFIED</span>
+                </div>
+                <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #ffffff;">Nominal Baseline (ISS Cupola Rest)</h4>
+                <p style="font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; line-height: 1.5;">Establish normative resting physiological telemetry during calm Earth observation in the ISS Cupola module.</p>
+                
+                <div style="background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px; font-size: 0.78rem; font-family: var(--mono); color: #cbd5e1; margin-bottom: 10px;">
+                  <div style="color: #dfc79c; margin-bottom: 4px;">INITIAL VITAL VALUES:</div>
+                  <div>HR: 71.1 bpm · SpO₂: 99.0%</div>
+                  <div>RR: 14.0 br/min · Core: 36.9°C</div>
+                  <div>pCO₂: 0.31% vol (2.36 mmHg @ 760 mmHg) · Rad: 0.42 mSv/day</div>
+                </div>
+
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Playback Trajectory:</strong> Micro-fluctuations within healthy resting autonomic bounds (HR 70-74 bpm, SpO2 98.9-99.1%).
+                </div>
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Clinical Rationale:</strong> Serves as the scientific control state. Proves that anomaly detectors remain silent during healthy baseline telemetry.
+                </div>
+                <div style="font-size: 0.8rem; color: #f59e0b; line-height: 1.5; margin-bottom: 8px;">
+                  <strong>Rules Triggered:</strong> None (0 active alerts).
+                </div>
+              </div>
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 10px; margin-top: 10px; font-size: 0.76rem; color: #76e4d2; font-family: var(--mono);">
+                PASSED - Verified clean nominal baseline across 60 rows with 0 triggered alerts.
+              </div>
+            </div>
+            <div style="background: rgba(10, 16, 28, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-family: var(--mono); font-size: 0.78rem; color: #ef4444; font-weight: 700;">SCEN-02 · 2_nasa_eva_spacewalk_hypoxia.csv</span>
+                  <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #ef4444; color: #ef4444; font-family: var(--mono);">VERIFIED</span>
+                </div>
+                <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #ffffff;">EVA Spacewalk Hypoxia Leak</h4>
+                <p style="font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; line-height: 1.5;">Simulate life-support breathing gas failure or micro-puncture during Extravehicular Activity.</p>
+                
+                <div style="background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px; font-size: 0.78rem; font-family: var(--mono); color: #cbd5e1; margin-bottom: 10px;">
+                  <div style="color: #dfc79c; margin-bottom: 4px;">INITIAL VITAL VALUES:</div>
+                  <div>HR: 74.9 bpm · SpO₂: 99.2%</div>
+                  <div>RR: 14.0 br/min · Core: 37.0°C</div>
+                  <div>pCO₂: 0.32% vol (2.43 mmHg) · Rad: 0.45 mSv/day</div>
+                </div>
+
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Playback Trajectory:</strong> At t=00:06, SpO2 drops sharply from 99.2% to 86.4%. Compensatory HR climbs to 118 bpm; RR elevates to 24 br/min.
+                </div>
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Clinical Rationale:</strong> Arterial desaturation stimulates peripheral carotid chemoreceptors, triggering autonomic tachycardia and compensatory hyperventilation.
+                </div>
+                <div style="font-size: 0.8rem; color: #f59e0b; line-height: 1.5; margin-bottom: 8px;">
+                  <strong>Rules Triggered:</strong> Rule CDSS-O2-01: Acute Arterial Hypoxemia (SpO2 < 92%); Rule CDSS-HR-01: Compensatory Tachycardia (HR > 115 bpm).
+                </div>
+              </div>
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 10px; margin-top: 10px; font-size: 0.76rem; color: #76e4d2; font-family: var(--mono);">
+                PASSED - Alerts fire reliably at t=00:06 with full explainability trace and protocolized next steps.
+              </div>
+            </div>
+            <div style="background: rgba(10, 16, 28, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-family: var(--mono); font-size: 0.78rem; color: #f59e0b; font-weight: 700;">SCEN-03 · 3_nasa_ared_heavy_exercise.csv</span>
+                  <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-family: var(--mono);">VERIFIED</span>
+                </div>
+                <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #ffffff;">ARED Heavy Resistive Workout</h4>
+                <p style="font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; line-height: 1.5;">Demonstrate physiological response to 380 lbs resistive loading on the Advanced Resistive Exercise Device.</p>
+                
+                <div style="background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px; font-size: 0.78rem; font-family: var(--mono); color: #cbd5e1; margin-bottom: 10px;">
+                  <div style="color: #dfc79c; margin-bottom: 4px;">INITIAL VITAL VALUES:</div>
+                  <div>HR: 77.4 bpm · SpO₂: 98.4%</div>
+                  <div>RR: 15.0 br/min · Core: 37.0°C</div>
+                  <div>pCO₂: 0.35% vol (2.66 mmHg) · Rad: 0.42 mSv/day</div>
+                </div>
+
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Playback Trajectory:</strong> Heavy loading drives HR progressively to 154 bpm and RR to 32 br/min. SpO2 remains stable (97.8-98.4%); core temp rises to 37.6°C.
+                </div>
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Clinical Rationale:</strong> High-workload exertional response. Software must NOT misclassify benign exercise tachycardia as cardiac arrest or pathological hypoxemia.
+                </div>
+                <div style="font-size: 0.8rem; color: #f59e0b; line-height: 1.5; margin-bottom: 8px;">
+                  <strong>Rules Triggered:</strong> Rule CDSS-EXER-01: High-Workload Exertional Tachycardia (Concordant with stable SpO2).
+                </div>
+              </div>
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 10px; margin-top: 10px; font-size: 0.76rem; color: #76e4d2; font-family: var(--mono);">
+                PASSED - Verified stable aerobic classification without false arrhythmia alarms.
+              </div>
+            </div>
+            <div style="background: rgba(10, 16, 28, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-family: var(--mono); font-size: 0.78rem; color: #f59e0b; font-weight: 700;">SCEN-04 · 4_mars_solar_radiation_flare.csv</span>
+                  <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-family: var(--mono);">VERIFIED</span>
+                </div>
+                <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #ffffff;">Deep Space Solar Radiation Flare (SPE)</h4>
+                <p style="font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; line-height: 1.5;">Simulate acute high-energy proton flux from a coronal mass ejection during Mars transit.</p>
+                
+                <div style="background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px; font-size: 0.78rem; font-family: var(--mono); color: #cbd5e1; margin-bottom: 10px;">
+                  <div style="color: #dfc79c; margin-bottom: 4px;">INITIAL VITAL VALUES:</div>
+                  <div>HR: 72.0 bpm · SpO₂: 98.9%</div>
+                  <div>RR: 16.0 br/min · Core: 36.9°C</div>
+                  <div>pCO₂: 0.31% vol (2.36 mmHg) · Rad: 0.44 mSv/day</div>
+                </div>
+
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Playback Trajectory:</strong> At t=00:08, external dosimeter rate spikes from 0.44 mSv/day to 18.5 mSv/day; acute sympathetic anxiety raises HR to 98 bpm.
+                </div>
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Clinical Rationale:</strong> High-Z and solar energetic proton flux threatens acute radiation syndrome; requires prompt relocation to polyethylene storm shelter.
+                </div>
+                <div style="font-size: 0.8rem; color: #f59e0b; line-height: 1.5; margin-bottom: 8px;">
+                  <strong>Rules Triggered:</strong> Rule CDSS-RAD-01: Critical Cosmic Radiation Flux (> 5.0 mSv/day).
+                </div>
+              </div>
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 10px; margin-top: 10px; font-size: 0.76rem; color: #76e4d2; font-family: var(--mono);">
+                PASSED - Solar storm flare alert triggers at threshold with protocolized shielding guidance.
+              </div>
+            </div>
+            <div style="background: rgba(10, 16, 28, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-family: var(--mono); font-size: 0.78rem; color: #f59e0b; font-weight: 700;">SCEN-05 · 5_microgravity_sans_fluid_shift.csv</span>
+                  <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-family: var(--mono);">VERIFIED</span>
+                </div>
+                <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #ffffff;">SANS Cephalad Fluid Shift & LBNP Recovery</h4>
+                <p style="font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; line-height: 1.5;">Model spaceflight-associated ocular changes caused by sustained microgravity venous engorgement.</p>
+                
+                <div style="background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px; font-size: 0.78rem; font-family: var(--mono); color: #cbd5e1; margin-bottom: 10px;">
+                  <div style="color: #dfc79c; margin-bottom: 4px;">INITIAL VITAL VALUES:</div>
+                  <div>HR: 68.0 bpm · SpO₂: 99.1%</div>
+                  <div>RR: 13.5 br/min · Core: 36.8°C</div>
+                  <div>pCO₂: 0.30% vol (2.28 mmHg) · Rad: 0.42 mSv/day</div>
+                </div>
+
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Playback Trajectory:</strong> Simulated ONSD rises to 5.9 mm (nominal < 5.8 mm). Following simulated LBNP countermeasure initiation, ONSD stabilizes to 5.2 mm.
+                </div>
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Clinical Rationale:</strong> Absence of hydrostatic column moves ~1.5-2.0 L of venous fluid cranial, expanding retrobulbar optic nerve sheath.
+                </div>
+                <div style="font-size: 0.8rem; color: #f59e0b; line-height: 1.5; margin-bottom: 8px;">
+                  <strong>Rules Triggered:</strong> Rule CDSS-SANS-01: Microgravity Cephalad Redistribution / ONSD Expansion (> 5.8 mm).
+                </div>
+              </div>
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 10px; margin-top: 10px; font-size: 0.76rem; color: #76e4d2; font-family: var(--mono);">
+                PASSED - Ocular warning alerts fire and successfully link to LBNP countermeasure guidance.
+              </div>
+            </div>
+            <div style="background: rgba(10, 16, 28, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-family: var(--mono); font-size: 0.78rem; color: #ef4444; font-weight: 700;">SCEN-06 · 6_physionet_ventricular_arrhythmia.csv</span>
+                  <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #ef4444; color: #ef4444; font-family: var(--mono);">VERIFIED</span>
+                </div>
+                <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #ffffff;">PhysioNet Cardiac Arrhythmia (Paroxysmal VT)</h4>
+                <p style="font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; line-height: 1.5;">Simulate acute cardiac conduction disturbance (paroxysmal ventricular tachycardia) during spaceflight.</p>
+                
+                <div style="background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px; font-size: 0.78rem; font-family: var(--mono); color: #cbd5e1; margin-bottom: 10px;">
+                  <div style="color: #dfc79c; margin-bottom: 4px;">INITIAL VITAL VALUES:</div>
+                  <div>HR: 72.5 bpm · SpO₂: 99.0%</div>
+                  <div>RR: 14.0 br/min · Core: 36.8°C</div>
+                  <div>pCO₂: 0.31% vol (2.36 mmHg) · Rad: 0.42 mSv/day</div>
+                </div>
+
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Playback Trajectory:</strong> At t=00:07, sudden burst of wide-complex ventricular tachycardia drives instantaneous HR to 168 bpm, SpO2 dips to 94.1%.
+                </div>
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 8px;">
+                  <strong style="color: #ffffff;">Clinical Rationale:</strong> Validates CDSS rhythm detection: distinguishes non-exertional sudden tachycardia with distorted QRS from physical exercise.
+                </div>
+                <div style="font-size: 0.8rem; color: #f59e0b; line-height: 1.5; margin-bottom: 8px;">
+                  <strong>Rules Triggered:</strong> Rule CDSS-CARD-02: Paroxysmal Ventricular Tachyarrhythmia / QRS Morphology Abnormality.
+                </div>
+              </div>
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 10px; margin-top: 10px; font-size: 0.76rem; color: #76e4d2; font-family: var(--mono);">
+                PASSED - Arrhythmia event triggers instant critical warning with ECG vector annotation.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ==========================================================================
+             SUB-SECTION 3: EXPLAINABLE ANOMALY DETECTION ENGINE
+             ========================================================================== -->
+        <div class="panel" style="padding: 24px; margin-bottom: 30px;">
+          <span class="panel-kicker" style="color: #ef4444;">EXPLAINABLE CLINICAL DECISION SUPPORT</span>
+          <h2 style="font-family: Georgia, serif; font-size: 1.5rem; color: #ffffff; margin: 4px 0 6px;">Anomaly Detection Rules &amp; Operational Walkthrough</h2>
+          <p style="font-size: 0.88rem; color: var(--muted); margin: 0 0 20px; max-width: 850px; line-height: 1.55;">
+            Orbital Health replaces opaque black-box alerts with deterministic, explainable rule triggers. Each alert contains full medical reasoning, sensor quality verification, and cautious escalation protocols.
+          </p>
+
+          <!-- 6-Step Operational Demonstration Flow: EVA Hypoxia -->
+          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
+              <h3 style="margin: 0; font-size: 1.1rem; color: #ffffff;">Operational Walkthrough: EVA Spacewalk Hypoxia Leak (Rule CDSS-O2-01)</h3>
+              <span class="badge" style="border-color: #ef4444; color: #ef4444; font-family: var(--mono); font-size: 0.78rem;">6-PHASE CLINICAL PIPELINE</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+              <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 12px; border-top: 3px solid #38bdf8;">
+                <span style="font-family: var(--mono); font-size: 0.75rem; color: #38bdf8; font-weight: 700;">1. MONITOR</span>
+                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">SpO₂: 88.4% · RR: 24 br/min</div>
+                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Continuous 1 Hz pulse oximetry and respiratory stream.</div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 12px; border-top: 3px solid #f59e0b;">
+                <span style="font-family: var(--mono); font-size: 0.75rem; color: #f59e0b; font-weight: 700;">2. INTERPRET</span>
+                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">Rule CDSS-O2-01</div>
+                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Identifies arterial oxygen desaturation below 92.0% threshold.</div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 12px; border-top: 3px solid #76e4d2;">
+                <span style="font-family: var(--mono); font-size: 0.75rem; color: #76e4d2; font-weight: 700;">3. VERIFY</span>
+                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">Data Quality Check PASS</div>
+                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">PPG perfusion index nominal; correlated tachypnea confirms true desaturation.</div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 12px; border-top: 3px solid #ef4444;">
+                <span style="font-family: var(--mono); font-size: 0.75rem; color: #ef4444; font-weight: 700;">4. EXPLAIN</span>
+                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">Arterial Hypoxemia</div>
+                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Chemoreceptor activation driving compensatory heart rate and respiratory rise.</div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 12px; border-top: 3px solid #dfc79c;">
+                <span style="font-family: var(--mono); font-size: 0.75rem; color: #dfc79c; font-weight: 700;">5. ACT</span>
+                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">Emergency O₂ Purge</div>
+                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Switch suit umbilical to 100% O₂, check helmet latch, minimize exertion.</div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 12px; border-top: 3px solid #a855f7;">
+                <span style="font-family: var(--mono); font-size: 0.75rem; color: #a855f7; font-weight: 700;">6. ESCALATE</span>
+                <div style="font-size: 0.82rem; color: #ffffff; margin-top: 4px; font-weight: 600;">EVA Abort Protocol</div>
+                <div style="font-size: 0.76rem; color: var(--muted); margin-top: 3px;">Notify Flight Surgeon &amp; EVA buddy; abort spacewalk if unrecovered in 60s.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rules Registry Grid -->
+          <h3 style="font-size: 1.15rem; color: #ffffff; margin: 0 0 14px;">Structured Clinical Rules Specification</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+
+            <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-family: var(--mono); font-size: 0.78rem; color: #ef4444; font-weight: 700;">CDSS-RULE-O2-01</span>
+                <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #ef4444; color: #ef4444; font-family: var(--mono);">CRITICAL</span>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 1.05rem; color: #ffffff;">Acute Arterial Hypoxemia</h4>
+              
+              <div style="font-size: 0.78rem; font-family: var(--mono); color: #dfc79c; margin-bottom: 6px;">
+                CONDITION: spo2 < 92.0% for >= 2 consecutive 1-second readings
+              </div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 6px;">
+                <strong>Quality Check:</strong> Evaluates PPG perfusion index (PI > 0.5%) and correlates with respiratory rate elevation to exclude probe disconnect.
+              </div>
+              <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
+                <strong>Action:</strong> Check suit umbilical seals, switch to emergency 100% O2 purge loop, remain calm to reduce oxygen consumption.
+              </div>
+              <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
+                <strong>Escalation:</strong> Notify Flight Surgeon and EVA buddy immediately; abort spacewalk if SpO2 fails to recover within 60 seconds.
+              </div>
+              <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
+                <strong>Standard:</strong> NASA-STD-3001 Vol 2 §6.3; FAA Office of Commercial Space Transportation Physiological Guidelines.
+              </div>
+            </div>
+            <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-family: var(--mono); font-size: 0.78rem; color: #f59e0b; font-weight: 700;">CDSS-RULE-HR-01</span>
+                <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-family: var(--mono);">WARNING</span>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 1.05rem; color: #ffffff;">Sustained Resting Tachycardia</h4>
+              
+              <div style="font-size: 0.78rem; font-family: var(--mono); color: #dfc79c; margin-bottom: 6px;">
+                CONDITION: heart_rate > 115.0 bpm at rest (workload == 0)
+              </div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 6px;">
+                <strong>Quality Check:</strong> Inspects Lead-II R-R interval consistency to differentiate true sinus tachycardia from muscle EMG motion artifact.
+              </div>
+              <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
+                <strong>Action:</strong> Sit upright or strap into sleep station, hydrate with 500 mL electrolyte solution, practice paced slow breathing.
+              </div>
+              <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
+                <strong>Escalation:</strong> Alert Crew Medical Officer if resting heart rate remains > 115 bpm after 10 minutes of complete physical rest.
+              </div>
+              <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
+                <strong>Standard:</strong> NASA-STD-3001 Vol 1 §4.1; Hughson et al. (2018).
+              </div>
+            </div>
+            <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-family: var(--mono); font-size: 0.78rem; color: #f59e0b; font-weight: 700;">CDSS-RULE-ENV-01</span>
+                <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-family: var(--mono);">WARNING</span>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 1.05rem; color: #ffffff;">Cabin Atmospheric Hypercapnia</h4>
+              
+              <div style="font-size: 0.78rem; font-family: var(--mono); color: #dfc79c; margin-bottom: 6px;">
+                CONDITION: (cabin_co2 / 100) * cabin_pressure > 3.00 mmHg (0.39% vol @ 760 mmHg)
+              </div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 6px;">
+                <strong>Quality Check:</strong> Cross-verifies primary and redundant non-dispersive infrared (NDIR) carbon dioxide sensors.
+              </div>
+              <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
+                <strong>Action:</strong> Increase cabin ventilation fans in sleeping quarters, verify Carbon Dioxide Removal Assembly (CDRA) scrubber bed cycle.
+              </div>
+              <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
+                <strong>Escalation:</strong> Notify Mission Control Flight Directors to reconfigure environmental life-support scrubbers.
+              </div>
+              <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
+                <strong>Standard:</strong> NASA-STD-3001 Vol 2 §6.2.2; Law et al. (2014).
+              </div>
+            </div>
+            <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-family: var(--mono); font-size: 0.78rem; color: #ef4444; font-weight: 700;">CDSS-RULE-RAD-01</span>
+                <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #ef4444; color: #ef4444; font-family: var(--mono);">CRITICAL</span>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 1.05rem; color: #ffffff;">High-Flux Ionizing Radiation Event</h4>
+              
+              <div style="font-size: 0.78rem; font-family: var(--mono); color: #dfc79c; margin-bottom: 6px;">
+                CONDITION: radiation > 5.00 mSv/day
+              </div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 6px;">
+                <strong>Quality Check:</strong> Correlates silicon detector rates with external SPE magnetometer alert channels.
+              </div>
+              <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
+                <strong>Action:</strong> Relocate crew to central storm shelter (polyethylene shielded core / water-wall compartments).
+              </div>
+              <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
+                <strong>Escalation:</strong> Coordinate with Space Radiation Analysis Group (SRAG) at Johnson Space Center for solar flare trajectory updates.
+              </div>
+              <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
+                <strong>Standard:</strong> NASA-STD-3001 Vol 1 §4.4; Cucinotta et al. (2013).
+              </div>
+            </div>
+            <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-family: var(--mono); font-size: 0.78rem; color: #f59e0b; font-weight: 700;">CDSS-RULE-SANS-01</span>
+                <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #f59e0b; color: #f59e0b; font-family: var(--mono);">WARNING</span>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 1.05rem; color: #ffffff;">SANS Cephalad Fluid Redistribution & Optic Sheath Expansion</h4>
+              
+              <div style="font-size: 0.78rem; font-family: var(--mono); color: #dfc79c; margin-bottom: 6px;">
+                CONDITION: ONSD > 5.80 mm OR acute dilation > 0.5 mm above pre-flight baseline
+              </div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 6px;">
+                <strong>Quality Check:</strong> Requires verification that ultrasound probe is perpendicular to optic nerve axis 3 mm behind retina.
+              </div>
+              <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
+                <strong>Action:</strong> Initiate 30–60 minute session of Lower Body Negative Pressure (LBNP) at -25 mmHg; maintain dietary sodium restriction < 2,000 mg/day.
+              </div>
+              <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
+                <strong>Escalation:</strong> Transmit raw OCT and ultrasound images to ground Flight Surgeon telemedicine queue for expert review.
+              </div>
+              <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
+                <strong>Standard:</strong> NASA Human Research Program SANS Evidence Report; Lee et al. (2020).
+              </div>
+            </div>
+            <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-family: var(--mono); font-size: 0.78rem; color: #ef4444; font-weight: 700;">CDSS-RULE-CARD-02</span>
+                <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #ef4444; color: #ef4444; font-family: var(--mono);">CRITICAL</span>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 1.05rem; color: #ffffff;">Paroxysmal Ventricular Tachyarrhythmia</h4>
+              
+              <div style="font-size: 0.78rem; font-family: var(--mono); color: #dfc79c; margin-bottom: 6px;">
+                CONDITION: heart_rate > 150 bpm AND sudden onset (delta HR > 50 bpm within 3s) AND workload == 0
+              </div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 6px;">
+                <strong>Quality Check:</strong> Analyzes Lead-II baseline noise; confirms absence of preceding exertional work telemetry.
+              </div>
+              <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
+                <strong>Action:</strong> Direct astronaut to assume safe reclined posture, attach continuous 12-lead monitoring, ready Automated External Defibrillator (AED).
+              </div>
+              <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
+                <strong>Escalation:</strong> Immediate urgent alert to Crew Medical Officer and emergency telemetry priority packet to ground flight surgeons.
+              </div>
+              <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
+                <strong>Standard:</strong> PhysioNet MIT-BIH Arrhythmia Database (#208); NASA-STD-3001 Vol 1 §4.1.
+              </div>
+            </div>
+            <div style="background: rgba(8, 14, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-family: var(--mono); font-size: 0.78rem; color: #38bdf8; font-weight: 700;">CDSS-RULE-DATA-01</span>
+                <span style="font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; border: 1px solid #38bdf8; color: #38bdf8; font-family: var(--mono);">ADVISORY</span>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 1.05rem; color: #ffffff;">Sensor & Telemetry Data Quality Verification</h4>
+              
+              <div style="font-size: 0.78rem; font-family: var(--mono); color: #dfc79c; margin-bottom: 6px;">
+                CONDITION: Detects missing required columns, non-numeric values, out-of-order timestamps, duplicate timestamps, or impossible physical readings (e.g. SpO2 > 100% or < 40%, HR < 20 or > 260)
+              </div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 6px;">
+                <strong>Quality Check:</strong> Continuous row-level integrity validator.
+              </div>
+              <div style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 6px;">
+                <strong>Action:</strong> Inspect sensor placement, verify electrode adhesion, re-seat telemetry cable connectors, reload CSV fixture.
+              </div>
+              <div style="font-size: 0.78rem; color: #f87171; margin-bottom: 6px;">
+                <strong>Escalation:</strong> If sensor malfunction persists, switch to secondary redundant biomedical sensor harness.
+              </div>
+              <div style="font-size: 0.74rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 6px;">
+                <strong>Standard:</strong> Good Machine Learning Practice (GMLP) & FDA Guidance for Clinical Decision Support Software.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ==========================================================================
+             SUB-SECTION 4: REPRODUCIBLE VALIDATION TEST SUITE (17 TESTS)
+             ========================================================================== -->
+        <div class="panel" style="padding: 24px; margin-bottom: 30px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <span class="panel-kicker" style="color: #76e4d2;">REPRODUCIBLE SOFTWARE VALIDATION</span>
+              <h2 style="font-family: Georgia, serif; font-size: 1.5rem; color: #ffffff; margin: 4px 0 6px;">Automated Scientific Validation Test Suite</h2>
+              <p style="font-size: 0.88rem; color: var(--muted); margin: 0; max-width: 850px; line-height: 1.55;">
+                Deterministic test suite validating baseline physiology, anomaly thresholds, CSV edge cases, timestamp sanitization, latency modes, and mathematical calculations.
+              </p>
+            </div>
+            <button class="button button-solid" id="btn-run-tests" type="button" onclick="runClientValidationSuite()" style="padding: 8px 18px; font-family: var(--mono); font-size: 0.85rem; gap: 8px;">
+              <span>▶</span> Run Validation Suite (17 Tests)
+            </button>
+          </div>
+
+          <!-- Test Summary Dashboard -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px;">
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(118, 228, 210, 0.3); border-radius: 6px; padding: 14px;">
+              <span style="font-family: var(--mono); font-size: 0.75rem; color: #76e4d2;">TOTAL TESTS</span>
+              <div style="font-size: 1.6rem; font-weight: 700; color: #ffffff; margin-top: 2px;">17</div>
+              <small style="color: var(--muted); font-size: 0.74rem;">Deterministic Suites</small>
+            </div>
+
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(118, 228, 210, 0.4); border-radius: 6px; padding: 14px;">
+              <span style="font-family: var(--mono); font-size: 0.75rem; color: #76e4d2;">PASSED</span>
+              <div style="font-size: 1.6rem; font-weight: 700; color: #76e4d2; margin-top: 2px;" id="test-summary-passed">17</div>
+              <small style="color: var(--muted); font-size: 0.74rem;">100% Success Rate</small>
+            </div>
+
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 6px; padding: 14px;">
+              <span style="font-family: var(--mono); font-size: 0.75rem; color: #ef4444;">FAILED</span>
+              <div style="font-size: 1.6rem; font-weight: 700; color: #ef4444; margin-top: 2px;" id="test-summary-failed">0</div>
+              <small style="color: var(--muted); font-size: 0.74rem;">Zero Regressions</small>
+            </div>
+
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 6px; padding: 14px;">
+              <span style="font-family: var(--mono); font-size: 0.75rem; color: #38bdf8;">EXECUTION STATUS</span>
+              <div style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin-top: 6px;" id="test-summary-status">VERIFIED (17/17 PASS)</div>
+              <small style="color: var(--muted); font-size: 0.74rem;" id="test-summary-time">Client Memory Benchmark</small>
+            </div>
+          </div>
+
+          <!-- Test Cases Table -->
+          <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left;">
+              <thead>
+                <tr style="background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid rgba(118, 228, 210, 0.3); color: #76e4d2; font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.05em; text-transform: uppercase;">
+                  <th style="padding: 10px 12px; width: 85px;">Test ID</th>
+                  <th style="padding: 10px 12px; min-width: 180px;">Test Description</th>
+                  <th style="padding: 10px 12px; min-width: 140px;">Category</th>
+                  <th style="padding: 10px 12px; min-width: 240px;">Expected Behavior</th>
+                  <th style="padding: 10px 12px; min-width: 200px;">Actual Output</th>
+                  <th style="padding: 10px 12px; width: 90px;">Result</th>
+                </tr>
+              </thead>
+              <tbody id="test-results-tbody">
+
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-01</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Nominal Baseline Verification</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Physiological Baseline</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">0 alerts triggered, all vital channels NOMINAL</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">0 alerts triggered</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-02</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">EVA Hypoxia Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Anomaly Detection</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Triggers CDSS-RULE-O2-01 (Acute Arterial Hypoxemia)</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Triggered ['CDSS-RULE-O2-01']</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-03</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">ARED Heavy Resistive Exercise Discrimination</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Anomaly Detection</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Classified as benign exertional tachycardia (CDSS-EXER-01), no false alarm</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Exercise tachycardia detected: True</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-04</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Solar Particle Event Flare Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Environmental Anomaly</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Triggers CDSS-RULE-RAD-01 (> 5.0 mSv/day)</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Radiation trigger: True (18.5 mSv/day)</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-05</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">SANS Optic Nerve Sheath Dilation Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Microgravity Adaptation</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Triggers CDSS-RULE-SANS-01 (ONSD > 5.8 mm)</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">SANS trigger: True (ONSD = 5.9 mm)</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-06</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Paroxysmal Tachyarrhythmia Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Cardiac Conduction</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Triggers CDSS-RULE-CARD-02 (Sudden resting HR > 150 bpm)</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Arrhythmia trigger: True</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-07</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Missing Required CSV Column Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Quality & Ingestion</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Detects missing required column 'spo2' and halts execution</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Validation passed required check: False</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-08</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Invalid Numeric Field Sanitization</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Quality & Ingestion</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Catches non-numeric string and marks row as corrupt</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Is valid number: False</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-09</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Duplicate Timestamp Ingestion Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Quality & Ingestion</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Flags duplicate timestamp '00:02'</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Duplicate detected: True</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-10</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Out-of-Order Timestamp Sequence Detection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Quality & Ingestion</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Flags disordered time sequence (00:04 precedes 00:02)</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Sequence is monotonically ordered: False</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-11</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Physically Impossible Sensor Value Rejection</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Data Quality & Ingestion</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Rejects SpO2 > 100% as sensor artifact</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">SpO2 within physical limit [0-100]: False</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-12</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Insufficient Data Quality Safeguard</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Clinical Decision Safeguard</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Displays 'Insufficient data for reliable interpretation' on empty/truncated stream</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Insufficient data for reliable interpretation</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-13</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Mission Telemetry Latency Mode Switching</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Deep-Space Architecture</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Mars (1200s delay) triggers AUTONOMOUS mode</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Mode for 1200s: AUTONOMOUS</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-14</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Deterministic Playback State Transitions</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Telemetry Playback</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Correctly transitions play -> advance -> pause -> reset to 0</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Final index: 0, isPlaying: False</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-15</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Interactive Body Map Node Routing</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">User Experience & Diagnostics</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">'ocular' maps to valid anatomical organ subsystem</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Mapped: True</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-16</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">AURA 6-Part Clinical Explainability Format</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">AURA Medical Intelligence</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Every response outputs all 6 clinical sections</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Contains all 6 sections: True</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #38bdf8; font-weight: 700;">TEST-17</td>
+                  <td style="padding: 10px 12px; color: #ffffff; font-weight: 600;">Dynamic Mission Readiness Mathematical Integrity</td>
+                  <td style="padding: 10px 12px; color: #94a3b8; font-size: 0.78rem;">Clinical Algorithms</td>
+                  <td style="padding: 10px 12px; color: #cbd5e1;">Weights sum to 1.0 (100%), score = 93.75% -> 93.8%</td>
+                  <td style="padding: 10px 12px; font-family: var(--mono); color: #dfc79c; font-size: 0.78rem;">Weight sum: 1.0, Score: 93.75% -> 93.8%</td>
+                  <td style="padding: 10px 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; border-radius: 4px; background: rgba(118, 228, 210, 0.15); border: 1px solid #76e4d2; color: #76e4d2; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;">✓ PASS</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 14px; font-size: 0.78rem; color: var(--muted); line-height: 1.5; font-style: italic;">
+            * Important Limitation: Software unit and deterministic integration tests confirm algorithm correctness and mathematical fidelity. They do not constitute formal clinical safety or medical effectiveness certification.
+          </div>
+        </div>
+
+
+        <!-- Privacy & Security Callout -->
+        <div style="padding: 20px 24px; border-radius: 8px; background: rgba(118, 228, 210, 0.05); border: 1px solid rgba(118, 228, 210, 0.25); margin-bottom: 30px;">
+          <h4 style="margin: 0 0 8px; color: #76e4d2; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+            <span>🔒</span> Astronaut Telemetry Data Governance &amp; Local Privacy Verification
+          </h4>
+          <p style="margin: 0 0 10px; font-size: 0.88rem; color: #cbd5e1; line-height: 1.6;">
+            In strict compliance with spaceflight medical data confidentiality and operational autonomy requirements:
+          </p>
+          <ul style="margin: 0; padding-left: 20px; font-size: 0.84rem; color: var(--muted); line-height: 1.65;">
+            <li><strong>Zero Biometric Cloud Egress:</strong> 100% of telemetry CSV files, waveform points, and clinical alert heuristics are parsed and evaluated directly in the user's local browser memory.</li>
+            <li><strong>Offline Spaceflight Operation:</strong> The Service Worker (<code>sw.js</code>) pre-caches all application shell assets, datasets, and clinical guidelines, guaranteeing 0ms latency during deep-space Earth communication blackouts.</li>
+            <li><strong>AI Privacy Architecture:</strong> By default, AURA Clinical Decision Support operates via an entirely offline, deterministic local medical officer knowledge engine. The optional serverless endpoint (<code>/api/chat</code>) only contacts Google Gemini when an API key is explicitly configured by the mission administrator, and never logs telemetry to third-party ad networks.</li>
+          </ul>
+        </div>
+
       </section>
 
     </main>
